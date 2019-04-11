@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-11T01:39:31.729Z</updated>
+  <updated>2019-04-11T01:51:43.097Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -15,8 +15,8 @@
     <title>Hello World</title>
     <link href="http://yoursite.com/2019/04/11/hello-world/"/>
     <id>http://yoursite.com/2019/04/11/hello-world/</id>
-    <published>2019-04-11T01:39:31.728Z</published>
-    <updated>2019-04-11T01:39:31.729Z</updated>
+    <published>2019-04-11T01:51:43.097Z</published>
+    <updated>2019-04-11T01:51:43.097Z</updated>
     
     <summary type="html">
     
@@ -33,8 +33,6 @@
       <category term="test" scheme="http://yoursite.com/categories/test/"/>
     
     
-      <category term="test" scheme="http://yoursite.com/tags/test/"/>
-    
       <category term="second" scheme="http://yoursite.com/tags/second/"/>
     
   </entry>
@@ -44,7 +42,7 @@
     <link href="http://yoursite.com/2019/03/27/test-my-site/"/>
     <id>http://yoursite.com/2019/03/27/test-my-site/</id>
     <published>2019-03-27T09:52:47.000Z</published>
-    <updated>2019-04-11T01:39:31.733Z</updated>
+    <updated>2019-04-11T01:51:43.101Z</updated>
     
     <summary type="html">
     
@@ -52,8 +50,6 @@
     
       <category term="test" scheme="http://yoursite.com/categories/test/"/>
     
-    
-      <category term="test" scheme="http://yoursite.com/tags/test/"/>
     
       <category term="first" scheme="http://yoursite.com/tags/first/"/>
     
