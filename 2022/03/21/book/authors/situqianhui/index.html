@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>司徒千悔思想体系 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/21/book/authors/situqianhui/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">司徒千悔思想体系</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-03-21T19:45:22+08:00">2022-03-21 19:45:22</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>网上随便翻到的，挺有意思的。<br>比哲学大家的理论更容易解读，还是想记录一下。</p>
+<span id="more"></span>
+
+<p>作者自称是抑郁症患者，通过自己的理论体系治愈自身。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>抑郁症是长期自我压制导致的，本质上，是人类的生存繁衍本能对人类的行为模式的不满，从而提出的警告。这种警告长期化，病态化，触发门限低端化，就构成了抑郁症。</p>
+<blockquote>
+<p>作者自行定义，有待商榷，抑郁症并不标准定义。</p>
+</blockquote>
+<p>我的思路，是建立一套符合生存繁衍本能的思想体系，彻底替代旧的思想体系，从而彻底清除生存繁衍警告，达到治愈的目的。</p>
+<h3 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h3><p>四个部分：人类本源认知，社会宏观认知，人际关系认知（暂缺），自我认知。</p>
+<h3 id="人类本源认知"><a href="#人类本源认知" class="headerlink" title="人类本源认知"></a>人类本源认知</h3><h4 id="人文科学的两大特点"><a href="#人文科学的两大特点" class="headerlink" title="人文科学的两大特点"></a>人文科学的两大特点</h4><p>1）人的动物模型的复杂性。 2）人的生物进化性。</p>
+<h4 id="通用的思想体系必须遵守的原则"><a href="#通用的思想体系必须遵守的原则" class="headerlink" title="通用的思想体系必须遵守的原则"></a>通用的思想体系必须遵守的原则</h4><p>生存原则。<br>违逆这一点，必然导致整个社会，被轻而易举地引导到人口毁灭和种族替代的陷阱。<br>这一个错误，普遍存在于今天的发达国家中。</p>
+<blockquote>
+<p>狭隘了。</p>
+</blockquote>
+<h4 id="思想体系的群体内部差异"><a href="#思想体系的群体内部差异" class="headerlink" title="思想体系的群体内部差异"></a>思想体系的群体内部差异</h4><p>可以分为三类：面向天才的，面向少数人的，面向多数人的。</p>
+<p>天才是一个群体中，最具创造力的人口。他们的思想体系，可以极端，可以与众不同，可以是探索性的。<br>天才的探索，必然多数是不成功的，甚至是会陨落、会毁灭的。<br>但是，损失的天才，是可以从普通人的后代中，进行有效补充的。<br>而天才的成功，必然给社会带来巨大的进步。<br>所以，这是一个社会可以承受的风险和损失。</p>
+<p>少数人，是一个群体中，天生喜好迥异于正常人的部分。<br>他们的思想体系，只要不危害社会，就可以容许其存在于社会的边缘地带。这是社会的宽容。</p>
+<p>多数人，是一个社会稳定存在的基础。<br>他们的思想体系，必须遵守生存繁衍为最高判据的原则。</p>
+<p>把整个社会统一成多数人适用的思想体系，必然导致整个社会死气沉沉、停滞不前。<br>把整个社会统一成天才或者少数人适用的思想体系，必然导致整个社会混乱、灾难、乃至毁灭。</p>
+<blockquote>
+<p>这个观点的角度就比较正了。承认群体的差异性，多样性。</p>
+</blockquote>
+<h4 id="思想观念的改变方式"><a href="#思想观念的改变方式" class="headerlink" title="思想观念的改变方式"></a>思想观念的改变方式</h4><p>两种方式：洗脑和生存繁衍屏蔽。<br>洗脑，可以分为主动洗脑和被动洗脑。<br>当人的年龄没有超过社会化的窗口期，或者说世界观的形成阶段，被动洗脑具有良好的效果。当人的年龄过了这个阶段，被动洗脑就会效果极差，甚至没有。<br>而主动洗脑，在任何年龄阶段，都是可行的。但是，成年后，会随着年龄的增加，而难度变大。</p>
+<p>生存繁衍屏蔽，是人类面临极端伤害下的一种自保行为，也是一种非常有效的洗脑手段。<br>生存繁衍屏蔽，发生在我们感觉到生存繁衍受到极大威胁的时候。生存繁衍本能会直接干预大脑的思维体系，屏蔽掉对自己有巨大危害的观念，建立一种本能层面上认为正确的思想，并迅速为这种思想延伸各种合理化的证明，把这种思想，变成一个小的观念体系。<br>生存繁衍屏蔽的典型实例，就是斯德哥尔摩综合症。</p>
+<blockquote>
+<p>观点很刺耳，但是我竟然无法反驳。</p>
+</blockquote>
+<h4 id="思想观念使用的先决条件"><a href="#思想观念使用的先决条件" class="headerlink" title="思想观念使用的先决条件"></a>思想观念使用的先决条件</h4><p>信仰，或者说，把思想观念固化在大脑思考区的神经网络中，是我们使用一种思想观念的先决条件。</p>
+<p>人类大脑的记忆区和思考区，位置是不同的。<br>对于一种思想观念，进行记忆或者背诵，都只是保存在大脑的记忆区，没有进入思考区。<br>这是一种非常低级的思想观念的使用方式，并没有真正开始思想观念的使用。</p>
+<p>只有把思想观念固化在思考区的神经网络中，或者说把这种观念变成了我们的信仰，才开始了真正的使用这种观念。<br>而只有把这种思想观念，通透于其能涉及的各个方面，才能把这种观念变成我们的第一反应，才真正掌握了这种思想观念。</p>
+<blockquote>
+<p>人们只会相信经过自己思考并自行领悟了的思想观念。</p>
+</blockquote>
+<h4 id="思想内核必须具备的特点"><a href="#思想内核必须具备的特点" class="headerlink" title="思想内核必须具备的特点"></a>思想内核必须具备的特点</h4><p>1）坚固性。2）简洁性。3）严谨性。4）完备性。</p>
+<h4 id="思想内核的自我选择"><a href="#思想内核的自我选择" class="headerlink" title="思想内核的自我选择"></a>思想内核的自我选择</h4><p>1）顺从人的动物性和压制人的动物性。<br>顺从人的动物性，可以释放人的欲望，让人充满了战斗力，让人变得野性十足。<br>压制人的动物性，可以拘禁人的欲望，让人变得温顺，让人变得遵守纪律。</p>
+<p>2）个体方向和群体方向。<br>否定个体，会让人变得不自信，变得猥琐；否定群体，会让人变得自私，变得邪恶。</p>
+<p>3）模块化和替换。<br>思想内核应该是模块化的，避免各自的交叉，便于向特定方向延伸、扩展。<br>思想内核出现错误或者缺陷，也便于替换和修改。</p>
+<p>4）挂靠和兼容<br>思想内核是思想体系的纲领，是非常简洁的。思想体系的其他观念，都是挂靠在特定的思想内核观念上，从而达到纲举目张的效果。</p>
+<h4 id="作者的人类本源认知内核"><a href="#作者的人类本源认知内核" class="headerlink" title="作者的人类本源认知内核"></a>作者的人类本源认知内核</h4><p>基点：人类是一种进化中的趋利避害的动物。<br>立场：生存和繁衍是最高判据。<br>推论一：社会化是和生存繁衍并列的第三种基本本能，和生存繁衍能互相压制。<br>推论二：任何社会化理论，都只是一个科学假设，其实践过程，都只是一个科学实验，实验对象为个人本身和人类社会，实验期限是永远。<br>推论三：人类的进化阶段，是，以同类为主要竞争对手，以社会化方式为主要竞争手段。<br>一个观点：社会化是任何个人、任何种族、任何社会所能掌握的最为强大的武器，能轻易毁灭敌人，也能轻易毁灭自己。</p>
+<h3 id="自我认知"><a href="#自我认知" class="headerlink" title="自我认知"></a>自我认知</h3><p>分为“主宰”、“多诈”、“辨类”、“善恶”、“去孝”、“执我”六个部分。</p>
+<h4 id="主宰"><a href="#主宰" class="headerlink" title="主宰"></a>主宰</h4><p>人类是一种感性的动物，而不是一种理性的动物；只能被感性打动，不能被理性打动；感性是我们的主宰，理性是我们的工具。</p>
+<blockquote>
+<p>过于偏感性了。罗老师说灵魂和肉体是两辆并驾齐驱的马车，而人的定位则是那驾驭马车的人。个人比较认同。</p>
+</blockquote>
+<h4 id="多诈"><a href="#多诈" class="headerlink" title="多诈"></a>多诈</h4><p>欺骗和自我欺骗是人类的本能，我们要使用好这两种本能，要“存忠义之心，怀奸诈之术”，要有计划、有目的、高频率地对自己进行自我欺骗。</p>
+<blockquote>
+<p>这个观点还是过于激进。</p>
+</blockquote>
+<h4 id="辨类"><a href="#辨类" class="headerlink" title="辨类"></a>辨类</h4><p>提倡的是：加入群体，为善于内，施恶于外。伟大的口号和复杂的仪式，都是有效的身份认同手段。</p>
+<blockquote>
+<p>偏狭隘。</p>
+</blockquote>
+<h4 id="善恶"><a href="#善恶" class="headerlink" title="善恶"></a>善恶</h4><p>善恶只是源于立场，当善恶由心。没有个体立场的人，没有自我，会被祸害；没有群体立场的人，极端自私，会祸害他人；没有生存繁衍立场的人，会灭绝。</p>
+<blockquote>
+<p>立场论。</p>
+</blockquote>
+<h4 id="去孝"><a href="#去孝" class="headerlink" title="去孝"></a>去孝</h4><p>父母与子女的关系，提倡父母与子女并重。传统孝道，立足于父母生存权高于子女生存权的社会背景。现代社会，父母与子女平权。独生子女环境下，子女的生存权高于父母的生存权。所以，传统孝道彻底失去了生存的土壤。精神上的弑父，能让儿子生出超越父亲之心，而且可以和风细雨地完成。应提倡男子完成精神上的弑父。</p>
+<blockquote>
+<p>与传统的儒家思想背道而驰。观点应该是源自弗洛伊德。</p>
+</blockquote>
+<h4 id="执我"><a href="#执我" class="headerlink" title="执我"></a>执我</h4><p>个人在社会中的自我定位，提倡以“我”为核心，以“我”为最重要，组织一切，判断一切。<br>分为三执我，三等杀。<br>三执我，即：欲望执我，恶念执我，利害执我。<br>三等杀，即：亲疏等杀，利害等杀，忠奸等杀。<br>三执我，是，建立以自我为核心的思想体系的基础。<br>三等杀，是，建立以自我为核心的人际关系的基础。</p>
+<p>以民族的思想，替换《执我》，就能得到民族主义的自我认知；以家国的思想，替换《执我》，就能得到国家主义的自我认知；以宗教的思想，替换《执我》，就能变成信仰优先的自我认知。</p>
+<h3 id="洗脑"><a href="#洗脑" class="headerlink" title="洗脑"></a>洗脑</h3><p>作者的观点是思想体系替换需要不断对自己进行洗脑，把一些自己以前不相信的东西强行附加到自己身上，从而达到治愈抑郁症的目的。<br>其过程中必然带来真实的痛苦，有一定的风险。<br>控制风险的方法：1）要有不死之心，要有破灭一切、重建一切的意志。2）把恶念发泄在精神领域。3）精神混乱期和观念延伸期大量阅读传统典籍。</p>
+<blockquote>
+<p>洗脑这个词还是过于激进，形成独立意志的自然人都是会在不断探索的过程中，结合自己已有的认知，慢慢地对自己的三观作出调整。觉得是正确的，符合本人意志的信息就接受；感到恶意的，违反自己原则和底线的行为就排斥。就洗脑的行为而言，不管是主动的，还是被动的，都不大可取。</p>
+</blockquote>
+<h3 id="社会宏观认知"><a href="#社会宏观认知" class="headerlink" title="社会宏观认知"></a>社会宏观认知</h3><p>包括了“消费主义和享乐主义”、“社会发展主义”、“有神论和无神论”、“世界主义和民族主义”、“社会主义和资本主义”、“性别的竞争”，这六个部分。</p>
+<h4 id="社会化的正确标准"><a href="#社会化的正确标准" class="headerlink" title="社会化的正确标准"></a>社会化的正确标准</h4><p>社会化的需求，从人类进化出了共同想像力之后，就一直缠绕着人类。当其高高在上地协调着人类的原始本能的时候，似乎生存的本能都不再是不可跨越的障碍，而繁衍的需要则要看其心情，才能显现。<br>所谓，“生命诚可贵，爱情价更高；若为自由故，两者皆可抛”，不外如斯。<br>或许，这会是人类永恒的难题。</p>
+<p>若以众生快乐为依据，则，众生于快乐中集体走向生命的终结，是否为正确；若以科技发展为依据，则，世界于核战中毁灭，可否算是正确的方向。<br>社会化的初始出现，是为着生存与繁衍的需要。若以此为依据，则，即便是最为强词夺理的诡辩者，亦不得不于心中承认其合理性。</p>
+<blockquote>
+<p>确实。</p>
+</blockquote>
+<h4 id="消费主义和享乐主义"><a href="#消费主义和享乐主义" class="headerlink" title="消费主义和享乐主义"></a>消费主义和享乐主义</h4><p>在每一个人类生产过剩的时期，消费主义和享乐主义均会强劲地冒芽；只是现代社会生产过剩过于严重，其冒芽得过了头，似乎是要变成整个社会的信仰了。<br>人类的每一种本能，不管是善的或者恶的，好的或者坏的，均有其存在的必然理由。若从道德上审判，只是陷入先验的轻佻的偏见；若强行压制，则不仅于事无补，还经常会掉入有害的境地；徒留尴尬。然若是，过于放纵，甚至凌驾于生存与繁衍之上；则，生命遗传的消失，不过是落下后人耻笑的名声。<br>其中控制的把握，考量着每一个人的智慧。不有害于生存繁衍，似乎就不必介怀。</p>
+<h4 id="社会发展主义"><a href="#社会发展主义" class="headerlink" title="社会发展主义"></a>社会发展主义</h4><p>科技水平于同时代的高低，划分了一个民族或者国家，在世界上的先进和落后；若是能加上相应的人口规模，则决定了其于世界上的发言权。这种社会发展的思想，姑且定义为社会发展主义。<br>其发展一个民族或者国家，让其跻身于发达的行列，本无可厚非。然则，若是为着这个目的，而压制于生存和繁衍的需求，甚至于达到对人口进行自我毁灭的境地；则未免太过舍本逐末了。<br>生存与繁衍，才是一个群体，一个个人，的最终诉求。若是逆了这个目的，自我毁灭了人口，而达到先进；让他国看到一个璀璨的自我毁灭的火炬，除了让人目瞪口呆，就只能让人引以为戒。</p>
+<h4 id="有神论和无神论"><a href="#有神论和无神论" class="headerlink" title="有神论和无神论"></a>有神论和无神论</h4><p>有神论与无神论，只是一种社会化的理论，并不是一种自然科学。判别于有神论与无神论正确与否的依据，不是自然科学，而是其是否能促进生存和繁衍。<br>现代社会中的人类，依然保留着祖先对于强者的服从本能。<br>将人类强者的能力理想化，极端化，无所不能化，于是就产生了宗教中的“神”或者“天”。 “神”或者“天”只是人类对于强者的抽象化想像；唯有如此，才能解释， “神”或者“天”对于人类的极端偏爱。</p>
+<p>无神论者，总是站在科学的角度，解释着自己的正确。似乎，每一个人都应该是理智的化身，每一个人都应该天然地爱好真理。<br>依着是否有利于生存和繁衍的标准，无神论的科学上的正确，并不能成为优于有神论的证据，甚至是沦落到不应该被讨论的地步了。而有神论中对于“神”或者“天”的概念的建立，天然地引发了人类对于强者的服从本能，天然地能更好地接受其传播的理念。<br>无神论在凝结众人信仰的比拼上，似乎就要落败了。</p>
+<blockquote>
+<p>求知是人的天性。</p>
+</blockquote>
+<p>无神论似乎天然地感受到了没有“神”或者“天”的劣势，其出现在世人面前的时候，就自然地附带着伟人或者领袖。这样的效果似乎比“神”或者“天”要更好，更是在近代社会几乎呈现席卷全球之势，似乎就要立刻打败有神论。<br>但是，人毕竟不是神。人身上是有弱点的，而“神”或者“天”就没有。一些领袖个人的弱点，把很多国家，很多民族，带入了几乎万劫不复的境地。随之而来的，是信仰的瓦解。</p>
+<p>现代消费主义和享乐主义的出现，解救了无神论国家的燃眉之急。其发自于人类本能的喜好，弥补了没有可以追随的强者的遗憾。有神论，也因为其古旧的教义，只能对无神论的领地发动细微的蚕食。<br>无神论和有神论对于信众的争夺似乎要无休止地进行下去。没有人能预测其胜负，也许永无胜负。</p>
+<h4 id="世界主义和民族主义"><a href="#世界主义和民族主义" class="headerlink" title="世界主义和民族主义"></a>世界主义和民族主义</h4><p>世界主义不独存在于社会主义中，其存在于任何宗教、任何主义。区别只在于，有的是寻求转化外部人口，有的是寻求杀光外部人口。个中差别，界定了文明与野蛮。<br>民族主义则仅仅寻求于本民族的利益；对于外部的民族，或者视为必须消灭的敌人，或者视为无关紧要的存在。其似乎有着强烈的自私因子，不如世界主义来得伟大崇高。<br>然则，若是考虑到人类的进化阶段，同类已经成为了进化中的主要竞争对手；我们的态度，或许会有微妙的变化。<br>若是存在不同文明的对抗，则世界主义必然有着广阔的市场；若是一种文明统一了世界，则必然以种族主义或者民族主义占领世界；若是一个民族统一了世界，则地域主义只能成为世界的主流。<br>“世界人民大团结”的口号，似乎只能在整个世界四分五裂的时候才能喊出。<br>其中的诡异，其中的微妙，只能意会，不可口传。</p>
+<blockquote>
+<p>有那么股味道了。</p>
+</blockquote>
+<h4 id="社会主义和资本主义"><a href="#社会主义和资本主义" class="headerlink" title="社会主义和资本主义"></a>社会主义和资本主义</h4><p>社会主义形成于十九世纪，缘由可以归结于工业革命早期，工厂主对于工人的过度盘剥。有着强烈社会责任感的知识分子，怀抱着对于工人的无限同情的情怀，畅想出了改革过度剥削问题的社会制度。此种理想化之社会制度，即为社会主义。<br>因为资本于工厂主的决定性作用，故他们将现实中存在的制度，蔑视地称为为资本主义。<br>故，社会主义最初只是一种理想，资本主义只是一种现实。<br>理想照进现实，固然是可歌可泣；若是理想完全不向现实妥协，实现的又似乎只是悲剧。这一点，印证于任何社会主义国家早期的弯路。</p>
+<p>于社会主义国家中，伴随着剥削阶级的被打倒、被消灭，无一例外地都发生了社会生产的大规模倒退。阶级斗争坚持的时间越长，对社会的破坏越大；反之亦然。</p>
+<p>在狂热的理想中，社会主义国家无不碰得头破血流：大规模的流血，大规模的饥荒，大规模的生产倒退。似乎，只要能够出现的问题，都能在伟大的名义下，重新演绎一遍。终于，其执政者部分地恢复了资本主义制度，而社会就立竿见影地恢复了生气。神奇的现实，似乎是在嘲笑当年理想者们流下的鲜血。<br>而资本主义国家，也在社会主义的威慑中，不断改良了社会制度，工人和农民似乎生活得更好了，更是大多超过了社会主义国家。<br>转了一圈下来，人类似乎才明白：南极和北极都是冰天雪地，温带才是最适合人类生存的地方。</p>
+<p>资本主义从来就不是一种主义，只是一种现实存在的社会制度。社会主义也并不等同于无神论，虽然其最初融入了无神论的思想，但是这一部分完全可以分割出来；社会主义在本质上是对于现实不满而产生的一种制度改良，是一种组织社会生产和分配社会产品的制度。</p>
+<p>以改良的资本主义或者改良的社会主义做为社会制度，以某几种宗教甚至是无神论，做为个人的道德行为规范，似乎是现在和未来社会的必然趋势。</p>
+<p>当社会主义放下了无神论和阶级斗争的束缚后，他才是真正的社会主义；而改良后的社会主义，即便是保留了培养懒汉的特质，也必然会和资本主义一直共生共存下去。</p>
+<blockquote>
+<p>不懂，不评价。</p>
+</blockquote>
+<h4 id="性别的竞争"><a href="#性别的竞争" class="headerlink" title="性别的竞争"></a>性别的竞争</h4><p>宣扬男女的不平等，似乎就是滔天的罪过，就是极端的道德败坏。<br>然则，性别的差异和性别的竞争又确然地存在着。</p>
+<p>男人和女人于进化上的天然差异，源自于生物性别上的分工不同。男人更加体魄强健，更加有理智，更能适合于挑战性的工作。女人记忆力更强，更加依靠感性行事，更适合于琐碎的工作。</p>
+<p>女性天然地为着生育和照顾家庭而进化，男性天然地为着挑战和冒险而前行。忘记了生物进化上的需要，而执着于平等的伟大，不过是选择性的失明。</p>
+<p>对于强者的崇拜，源自人类的生存本能，普遍地存在于任何时空的人类社会。而女性，为着体魄和智慧上的柔弱，其依附强者的本能，远比男性来得直接和极端。</p>
+<blockquote>
+<p>作者还有一些个极端的言论，就不摘录了，害怕。</p>
+</blockquote>
+<h4 id="社会化的中庸选择"><a href="#社会化的中庸选择" class="headerlink" title="社会化的中庸选择"></a>社会化的中庸选择</h4><p>人类的智慧不免有着时代的烙印。<br>忘却时代的局限，强求于古人，不过是一种组建空中楼阁的设想；不切实际。从其引申，今天众人之思想，于未来人，未尝不是流于肤浅；思虑不周。<br>故，社会化之时，留下天然的弹性空间，不走向极端，不追求尽善尽美；或许，反而是一个更好的选择。<br>人类践行极端主义之时，最终都走向了灾难；无一例外。<br>人类社会的进步，总是围绕着正确的方向，做着螺旋的前行。其从来不会正好处在正确的点上，反而会偶尔向着错误的方向前进。当过于偏离正确的时候，政府、权威机构或者权威个人，给予整个社会以正确的引导，方能让其重新指向正确的方向。其结果，或者是社会的革命，或者是社会的改良。两者的区分，只是付出代价的多寡和收获成果的快慢；其本质，并无任何差别。<br>而于个人，保持一种中庸的选择，或许是唯一的办法。</p>
+<h4 id="文明的自我救赎"><a href="#文明的自我救赎" class="headerlink" title="文明的自我救赎"></a>文明的自我救赎</h4><p>生存和繁衍，从来就是一场残酷的竞争。所谓天赋人权，仅是科技发展下的自我膨胀；其实，人类从来就只有追求生存和繁衍的权利；从未改变。<br>文明亦如同个人和族群，随时经历着生存的考量。故，有的文明兴盛，有的文明衰亡。<br>然，历时数千年之文明，经受住了时光长河的检验；其固然一时衰弱，也可以改良救赎。若是彻底推倒，譬如儒教大国，譬如东正教大国，最后都不得不退回其原本的文明，来寻求解脱；或许，推倒重建，就只是一个轻佻的错误。<br>于古老文明中，渗透着数千年智者的共同努力；轻率地推倒，莫非想再花费数千年的光阴来重建？也许幸运许多，只需要花费数百年的光景。<br>建立一些新的拣选法则，如同滤波一般，过滤掉古老文明中苍老的一面；再过滤掉先进思想中不合适的部分，以之加入古老文明，也许才是真正的归途。<br>其于文明如斯，其于个人亦如斯。</p>
+<blockquote>
+<p>有点懂，但不是很懂。呼应了《天道》里文化属性一词的解释。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文的立意基础在于陈述一些客观的事实真相，而不是为了攻击任何文明或者攻击任何性别。</p>
+<p>不管我们承认或者不承认，事实就在那里站着，不多不少，不增不减。勇敢地直面事实的真相，或许才能让我们自己，我们的后代，在现代和未来的进化长河中，占据有利的地位。</p>
+<p>另外，也许有人会说行文中带着明显的倾向性。对此，我想说的是，不管我的倾向性如何，读者都会自动按照自己的倾向性来取舍。而且，把自己的观念传递给读者，正是行文的目的；那些为了所谓的公正性，而不敢加上自己的倾向性的作者，若不是为了减少发行阻力的需要，则不过是陷入了犬儒式的虚伪。</p>
+<p>当我们说现代社会的男性越来越女性化的时候，把原因归结给了食物的不健康，生存环境的平和，工作不激烈的需要。但是，有没有想到，这只是男性性格特点在社会化中被刻意女性化的结果呢。用进废退的进化趋势再次得到了证明，我们可以轻易地引申出这样的结论：如果我们不刻意地保留自己男性性格的特征，若干年后我们必然和女性性格变得彻底一样。而女性所谓的中性化，不过是回到了历史上强烈生存压力时代，女性必然的一种性格特征。但是，男性的中性化，在历史上从未普遍出现；偶尔有出现的小角落，也意味着立刻被男性强势的族群灭杀。</p>
+<p>客观的事实就摆在那里。不论是何种文明，何种族群，何种家庭，何种个人，都逃不过生存竞争的束缚，都逃不过物竞天择的命运。勇敢地面对真实的挑战，也许是我们唯一的选择。</p>
+<blockquote>
+<p>首先，承认一点的就是，作者的思维深度，比我本人高出太多太多。至少就当下的我而言，还无法整理出一套自己的思想理论体系，对于很多的问题解答还没有完整的逻辑推演思路，还需要去不断吸取先贤的智慧，还需要去经历人生百态。不惑的状态，离我还比较遥远。<br>但是，这并不代表谁强谁弱，每个人对这个世界都应该有自己的理解。就像莎翁的作品很伟大，列翁的情怀很动人。但是，列翁就是瞧不上莎翁。无论对错，只是对这个世界的不同认知所产生的差异。<br>文末总结中，作者也承认了自己的观点带有明显的倾向性，但是他要做的，就是真实地表达自己的观念，不加入任何犬儒式的虚伪。我觉得很好，我尊重他的每一个真实的文字。但是，在这里，我也会发出自己的声音。</p>
+</blockquote>
+<blockquote>
+<p>1）作者反复强调他的两点创新，一者把社会化提高到了生存和繁衍并列的地步，二就是提出人类进化阶段是以同类为主要竞争对手，以社会化方式为主要竞争手段。<br>个人不认同。<br>社会化是符合了客观事物的发展规律，是自然而然形成的，既不是目的，更不是手段。想象社会化是一个科学实验，那控制实验实施的主体又是何方神圣？看不见的上帝之手？如果承认社会化是一场实验，那就会陷入到类似“射手假说”和“农场主假说”的恐怖怪论之中。</p>
+</blockquote>
+<blockquote>
+<p>其次，已经有人指出，人的发展，不仅仅要关注同类，更重要的是超越自我。生存和繁衍确实是种族延续的根本，但是作为一个拥有独立意志的个体，是不是应该有更高的内在精神追求。作者的思维还是过多地偏向于感性，偏向肉体，而轻视了理性，怠慢了精神。</p>
+</blockquote>
+<blockquote>
+<p>人的生命是有限的，而精神是永恒的。过度强调生存和繁衍，就会陷入一种空洞的无意义循环，类似于放羊娃的人生理念。人生在世，还是需要有更高的追求，不管是对责任的坚守，对美的追寻，对知识的渴求，又或者是其他。每个人的人生意义需要自己去实现，每个人的人生价值需要自己去衡量。</p>
+</blockquote>
+<blockquote>
+<p>当然，没有人能否认生存和繁衍对一个种族的意义。但是，个人认为，那只是部分，并不是全部。在人口还远没有达到濒危的警戒线时，拿生存和繁衍来作为一切存在价值的衡量标准，是不够合理的。</p>
+</blockquote>
+<blockquote>
+<p>2）关于人类本源认知部分，如果是站在人类种群的角度分析，确实是比较到位的阐述。但是，作为独立的个体，我还是更倾向于做自己。诚然，我可以是多个群体的一部分，但是，我更加是我自己。</p>
+</blockquote>
+<blockquote>
+<p>3）关于自我认知的部分，只能说有一定的可取点，但是大部分都偏狭隘。个人开始尝试接受卡尔·罗杰斯的人本主义心理学，从直觉体验上衡量，这种思想理论会成为未来个人认知的发展趋势。</p>
+</blockquote>
+<blockquote>
+<p>4）关于社会宏观认知部分，还是挺有意思的，算是作者对这个社会的一些方面的独特视角看法。我本人认知不深刻，不管是对男女平等问题，资本主义和社会主义的制度问题，还是有神论无神论，都没有系统的研究，在此不过多评价。</p>
+</blockquote>
+<blockquote>
+<p>5）关于作者的洗脑理论，我是十分反感的，尽管他关于人的思想观念改变的途径阐述让目前的我无法辩驳。但是，我还是相信，人是自由的，人的成长是在于认识到最真实的自我，如果你不相信，绝不应该去勉强为之。就像现实中，那些信奉PUA的人已经活在了自己编织的囚笼中，还不自知。</p>
+</blockquote>
+<blockquote>
+<p>6）关于作者对中庸肯定，对社会多样性的肯定，对立场角度的肯定，对世界主义和民族主义的阐述，我还是十分认同的。</p>
+</blockquote>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E5%93%B2%E5%AD%A6/" rel="tag"><i class="fas fa-tags"></i>哲学</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/03/02/book/fantuili/" rel="next" title="反推理"><i class="fas fa-angle-left"></i><span class="nav-title">反推理</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/03/24/story/weixuanzedelu/" rel="prev" title="未选择的路"><span class="nav-title">未选择的路</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9E%84%E6%88%90"><span class="toc-text">构成</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BA%BA%E7%B1%BB%E6%9C%AC%E6%BA%90%E8%AE%A4%E7%9F%A5"><span class="toc-text">人类本源认知</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BA%BA%E6%96%87%E7%A7%91%E5%AD%A6%E7%9A%84%E4%B8%A4%E5%A4%A7%E7%89%B9%E7%82%B9"><span class="toc-text">人文科学的两大特点</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E6%80%9D%E6%83%B3%E4%BD%93%E7%B3%BB%E5%BF%85%E9%A1%BB%E9%81%B5%E5%AE%88%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">通用的思想体系必须遵守的原则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%9D%E6%83%B3%E4%BD%93%E7%B3%BB%E7%9A%84%E7%BE%A4%E4%BD%93%E5%86%85%E9%83%A8%E5%B7%AE%E5%BC%82"><span class="toc-text">思想体系的群体内部差异</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%9D%E6%83%B3%E8%A7%82%E5%BF%B5%E7%9A%84%E6%94%B9%E5%8F%98%E6%96%B9%E5%BC%8F"><span class="toc-text">思想观念的改变方式</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%9D%E6%83%B3%E8%A7%82%E5%BF%B5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="toc-text">思想观念使用的先决条件</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%9D%E6%83%B3%E5%86%85%E6%A0%B8%E5%BF%85%E9%A1%BB%E5%85%B7%E5%A4%87%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">思想内核必须具备的特点</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%9D%E6%83%B3%E5%86%85%E6%A0%B8%E7%9A%84%E8%87%AA%E6%88%91%E9%80%89%E6%8B%A9"><span class="toc-text">思想内核的自我选择</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BD%9C%E8%80%85%E7%9A%84%E4%BA%BA%E7%B1%BB%E6%9C%AC%E6%BA%90%E8%AE%A4%E7%9F%A5%E5%86%85%E6%A0%B8"><span class="toc-text">作者的人类本源认知内核</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%87%AA%E6%88%91%E8%AE%A4%E7%9F%A5"><span class="toc-text">自我认知</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%BB%E5%AE%B0"><span class="toc-text">主宰</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A4%9A%E8%AF%88"><span class="toc-text">多诈</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%BE%A8%E7%B1%BB"><span class="toc-text">辨类</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%96%84%E6%81%B6"><span class="toc-text">善恶</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8E%BB%E5%AD%9D"><span class="toc-text">去孝</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%89%A7%E6%88%91"><span class="toc-text">执我</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%B4%97%E8%84%91"><span class="toc-text">洗脑</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%AE%8F%E8%A7%82%E8%AE%A4%E7%9F%A5"><span class="toc-text">社会宏观认知</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%8C%96%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%A0%87%E5%87%86"><span class="toc-text">社会化的正确标准</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B6%88%E8%B4%B9%E4%B8%BB%E4%B9%89%E5%92%8C%E4%BA%AB%E4%B9%90%E4%B8%BB%E4%B9%89"><span class="toc-text">消费主义和享乐主义</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%8F%91%E5%B1%95%E4%B8%BB%E4%B9%89"><span class="toc-text">社会发展主义</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%9C%89%E7%A5%9E%E8%AE%BA%E5%92%8C%E6%97%A0%E7%A5%9E%E8%AE%BA"><span class="toc-text">有神论和无神论</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%96%E7%95%8C%E4%B8%BB%E4%B9%89%E5%92%8C%E6%B0%91%E6%97%8F%E4%B8%BB%E4%B9%89"><span class="toc-text">世界主义和民族主义</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E5%92%8C%E8%B5%84%E6%9C%AC%E4%B8%BB%E4%B9%89"><span class="toc-text">社会主义和资本主义</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%A7%E5%88%AB%E7%9A%84%E7%AB%9E%E4%BA%89"><span class="toc-text">性别的竞争</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%8C%96%E7%9A%84%E4%B8%AD%E5%BA%B8%E9%80%89%E6%8B%A9"><span class="toc-text">社会化的中庸选择</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%96%87%E6%98%8E%E7%9A%84%E8%87%AA%E6%88%91%E6%95%91%E8%B5%8E"><span class="toc-text">文明的自我救赎</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

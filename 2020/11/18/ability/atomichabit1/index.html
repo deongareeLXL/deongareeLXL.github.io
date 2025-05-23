@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>原子习惯—第1到3节 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/18/ability/atomichabit1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">原子习惯—第1到3节</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-11-18T13:16:45+08:00">2020-11-18 13:16:45</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ability/" itemprop="url" rel="index"><span itemprop="name">ability</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>本书跟《意志力》一书类似，但是阐述的角度不同。<br>你可以把他当成鸡汤文，也可以奉为圭臬。<br>没有绝对的正确方式，需要每个人自己去衡量把握。<br>阅读此书的意义，是在于打开自己的视野，让可供选择的路更多，仅此而已。</p>
+<span id="more"></span>
+
+<p>很多人的读后感都是，当时很振奋，以为了解到生活的深层本质，掌握了习惯的奥秘。但过一段时间发现自己与往昔并无不同。<br>我只能说，不要期望值过高，人生的奥秘不可能在一本书中尽现。自由永远是遥不可及的星辰，值得我们终身去寻觅。</p>
+<p>本部分内容引出原子习惯的概念，阐述行为改变的三个层次，列出行为改变四法则。</p>
+<h3 id="原子习惯的惊人力量"><a href="#原子习惯的惊人力量" class="headerlink" title="原子习惯的惊人力量"></a>原子习惯的惊人力量</h3><p>人很容易高估一个决定性瞬间的重要性，也很容易低估每天都做些小改善的价值。习惯就是自我改善这件事的复利。</p>
+<p>我们作出一些改变，成果却似乎总是来的不够快，于是我们回归先前的惯例。</p>
+<p>好习惯让时间成为你的盟友，坏习惯让时间与你为敌。习惯的复利效应能载舟，亦能覆舟。</p>
+<blockquote>
+<p>正面的复利：生产力，知识，人际关系。<br>负面的复利：压力，负面想法，愤恨。</p>
+</blockquote>
+<h3 id="别管目标，专注于系统"><a href="#别管目标，专注于系统" class="headerlink" title="别管目标，专注于系统"></a>别管目标，专注于系统</h3><p>目标是你想要达到的成果，而系统是让你达到那些成功的过程。</p>
+<p>如果彻底无视目标，只关注系统，还能成功吗？</p>
+<h3 id="过于在意目标的四大问题"><a href="#过于在意目标的四大问题" class="headerlink" title="过于在意目标的四大问题"></a>过于在意目标的四大问题</h3><p>1)幸存者偏差让我们获得错误的认知</p>
+<blockquote>
+<p>目标一直在那里，却直到他们执行了持续追求微小改变的系统，才产出不同的成果。</p>
+</blockquote>
+<p>2)误认为目标达成是短暂的</p>
+<blockquote>
+<p>我们觉得需要改变结果，但结果并非问题所在，我们真正应该改变的，是造成那那些结果的系统。<br>输入正确，输出才会有解。</p>
+</blockquote>
+<p>3)目标限制了你的快乐</p>
+<blockquote>
+<p>任何目标背后都隐含这样的假设：一旦达成目标，我就会快乐。快乐一直属于未来的自己。<br>目标创造了一种非A即B的冲突：若非达到目标而成功，就是失败而令人失望的。你在心里把自己框限在狭义的快乐里，这是偏差了。<br>系统优先的心态提供了解药。当你爱上过程，而非产物，就不必等到获得自己的许可才能快乐。</p>
+</blockquote>
+<p>4)目标与长期进步互相矛盾</p>
+<blockquote>
+<p>目标取向的心态可能造成一种溜溜球效应。</p>
+</blockquote>
+<p>真正长远的思考，是不顾目标的思考。重点不在于任何单一成就，而在于不断精炼与持续改善的循环。到头来，progress的必要条件，是对process的投入。</p>
+<h3 id="原子习惯的定义"><a href="#原子习惯的定义" class="headerlink" title="原子习惯的定义"></a>原子习惯的定义</h3><p>原子习惯指的是微小的改变，微不足道的增长，百分之一的改善。</p>
+<h3 id="改变习惯的本质"><a href="#改变习惯的本质" class="headerlink" title="改变习惯的本质"></a>改变习惯的本质</h3><h4 id="行为改变的三个层次"><a href="#行为改变的三个层次" class="headerlink" title="行为改变的三个层次"></a>行为改变的三个层次</h4><p>1)改变结果。2）改变过程。3）改变身份认同。<br>结果关乎你得到什么，过程关乎你做了什么，身份认同则关乎你相信什么。</p>
+<p>多数人在着手改善时都没考虑改变身份认同这件事。他们设定目标，然后确定达成目标应该采取的行动，却不去思索驱使他们采取那些行动的信念。他们没有改变看待自己的方式，也不了解旧的身份认同会破坏他们为了改变打造的新计划。</p>
+<p>习惯背后存在这一个身份认同。与这个身份认同不符的行为无法持久。不改变导致过往行为的潜在信念，要改变习惯就难了。你有新的目标与计划，但你还没改变自己是个什么样的人。</p>
+<p>内在动机的终极形态，就是让习惯成为身份认同的一部分。觉得自己是想要成为这样的人是一回事，觉得自己就是这样的人又是另一回事。</p>
+<blockquote>
+<p>拒绝递烟时，要说”谢谢，我不抽烟”。而不是说”谢谢，我戒烟了”。<br>目标不是读一本书，而是成为读书的人。<br>目标不是跑一趟马拉松，而是成为跑步的人。<br>目标不是学会一种乐器，而是成为演奏音乐的人。</p>
+</blockquote>
+<p>为你所用时，身份认同改变可以是自我改善的一大利器；但与你为敌时，身份认同改变就可能是诅咒。一旦接受了某种身份，对此身份的忠诚可能会影响你改变的能力。许多人在认知的沉眠中度过一生，盲目遵循着附加与自己身份认同之上的刻板印象。</p>
+<p>未能维持习惯的真正原因，都是被你的自我形象阻碍了。</p>
+<p>想要进步，必须舍弃；想要成为最好的自己，就要持续编辑，修订自己的昔年，升级并拓展你的身份认同。</p>
+<h4 id="改变身份认同的两个步骤。"><a href="#改变身份认同的两个步骤。" class="headerlink" title="改变身份认同的两个步骤。"></a>改变身份认同的两个步骤。</h4><p>习惯的过程，其实就是成为自己的过程。</p>
+<p>习惯就是通往身份认同转变的道路。要改变你是什么样的人，最实际的方法就是改变你做的事。</p>
+<p>每个习惯不只产生成果，还教导你更重要的事：信任自己。</p>
+<p>改变两步骤：<br>1）决定你想要成为什么。2）通过生活的自我行为向自己证明。</p>
+<h4 id="习惯的精髓"><a href="#习惯的精髓" class="headerlink" title="习惯的精髓"></a>习惯的精髓</h4><p>习惯的精髓并非拥有，而是成为。</p>
+<p>习惯之所以重要，是因为它们能够让你变成你想要成为的那种人，透过习惯这条管道，你可以开发你对自己最深的信念。你真的会变成你的习惯。</p>
+<h3 id="如何改变习惯"><a href="#如何改变习惯" class="headerlink" title="如何改变习惯"></a>如何改变习惯</h3><h4 id="习惯的作用"><a href="#习惯的作用" class="headerlink" title="习惯的作用"></a>习惯的作用</h4><p>习惯可以让你腾出自由思考与创意所需的心理空间。</p>
+<p>习惯不会限制自由，而是增加了自由。</p>
+<h4 id="习惯形成的四步骤"><a href="#习惯形成的四步骤" class="headerlink" title="习惯形成的四步骤"></a>习惯形成的四步骤</h4><p>1）提示 2）渴望 3）回应 4）奖赏<br>这四个阶段缺其一，行为就不会成为习惯。少了前三个步骤，行为不会发生；少了第四个步骤，行为不会被重复。</p>
+<h4 id="行为改变四法则"><a href="#行为改变四法则" class="headerlink" title="行为改变四法则"></a>行为改变四法则</h4><p>1）让提示显而易见<br>2）让习惯有吸引力<br>3）让行动轻而易举<br>4）让奖赏令人满足<br>反之：<br>1）让提示隐而不见<br>2）让习惯毫无吸引力<br>3）让行动困难无比<br>4）让后果令人不满</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ability/" rel="tag"><i class="fas fa-tags"></i>ability</a>
+        
+        <a class="post-tag button" href="/tags/habits/" rel="tag"><i class="fas fa-tags"></i>habits</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2020/11/13/ability/magicmemory3/" rel="next" title="魔术记忆—记人名"><i class="fas fa-angle-left"></i><span class="nav-title">魔术记忆—记人名</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2020/11/25/ability/atomichabit2/" rel="prev" title="原子习惯—第4到7节"><span class="nav-title">原子习惯—第4到7节</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F"><span class="toc-text">原子习惯的惊人力量</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%88%AB%E7%AE%A1%E7%9B%AE%E6%A0%87%EF%BC%8C%E4%B8%93%E6%B3%A8%E4%BA%8E%E7%B3%BB%E7%BB%9F"><span class="toc-text">别管目标，专注于系统</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%BF%87%E4%BA%8E%E5%9C%A8%E6%84%8F%E7%9B%AE%E6%A0%87%E7%9A%84%E5%9B%9B%E5%A4%A7%E9%97%AE%E9%A2%98"><span class="toc-text">过于在意目标的四大问题</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">原子习惯的定义</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%94%B9%E5%8F%98%E4%B9%A0%E6%83%AF%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-text">改变习惯的本质</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%A1%8C%E4%B8%BA%E6%94%B9%E5%8F%98%E7%9A%84%E4%B8%89%E4%B8%AA%E5%B1%82%E6%AC%A1"><span class="toc-text">行为改变的三个层次</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%94%B9%E5%8F%98%E8%BA%AB%E4%BB%BD%E8%AE%A4%E5%90%8C%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-text">改变身份认同的两个步骤。</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B9%A0%E6%83%AF%E7%9A%84%E7%B2%BE%E9%AB%93"><span class="toc-text">习惯的精髓</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E5%8F%98%E4%B9%A0%E6%83%AF"><span class="toc-text">如何改变习惯</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B9%A0%E6%83%AF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">习惯的作用</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B9%A0%E6%83%AF%E5%BD%A2%E6%88%90%E7%9A%84%E5%9B%9B%E6%AD%A5%E9%AA%A4"><span class="toc-text">习惯形成的四步骤</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%A1%8C%E4%B8%BA%E6%94%B9%E5%8F%98%E5%9B%9B%E6%B3%95%E5%88%99"><span class="toc-text">行为改变四法则</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

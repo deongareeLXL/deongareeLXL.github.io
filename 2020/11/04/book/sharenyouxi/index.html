@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>杀人游戏 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/04/book/sharenyouxi/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">杀人游戏</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-11-04T12:17:57+08:00">2020-11-04 12:17:57</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>作者雷钧，本篇为19年5月出版。看名字就知道类型的小说。</p>
+<span id="more"></span>
+
+<p>分为5个小故事，都以杀人为题的游戏。</p>
+<h3 id="杀人杀人游戏"><a href="#杀人杀人游戏" class="headerlink" title="杀人杀人游戏"></a>杀人杀人游戏</h3><h4 id="游戏规则"><a href="#游戏规则" class="headerlink" title="游戏规则"></a>游戏规则</h4><p>8人游戏，1裁判，6民1杀手。狼人杀模式。</p>
+<h4 id="核心诡计"><a href="#核心诡计" class="headerlink" title="核心诡计"></a>核心诡计</h4><p>误导真正的作案手法。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>整个故事逻辑性完整。核心作案手法应该是借鉴的，想不起在哪里也看到了类似的。阴谋论调一般吧，在如今的千层饼年代，这种程度的诡计就失色了，不过不失为一个好故事。<br>凶犯的行为模式很奇怪，完全也没有看出她怎么值得同情了。</p>
+<h3 id="杀人杀人鬼屋捉迷藏"><a href="#杀人杀人鬼屋捉迷藏" class="headerlink" title="杀人杀人鬼屋捉迷藏"></a>杀人杀人鬼屋捉迷藏</h3><h4 id="游戏规则-1"><a href="#游戏规则-1" class="headerlink" title="游戏规则"></a>游戏规则</h4><p>捉迷藏。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>叙述性诡计的教材范本。不过为了符合杀人游戏的tag，作者生硬地套用捉迷藏和后面想象中的凶案，感觉上并不是很合适。不匹配的东西强行拼凑就会拉低故事性。这个故事对叙述性诡计描述的很到位，但是为了牵扯上杀人游戏强行带节奏，反而不美。</p>
+<h3 id="杀人chess"><a href="#杀人chess" class="headerlink" title="杀人chess"></a>杀人chess</h3><h4 id="游戏规则-2"><a href="#游戏规则-2" class="headerlink" title="游戏规则"></a>游戏规则</h4><p>象棋。</p>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p>这篇故事没有再强行联系游戏，不过它本身就是围绕国际象棋展开的。<br>这篇最大的特色就是故事结束了，真凶告诉你了，但是过程啥没说。一脸懵逼的我不得不回去翻找线索。<br>我觉得吧，作者不厚道。对国际象棋的描述也比较硬核，没入门的读者估计根本看不懂，也不会知道国王是个什么形状，毫无概念性。<br>还有另一个抛出的悬疑点，故事的武侠故事里的毒杀案，死者捏碎7枚白棋。谜底应该就是暗指凶手是白色衣服吧，跟数字7没有半毛钱关系。<br>这个故事还不错，适合于对国际象棋有初步了解的人。虽然被作者摆了一道，但是，还行吧，不一样的体验。</p>
+<h3 id="杀人密室逃脱"><a href="#杀人密室逃脱" class="headerlink" title="杀人密室逃脱"></a>杀人密室逃脱</h3><h4 id="游戏规则-3"><a href="#游戏规则-3" class="headerlink" title="游戏规则"></a>游戏规则</h4><p>真人密室逃脱游戏。</p>
+<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><p>第一部分，完全的密室逃脱单人视角描述过长，看得我都犯困了。不过，这个故事的质量确实意外地好，推理饱满丰富，抛出的烟雾弹也合理，核心诡计也不错，还有附加彩蛋，诚意满满。比之前几个故事都好得多。<br>唯一让我在意的还是那个小二的转折点，正常的推理不应该推翻凶手是临时起意，自己留了门没让门关上么。为了表达密室概念，作者安排的这个逻辑有点突兀。小二是多么精虫上脑才会对第一次见面的凶手实施包庇并妄图勒索了呢，而且事后自己身陷囹圄还不招供，这不是正常人的行为。<br>除了这点，其余的情节都不错，彩蛋元素周期表，我去查了一下，8-39-3分别对应O-Y-LI。不得不说，如果没有杀人案，这个还是很浪漫。属于推理迷们的浪漫。</p>
+<h3 id="杀人ONLINE"><a href="#杀人ONLINE" class="headerlink" title="杀人ONLINE"></a>杀人ONLINE</h3><h4 id="游戏规则-4"><a href="#游戏规则-4" class="headerlink" title="游戏规则"></a>游戏规则</h4><p>网游。</p>
+<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><p>这篇故事很精彩，算十足的社会派推理吧。不过回味起来就是推理的元素太少了，侦探完全就是借助了警方的手段获取了案件的关键信息，然后不断卖关子，引领读者慢慢解开事情真相。侦探这是开了上帝视角，所说的推理也是以结果出发的推理，算不得真推理。<br>关于这个故事反映的社会问题，最终由谁去背负这个惨剧的责任。我觉得作者还是有偏见了。连带的责任人有死者，表哥，无良医院，网游公司，电商商家，电商平台。</p>
+<p>就我个人的视角而言，无良医院的责任应该是最大的，能把一个没有绝症的病人说成有绝症，那是有多可怕，这是造成悲剧的主要原因。</p>
+<p>然后次要责任是死者本人，作为成年人，并没有走上正确的道路，沉迷网游，逃避人生。</p>
+<p>最后是电商商家和电商平台，但他们也是对劣质商品负责，而不是对死者之死负责。</p>
+<p>网游公司其实是很敏感的角色，作者在这个故事上对网游公司的描述还是片面的，带有偏见的。网游公司本来就是盈利公司，不能因为个别管不住自己的玩家就把过错怪罪于网游。</p>
+<blockquote>
+<p>现实版的整治网游来了，不过不是针对成年人。</p>
+</blockquote>
+<p>表哥这个角色，个人觉得已经很仁至义尽了，更不该苛责于他，他不仅毫无责任，还应该被归类为道德规范上的“好人”范畴。</p>
+<p>这个故事整体都很不错，网游题材的情节，很不错，就阅读体验而言，没有让人失望。有一个在我这里还是不过关的，死者都有直面死亡的决心，有以自己的死来为家人谋福的责任，我个人觉得，他有这样的素质，干什么不能成功。还有文末强行说辜负了网游团队的众人，作者一方面抨击网游，一方面却维护网游团队的团结，承认网游团队的真实存在性，存在矛盾。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/" rel="tag"><i class="fas fa-tags"></i>中国推理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2020/09/15/story/suoji2020/" rel="next" title="琐记2020"><i class="fas fa-angle-left"></i><span class="nav-title">琐记2020</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2020/11/12/book/2020dushubiji/" rel="prev" title="2020读书笔记"><span class="nav-title">2020读书笔记</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E4%BA%BA%E6%9D%80%E4%BA%BA%E6%B8%B8%E6%88%8F"><span class="toc-text">杀人杀人游戏</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99"><span class="toc-text">游戏规则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%A0%B8%E5%BF%83%E8%AF%A1%E8%AE%A1"><span class="toc-text">核心诡计</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E4%BA%BA%E6%9D%80%E4%BA%BA%E9%AC%BC%E5%B1%8B%E6%8D%89%E8%BF%B7%E8%97%8F"><span class="toc-text">杀人杀人鬼屋捉迷藏</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99-1"><span class="toc-text">游戏规则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E4%BA%BAchess"><span class="toc-text">杀人chess</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99-2"><span class="toc-text">游戏规则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E4%BA%BA%E5%AF%86%E5%AE%A4%E9%80%83%E8%84%B1"><span class="toc-text">杀人密室逃脱</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99-3"><span class="toc-text">游戏规则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E4%BA%BAONLINE"><span class="toc-text">杀人ONLINE</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99-4"><span class="toc-text">游戏规则</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93-4"><span class="toc-text">总结</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

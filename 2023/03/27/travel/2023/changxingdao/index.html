@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>长兴岛 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/27/travel/2023/changxingdao/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">长兴岛</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2023-03-27T23:18:25+08:00">2023-03-27 23:18:25</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/travel/" itemprop="url" rel="index"><span itemprop="name">travel</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>3月底，趁着双休之际，天晴，出门，目标，长兴岛。</p>
+<span id="more"></span>
+
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326174244.jpg" alt="长兴岛北岸申崇线"></p>
+<p>申崇四线，直达长兴岛。要过高速路口，穿过海底隧道，只能机动车通行。<br>未到终点站，在前一站下车，总共就两站。先准备去长兴郊野公园逛逛。<br>路上的野花野草真的多，然后道路右边就是大片的橘子园，决定等季节去摘橘子。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326114844.jpg" alt="橘子园"></p>
+<p>园区免费，可以现场预约，扫码入园，人不多。<br>进园就是一个可以划船的中型人工湖。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326120803.jpg" alt="人工湖"></p>
+<p>顺时针走，沿路前行，路两边整齐的油菜花开得很盛。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326121524.jpg" alt="路"></p>
+<p>往前到达鸢尾花园，可惜不应季，只有绿叶。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326121653.jpg" alt="鸢尾花"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326121658.jpg" alt="鸢尾花"></p>
+<p>继续往前，各种花园，农场。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326122617.jpg" alt="梅花"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326122851.jpg" alt="梨花"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326122911.jpg" alt="玫瑰花未开"></p>
+<p>路遇一个绿藤装饰的拱形过道，特别有画面感，适合拍照。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326123027.jpg" alt="过道"></p>
+<p>往前到达梅园。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326123509.jpg" alt="梅园梅花"></p>
+<p>沿着路走，看到特色塑像。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326123732.jpg" alt="塑像"></p>
+<p>旁边小路的野花很密。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326123844.jpg" alt="野花"></p>
+<p>继续往前，差不多快转一个大圈。<br>来到一处开阔地，这里有自助烧烤，弓箭，宠物园。<br>去逛了一下宠物园，超值啊，有各种动画。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326125708.jpg" alt="兔子"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326125825.jpg" alt="鸭"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326125927.jpg" alt="梅花鹿"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130011.jpg" alt="羊"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130018.jpg" alt="山羊"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130036.jpg" alt="羊驼"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130114.jpg" alt="开屏孔雀"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130411.jpg" alt="萌宠-不认识"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130535.jpg" alt="马驴骡-不认识"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130623.jpg" alt="小羊羔"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130741.jpg" alt="猪"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130808.jpg" alt="小狗仔"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326130819.jpg" alt="鹅"></p>
+<p>堪比小型动物园，主要还是人少，体验比较好。<br>继续往前走，就是商业小吃区，再往前就到了来时大门。<br>嗯，开始准备绕岛骑行。<br>先往北走了一阵，看到马场了越野卡丁车场。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326134749.jpg" alt="越野卡丁车"></p>
+<p>还是先往南找车，顺便吃点东西。<br>事必，往南到达南海岸。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326153631.jpg" alt="长兴岛南海岸"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326153635.jpg" alt="长兴岛南海岸"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326153825.jpg" alt="长兴岛南海岸"></p>
+<p>南海岸只有很短一段路可以看到大海，空气质量堪忧，到处都是大型轮船机械运作，很嘈杂。<br>沿路往前，还走到了死路口。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326160419.jpg" alt="死路口"></p>
+<p>放弃南岸，穿过长兴岛中轴，往北，往大风车路标进发，最终到达北岸。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326173755.jpg" alt="长兴岛北岸广告牌"></p>
+<p>北岸太适合骑行了，强烈推荐，还看见有人在海钓。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326174159.jpg" alt="长兴岛北岸海钓"></p>
+<p>北岸的路段，类似于浦东的世纪塘路，比世纪塘路更长，中间没有断线。<br>海水更近，旁边的巨型风车也更近。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326174251.jpg" alt="北岸路"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326174735.jpg" alt="风车"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326175020.jpg" alt="北岸路风景"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326175316.jpg" alt="北岸路风景"></p>
+<p>有一条通向海的小道，在远处看，人就是一个个黑影。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel230327/IMG20230326175324.jpg" alt="海上小道"></p>
+<p>在此开阔的视野下，人显得是那么渺小。灰蒙蒙的雾气中，远处的巨型风车也时隐时现。<br>我脑中不由得忆起两年前在奉贤海岸遭遇狂风夹飞雨的情形。<br>每天都生活在现代建筑的人，是很难想像出大自然的宏伟。<br>那种暴风雨将至，人在旷野，无处避让，必须直面风雨的心境，让人心中生出莫名的豪气。</p>
+<p>怒号风中何所惧，天高海阔我自游。<br>蝇营狗苟今何就，此生不做阶下囚。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E9%AD%94%E9%83%BD/" rel="tag"><i class="fas fa-tags"></i>魔都</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/03/15/story/woyanzhongdetuili/" rel="next" title="我眼中的推理"><i class="fas fa-angle-left"></i><span class="nav-title">我眼中的推理</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2023/03/31/story/lunxingfuzhilu/" rel="prev" title="论《幸福之路》"><span class="nav-title">论《幸福之路》</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

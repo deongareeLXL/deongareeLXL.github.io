@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>乡土中国 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/16/book/xiangtuzhongguo/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">乡土中国</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-04-16T13:56:33+08:00">2022-04-16 13:56:33</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>作者费孝通，中国的社会学家。</p>
+<span id="more"></span>
+
+<h3 id="重刊序言"><a href="#重刊序言" class="headerlink" title="重刊序言"></a>重刊序言</h3><p>我并不认为教师的任务是在传授已有的知识，这些学生们自己可以从书本上去学习，而主要是在引导学生敢于向未知的领域进军。</p>
+<p>这里讲的乡土中国，并不是具体的中国社会的素描，而是包含在具体的中国基层传统社会里的一种特具的体系，支配着社会生活的各个方面。它并不排斥其他体系同样影响着中国的社会。</p>
+<h3 id="乡土本色"><a href="#乡土本色" class="headerlink" title="乡土本色"></a>乡土本色</h3><p>我们说乡下人土气，虽则似乎带着几分藐视的意味，但这个土字却用得很好。<br>乡下人离不了泥土。<br>从土里长出过光荣的历史，自然也会受到土的束缚，现在很有些飞不上天的样子。<br>靠种地谋生的人才明白泥土的可贵。</p>
+<p>孤立、隔膜是就村和村之间的关系而说的。<br>乡土社会在地方性的限制下成了生于斯、死于斯的社会。<br>这是一个”熟悉”的社会，没有陌生人的社会。</p>
+<p>“我们大家是熟人，打个招呼就是了，还用得着多说么？“——这类的话已经成了我们现在社会的阻碍。</p>
+<p>“这不是见外了么？“乡土社会里从熟悉得到信任。——乡土社会的信用并不是对契约的重视，而是发生于对一种行为的规矩熟悉到不加思索时的可靠性。</p>
+<p>乡土社会中人和人相处的基本办法是做到自己的心安。<br>陌生人所组成的现代社会是无法用乡土社会的习俗来应付的。于是，土气成了骂人的词汇，乡也不再是衣锦荣归的去处了。</p>
+<h3 id="文字下乡"><a href="#文字下乡" class="headerlink" title="文字下乡"></a>文字下乡</h3><p>Face to face group<br>谁啊？ 我。</p>
+<p>我要辨明的是乡土社会中的文盲，并非出于乡下人的”愚”，而是由于乡土社会的本质。而且我还愿意进一步说，单从文字和语言的角度是不够的，因为文字和语言，只是传情达意的一种工具，并非唯一的工具；而且这工具本身也是有缺陷的，能传的情、能达的意是有限的。所以提倡文字下乡的人，必须先考虑到文字和语言的基础，否则开几个乡村学校和使乡下人多识几个字，也许并不能使乡下人”聪明”起来。</p>
+<h3 id="再论文字下乡"><a href="#再论文字下乡" class="headerlink" title="再论文字下乡"></a>再论文字下乡</h3><p>人的行为方式并不固执地受着不学而能的生理反应所支配。所谓学就是在出生之后以一套认为的行为方式作模型，把本能的那一套方式加以改造的过程。学的方法是”习”。习是指反复地做，靠时间中的磨练，使一个人惯于一种新的做法。因此，学习必须打破个人今昔之隔。这是靠了我们人类的一种特别发达的能力，时间中的桥梁，记忆。</p>
+<p>一个动物和时间的接触，可以说是一条直线的，而人和时间的接触，靠了概念，也就是词，却比一条直线来的复杂。他有能力闭了眼睛置身于昔日的情境中，人的当前中包含着从过去拔萃出来的投影，时间的选择积累。</p>
+<p>动物不能互相传递经验，互相学习，人靠了他的抽象能力的象征体系，不但累积了自己的经验，而且还可以累积别人的经验。<br>社会共同的经验的累积，也就是我们常说的文化。文化是依赖象征体系和个人的记忆而维护这的社会共同经验。<br>这样说来，每个人的当前，不但包括他个人过去的投影，而且还是整个民族的过去的投影。历史对于个人并不是点缀的饰物，而是实用的、不可或缺的生活基础。</p>
+<p>一切文化中不能没有词，可是不一定有文字。乡土社会，大体上，是没有文字的社会。</p>
+<p>我们并不记取一切的过去，而只是记取一切过去中极小的一部分。我说记取，其实不如说过后回忆为妥当。记带有在当前为了将来有用而加以认取的意思，忆是为了当前有关而回想到过去经验。事实上，在当前很难预测将来之用，大多是处于当前的需要而追忆过去。有时这过程非常吃力，所以成为苦忆。可是无论如何记忆并非无所为的，而是实用的，是为了生活。</p>
+<p>在乡土社会中：<br>每代的生活等于开映同一影片的社会中，历史也是多余的，有的只是传奇。<br>新闻是稀奇古怪、荒诞不经的意思。<br>人怕出名猪怕壮。<br>不为人先，不为人后，做人就得循规蹈矩。</p>
+<p>在这种社会里，语言是足够传递世代间的经验了。当一个人碰着生活上的问题时，他必然能在一个比他年长的人那里闻得到解决这问题的有效办法。</p>
+<h3 id="差序格局"><a href="#差序格局" class="headerlink" title="差序格局"></a>差序格局</h3><p>在乡村工作者看来，中国乡下佬最大的毛病是”私”。<br>一说是公家的，差不多就是说大家可以占一点便宜的意思，有权利而没有义务了。<br>于是像格兰亨姆的公律，劣币驱除良币一般，公德心就在这里被自私心驱走了。</p>
+<p>私的毛病在中国实在是比愚和病更普遍得多，从上到下似乎没有不害这毛病的。<br>所谓贪污无能，并不是每个人绝对的能力问题，而是相对的，是从个人对公家的服务和责任上说的。<br>中国人并不是不善经营，更不是无能，对于自家的事，抓起钱来，拍起马来，比哪一个国家的人能力都大。因之这里所谓的私的问题却是个群己、人我的界线怎么划法的问题。</p>
+<p>我笑了。</p>
+<p>在英美，家庭包括他和他的妻以及未成年的孩子。在中国阖第光临虽则常见，但是很少人能说得出这个第字究竟应当包括些什么人。<br>自家人的范围是因时因地可伸缩的，大到数不清，真是天下可成一家。</p>
+<p>我们社会中最重要的亲属关系就是这种丢石头形成同心圆波纹的性质。<br>俗语一表三千里，就是这个含义。</p>
+<p>一堂五百年</p>
+<p>在我们的乡土社会里，不但亲属关系如此，地缘关系也是如此。<br>贾家大观园。<br>苏秦潦倒归来，妻不以为夫，嫂不以为叔。<br>中国人也特别对世态炎凉有感触，正因为这富于伸缩的社会圈子会因中心势力的变化而大小。</p>
+<p>在孩子成年了住在家里都得给父母膳食费的西洋社会，大家承认团体的界限。在团体里的有一定的资格。资格取消了就得走出这个团体。在他们不是人情冷热的问题，而是权利问题。在西洋社会里争的是权利，而在我们却是攀关系、讲交情。</p>
+<p>我们儒家最考究的是人伦，伦是什么呢？我的解释就是从自己推出去的和自己发生社会关系的那一群人里所发生的一轮轮波纹的差序。<br>孔子最注重的就是水纹波浪向外扩张的推字。他先承认一个己，推己及人的己，对于这己，得加以克服于礼，克己就是修身。顺着这同心圆的伦常，就可向外推了。<br>本立而道生。<br>其为人也孝悌，而好犯上者鲜矣，不好犯上而好作乱者，未之有也。</p>
+<p>在这种富于伸缩性的网络里，随时随地是有一个己作中心的。这并不是个人主义，而是自我主义。个人是对团体而说的，是分子对全体。在个人主义下，一方面是平等观念，指在同一团体中各分子的地位相等，个人不能侵犯大家的权利；一方面是宪法观念，指团体不能抹杀个人，只能在个人们所愿意交出的一分权利上控制个人。这些观念必须先假定了团体的存在。在我们中国传统思想里是没有这一套的，因为我们所有的是自我主义，一切价值是以己作为中心的主义。</p>
+<p>鞭辟入里，入木三分。老爷子真敢说啊。</p>
+<p>自我主义并不限于拔一毛而利天下不为的杨朱，连儒家都该包括在内。杨朱和孔子不同的是杨朱忽略了自我主义的相对性和伸缩性。他太死心眼儿一口咬了一个自己不放；孔子是会推己及人的，可是尽管放之于四海，中心还是在自己。子曰：为政以德，譬如北辰，居其所，而众星拱之。这是很好的一个差序格局的譬喻，自己总是中心，像四季不移的北斗星，所有其他的人，随着他转动。</p>
+<p>我常常觉得：中国传统社会里一个人为了自己可以牺牲家，为了家可以牺牲党，为了党可以牺牲国，为了国可以牺牲天下。这和《大学》的：古之欲明明德于天下者，先治其国；欲治其国者，先齐其家；欲齐其家者，先修其身…身修而后家齐，家齐而后国治，国治而后天下平。在条理上是相通的，不同的只是内向和外向的路线，正面和反面的说法，这是中插叙的推浪形势，把群己的界限弄成了相对性，也可以说是模糊两可了。这和西洋把权利和义务分得清清楚楚的社会，大异其趣。</p>
+<p>为自己可以牺牲家，为家可以牺牲族…<br>你如果说他私么？他是不能承认的，因为当他牺牲族时，他可以为了家，家在他看来是公的。<br>在差序格局里，公和私是相对而言的。</p>
+<p>西方人会把国家看成一个超过一切小组织的团体，为了这个团体，上下双方都可以牺牲，但是不能牺牲它来成全别种团体。这是现代国家观念，乡土社会中是没有的。</p>
+<p>在我们传统里群的极限是模糊不清的天下，国是皇帝之家，界线从来就是不清不楚的，不过是从自己这个中心里推出去的社会势力的一圈而已。所以可以着手的，具体的只有己，克己也就成了社会生活中最重要的德性，他们不会去克群，使群不致侵略个人的权利。</p>
+<h3 id="维系着私人的道德"><a href="#维系着私人的道德" class="headerlink" title="维系着私人的道德"></a>维系着私人的道德</h3><p>西方是天赋人权。</p>
+<p>从己向外推以构成的社会，推的过程里有着各种路线，最基本的是亲属：亲子和同胞，相配的到的要素是孝和悌。<br>向另一路线推是朋友，相配的是忠信。<br>孔子说：弟子入则孝，出则悌，谨而信，泛爱众，而亲仁。<br>仁的概念比较复杂。<br>孔子有不少次数说”不够说是仁”，但是当他积极地说明仁字是什么时，他却推到了”克己复礼为仁“，”恭宽信敏惠“这一套私人间的道德要素了。<br>他说：能行五者于天下为仁矣。——恭则不侮，宽则得众，信则人任焉，敏则有功，惠则足以使人。</p>
+<p>团体道德的缺乏，在公私的冲突里更看得清楚。就是负有政治责任的君王，也得先完成他私人间的道德。</p>
+<p>一个差序格局的社会，是由无数私人关系搭成的网络。这网络的每一个结都附着一种道德要素，因之，传统的道德里不另找出一个笼统的道德观念来，所有的价值标准也不能超脱于差序的人伦而存在了。</p>
+<p>中国的道德和法律，都因之得看所施的对象和自己的关系而加以程度上的伸缩。我见过不少痛骂贪污的朋友，遇到他的父亲贪污时，不但不骂，而且代他讳隐。更甚的，他还可以向父亲要贪污得来的钱，同时骂别人贪污。等到自己贪污时，还可以能干两字来自解。这在差序社会里可以不觉得是矛盾；因为在这种社会中，一切普遍的标准并不发生作用，一定要问清了，对象是谁，和自己是什么关系之后，才能决定拿出什么标准来。</p>
+<p>西方人难道不会么，不懂。</p>
+<p>团体格局的社会里，在同一团体的人是兼善的，就是相同的。孟子最反对的就是那一套。他说：夫物之不齐，物之情也，子比而同之，是乱天下也。<br>墨家的爱无差等，和儒家的人伦差序，恰恰相反，所以孟子要骂他无父无君了。</p>
+<h3 id="家族"><a href="#家族" class="headerlink" title="家族"></a>家族</h3><p>中国的家是一个事业组织，家的大小是依着事业的大小而决定的。</p>
+<p>在西洋家庭团体中，夫妇是主轴，夫妇共同经营生育事务，子女在这团体中是配角，他们长成了就离开这团体。在他们，政治、经济、宗教等功能由其他团体来负担，不在家庭的分内。夫妇成为主轴，两性之间的感情是凝合的力量。两性感情的发展，使他们的家庭成了获取生活上安慰的中心。我在《美国人性格》一书中曾用”生活堡垒“一词去形容它。</p>
+<p>在我们的乡土社会中，家的性质在这方面有着显著的差别。我们的家是个绵续性的事业社群，它的主轴是在父子之间，在婆媳之间，是纵的，不是横的。夫妇成了配轴。配轴虽则和主轴一样并不是临时性的，但是这两轴却都被事业的需要而排斥了普通的感情。我所谓普通的感情是和纪律相对照的。一切事业都不能脱离效率的考虑。求效率就得讲纪律；纪律排斥私情的宽容。在中国的家庭里有家法，在夫妇间得相敬，女子有着三从四德的标准，亲子间讲究负责和服从。这些都是事业社群里的特色。</p>
+<p>我知道的乡下夫妇大多是用不着多说话的，是在没有什么话可说的。一早起各人忙着各人的事，没有功夫说闲话。出了门，各做各的。妇人家如果不下田，留在家里。工作完了，男子们也不常留在家里，男子汉如果守着老婆，没出息。有事在外，没事也在外。茶馆，烟铺，甚至街头巷口，是男子们找感情上安慰的消遣场所。在那些地方，大家有说有笑，热热闹闹的。回到家，夫妇间合作顺利，个人好好地按着应做的事各做各的。做得好，没事，也没话；合作得不对劲，闹一场，动手动脚，说不上亲热。</p>
+<p>乡下，有说有笑，有情有意的是在同性和同年龄的集团中，男的和男的在一起，女的和女的在一起，孩子们又在一起，除了工作和生育事务上，性别和年龄组间保持着很大的距离。这绝不是偶然的，在我看来，这是把生育之外的许多功能拉入了这社群中去之后所引起的结果。中国人在感情上，尤其是在两性间的矜持和保留，不肯像西洋人一般的在表面流露，也是在这种社会圜局中养成的性格。</p>
+<h3 id="男女有别"><a href="#男女有别" class="headerlink" title="男女有别"></a>男女有别</h3><p>从社会关系上说感情是具有破坏和创造作用的。感情的激动改变了原有的关系。<br>其实，感情的淡漠是稳定的社会关系的一种表示。<br>稳定社会关系的力量，不是感情，而是了解。所谓了解，是指接受着同一的意义体系。同样的刺激会引起同样的反应。</p>
+<p>Oswald Spengler在“西方陆沉论”里曾说西洋有两种文化模式：一种是阿波罗式的Apollonian；一种是浮士德式的Faustian。阿波罗式的文化认定宇宙的安排有一个完善的秩序，这个秩序超于人类的创造，这是西方古典的精神。而现代的文化却是浮士德式的，他们把冲突看成存在的基础，生命是阻碍的克服。</p>
+<p>乡土社会是靠亲密和长期的共同生活来配合各个人的相互行为，社会的联系是长成的，是熟习的，到某种程度使人感觉到是自动的。</p>
+<p>依现代文化来看，男女间感情激动的发达已使生育的事业摇摇欲坠。这事业除非另外设法，由社会来经营，浮士德式的精神的确在破坏这社会上的基本事业。<br>在乡土社会中这种精神是不容存在的。它不需要创造新的社会关系，社会关系是生下来就决定的。它更害怕社会关系的破坏，因为乡土社会所求的是稳定。<br>男女有别的界线，使中国传统的感情定向偏于向同性方面去发展。</p>
+<p>儒家不谈鬼，祭神如神在，可以说对于切身生活之外都漠然没有兴趣。一般人民并不想把理想去改变现实，而是把现实作为理想的底稿，把现世推进天国。对生活的态度是以克己来迁就外界，那就是改变自己去适合与外在的秩序。</p>
+<h3 id="礼治秩序"><a href="#礼治秩序" class="headerlink" title="礼治秩序"></a>礼治秩序</h3><p>普通常有以人治和法治相对称，而且认为西洋是法治的社会，我们是人治的社会。<br>法律得靠权力来支持，还得靠人来执行，法治其实是人依法而治。</p>
+<p>所谓人治和法治之别，不再人和法这两个字上，而是在维持秩序时所用的力量，和所根据的规范的性质。</p>
+<p>乡土社会是个无法的社会，但是无法并不影响这社会的秩序，因为乡土社会是礼治的社会。<br>礼并不带有文明、或是慈善、或是见了人点个头、不穷凶极恶的意思。礼也可以杀人，可以很野蛮。<br>礼是社会公认合式的行为规范。<br>礼和法不相同的地方是维持规范的力量。<br>法律是靠国家的权力来推行。<br>而礼是靠传统来维持。<br>传统是社会所积累的经验。<br>在乡土社会中，传统的重要性比现代社会更甚。</p>
+<p>礼并不是靠一个外在的权力来推行的，而是从教化中养成了个人的敬畏之感，使人福服膺；人服礼是主动的。<br>在一个变迁很快的社会，传统的效力是无法保证的。<br>礼治也许就是普通所谓人治，但是礼治一词不会像人治一词那样容易引起误解，以致有人觉得社会秩序是可以由个人好恶来维持的了。</p>
+<h3 id="无讼"><a href="#无讼" class="headerlink" title="无讼"></a>无讼</h3><p>在都市社会中不明白法律不可耻；在乡土社会中不懂得礼治秩序，简直是个道德问题。<br>一个负责地方秩序的父母官，维持礼治秩序的理想手段是教化，而不是折狱。<br>折狱的程序是：把犯人拖上堂，先各打屁股若干板，然后一方面大呼冤枉。</p>
+<p>最理想的球赛是裁判员形同虚设。如果发生有意犯规的举动，就可以说是训练不良，也是指导员的耻辱。</p>
+<p>所以子不教成了父之过，这也是乡土社会中通行连坐的根据。</p>
+<p>乡下调解的集会，总是把那被调解的双方都骂一顿。</p>
+<h3 id="无为政治"><a href="#无为政治" class="headerlink" title="无为政治"></a>无为政治</h3><p>论权力的人多少可以分成两派：一派是偏重在社会冲突的一方面，称横暴权力，另一派是偏重在社会合作的一方面，称同意权力。<br>相传唐尧欲让天下于许由，许由避之于箕山中。商汤欲让天下于务光，务光负石投水而死。</p>
+<p>人也许因为某种心理变态可能发生单纯的支配欲或所谓Sadism，但这究竟不是正常。<br>权力之所以诱人，最主要的应当是经济利益。</p>
+<p>乡土社会里的权力结构，虽名义上可以说是专制独裁，但是在人民实际生活上看，是松弛和微弱的，是挂名的，是无为的。</p>
+<h3 id="长老统治"><a href="#长老统治" class="headerlink" title="长老统治"></a>长老统治</h3><p>所谓社会契约必先假定个人的意志。个人对于这种契约虽则并没有自由解脱的权利，但是这种契约性的规律在形成的过程中，必须尊重各个人的自由意志，民主政治的形式就是综合个人意志和社会强制的结果。</p>
+<p>在教化过程中并不发生这个问题，被教化者没有选择的机会。他所要学习的那一套，我们称作文化的，是先于他而存在的。<br>所谓的意志并不像生理上的器官一样是慢慢长成的，这不是心理现象，而是社会的承认。<br>我们不承认未成年的人有意志，也就说明了他们并没有进入同意秩序的事实。</p>
+<p>孩子碰着的不是一个为他方便而设下的世界，而是一个为成人们方便所布置的园地。他闯入进来，并没有带着创立新秩序的力量，可是又没有个服从旧秩序的心愿。</p>
+<p>文化和政治的区别就在这里：凡是被社会不成问题地加以接受的规范，是文化性的；当一个社会还没有共同接受一套规范，各种意见纷呈，求取临时解决办法的活动是政治。</p>
+<p>在变迁中，习惯是适应的阻碍，经验等于顽固和落伍。</p>
+<p>乡土社会，同时兼具横暴权力，同意权力，以及两者之外的教化权力。我称之为长老统治。</p>
+<h3 id="血缘和地缘"><a href="#血缘和地缘" class="headerlink" title="血缘和地缘"></a>血缘和地缘</h3><p>很多离开老家漂流到别地方去的并不能像种子落入土中一般长成新村落。</p>
+<p>在我们社会里看得最清楚，朋友之间抢着回账，意思是要对方欠自己一笔人情，像是投一笔资。欠了别人的人情就得找一个机会加重一些去回个礼，加重一些就在使对方反欠了自己一笔人情。来来往往，维持着人和人之间的互助合作。亲密社群中既无法不互欠人情，也最怕算账。算账清算等于绝交之谓，因为如果相互不欠人情，也就无需往来了。</p>
+<p>钱上王牌最好不要牵涉亲戚。这是为了减轻社会关系上的担负。<br>当场算清是陌生人间的行为，不能牵涉其他社会关系的。</p>
+<p>地缘是从商业里发展出来的社会关系。血缘是身份社会的基础，而地缘却是契约社会的基础。</p>
+<h3 id="名实的分离"><a href="#名实的分离" class="headerlink" title="名实的分离"></a>名实的分离</h3><p>全静止的社会是不存在的，乡土社会不过比现代社会变得慢而已。</p>
+<p>第四种权力，名之曰时势权力。</p>
+<p>儒家所注重的孝道，其实是维持社会安定的手段，孝的解释是无违，那就是承认长老权力。</p>
+<p>虚伪在这种情境中不但是无可避免而且是必需的。对不能反对而又不切实用的教条或命令只有加以歪曲，只留一个面子。<br>挟天子以令诸侯的结果，位与权，名与实，言与行，话与事，理论与现实，全趋向于分离了。</p>
+<h3 id="从欲望到需要"><a href="#从欲望到需要" class="headerlink" title="从欲望到需要"></a>从欲望到需要</h3><p>欲望并非生物事实，而是文化事实。</p>
+<p>有点片面，基因的力量，激素的控制还是不容忽视。</p>
+<p>我觉得把生存作为人类最终的价值是不太确切的。人类如果和其他动植物有些不同的地方，最重要的，在我看来，就在人在生存之外找到了若干价值标准，所谓真善美之类。</p>
+<p>在现代社会里知识即是权力，因为在这种社会里生活的人要依他们的需要去做计划。从知识里得来的权力就是时势权力。</p>
+<p>开篇费老就指出本文描述的是中国基层传统社会，而不是指中国社会，满满的求生欲。虽然乡土社会代表不了中国社会，但是能从乡土社会中看到千千万万中国人接受的传统文化原型。不管这些人是否脱离了乡土社会，走向了现代化大都市，乡土社会的一些本质依然深深烙印在每一个中国人的内心深处。</p>
+<p>乡土社会是熟人社会，信任来自于熟悉到不假思索的程度，契约在这里是不被重视的，做人做事的原则就是做到自己的心安。</p>
+<p>论及文字下乡，乡土社会是不需要文字的，有方言词语足够了，因为生活简单，大家只需要循规蹈矩即可，世代口口相传的生活经验就足够了。</p>
+<p>费老提出的差序格局，确是一种独特的视角。儒教对中国的人太大了。儒家讲究人伦，伦者，暗喻跟自己产生社会交集的那群人如一轮轮水圈波纹的差序关系。而自己则是水圈波纹的中心，波纹的大小范围由波纹的中心动能决定。所以中国的家有大有小，大到天下为一家，小到孑然一身。</p>
+<p>在差序格局下，群己、人我的界限是模糊不清的。孔子非常注重水纹波浪式关系的推进。他先承认一个己，然后推己及人，对于这个己，需要克服于礼，克己就是修身。是所谓本立而道生。在这样一套逻辑下，己就是世界的中心。费老认为这是自我主义，而不是个人主义。个人主义是相对于团体而言的，讲究人人平等。自我主义下，私的毛病会更加突出。一谈到公家的资源，意思就是能占一点便宜，有权力而没有义务。道德和法律，都因为当事人与自己的关系而发生不同程度的伸缩。</p>
+<p>在自我主义中，权力和义务从来就没有清晰过，那大家的行为准则如何界定呢。这就回到了孔子说的克己复礼，用礼来约束大家的行为。礼治是相对于法治而言的，法治依赖国家的暴力机构进行维持，而礼靠传统来维持，用教化来让人们产生敬畏之心。所以中国人信仰的是祖先。</p>
+<p>中国的家是一个事业组织，是把许多除了生育之外的关系拉进了这个群体中。</p>
+<p>传统中国百姓讲求无讼，排斥打官司。长老统治下，教化很重要。不重视契约，不承认个人的意志。血缘很重要，安土重迁，人离乡贱。</p>
+<p>当礼无法胜任的时候，则需要做出虚伪的一套行为。要做到表面上的无违。所以中国人喜欢说话弯弯绕，并以此为荣，是所谓人情世故。挟天子以令诸侯就是高明的做法。最近看的老剧《大宅门》，全程都是在围绕一根暗线进行，就是瞒。出事儿了，不能让长辈知道。中国人活得累，那不是没原因的。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E7%A4%BE%E4%BC%9A%E5%AD%A6/" rel="tag"><i class="fas fa-tags"></i>社会学</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/04/13/book/2022dushubiji/" rel="next" title="2022读书笔记"><i class="fas fa-angle-left"></i><span class="nav-title">2022读书笔记</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/05/20/story/lunmoduyiqingfengkong/" rel="prev" title="论魔都疫情封控"><span class="nav-title">论魔都疫情封控</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%87%8D%E5%88%8A%E5%BA%8F%E8%A8%80"><span class="toc-text">重刊序言</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B9%A1%E5%9C%9F%E6%9C%AC%E8%89%B2"><span class="toc-text">乡土本色</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%96%87%E5%AD%97%E4%B8%8B%E4%B9%A1"><span class="toc-text">文字下乡</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%86%8D%E8%AE%BA%E6%96%87%E5%AD%97%E4%B8%8B%E4%B9%A1"><span class="toc-text">再论文字下乡</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B7%AE%E5%BA%8F%E6%A0%BC%E5%B1%80"><span class="toc-text">差序格局</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%BB%B4%E7%B3%BB%E7%9D%80%E7%A7%81%E4%BA%BA%E7%9A%84%E9%81%93%E5%BE%B7"><span class="toc-text">维系着私人的道德</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%AE%B6%E6%97%8F"><span class="toc-text">家族</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%94%B7%E5%A5%B3%E6%9C%89%E5%88%AB"><span class="toc-text">男女有别</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A4%BC%E6%B2%BB%E7%A7%A9%E5%BA%8F"><span class="toc-text">礼治秩序</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A0%E8%AE%BC"><span class="toc-text">无讼</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A0%E4%B8%BA%E6%94%BF%E6%B2%BB"><span class="toc-text">无为政治</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%95%BF%E8%80%81%E7%BB%9F%E6%B2%BB"><span class="toc-text">长老统治</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%A1%80%E7%BC%98%E5%92%8C%E5%9C%B0%E7%BC%98"><span class="toc-text">血缘和地缘</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%90%8D%E5%AE%9E%E7%9A%84%E5%88%86%E7%A6%BB"><span class="toc-text">名实的分离</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BB%8E%E6%AC%B2%E6%9C%9B%E5%88%B0%E9%9C%80%E8%A6%81"><span class="toc-text">从欲望到需要</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

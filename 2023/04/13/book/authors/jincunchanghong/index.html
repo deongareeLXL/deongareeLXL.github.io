@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>今村昌弘作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/13/book/authors/jincunchanghong/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">今村昌弘作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2023-04-13T23:50:53+08:00">2023-04-13 23:50:53</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>今村昌弘，日本推理小说家，29岁时辞去工作专心写作。他曾决定32岁生日时还未出道,就放弃写小说。2017年凭借《尸人庄谜案》获得第二十七届鲇川哲也奖。</p>
+<span id="more"></span>
+
+<h3 id="尸人庄谜案"><a href="#尸人庄谜案" class="headerlink" title="尸人庄谜案"></a>尸人庄谜案</h3><p>2023-03-17<br>诡计加惊悚加感情，暴风雪山庄模式。<br>诡计的话，还算是合格吧，能撑起一部本格小说，没有什么大的漏洞。<br>就没有什么大的bug而言，就能称得上是一本顶级的本格小说了。<br>第一个案子，作者不得不把最关键的信息隐藏了，就是包里的鞋子，我是记得比留子看了一眼包里的物品就明白了，然后作者不告诉读者包里有什么，其实是作者不敢告诉读者，笑～。我还一直在猜死者是不是被绳子吊到一楼然后拉回来的呢，还在不断思考被子两面都是血迹的问题，你要是告诉我包里有什么，我也是秒懂。<br>第二个案子，抱歉，天天坐电梯超载的我，瞬间就反应过来了。至于二次杀死的原因，有点本格的味道了，别解释，解释就是凶手的执念。那个换房间钥匙卡的操作属实有点惊艳，之前的铺垫也是到位的，当时描述的时候作者就特意给到读者线索了，房间的钥匙卡在进入房间后可以替换使用，开门则不行。<br>第三个案子，凑数，还行吧。<br>诡计方面ok，铺垫很到位，很多的情节都是后面的线索铺垫，比如丢手表。惊悚模式的暴风雪山庄也很不错，可以算是一大创新了，由丧尸引发的围城模式，不断缩减生存空间带来的紧迫感。然后福尔摩斯和华生的梗，也比较有趣吧。可惜了明智学长，惨惨的工具人，让读者误认为他还会回来，然而在结尾之时，无情推翻。<br>至于最后的感情部分，嗯，推理小说哪来的感情戏？就现在的推理小说而言，感情戏确实可能算是减分项了。但是我倒是挺喜欢的，就是从观感而言，推理小说的感情戏都极烂，都还没有某万年小学生的水准。是不是要来一句，感情只会影响侦探推理的效率？<br>这本书的感情描写无疑也是十分糟糕的，我以为比留子会讲一点套路上的故事，结果并没有，上来就是抢华生，嗯？？？志村有那么大的人格魅力么，过于突兀，引起不适。然后就是有评论说本书有媚宅的嫌疑，确实没冤枉，一方面说女主没谈过恋爱，另一方面又来交易吻，交易膝枕。感觉作者想把女主设计成冰山女人，结果却有点四不像。当然如果你脑补出了滨边美波的脸，当我没说。<br>最后一下关于主人公第一视角我，也就是志村，自己的证言都是谎言的问题，嗯，怎么说呢，确实对读者而言不公平，作者的设计就是从这个情节判断出凶手的，必然是最重要的一环，无法删除。我个人觉得随便换个解释都比这个强。第一人称也说谎，是对读者最大的不公平。我说了巴拉巴拉一堆，最后来一句，抱歉，我说谎了，这让读者有一种并非智商被碾压而是纯纯被欺骗的感觉。<br>最后的最后，提一提，女主反复出现的台词，xxx,我们来做一场交易吧。很有日系动漫的感觉。类似于，诸君，战争要开始了；或者是，折木同学，我很好奇；或者是，我们来一场赌博吧。<br>总体而言，观感不很错。期待下一部。</p>
+<h3 id="魔眼之匣谜案"><a href="#魔眼之匣谜案" class="headerlink" title="魔眼之匣谜案"></a>魔眼之匣谜案</h3><p>2023-03-28<br>也是暴风雪山庄模式，观感整体不如尸人庄。<br>看完之后甚至都留不下什么深刻的印象，结尾还要反转一下，也没有太大的惊喜，反而暴露出本格的问题。<br>首先是案子，预言死者为两男两女，两个男的就意外身亡了，略坑。两个女的，一个还是失手被杀，醉了。<br>主打核心诡计，又是在死磕时钟，作者对计时工具情有独钟。时钟的推理，还行，能够算是一点点创新了。<br>至于交换杀人的推理，有点事后诸葛的味道了。<br>我承认，女主的伪装自杀的方式，对于打破凶手的布局一定会起到作用，就像是遇到死局时，卖一个破绽，或者是把水搅浑，让凶手露出破绽，这都是可以解释的，但是说是算到对方是交换杀人什么的，就有点迪化了。<br>瀑布跳崖，致敬福尔摩斯，还可以吧。但是福尔摩斯和华生的梗怎么还没有结束哦，男女主都腻歪多久了，作者这个写感情的功底基本为零。<br>关于超能力的部分，大故事背景下，我可以接受。但是最后的那个强行反转，显得，嗯，有点怪异。尽管它解释了先见为什么不认外孙女，为什么对外孙女的死无动于衷。但是也带来了新的动机问题，为了所谓的名誉，去自杀？我表示疑惑，她守护的并不是真正的她自己的名誉，而是她仇人的名誉，这一点说不通。<br>关于死者，我本来猜的是记者、迷信男和村子里的那两个女人死亡，猜错了。我以为会有什么历史仇恨问题，也是我先入为主了。这里就牵出一个哲学问题。能预知的未来和一无所知的未来，在那种情形下生活会更好。这里应该能挖出更多的话题，可惜作者沉迷本格，并无往这个方向探索的意向。<br>最后还是要吐槽男女主人设。男主吧，我可以简单把他定位成普通人，这一部也没有给他更多的戏份，更多的就是工具人角色。而女主吧，讲真的，还是有点定位不明。说她嗜睡，她能在紧急事件时起得早；说她客观理性，她又表现得很感性，在十色死亡时，情感爆发；说她冷漠，她能跟小孩打成一片，能多管闲事，揭穿先见的面具。说她勇敢，她还在找她的华生，就是想要逃避她的命运。整个一个矛盾的人设。让读者深陷工具人定位的恐惧。<br>anyway，还是推荐这本书，挺有意思的，没有太大的逻辑漏洞，就算是合格的推理。<br>期待下一本。</p>
+<h3 id="凶人邸谜案"><a href="#凶人邸谜案" class="headerlink" title="凶人邸谜案"></a>凶人邸谜案</h3><p>2023-04-14<br>书名多少有点拉低内容档次，超出预期太多。<br>我只想说，今村昌弘NB。<br>真的真的能读到作者的诚意，特别有感触，看完大结局后，是有颅内高潮的感觉。<br>这一部作品打破系列作诅咒，干碎第二部，超越第一部。<br>诚然，我在前两部也疯狂吐槽，作者在人物刻画和感情描写的方面有所欠缺，但是，我不得不承认，作者在诡计设计创新和故事的内容安排上天赋卓越。<br>就本书而言，工具人的感觉明显减少，人物安排都有其用处和合理性。多人视角切换，密室大逃杀模式，回忆双线叙事，俨然就是一部巨制大片即视感。<br>最后的神来之笔，断头传递钥匙，简直酷到不行。这种默契的精彩配合去解决死局，加上之前的各种铺垫，产生了神奇的化学反应，与智斗游戏的结局反转有异曲同工之妙。<br>其他的故事情节也安排得不错，小京名字的故意误导（开始我确实上当了，但是当作者点破后，我就大概猜到巨人的身份），其他角色的嫌疑引导，不可能犯罪的条条分析，双线回忆叙事的故事展开，情感铺垫，到最后公太名字的揭露。徐徐图之，引导读者慢慢了解事件的真相，不管是逻辑上，还是情感上，都做得很到位。<br>关于男女主角的关系，在这一部有了一定的定位。虽然作者还是不擅此道，但是还是能看出作者的苦心孤诣，是在努力寻找男女主角在各自思维中给对方的定位。盲猜作者在现实中也是一位不善表达感情的理工人吧。但是，就本篇故事而言，通过最后的默契配合，反而使得这种含蓄的感情生根发芽了。赞啊。<br>最后还是提一提一些关于推理的元素。<br>首先是安乐椅侦探，嗯，个人既不喜欢也不反感吧。作者也强调了安乐椅侦探并不是什么值得骄傲角色，更重要的是有效信息的搜集。这一点与我的看法不谋而合。<br>然后是问题分解，出自笛卡尔，被引用到推理界中。不算是第一次接触到这个概念，但是却是第一次在推理小说中接触到这个概念。嗯，怎么说呢，还是给了一定的独特解决问题视角吧。<br>最后就是凶手是否是侦探的敌人，答案显然是否定的。本来我还是会吐槽作者在人文因素上的描写缺失，但是对于这本书，我想说，恰到好处，不做苛求。<br>唯一要吐槽的还是那个为了与巨人站在一起就不得不去杀个人的动机，书后评论里还说是不拘一格的动机，我怀疑你是在反向黑，高级黑。<br>瑕不掩瑜，强烈安利，这本大概就是今年的最佳推理了。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%97%A5%E7%B3%BB%E6%8E%A8%E7%90%86/" rel="tag"><i class="fas fa-tags"></i>日系推理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/04/02/travel/2023/gongqingsenlingongyuan/" rel="next" title="共青森林公园"><i class="fas fa-angle-left"></i><span class="nav-title">共青森林公园</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2023/04/17/material/zhidouzuopin/" rel="prev" title="智斗作品总集篇"><span class="nav-title">智斗作品总集篇</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B0%B8%E4%BA%BA%E5%BA%84%E8%B0%9C%E6%A1%88"><span class="toc-text">尸人庄谜案</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%AD%94%E7%9C%BC%E4%B9%8B%E5%8C%A3%E8%B0%9C%E6%A1%88"><span class="toc-text">魔眼之匣谜案</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%87%B6%E4%BA%BA%E9%82%B8%E8%B0%9C%E6%A1%88"><span class="toc-text">凶人邸谜案</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

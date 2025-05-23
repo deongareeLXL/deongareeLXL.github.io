@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>罗修作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/book/authors/luoxiu/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">罗修作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-23T23:40:32+08:00">2021-01-23 23:40:32</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>提到中国推理，很多人都会提及的作者，可惜英年早逝，遗憾。<br>小艾系列和网维系列都不错，值得一读。</p>
+<span id="more"></span>
+
+<h3 id="麒麟之死"><a href="#麒麟之死" class="headerlink" title="麒麟之死"></a>麒麟之死</h3><h4 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h4><p>瓦尔伯吉斯之夜 Walpurgis Night<br>西班牙披肩之谜</p>
+<h4 id="总体感想"><a href="#总体感想" class="headerlink" title="总体感想"></a>总体感想</h4><p>出场人物很多，但是却没有给读者混乱的感觉。作者对人物故事的把控能力颇强。</p>
+<h4 id="案情概述"><a href="#案情概述" class="headerlink" title="案情概述"></a>案情概述</h4><p>保安彭弟发现女主小艾的父亲死于书房，报警，监控显示有穿红衣，戴面纱，墨镜和手套的女人从后门出入，小艾成最大嫌犯。</p>
+<h4 id="侦探"><a href="#侦探" class="headerlink" title="侦探"></a>侦探</h4><p>网维，主人公的大哥。</p>
+<h4 id="侦探眼中的十大嫌犯"><a href="#侦探眼中的十大嫌犯" class="headerlink" title="侦探眼中的十大嫌犯"></a>侦探眼中的十大嫌犯</h4><p>1）律师泉。（网维妻）<br>有动机，但是有不在场证明，排除。</p>
+<blockquote>
+<p>纯凑数的嫌疑人。</p>
+</blockquote>
+<p>2）小罗。（主人公）<br>有部分动机，但是陷害女主明显与事实矛盾。</p>
+<blockquote>
+<p>凑数二号。</p>
+</blockquote>
+<p>3）顾。（女主母亲）<br>有动机。但是刚做完手术，没有能力，陷害女主不符同上。</p>
+<blockquote>
+<p>凑数三号。</p>
+</blockquote>
+<p>4）张继刚。（死者合作伙伴）<br>体型不符。<br>5）彭弟。<br>6）彭姐。（死者秘书）<br>7）叶子。（死者儿子）<br>8）叶母。（死者前妻）<br>9）小艾。（女主）<br>10）未知女子X。（诱骗女主送花，使得女主没有不在场证明）</p>
+<blockquote>
+<p>剩下7人皆有嫌疑独自或者合谋作案。</p>
+</blockquote>
+<h4 id="关键线索"><a href="#关键线索" class="headerlink" title="关键线索"></a>关键线索</h4><p>现场一只坏掉的钢笔，证实属于死者。<br>侦探视角： 死者身家过亿，不可能随身携带一只坏掉的钢笔，且死者死前未用过钢笔。<br>结论： 凶手用过钢笔，把笔弄坏。</p>
+<p>死者生前曾想送女主胶带密封的盒装礼物，被拒。礼物被发现时，没有死者的指纹。<br>侦探视角： 凶手用钢笔尝试打开礼物盒。<br>结论： 凶手没有指甲，凶手不熟悉作案房间，不知道哪里有工具。</p>
+<h4 id="千层饼套路"><a href="#千层饼套路" class="headerlink" title="千层饼套路"></a>千层饼套路</h4><p>警察： 视频为证，女主身穿红衣，带面纱，墨镜，手套从后门进入，利用塑料袋包鹅卵石作为凶器，作案后将塑料袋冲入马桶。<br>侦探大哥： 女主智商高，她作案，你们不可能这么快发现线索。<br>警察： 她故意为之。<br>侦探大哥： 女主作案，没必要在监控下故意停留。明知道马桶冲不走塑料袋，用火烧掉更好。<br>警察： 她熟悉刑侦办案手法，故意为之。</p>
+<h4 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h4><p>整体叙事节奏流畅，人物刻画鲜明。细节处理到位，可见作者用心雕琢过，很多地方有反转。法庭对簿公堂是本书高潮段，很精彩。</p>
+<h4 id="题外话-个人感言"><a href="#题外话-个人感言" class="headerlink" title="题外话:个人感言"></a>题外话:个人感言</h4><p>吐槽一下男主的无能怒吼，可能是这种设定在03年那会儿比较流行。<br>女主人设讨喜，可惜戏份太少了。侦探也一直在四处奔波，没有展开具体的推理过程。而推理的主体内容完全囊括在结尾解密中。<br>想用奎因式写法，但是感觉有些线索并没有在前文给到。比如：嫌犯们的指甲状况，马桶盖，彭姐办公室物品。<br>故事整体读起来很舒服，细节把握得很到位。</p>
+<h3 id="红莲火焰"><a href="#红莲火焰" class="headerlink" title="红莲火焰"></a>红莲火焰</h3><h4 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h4><p>小艾潜入校园，一些校园的日常。推理剧本猜测，寻宝游戏（让我想到了大学团建）以及后面的案件。案件致敬的占星术杀人魔法，不过并不是生搬硬套，结合了人物特点，又加了两层。并不是敷衍式地套用模式。一想到无头的就是凶手。</p>
+<h4 id="简评"><a href="#简评" class="headerlink" title="简评"></a>简评</h4><p>小艾的人设还是一如既往地讨喜，推理味很浓厚。尽管剧情略显仓促，缺乏精雕细琢之美。但是，还是强烈推荐。小骡子和女侦探的故事，读一本少一本了。</p>
+<h3 id="四季推理"><a href="#四季推理" class="headerlink" title="四季推理"></a>四季推理</h3><h4 id="剧情-1"><a href="#剧情-1" class="headerlink" title="剧情"></a>剧情</h4><p>小艾出场，四个以春夏秋冬为引的小故事，很随意的故事。</p>
+<h4 id="简评-1"><a href="#简评-1" class="headerlink" title="简评"></a>简评</h4><p>非爱勿扰系列，交代小艾和小骡子的一些背景故事。</p>
+<h3 id="七种武器之长生剑"><a href="#七种武器之长生剑" class="headerlink" title="七种武器之长生剑"></a>七种武器之长生剑</h3><h4 id="剧情-2"><a href="#剧情-2" class="headerlink" title="剧情"></a>剧情</h4><p>天上白玉京，五楼十二城。<br>仙人抚我顶，结发受长生。<br>阳光岛盗窃攻防战。</p>
+<h4 id="简评-2"><a href="#简评-2" class="headerlink" title="简评"></a>简评</h4><p>可惜我没看过古龙的长生剑，意会不到其中的梗。挺无聊的。<br>尼罗河惨案我倒是看过，挺狗血的。<br>不推荐。</p>
+<h3 id="火眼金睛"><a href="#火眼金睛" class="headerlink" title="火眼金睛"></a>火眼金睛</h3><h4 id="剧情-3"><a href="#剧情-3" class="headerlink" title="剧情"></a>剧情</h4><p>同学聚会杀人事件。</p>
+<h4 id="简评-3"><a href="#简评-3" class="headerlink" title="简评"></a>简评</h4><p>看似有条不紊，实则漏洞百出。<br>不推荐。</p>
+<h3 id="蓝色妖姬"><a href="#蓝色妖姬" class="headerlink" title="蓝色妖姬"></a>蓝色妖姬</h3><h4 id="剧情-4"><a href="#剧情-4" class="headerlink" title="剧情"></a>剧情</h4><p>蝴蝶结连环杀人事件。致敬ABC谋杀案。</p>
+<h4 id="简评-4"><a href="#简评-4" class="headerlink" title="简评"></a>简评</h4><p>剧情挺混乱的。</p>
+<p>作品有赶稿的嫌疑，缺乏雕琢。<br>作者对情绪词的使用有时候会很突兀，让人不适。<br>比如经常看到用冷色贬义词形容小艾。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/" rel="tag"><i class="fas fa-tags"></i>中国推理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/luqiucha/" rel="next" title="陆秋槎作品集"><i class="fas fa-angle-left"></i><span class="nav-title">陆秋槎作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/01/30/ability/thinking3/" rel="prev" title="思考，快与慢—第三部分"><span class="nav-title">思考，快与慢—第三部分</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%BA%92%E9%BA%9F%E4%B9%8B%E6%AD%BB"><span class="toc-text">麒麟之死</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%90%8D%E8%AF%8D"><span class="toc-text">名词</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E4%BD%93%E6%84%9F%E6%83%B3"><span class="toc-text">总体感想</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%A1%88%E6%83%85%E6%A6%82%E8%BF%B0"><span class="toc-text">案情概述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BE%A6%E6%8E%A2"><span class="toc-text">侦探</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BE%A6%E6%8E%A2%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%81%E5%A4%A7%E5%AB%8C%E7%8A%AF"><span class="toc-text">侦探眼中的十大嫌犯</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%85%B3%E9%94%AE%E7%BA%BF%E7%B4%A2"><span class="toc-text">关键线索</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8D%83%E5%B1%82%E9%A5%BC%E5%A5%97%E8%B7%AF"><span class="toc-text">千层饼套路</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%BB%BC%E8%BF%B0"><span class="toc-text">综述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D-%E4%B8%AA%E4%BA%BA%E6%84%9F%E8%A8%80"><span class="toc-text">题外话:个人感言</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%BA%A2%E8%8E%B2%E7%81%AB%E7%84%B0"><span class="toc-text">红莲火焰</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85"><span class="toc-text">剧情</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%9B%9B%E5%AD%A3%E6%8E%A8%E7%90%86"><span class="toc-text">四季推理</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85-1"><span class="toc-text">剧情</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-1"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%83%E7%A7%8D%E6%AD%A6%E5%99%A8%E4%B9%8B%E9%95%BF%E7%94%9F%E5%89%91"><span class="toc-text">七种武器之长生剑</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85-2"><span class="toc-text">剧情</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-2"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%81%AB%E7%9C%BC%E9%87%91%E7%9D%9B"><span class="toc-text">火眼金睛</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85-3"><span class="toc-text">剧情</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-3"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%93%9D%E8%89%B2%E5%A6%96%E5%A7%AC"><span class="toc-text">蓝色妖姬</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85-4"><span class="toc-text">剧情</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-4"><span class="toc-text">简评</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

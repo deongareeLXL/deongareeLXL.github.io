@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>思考，快与慢—第二部分 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/04/ability/thinking2/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">思考，快与慢—第二部分</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-04T12:27:18+08:00">2021-01-04 12:27:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ability/" itemprop="url" rel="index"><span itemprop="name">ability</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>第二部分，标题为启发法与偏见，主要阐述人的启发性思维以及被人们忽视的偏见。</p>
+<span id="more"></span>
+
+<h3 id="大数法则与小数定理"><a href="#大数法则与小数定理" class="headerlink" title="大数法则与小数定理"></a>大数法则与小数定理</h3><p>例子：美国3141个县中，肾癌发病率最低的县位于中西部和南部人口稀少的乡村。<br>原因分析：乡村生活方式很健康。<br>反例：美国3141个县中，肾癌发病率最高的县位于中西部和南部人口稀少的乡村。<br>原因分析：乡村医疗条件差。<br>矛盾：乡村生活方式不可能既是最高又是最低发病原因。<br>原因：系统1面对”纯统计学”的数据时是束手无策的，统计学对以上问题的解释为，相比于大样本，极端的结果更容易出现在小样本中。</p>
+<p>你可能早就知道应该更相信大样本，并且及时是对统计学一无所知的人也听说过大数法则。但是知道并不等于会抉择。</p>
+<p>对于统计直觉应抱有一些怀疑，只要条件允许，都应该采用计算方法来确定样本规模，而不是依靠直觉印象作决定。</p>
+<blockquote>
+<p>做过科研的都知道，任何实验数据整理最终都会分析false positive和false negative。但是日常生活中的判断就没有这些分析。</p>
+</blockquote>
+<p>人们对样本大小没有足够的敏感性。</p>
+<p>系统1在了解事实之前就根据零散的证据拼凑了一个饱满的形象。</p>
+<h3 id="认知错觉"><a href="#认知错觉" class="headerlink" title="认知错觉"></a>认知错觉</h3><p>对随机事件做出因果解释必然是错的。</p>
+<p>例子：1973年赎罪日战争中，以色列空军遭遇埃及地对空导弹，两支空军中队，一支被击落两架飞机，另一支完好。<br>原因分析：只是运气不佳，对不明显的原因进行随机调查必定是劳而无功的。已经有人牺牲，没必要再给活着的人增加额外负担，让他们觉得那些牺牲的战友做错了什么。</p>
+<p>我们都非常愿意相信生活中大多数事情并不是随机的。</p>
+<p>例子：最成功的院校特点调查结论为规模普遍较小。<br>可能原因：能提供更优质的教学。<br>反例：较差的院校也规模小。<br>原因分析：小且成功的学校懂得变通。大规模院校可以提供多种课程，会有更好的效果。</p>
+<p>错误结论的两个形成原因：1）夸大对小样本的信任。2）把随机事件原因归结到因果关系上。</p>
+<h3 id="锚定效应"><a href="#锚定效应" class="headerlink" title="锚定效应"></a>锚定效应</h3><p>估测结果和人们思考的结果很相近。</p>
+<p>系统1引起启发效应的锚定，系统2在进行刻意调整时发生锚定。</p>
+<p>对锚定值的调整常常是不足的，这是系统2的失误。</p>
+<p>锚定效应解释了为什么限量购买是一种有效的营销策略。</p>
+<p>如果一则消息没有马上被证伪，那么不管可靠性如何，都会对联想系统产生影响。</p>
+<h3 id="可得性启发"><a href="#可得性启发" class="headerlink" title="可得性启发"></a>可得性启发</h3><p>定义：通过实例呈现在脑中的轻松程度来判断概率的过程。</p>
+<p>很多合作团队成员感觉他们做的事超出了自己的分内工作，还感到其他人并不感激自己做出的贡献。</p>
+<h3 id="可得性偏见"><a href="#可得性偏见" class="headerlink" title="可得性偏见"></a>可得性偏见</h3><p>例子：1）在被要求用更多的论据支撑自己的选择时自信心下降。<br>2）在列出多个避免某种问题的方法后，更加不自信避免此问题。</p>
+<p>能力可以提升我们对自己直觉的信任。</p>
+<h3 id="效应层叠"><a href="#效应层叠" class="headerlink" title="效应层叠"></a>效应层叠</h3><p>对风险带有偏见的反应是导致公共政策中优先处理权不稳定和错位的重要原因。<br>事件：拉夫河事件和艾拉恐慌。<br>原因：我们的大脑解决小风险的能力又一个基本限度：要么完全忽视，要么过于重视，没有中间地带。</p>
+<p>我们都有这样的体验，想要劝自己完全冷静下来是非常难的。恐怖主义是直接和系统1对话的。</p>
+<h3 id="典型性启发的两宗罪"><a href="#典型性启发的两宗罪" class="headerlink" title="典型性启发的两宗罪"></a>典型性启发的两宗罪</h3><p>例子：汤姆的一系列人物描述，会让人想到书呆子，推测汤姆的专业。大家都会把计算机科学排在首位。<br>事实：大家忽略了每个学科的基础比率，即计算机科学的基础比率低（10多年前）。<br>1）典型性启发过于喜爱预测不可能发生的事件。<br>2）典型性启发对证据质量不够敏感。</p>
+<p>用贝叶斯定理来约束直觉。</p>
+<h3 id="合取谬误"><a href="#合取谬误" class="headerlink" title="合取谬误"></a>合取谬误</h3><p>例子：琳达问题。<br>琳达，进步人士，关注社会公正，反对歧视。<br>判断：下面两种情况哪种可能性更大？<br>1）琳达是银行出纳。<br>2）琳达是银行出纳，同时她还积极参于女权运动。<br>事实：我们让逻辑与典型性互相竞争，典型性赢了，我们就选择了2）。</p>
+<p>人们总会认为两个事件的联合出现比只出现一件事的可能性要大。</p>
+<h3 id="少即是多的逻辑悖论"><a href="#少即是多的逻辑悖论" class="headerlink" title="少即是多的逻辑悖论"></a>少即是多的逻辑悖论</h3><p>例子：1）他构建了一个非常详细的故事，还说这个故事很可能发生。故事越详细，发生概率越小。<br>2）对于贵重的产品附赠一个便宜的小礼物，产品就不那么吸引人。<br>3）餐具问题，24件完好的餐具对比40件餐具但其中部分破损，前者价值高。</p>
+<h3 id="统计学，因果关系以及信念"><a href="#统计学，因果关系以及信念" class="headerlink" title="统计学，因果关系以及信念"></a>统计学，因果关系以及信念</h3><p>相较于非因果关系的信息来说，用因果关系进行解释的统计学结果对我们的想法影响更大。</p>
+<p>但即使是具有说服力的因果关系统计数据也不会改变我们在个人经历中形成的长期坚守或是根深蒂固的信念。</p>
+<p>你更有可能因为从自己的行为中发现惊人的事实而学到知识。</p>
+<h3 id="回归平均值"><a href="#回归平均值" class="headerlink" title="回归平均值"></a>回归平均值</h3><p>常识：对良好表现的嘉奖比对错误的惩罚更有效。<br>反例：教练描述，赞许那些做的好的学员，下一次通常会表现得差一些。相反，对不好表现的学员怒吼，下一次基本上会表现更好。<br>原因：回归平均值。</p>
+<p>例子：体育画报的诅咒，登上《体育画报》杂志的运动员接下来的赛季表现欠佳。</p>
+<p>对回归效应强加因果是不正确的。</p>
+<h3 id="修正直觉性预测"><a href="#修正直觉性预测" class="headerlink" title="修正直觉性预测"></a>修正直觉性预测</h3><p>1）先估算平均值。2）按直觉对结果进行估算。3）将结果于平均值的关联进行评估。4）根据关联度将估算结果向平均值修正。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ability/" rel="tag"><i class="fas fa-tags"></i>ability</a>
+        
+        <a class="post-tag button" href="/tags/thinking/" rel="tag"><i class="fas fa-tags"></i>thinking</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2020/12/31/story/summary2020/" rel="next" title="2020小结"><i class="fas fa-angle-left"></i><span class="nav-title">2020小结</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/luyehua/" rel="prev" title="陆烨华作品集"><span class="nav-title">陆烨华作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A4%A7%E6%95%B0%E6%B3%95%E5%88%99%E4%B8%8E%E5%B0%8F%E6%95%B0%E5%AE%9A%E7%90%86"><span class="toc-text">大数法则与小数定理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%AE%A4%E7%9F%A5%E9%94%99%E8%A7%89"><span class="toc-text">认知错觉</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%94%9A%E5%AE%9A%E6%95%88%E5%BA%94"><span class="toc-text">锚定效应</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%AF%E5%BE%97%E6%80%A7%E5%90%AF%E5%8F%91"><span class="toc-text">可得性启发</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%AF%E5%BE%97%E6%80%A7%E5%81%8F%E8%A7%81"><span class="toc-text">可得性偏见</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%95%88%E5%BA%94%E5%B1%82%E5%8F%A0"><span class="toc-text">效应层叠</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%85%B8%E5%9E%8B%E6%80%A7%E5%90%AF%E5%8F%91%E7%9A%84%E4%B8%A4%E5%AE%97%E7%BD%AA"><span class="toc-text">典型性启发的两宗罪</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%90%88%E5%8F%96%E8%B0%AC%E8%AF%AF"><span class="toc-text">合取谬误</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B0%91%E5%8D%B3%E6%98%AF%E5%A4%9A%E7%9A%84%E9%80%BB%E8%BE%91%E6%82%96%E8%AE%BA"><span class="toc-text">少即是多的逻辑悖论</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%EF%BC%8C%E5%9B%A0%E6%9E%9C%E5%85%B3%E7%B3%BB%E4%BB%A5%E5%8F%8A%E4%BF%A1%E5%BF%B5"><span class="toc-text">统计学，因果关系以及信念</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%9B%9E%E5%BD%92%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="toc-text">回归平均值</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BF%AE%E6%AD%A3%E7%9B%B4%E8%A7%89%E6%80%A7%E9%A2%84%E6%B5%8B"><span class="toc-text">修正直觉性预测</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

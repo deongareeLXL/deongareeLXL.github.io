@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>反乌托邦三部曲 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/23/book/fanwutuobang/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">反乌托邦三部曲</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-02-23T13:50:35+08:00">2022-02-23 13:50:35</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>描写社会形态的文字，其信息量往往是爆炸的。相比于对个人的描写，对整个社会体系构造的描写需要更深刻的认知体系。</p>
+<span id="more"></span>
+
+<p>从这个角度出发，回看三体这个故事，虽然它把故事背景扩展到了整个宇宙空间，但是它还只是以人类社会体系为最基础的共识，而其主题也只是抓住了社会体系中的生存这一个点进行故事开展。当然，它是成功的，它把黑暗森林法则这样一个人类社会体系衍生出来的生存法则呈现给了读者（个人只能承认这是人类社会或者说地球文明的衍生法则，它是否能适用于全宇宙，并不确信，就像上帝是否存在一样，没有答案）。</p>
+<p>但是，一个社会体系是更为复杂的，除了生存，还有很多其他的值得深思的点。以整个社会体系为主题的文字，总是会给人带来无限的思索探究空间。</p>
+<p>反乌托邦（dystopia）这类型的小说最近才接触到，挺有意思的，刷新三观系列。这样的书它不会被任何一个政府宣传，但是它却值得每一个想要独立思考的人去阅读的书籍。</p>
+<h3 id="美丽新世界"><a href="#美丽新世界" class="headerlink" title="美丽新世界"></a>美丽新世界</h3><p>2022-01-30<br>作者阿道司·赫胥黎。<br>《美丽新世界》，一听这书名，再加上反乌托邦的标签，让人立马就能联想到本书该有的部分内容。<br>美丽新世界它真的美丽么？答案不言而喻。<br>本书的故事首先仔细地介绍了新世界的一些基本形态，然后以一个新世界”有缺陷”的人的视角，去闯入保留地的旧世界中去，并从旧世界中带回两个人。最后新旧世界在这两个人的人生经历中产生巨大的矛盾冲突，通过新世界领导人的讲解，道出作者对新旧世界的社会形态对比差异，升华主题。<br>故事的构思很巧妙，最后的社会形态对比，探讨幸福稳定和人性自尊以及思想独立的对立。对美的探讨，对科技的探讨，对宗教的探讨，都远远超出了我的预期。很难想象这是一本1932年，也就是上世纪30年代写成的书籍。</p>
+<h4 id="世界设定"><a href="#世界设定" class="headerlink" title="世界设定"></a>世界设定</h4><ul>
+<li>胎生可耻，新个体全部通过人工培育</li>
+<li>新个体存在多生子，以分裂多为荣，数量级在一万以上</li>
+<li>新个体严格分级为a、b、c、d、e（原著应该是希腊字母表示的），社会分工固化</li>
+<li>条件设置，胚胎时就进行外部定向干预。</li>
+<li>睡眠教育，在睡眠期间不停洗脑，重复某些教条，让每个阶层的个体按既定方向成长，最终每个阶层的人都以自己阶层为荣。</li>
+<li>药不能停，每当遇到矛盾冲突的情形，通过唆麻这种药物控制，专门设有唆麻假期，猛嗑药</li>
+<li>个体保持年轻形态，不衰老</li>
+<li>提供情绪治疗</li>
+<li>每个人都属于彼此，属于所有人。以性伴侣固定为耻</li>
+<li>发现异端分子，即自我意识觉醒的人，将之流放到单独的岛屿中去</li>
+</ul>
+<h4 id="摘录"><a href="#摘录" class="headerlink" title="摘录"></a>摘录</h4><p>马6岁成熟，大象10岁成熟，然而人类13岁时生理上还未完全成熟，20岁时才充分成熟。因此，人类的智慧就是延迟发育的结果。不过对于这些e。我们不需要他们的智慧。<br>如果身体的成熟能够和——比如说母牛一样快，那该是对社会多么巨大的节约。</p>
+<blockquote>
+<p>e类人沦为纯粹的工具人。</p>
+</blockquote>
+<p>以强X射线出现的冷冻带来不适，胚胎换瓶时经历了可怕的冷冻。这批胚胎是预先确定要被移民到热带地区。我们的同事会教导他们热爱炎热。而这，就是幸福和热爱美德的秘密所在。所有条件设定的目标都是：让人们热爱他们无法逃避的社会使命。</p>
+<blockquote>
+<p>用可怕的条件设定，在胚胎的时候就进行控制。</p>
+</blockquote>
+<p>书本和巨大的噪音，鲜花和电击，这两对毫无相干的事物在婴孩们的心里已经被密切地联系在一起了。经过两百次相同或类似课程的重复，它们就会在孩子们的心里变得密不可分。这种人为联系在一起的东西，自然是无法分开的。<br>他们会带着心理学家称之为“条件反射”的对鲜花和书本的厌恶长大，反应的天剑就这样无可逆转地形成了。他们一辈子都不会再对书本和植物学感兴趣。</p>
+<blockquote>
+<p>记忆力训练里有一个概念叫联想。这种人为地将事物和某些可怕的存在强行关联的做法，可怕至极。</p>
+</blockquote>
+<p>樱花草和风景都有一个严重的缺点：它们都是免费的。对自然的爱使得工人的工作都停了下来。因此底层社会对大自然的爱被完全取消。</p>
+<blockquote>
+<p>剥脱人们对原始大自然的喜爱天性。</p>
+</blockquote>
+<p>睡眠教育，或者说许普诺斯（Hypnos，睡神）教育的原则被发现了。这些早期的实验者走错了路，他们以为睡眠教育可以被当作智力教育的一种方法。<br>实验：<br>小男孩昏昏欲睡时，重复播放：尼罗河是非洲最长的河，blabla<br>醒来时询问：你知道非洲最长河吗？<br>答：不知道。<br>提示：难道你不记得了，尼罗河是。。。<br>脱口而出：尼罗河是非洲最长的河，blabla<br>再问：非洲最长的河是？<br>答：我不知道。<br>继续上面的重复对话。。。</p>
+<p>然而，将睡眠教育用于进行道德教育，那就不一样了。<br>a孩子们穿灰色衣服。他们工作更加努力，因为他们是那么聪明。我很高兴我只是个b，因此我不用那么卖力地工作。不过我们比c们和d们好多了。c们太愚蠢，他们穿绿色。d孩子穿卡其色衣服。啊，不，我不想和d孩子们玩。e们更糟，他们愚蠢到连。。。<br>80个枕头下依稀可以听见。每周3次，每次120遍。<br>这是有史以来最伟大的道德教育和社会化教育的力量。</p>
+<blockquote>
+<p>可怕的洗脑教育。这种不断重复的常识性引导，会在潜移默化中产生巨大的影响力。</p>
+</blockquote>
+<p>无论男人、女人还是孩子，都被强制要求一年要有那么高的消费，为了工业的利益得到的唯一结果就是。。。<br>扔掉强于修补。补丁越多，财富越少。<br>大规模的发自内心的反对。要求什么都不消费，回归自然。<br>在北三区，800名朴素派成员倒在了机枪扫射之下。</p>
+<blockquote>
+<p>消费主义的陷阱，离我们真的不远。</p>
+</blockquote>
+<p>有身体缺陷的伯纳德一直以来都承受着孤独感，而亥慕霍兹直到最近才意识到，他的过分聪明给他带来了与他周围的人的不同。</p>
+<p>直逼而来的是空旷的黑夜，吐着黑色泡沫的滚滚巨浪，翻腾的云朵中露出月亮那憔悴而惨白的脸。<br>我想静静地看看海。看海让我感觉就像，就像我更加是自己了，要是你能懂我的意思的话。更像我自己，而不是那么完全成为别的东西的一部分，不只是社会这个机体的一个细胞。</p>
+<p>你不希望自由吗，列宁娜？<br>我不知道你说的是什么意思。我现在就是自由的，很自由，拥有美好的时光。每个人如今都很快乐。<br>是啊，每个人如今都很快乐。我们在孩子们5岁时就跟他们那样说，但是你不想以别的方式获得自由，获得幸福吗？列宁娜。比如说，以你自己的方式，而不是以任何他人的方式。<br>我不知道你是什么意思。<br>你有这些可怕的想法，为什么不吃点唆麻，你最好还是把这些都忘了吧。那样你就不会痛苦了，相反，你会很快乐，非常快乐。</p>
+<p>不一样？还有别的结束方式吗？<br>我不希望我们一上床就结束了。<br>那么是？<br>看看阻止自己的冲动会有什么样的后果。<br>永远不要把今天的快乐推迟到明天。<br>从14岁到16岁半，每周2次，每次重复200遍。我想知道激情是什么滋味。我想感受一下某种强烈的感觉。<br>当个体有了感觉，社会就会动摇。<br>呃，那它为什么就不能动摇一下？<br>伯纳德！<br>成年人需要工作。感觉和欲望都属于孩子。<br>我们的福帝喜欢孩子。<br>那天我突然想到，一直做一个成年人是有可能的。<br>我不明白。<br>我知道你不明白，所以昨天我们才一起上了床，像孩子一样，而不是像个成年人一样能够等待。<br>可是这样很好，不是吗？<br>啊，再好不过了。他回答说，声音却是那么忧伤。</p>
+<p>女士们，先生们。请原谅我这样打断你们的工作。一项痛苦的责任将我束缚，社会的安全与稳定遭遇到了威胁。是的，威胁，女士们，先生们，这个人，现在站在你们面前的这个人，这个a+，社会给予了他很多，因此也对他有很多的期待，然而你们的这个同事——或许我应该提前称他为你们的‘前同事’——严重地辜负了社会对他的信任。他对于运动和唆麻有着异端的见解，他的性生活可耻地离经叛道，他拒绝遵守福帝的教义，在工作以外的时间举止‘甚至像个小孩子’。这种种都说明，他把自己摆在了社会敌人的位置上。女士们，先生们，他甘愿当所有秩序和稳定的颠覆者，当文明的反叛者。因此，我建议开除他。</p>
+<blockquote>
+<p>是不是觉得这个场景很熟悉。</p>
+</blockquote>
+<p>清清楚楚地叫了一声：我的父亲！<br>这个词语毕竟不及生孩子这件事本身淫秽，它所带来的联想跟生孩子带来的丑恶的道德败坏的暗示毕竟相隔甚远，它的意思并不涩情淫秽，只是显得有些肮脏而已。因此这个滑稽的肮脏字眼一出现就缓解了相当紧张的气氛。笑声爆发了，闹哄哄地绕梁回响着，几欲歇斯底里，声浪一波高过一波，仿佛无休无止。</p>
+<blockquote>
+<p>这一刻，观众和读者都笑了。观众笑主管有了父亲的身份，而读者笑主管前一刻还在趾高气扬地批判异端，然后自己立马就成了异端。这里作者的安排真的十分巧妙，极富讽刺意味。</p>
+</blockquote>
+<p>你们给她那么大的剂量，岂不是要缩短她的寿命吗？<br>从某种意义上说，是这样的。可是换一种角度来看，我们实际上是在增加她的寿命。在时间上，唆麻会是你减少几年的寿命。但是你想想它给当下带来的不可计算的内涵，每一次唆麻假日就像我们的祖先所说的永恒一样。</p>
+<blockquote>
+<p>对标某概念，meta。话不多说。</p>
+</blockquote>
+<h4 id="新世界的规则解释"><a href="#新世界的规则解释" class="headerlink" title="新世界的规则解释"></a>新世界的规则解释</h4><p>通过元首和旧世界代表约翰以及思想觉醒者亥姆霍兹的对话，抛出新旧世界大矛盾对立面，原文过长，以下为精简版。原文存在更多细节，强烈建议自行阅读原文。</p>
+<p>约翰：艺术很好，比感官电影强。<br>元首：为了稳定，选择幸福，抛弃艺术作为一种代价。<br>约翰：那很可怕。<br>元首：真实的幸福是卑劣的，幸福从来不豪华。<br>约翰：多生子有必要吗？<br>元首：他们是建立一切的基础。<br>约翰：为什么不把每个人设置成a+。<br>元首：实验证明，全是a+的社会无法运转。最佳人口比例是以冰山为模型，九分之一在水面之上。<br>约翰：水面之下会开心吗？<br>元首：比水面之上更开心。<br>约翰：尽管干着可怕的工作？<br>元首：他们并不这样认为。不用动脑子和肌肉，7个半小时轻松工作，有定量分配的唆麻、游戏、性交和感官电影。他们也许要求减少工作时长，但是实验证明调整成4小时后，结果只有动荡和大批量的唆麻消耗，多出来的3个半小时没有成为幸福的来源。减少劳动的方法有很多，但是我们不会轻易实施。有时候科学的进步，生产力的发展也会成为损害稳定的因素。科学是危险的。<br>亥姆霍兹：可是我们的睡眠教育为什么说科学就是一切。<br>元首：你们接触到的都是受限的科学。类似于不更新食谱的烹饪。我曾经是一个优秀的物理学家，想要尝试探索科学边界，并差点被发配到孤岛去。发配到孤岛事实上是一种奖赏，因为那里都是意识觉醒并拥有独立思想的人。<br>亥姆霍兹：那你为什么不在岛上？<br>元首：因为相比于纯粹的科学，我选择了元首。相比于真理和美，我选择了安逸和幸福。<br>元首：还有宗教。以前有一种叫上帝的东西。<br>约翰：你为什么禁掉了关于上帝的书。<br>元首：跟艺术的书籍一样，不适用了。首先说下曼恩·德·比朗，他是一位哲学家。你知道哲学家是什么？<br>约翰：就是梦想到的事物比天地间的事物还要多的人。<br>元首：差不多。他说过，年少富贵的人不需要上帝，他们能得到他们想要的一切，但是却不能一直拥有这一切。当他们衰老时，病痛将至，他们就需要上帝。上帝会在我们于现实中得不到时，给予我们灵魂上的慰藉。<br>元首：但是，这些哲学家没有预料到我们的新世界，在这里，没有衰老，欲望都能得到满足，社会秩序稳定。因此，不需要上帝。<br>约翰：你认为上帝不存在？<br>元首：我认为很可能存在。只是现在上帝存在的形式是虚无状态。<br>约翰：这是你的错。<br>元首：这可能是文明的错吧。上帝与机械、科学制药和普遍幸福是不相容的。<br>约翰：但是感觉到上帝的存在不是很自然的吗？<br>元首：布兰得利把哲学定义为给天生相信的东西找到蹩脚的解释。一个人相信什么，是因为他被条件设置成喜欢什么。人们相信上帝，是因为他们被条件设置成相信上帝。<br>约翰：可是，当你孤独时，想到死亡时，你很容易相信上帝。<br>元首：但是现在的人永远不会孤独。我们让他们讨厌独处，我们安排他们的人生，这样他们几乎不可能会感到孤独。<br>约翰：《李尔王》中写着：诸神是公正的，堕落会降低身份。<br>元首：降低什么身份？作为一个幸福的、努力工作的、消费商品的公民，他是完美的。不接受别的标准。<br>约翰：价值不是凭个别人制定的。要根据他自己的判断和尊严，以及‘发起这一切的人的想法’。<br>元首：你把论题带偏了。<br>约翰：相信上帝，就不会堕落而降低身份。你就有理由去耐心地忍受，有理由去勇敢地做一些事情。印第安人就是如此。<br>元首：文明人不需要忍受。人们不能有自己的想法，那样秩序就会被打乱。<br>约翰：相信上帝，你就有自我否定的理由。<br>元首：工业文明不能自我否定，必须自我放纵到卫生学和经济学所能承受的极限。<br>约翰：贞洁呢？<br>元首：贞洁意味着激情，意味着神经衰弱。这会导致不稳定。没有快快乐乐的罪行就没有持久的文明。<br>约翰：上帝是产生一切高贵、善良、英雄主义的行为的原因。<br>元首：文明不需要高贵行为和英雄主义。这些是政治无能的症状。我们没有什么要保护的，也不需要信仰。我们需要中规中矩，做你该做的，保持愉悦。无需抵制诱惑。如果有意外而发生了不愉快，我们还有唆麻。任何人都可以做到道德高尚，没有眼泪的基督教——这就是唆麻。<br>约翰：眼泪是需要的，因为命运途中有很多苦难。<br>元首：文明的国家没有苦难。<br>约翰：消除苦难和反抗苦难，哪一种更高贵。敢于将血肉之躯挑战命运、死亡和危险。充满挑战的生活更有意思。<br>元首：确实，所以我们时不时使肾上腺受一下刺激。<br>约翰：那是什么？<br>元首：V.P.S，代强烈情绪治疗，每个月1次。让肾上腺素浸渍整个生理系统，很方便。<br>约翰：可是我喜欢不方便。<br>元首：不，我们喜欢。<br>约翰：可是我想要真实的危险，想要自由，想要善良，想要罪恶。<br>元首：你在要求不开心的权利。<br>约翰：对，我就要。我还要衰老、丑陋、虚弱、梅毒、癌症、挨饿、肮脏污秽、担忧未知、得伤寒等等各种痛苦的权利。我要这一切。<br>元首：你请便。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>信息量确实过于巨大，难以用几句话总结概括。作者给我们呈现出了一种追求幸福的绝对极端社会体系，可怕的是我们在一个世纪后的今天，能够或多或少看到这个极端社会体系的影子，也就是说，我们正在努力向着这样一个社会发展着，所欠缺的只是一场毁灭性的变革。整体叙述过于复杂，下面从几个我能想到的点随便说说。</p>
+<p>1.相对于过去，世界确实是在向着美丽新世界的模式进发。比如消费主义替代了节约，比如元宇宙的虚拟概念，比如社会阶层明确分工，世界一超多强的固定格局，大家族体系到丁克族的演进。<br>2.从最后约翰的气急败坏，可以看出，元首在辩论上几乎压倒性胜利。民主制的社会中，人们会不断追求所谓的幸福，其余的可能真的会被抛弃。我们距离所谓的美丽新世界的差距其实并没有想象中那么遥远，几个关键性的点有：1）放弃胎生改用胚胎培养。2）提供药品控制情绪。3）生产力发展到全智能自动化阶段，依赖的人力完全可控。4）突破衰老基因控制，医疗足够发达。<br>3.全世界绝对地禁止人体基因克隆技术和毒品，还有更深层次的缘由。当前阶段，世界的生产力还没有达到新世界所需要的水准。我之前还质疑过为什么作者要设定不衰老的特征，后面才发现这个设定很关键，是用于对标宗教信仰的，如果人们没有病痛，欲望得到满足，就不需要信仰。</p>
+<p>最后不得不发起灵魂拷问，<br>如果美丽新世界的大门就在眼前，你是否愿意就此进入？<br>还是你已经把当前世界或多或少地当成了你心中的美丽新世界？</p>
+<p>当然，这仅仅也只是几千页的一本小说，真实社会体系的复杂度是不可能用文字进行呈现的，我们也没必要过度沉浸于作者这天马行空的脑洞里。从逻辑学上讲，他构造的世界破绽百出，故事终究是故事，虚无的预言幻想也只是幻想。读此书，除了丰富一下我们的精神世界之外，还可以让我们从另外一个奇特的角度认识人类社会体系，让我们可以重新审视一下自身，作出该有的调整，去更好地面对自己的未来。</p>
+<h3 id="1984"><a href="#1984" class="headerlink" title="1984"></a>1984</h3><p>2022-02-23<br>读完就知道为啥荐书人要特意强调这本书了。<br>作者乔治·奥威尔，此书出版于1949年，居然比文化大革命要早。</p>
+<h4 id="世界设定-1"><a href="#世界设定-1" class="headerlink" title="世界设定"></a>世界设定</h4><ul>
+<li>世界陷入三个大国统治，形成三足鼎立格局，三个国家政治机制类似</li>
+<li>人划分为上等人（内党）、中等人（外党）、下等人（无产者）</li>
+<li>极力宣扬个人崇拜（老大哥）。</li>
+<li>人民生活水平下降，生产力发展停滞。</li>
+<li>肆意歪曲历史。</li>
+<li>制定新语言，缩小思想的边界。</li>
+<li>遍布监视屏幕，推崇检举。</li>
+<li>树立敌对标杆的个人和国家，让人民情绪得以发泄。并专设仇恨节。</li>
+<li>对破坏规则的人，进行思想和情感上的改造。不毁灭，只改造。</li>
+</ul>
+<h4 id="摘录-1"><a href="#摘录-1" class="headerlink" title="摘录"></a>摘录</h4><p>战争即和平 自由即奴役 无知即力量</p>
+<p>战争的本质就是毁灭。这毁灭的目标，未必是人的生命，而是人的劳动成果。战争就是要将人们的生活必需品炸得粉碎，让毁灭的气味弥漫于天空，漂浮于深海。…只有普遍匮乏的状态才能凸显特权的重要性，哪怕是极其微小的权力。这样，也就越发能夸大一个群体之于另一个群里的尊重程度。</p>
+<p>寡头集体主义政体的实质，不是父业子承的世袭，而是特定世界观与生活方式的传承与延续，由死人传至活人。统治阶层之所以是统治阶层，便因为只要它指定继任者，政权就可以延续。党所在意的不是血统在政治上的维系，而是党本身的存在。由谁掌权并不重要，重要的是，保持社会等级制度始终如一。</p>
+<blockquote>
+<p>这一段有点东西。</p>
+</blockquote>
+<p>篡改历史的必要性可归纳为两点：一是去掉参照的标准，二是满足党捍卫自身绝对正确形象的需要。</p>
+<p>在这个地方是须有殉难者的。中世纪的宗教审判，那实属失败之举。他们烧死一个异教徒，就会有成千上万个异教徒站出来。…只要他跟我们对抗，我们就绝不消灭他。我们会改变他，控制他的内心思想，改造他，燃烧掉他内心所有的邪恶和幻觉，把他引到我们这边来。我们要的不是他表面的认同，而是内心和灵魂深处的认同。</p>
+<p>真正的权力，使我们不得不夜以继日地为之战斗的权力，它不是对事物的控制权，而是对人的控制权。</p>
+<p>一个人该如何行使凌驾于另一个人之上的权力？让他受苦。<br>只服从是不够的，除非他在忍受痛苦，要不然，你怎么能知道他是在服从你的意志，还是在随心所欲？权力，就是要把别人的思想撕成碎片，然后再按照你的模式重新拼合成新的模样。</p>
+<h4 id="剧情及小结"><a href="#剧情及小结" class="headerlink" title="剧情及小结"></a>剧情及小结</h4><p>本书以主人公温斯顿的经历为行文线索，通过其人际交往，思想描写，身世和爱情，以及最后的被捕改造等等，一点点展示了作者构想的充满黑暗、记忆篡改和精神迫害的落后社会体系。利用一本禁书以及跟内党人员的对话，强行解释战争即和平，自由即奴役，无知即力量这三个看起来矛盾实则是作者想要表达的社会基本模式。</p>
+<p>此书的长度比美丽新世界还要多大约1&#x2F;3的篇幅，行文流畅度远不如后者，略显冗长，通篇充斥着黑暗压抑的氛围，解释着一些如今看来似是而非的观点。</p>
+<p>作者写此书的时期，应该是对标的斯大林统治的社会体系。从今天的角度来观察，这样的社会体系已经被证明是不可能长久的。他与美丽新世界的社会制度截然相反，描述的是一种极其不自由的社会极端体系。三体里有提到，给岁月以文明,而不是给文明以岁月。一个社会体系的演进要么偏重岁月，要么偏重文明。而1984所描绘的社会两者都被抛弃了。既放弃了技术进步的同时，又放弃了平民大众们的幸福生活，只为了满足部分所谓的寡头独裁者的权力欲望。这样的社会体制，从历史的角度上分析，是绝不可能长久存在的。</p>
+<p>阿道司·赫胥黎说，你的1984终将过去,我的美丽新世界总会到来。如今看来，还是有一定道理的。不管是斯大林时期的个人崇拜独裁统治，还是国内的文化大革命，都快速地退出了历史舞台。</p>
+<p>但是，作为另一个极端的社会体系，恰恰能反应出美丽新世界的社会体系中存在的严重缺陷，那就是社会的运转模式下统治者所处于的状态。在美丽新世界中，有一个明显的bug就是元首，他作为通晓一切的权力至高者，又有谁来约束他的权力，他完全可以追寻他所要的一切，而不是被塑造成圣人一般道德高尚，只做社会体制维护者。即使他可以做到，那他的继任者们呢？</p>
+<p>人性是极其复杂的，是经不起考验的。正如1984里描述的，上等人统治的社会，一般不会由下等人推翻，因为下等人缺乏统治社会所必须要的技能。历史上的农名起义基本上都以失败告终。一个稳定强大的社会体系的崩塌，往往是首先存在于其内部的矛盾激化，上等人的群体内部不可能是铁板一块，一旦上等人祸起萧墙，中等人就会把握机会，取而代之。美丽新世界完全地避开了统治阶层的存在形式，就成为了其构想社会的最大瑕疵。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/dystopia/" rel="tag"><i class="fas fa-tags"></i>dystopia</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/02/07/ability/rest/" rel="next" title="高效休息法——方法论"><i class="fas fa-angle-left"></i><span class="nav-title">高效休息法——方法论</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/02/23/story/huaijiuxilie/" rel="prev" title="怀旧系列"><span class="nav-title">怀旧系列</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%BE%8E%E4%B8%BD%E6%96%B0%E4%B8%96%E7%95%8C"><span class="toc-text">美丽新世界</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A"><span class="toc-text">世界设定</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%91%98%E5%BD%95"><span class="toc-text">摘录</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%96%B0%E4%B8%96%E7%95%8C%E7%9A%84%E8%A7%84%E5%88%99%E8%A7%A3%E9%87%8A"><span class="toc-text">新世界的规则解释</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#1984"><span class="toc-text">1984</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A-1"><span class="toc-text">世界设定</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%91%98%E5%BD%95-1"><span class="toc-text">摘录</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85%E5%8F%8A%E5%B0%8F%E7%BB%93"><span class="toc-text">剧情及小结</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

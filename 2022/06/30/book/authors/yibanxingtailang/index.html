@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>伊坂幸太郎作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/30/book/authors/yibanxingtailang/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">伊坂幸太郎作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-06-30T23:30:53+08:00">2022-06-30 23:30:53</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>伊坂幸太郎，日本作家，深受读者喜爱，有天才之名。被各种安利，我决定去试试。很多人都推荐《金色梦乡》。看的第一篇是他的黑暗系作品。不过呢，真的不错哦，作者对故事节奏的把控能力相当之强。看了两篇之后，我还是没法把作品归类到推理小说，改用文学比较恰当吧。</p>
+<span id="more"></span>
+
+<h3 id="不然你搬去火星啊"><a href="#不然你搬去火星啊" class="headerlink" title="不然你搬去火星啊"></a>不然你搬去火星啊</h3><h4 id="剧情简述"><a href="#剧情简述" class="headerlink" title="剧情简述"></a>剧情简述</h4><p>全文共6个部分。<br>第一部分为各种故事铺垫。<br>第二部分引出和平警察，然后结尾部分和平警察的两名主要成员退场。<br>第三部分搜查官出场，追捕正义伙伴，然后结尾部分搜查官退场。<br>第四部分正义伙伴独白，引出事实，即还有幕后之人。<br>第五部分正义伙伴劫法场，被捕，反抗。<br>第六部分结局，揭秘。</p>
+<h4 id="简评"><a href="#简评" class="headerlink" title="简评"></a>简评</h4><p>从四个方面记录下读后感。<br>第一点就是正义伙伴的电车难题问题。<br>正义伙伴的爷爷因为无偿替一个人还债而不帮其他人，被判定为伪善；他父亲因大火救人，自己却搭进去，仍然被定为伪善。而他呢，还是坚守了家族人的善良。同时，他也提醒自己要制定救助人的标准，以免被贴上伪善的标签。他的标准就是他店里的顾客，虽然有许许多多的人需要帮助，但是，他只关注于店里的顾客和他们的家人（这应该也算是作者的一种观念）。<br>对于这样的想法，我只能说:I can’t agree more。人的能力是有限的，就正常人的视角而言，优先救助自己熟识的人，才是正确的选择，不需要担负救助所有人压力。<br>第二点故事背景。<br>故事是以架空的日本为背景。现实中不存在这样的和平警察，正义伙伴的行为在现实中也不可能被原谅。不符合现代人的法治观念，感觉有点儿戏，大boss说下台就下台了。<br>第三点人物描写。<br>喜欢搜查官的睿智，他总是对虫子情有独钟。二瓶也是不错，但是他还是没有展现出该有的觉醒意识。正义伙伴的刻画很到位，他并不是人们心中的英雄，他就是一个普通人。<br>第四点悬念设置。<br>第一部分的多线伏笔，第二部分两名警察的进场退场，第三部分搜查官的进场退场，第四部分正义伙伴的独白和幕后人的出场，第五部分的劫法场，第六部分的大结局揭秘。剧情在每一部的结尾都有反转，作者一步步带领读者深入故事，探索事件真相。</p>
+<h3 id="金色梦乡"><a href="#金色梦乡" class="headerlink" title="金色梦乡"></a>金色梦乡</h3><p>正义伙伴之后，再来一个金色梦乡的标题，很容易让我联想到理想乡。抱歉，是我想岔了。</p>
+<h4 id="剧情简述-1"><a href="#剧情简述-1" class="headerlink" title="剧情简述"></a>剧情简述</h4><p>新首相遇刺身亡，主角被认定为凶犯，展开一场逃亡之旅。先后得到大学同学，大学学弟，工作前辈，连环杀人犯，混混，大学恋人和它的朋友，医院病人，烟花厂厂长儿子，歌星，整容医生的帮助。中间插叙主角的大学生活点滴，为后面的剧情做铺垫。</p>
+<h4 id="简评-1"><a href="#简评-1" class="headerlink" title="简评"></a>简评</h4><p>很多评论的第一观点都是，这个故事不可能发生在现实中，因为它过于理想化，经不起推敲。正因为这一点，我要给它减分。<br>心理学家认为一个故事最重要的是前后一致性，伊坂老师很擅长此道，看似无意的插叙恰到好处，而且必然是为后文做铺垫的剧情。但是，这个故事没有真实性，很多剧情在我这里是通不过的。尽管如此，大家普遍给它的评价特别高，可能夹杂人们对善良美好人性的向往之情吧。<br>人性是经不起考验的，这已经是真理级别的箴言了。主角在被当成危险分子的时候，还能得到这么多人的帮助，甚至是陌生人，简直是无法想象。除去这一点主要的矛盾，另外几处我也觉得不够好：<br>1）连环杀人犯的帮助让我觉得不舒服，对三浦的定位无法判定。混混和医院打石膏装瘸的病人，同理。人与人之间建立信任并没有那么简单。烟花厂的往事开头也有点突兀。<br>2）女主的定位也很奇怪，带着孩子去探险？怎么想的。<br>3）重于叙事，人物刻画不深刻，看完对每个人的性格特征都难有把握，没有形成立体形象。</p>
+<p>嗯，确实如作者所说，他是想要在他自己的作品里任性一把。现实过于残酷，把美好寄托于文字的权利不应该被剥夺。<br>可能还是我太苛刻了吧，如果你问我是否推荐这本书，我还是会强烈推荐。我个人不好的观点也掩盖不了大家对它的喜爱，对于我而言，可能真的是在不合适的时候读到这本书了吧，早几年或者晚几年也许会对它有所改观，who knows。<br>原文作者很多次提到The Beatles的Golden Slumbers，歌不错，收藏了。<br>尽管如此，书中还是有一些触动我的情节和语句。总是以森林的声音为掩护的森田（中二设定，dark flame master），以摇滚作为形容词的岩崎前辈（这很摇滚），女主的巧克力理论（这个也太真实了吧，看得心塞）。下面几句为原文摘录：</p>
+<p>1.你们看那些烟火，总有不同人在不同的地方观看。或许它们在眼前绽放的瞬间，某个老朋友也在某处眺望着同样的景色—想到这些不是很快乐吗？<br>2.与巨人为敌的我，就没有一点胜算吗？如果被巨大的鲸鱼盯上了，最好的选择就是，就是逃跑吧。<br>3.你知道人最强大的武器是什么吗？习惯和信赖。</p>
+<h3 id="家鸭与野鸭的投币式寄物柜"><a href="#家鸭与野鸭的投币式寄物柜" class="headerlink" title="家鸭与野鸭的投币式寄物柜"></a>家鸭与野鸭的投币式寄物柜</h3><p>随便选的一篇作者的代表作。</p>
+<h4 id="剧情简述-2"><a href="#剧情简述-2" class="headerlink" title="剧情简述"></a>剧情简述</h4><p>虐杀动物为题，过去和现在两线交错叙述。</p>
+<h4 id="简评-2"><a href="#简评-2" class="headerlink" title="简评"></a>简评</h4><p>文青的书真的难读，中间弃了好几次。<br>老问题，很多剧情过于理想化，缺少推理小说该有的逻辑严密性。<br>说白了，就是故事一看就知道只是故事。<br>而且还是悲剧，是够无聊的。<br>全书的前四分之三部分都在平铺叙事，读起来枯燥乏味，从最后四分之一处开始转折。<br>对于现代人，生活节奏无限加快，属于自己的时间少得可怜。<br>读这本书就是一种折磨。<br>不是一棍子打死，批判文青故事不好，文青故事的欣赏需要在物质生活水平达到较高层次的时候为宜。<br>但是吧，基本的生存都很难保障，谁会去关心小动物的问题。<br>很多评论说中国缺少这种作品，我只能说何不食肉糜。</p>
+<p>贯穿这本书的暗线是歌手鲍勃·迪伦的歌曲，作者真的很喜欢摇滚乐。文青的书，总是能是不是蹦出几句触动你的句子，但是整体故事，感觉一般。<br>1.原来，我比自己所意识到的，更为脆弱。<br>2.人啊，大概总是在最应该慎重处理的时候，反而急急付诸行动。</p>
+<p>2021.01.30<br>今天又翻到了伊坂幸太郎的读书记录，很有感觉啊。<br>比起看一遍就忘，知道谜底就掉味儿的推理小说，文学小说的后劲儿很足啊。<br>是不是考虑再看几本伊坂老师的作品啊。</p>
+<p>2021.09.17<br>再次整理书评，突然好想再去读一读伊坂的书。也许是孤独，或许是意难平。就像小孩子需要童话一样，成年人也需要伊坂的作品来温暖心灵，让自己在这并不温暖的现实世界中能得到一丝慰藉。<br>不管是推理小说，还是快节奏的网络文，当时读着，能给人一种强烈的刺激，但是往往过后就会被遗忘。而伊坂的书，只要回想起，就能再次在心里泛起涟漪。<br>这就是伊坂文学的魅力吧。</p>
+<h3 id="华丽人生"><a href="#华丽人生" class="headerlink" title="华丽人生"></a>华丽人生</h3><p>2022.06.30<br>被安利一波，再加上排行榜有名，我又翻开了伊坂最近的一本高分评价书。<br>lush life，五条故事线，最后出现交叉点，形成一个故事整体。<br>1）画家和画商。2）小偷。3）失业老年人和狗。4）偷情夫妇。5）信教徒二人组。</p>
+<h4 id="原文摘录"><a href="#原文摘录" class="headerlink" title="原文摘录"></a>原文摘录</h4><p>人生的意义必然在于向某个人递出接力棒，我的今天会连接到别人的明天。</p>
+<p>所谓的正义和邪恶，往往会因为视角的转变而完全反转。（旅行者和山贼，细菌和抗生素）</p>
+<p>人和神的关系就像我和胃。</p>
+<p>人的想象力会渐渐往坏的方向偏移。</p>
+<p>蚊子是神明。我们可以在日常生活中满不在乎地杀死的东西，往往就是神明。</p>
+<p>我从小到大都在逃避。而且已经放弃抵抗了。<br>抵抗自己的人生。世上有一股大的潮流，即使努力逆流而上，最后也会被击垮。一旦意识到自己活在巨大的不可抗力之下，就不会感到害怕了，也没必要继续逃避。哪怕我们觉得自己是凭自己意志选择了人生，实际也是被动地活着。</p>
+<p>人生并非道路，人生是一片大海，没有轨道，也没有路标，而是一片茫茫大海。我们只能紧紧依附在大鱼身上，任凭自己随波逐流。</p>
+<p>连那种原始生物，面对不断重复的生活，都会选择自杀。</p>
+<p>人与人之间的关系可不是单纯用细线连接起来的啊。</p>
+<p>只要陷入困境，所有人都能看见神明。</p>
+<p>人总会遇到讨厌的事情，烦恼的事情，还有很在意的事情。但凡遇到这种事，只要别去想就好了。那种事就因为用脑子想了，才会变严重。如果只放在心里，就是一片模糊的感觉。所以千万不能用脑子想。</p>
+<p>人总有一点不能放手的东西。</p>
+<h4 id="特别收录作者采访"><a href="#特别收录作者采访" class="headerlink" title="特别收录作者采访"></a>特别收录作者采访</h4><p>华丽人生是什么呢？<br>做一份压力不算大的工作，有足够生活的积蓄，再有一个值得信赖的说话对象，这样就够了。不过好难啊。。。</p>
+<h4 id="简评-3"><a href="#简评-3" class="headerlink" title="简评"></a>简评</h4><p>一如既往地填满人生箴言，还是那个成年人童话的故事风格，多线叙事的写作手法。<br>把好句子摘录下来，就当是仔细地读过了。<br>怎么说呢，还是无法喜欢上这样的故事，尽管大家对他的评价都很高，但是在我这里，总是不对味儿。<br>主要的矛盾点还是在于成年人的故事和童话故事，在我当前的认知体系里，不搭。<br>我无法接受这种浪漫主义的故事风格，一边讲着人生的深刻感悟，一边却设计着看起来很虚假的故事情节。<br>好吧，我承认，我对现实这个概念过于执着了。<br>我无法认可，小偷可以这么洒脱，劫匪和受害者之间可以这么心平气和地交流，失业者可以为了流浪狗而不顾生计。<br>一边跟读者讲人生的困苦与迷茫，一边安排cool的故事情节。<br>成年人的故事更应该配上黑童话。<br>要讲童话故事，就应该让故事轻松愉快，请不要加入过于深刻的人生感悟。<br>真的真的是，欣赏不来。<br>by the way，作者对华丽人生的定义，很不错，评价也很中肯。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%97%A5%E6%9C%AC%E6%96%87%E5%AD%A6/" rel="tag"><i class="fas fa-tags"></i>日本文学</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/06/21/material/emamadetongyao/" rel="next" title="鹅妈妈的童谣"><i class="fas fa-angle-left"></i><span class="nav-title">鹅妈妈的童谣</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/07/10/story/xiaozhenzuotijia/" rel="prev" title="小镇做题家"><span class="nav-title">小镇做题家</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%8D%E7%84%B6%E4%BD%A0%E6%90%AC%E5%8E%BB%E7%81%AB%E6%98%9F%E5%95%8A"><span class="toc-text">不然你搬去火星啊</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85%E7%AE%80%E8%BF%B0"><span class="toc-text">剧情简述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%87%91%E8%89%B2%E6%A2%A6%E4%B9%A1"><span class="toc-text">金色梦乡</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85%E7%AE%80%E8%BF%B0-1"><span class="toc-text">剧情简述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-1"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%AE%B6%E9%B8%AD%E4%B8%8E%E9%87%8E%E9%B8%AD%E7%9A%84%E6%8A%95%E5%B8%81%E5%BC%8F%E5%AF%84%E7%89%A9%E6%9F%9C"><span class="toc-text">家鸭与野鸭的投币式寄物柜</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85%E7%AE%80%E8%BF%B0-2"><span class="toc-text">剧情简述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-2"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F"><span class="toc-text">华丽人生</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8E%9F%E6%96%87%E6%91%98%E5%BD%95"><span class="toc-text">原文摘录</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%89%B9%E5%88%AB%E6%94%B6%E5%BD%95%E4%BD%9C%E8%80%85%E9%87%87%E8%AE%BF"><span class="toc-text">特别收录作者采访</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84-3"><span class="toc-text">简评</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

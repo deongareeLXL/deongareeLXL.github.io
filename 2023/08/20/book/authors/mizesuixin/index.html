@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>米泽穗信作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/08/20/book/authors/mizesuixin/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">米泽穗信作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2023-08-20T22:56:23+08:00">2023-08-20 22:56:23</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>缘起不是小说，而是有名的番剧，《冰菓》，超出了我的预期。</p>
+<span id="more"></span>
+
+<p>主要是名字取得实在是太异类了，你要是叫XX侦探社团，我早就补番了。<br>京都动画加持了大buff，动画的表现力还是比小说更强，京都的合理改编也成就了这部动漫，比如反复呈现女主表达我很好奇的标志场景。<br>有人说看《冰菓》都快要睡着了，动画尚且如此，小说可能就更甚了。<br>对于我而言，冰菓动画虽然没有强烈勾起我观看欲望，但是，我想将其比喻为一捧回味甘甜的清泉。<br>而小说，就某种意义上而言，就显得有点冗长了，我无法判定这是否必要，又或者是20年前的流行文风，但是确实是有点难读。<br>这可能也是在日常之谜发展的根本所在吧，不够吸引人，不够抓人眼球，揪人心扉。<br>但是，我还是觉得日常之谜的魅力，绝不应该被埋没。<br>我个人觉得，在凶案手法逐渐枯竭的推理文学中，日常之谜才是更好的出路。因为它更贴近我们的真实生活，会给我们带来某种程度上的人生启示。不管是对青春、人生信条，又或者是未来期望等等较为抽象的事物在故事中赋予具体的实相，最终让我们能产生一种真实的共鸣。而对于日常之谜的题材，是无穷无尽的，只要你有善于发现的眼光，只要你能静下心来去倾听周围的细小的声音。生活中处处偶然中又隐喻着种种的必然，行色匆匆必然会错过沿途的风景，细细品味才知其中真意。<br>相比于设定系的大胆创新，幻想系的天马行空，日常之谜，才是我所追求的推理文学的最佳代表。推理，并不意味着凶案，意味着有影响力较大的事件发生，也不代表着事件一定是充满恶意。生活中，有许许多多的谜题，只要你有一颗好奇的心，只要你不选择麻木，不选择妥协，不选择随遇而安，随波逐流。<br>但是，生活平淡的大众读者确实很少能体会到这种意境。<br>后面会总结一期日常之谜。</p>
+<h3 id="古典部系列1-冰菓"><a href="#古典部系列1-冰菓" class="headerlink" title="古典部系列1.冰菓"></a>古典部系列1.冰菓</h3><p>本以为是校园日常番，但是，惊喜地发现它居然是日常之谜的推理剧。<br>人物性格突出，人设讨喜，京阿尼的改编固然功不可没，但是米泽穗信对人的描写，确实有圈粉到我。<br>故事只是呈现人物的过程展示，故事的设计很重要，但是最终都是为了凸显人的。人物通过故事的情节，在合适的情形下能够真切地表达着自己的真实感受，让我们能看到一个个鲜活的人，比现实中的人更饱满。因为在现实中，往往由于理解能力的不足，表达能力的限制，很多的感情领悟不够到位，很多的强烈的感觉只能停留于心中无法释怀。而在米泽穗信的故事中，我能够真切感受到人作为一个感情真挚的个体而存在着。尽管大家对他的故事评价都是基于一种深深的无力感，即使是事件真相被揭穿，无力感也没有消除。但是，于我个人而言，就当下，我还是很能够对这种无力感产生某种程度上的共鸣。<br>说得比较抽象，还是回归到具体的故事吧。</p>
+<p>小故事<br>千反田被反锁在古典部社团教室，折棒猜是维修师傅用万能钥匙锁住了门。</p>
+<blockquote>
+<p>此处千反田凝视的旧建筑剑道体育馆为伏笔，给出人物性格轮廓介绍。折棒为节能主义者，千反田为好奇宝宝，里志为资料库。</p>
+</blockquote>
+<p>小故事<br>图书馆每周五都会有一位不同的女学生来借走一本厚历史书，然后下周五准时还，但是借书的期限限制是两周，一周时间根本无法读完那本书。</p>
+<blockquote>
+<p>借书有其他目的。<br>这个故事感觉一般</p>
+</blockquote>
+<p>小故事<br>古典部往年社志落在壁画社教室，但是壁画社社长却频繁阻止大家进去搜寻，室内还喷着消毒水，吹着风扇。</p>
+<blockquote>
+<p>不对劲。<br>小说里没有提示红外线报警装置，动画里倒是给足了镜头，奈何还是没啥概念，二十年前学生就能接触到这种东西了么。</p>
+</blockquote>
+<p>主线<br>千反田想知道失踪7年的舅舅关谷纯在三十三年前于神山高中古典部发生的事情，想要唤起自己跟舅舅最后的回忆片段。主角一行人通过历史推理的方式，搜集历史资料，从资料中推测当年的真相。后面还来了一层反转，把推测的真相进一步补充，并解释出冰菓刊名的由来。</p>
+<p>原文：<br>拥有一段想要唤醒的记忆，就代表那段记忆值得花费心力去回想起来吧。依我的个人信条来看，这实在怪透了。对于看到眼前危机只想躲开的我来说，完全无法体会回忆这玩意儿有多大意义。<br>但千反田却执意想找回失落的过去。想想也对，她本来就会出于好奇而探索眼前的事，那么会想探索过去也不奇怪。千反田想要找回过去，为了向舅舅道别，或许更为了自己。</p>
+<blockquote>
+<p>当时看到这里，听到女主的目的和动机时，我是很震惊的，有人会为了一段破碎的记忆不断探寻，这是一种奇妙的心境。多少人为了功名利禄奔走，多少人浑浑噩噩度日，又有几个人会在乎自己脑海深处残缺的记忆。</p>
+</blockquote>
+<p>原文：<br>我全都想起来了，我问舅舅冰菓代表什么意思，舅舅告诉我要坚强，要是变得软弱，有朝一日会连惨叫都叫不出来，到时我会活得像行尸走肉。<br>冰菓<br>Ice cream<br>I scream</p>
+<blockquote>
+<p>怎么不叫冰淇淋呢，估计作者觉得冰淇淋意境不行吧。但是把冰菓强行翻译成ice cream,我有点接受不了。anyway，这个故事还是很不错。</p>
+</blockquote>
+<h3 id="古典部系列2-愚者的片尾"><a href="#古典部系列2-愚者的片尾" class="headerlink" title="古典部系列2.愚者的片尾"></a>古典部系列2.愚者的片尾</h3><p>mystery剧缺结尾，主角一行人被请求填坑。<br>男主被姐姐卖了当一回工具人，女帝面冷心善的人物定位，当时应该很流行吧。</p>
+<blockquote>
+<p>写人物的剧情我觉得很不错，作者对人物感情的把握很到位。<br>有出现推理十戒九命题二十则，还有一些关于推理的知识科普，还不错。<br>但是，在硬核的故事背景下，三个伪解答有点敷衍，核心诡计也不够强，没有能撑起一个好的长篇推理故事架构。</p>
+</blockquote>
+<p>原文：<br>我不是侦探，而是推理作家吧？</p>
+<h3 id="古典部系列3-库特利亚芙卡的顺序"><a href="#古典部系列3-库特利亚芙卡的顺序" class="headerlink" title="古典部系列3.库特利亚芙卡的顺序"></a>古典部系列3.库特利亚芙卡的顺序</h3><p>文化祭为故事背景，致敬阿婆的ABC谋杀案，主要诡计跟日语的五十音相关，所以完全get不到点，校园生活情节较多，这一篇动画都看得要瞌睡了，小说是更加难读。<br>一些人物的感情表达还比较深刻。</p>
+<p>原文：<br>彻底享受——这话说得容易，实际上却是困难重重。个人的理解能力差异是不容忽视的要素，兴趣差异更是关键所在。<br>无论接触到多么丰富的娱乐，即便可以尽情享受，也几乎不可能彻底享受。</p>
+<p>不承认有名作的预感或天才的展露吗？不承认会对一个人、一部作品赞不绝口、佩服得五体投地，认为它绝对有流传后世的价值这件事吗？<br>那怎么可能嘛？那才是个人的自由、主观的问题。我的意思是，对于尚未经过时间淘汰的东西付出太多感情是不对的。</p>
+<p>对不会长久打交道的对象，反过来利用不劳而获、爱与信仰、是带来期待的优越感、在没有人的地方。</p>
+<p>区区一介数据库是做不出结论的。</p>
+<p>你最好别把我的话当真，拙劣地耍心机、使心眼。人各有所长。只能单刀直入是你的缺点，却也是难得的武器。</p>
+<p>绝望的差距会萌生出期待。可是如果期待完全得不到响应，等在尽头的就只有失望。</p>
+<blockquote>
+<p>怎么说呢，读完这一篇，真的让我感受到了日常之谜的巨大劣势。</p>
+</blockquote>
+<blockquote>
+<p>其一在于，现实生活中，能对日常之谜感兴趣的人太少太少，几乎到了无法理解的程度。比如像千反田这样充满好奇心的人，比如像摩耶花这样执着且坚强的人，再比如像里志这样充满活力的数据库，再比如像副会长一样，为了一种说不出口的期待，去设计实施这一系列复杂的恶作剧，可惜作为正常人的会长却完全没有get到信息。反观之，男主却是最为正常的人，节能主义才是人类的天性。事不关己高高挂起，即使跟自己有关而不够引起注意力，也不会去过多关注。</p>
+</blockquote>
+<blockquote>
+<p>其二在于，对日常之谜中，还是过于平淡。如果不静下心来，是很难去体会到其中作者想要表达的引申意义。米泽穗信在描述人物感情的时候，总是会有一些铺垫，不会让读者觉得突兀，颇有一些环环相扣的意味，可惜非静心细品者不可体味。</p>
+</blockquote>
+<h3 id="古典部系列4-绕远的雏偶"><a href="#古典部系列4-绕远的雏偶" class="headerlink" title="古典部系列4.绕远的雏偶"></a>古典部系列4.绕远的雏偶</h3><p>这本书由7个小故事组成，都是挺不错的故事。</p>
+<h4 id="该做的事情尽快做"><a href="#该做的事情尽快做" class="headerlink" title="该做的事情尽快做"></a>该做的事情尽快做</h4><p>女郎蜘蛛会事件。</p>
+<h4 id="犯下原罪"><a href="#犯下原罪" class="headerlink" title="犯下原罪"></a>犯下原罪</h4><p>数学老师教学失误事件。</p>
+<h4 id="看破真面目"><a href="#看破真面目" class="headerlink" title="看破真面目"></a>看破真面目</h4><p>民宿鬼影事件。</p>
+<blockquote>
+<p>动画和原作有出入，京阿尼的改编应该还是有一定道理的，但是我更喜欢原作。</p>
+</blockquote>
+<h4 id="心里有数的人"><a href="#心里有数的人" class="headerlink" title="心里有数的人"></a>心里有数的人</h4><p>开篇探讨折棒太郎是否有推理才能。<br>男主自己认为只是运气好，而女主则认为男主并没有正确审视自己。<br>于是他们开始准备测试究竟是运气还是才能。<br>正好来了一则广播，内容是：某月某日，在某小店买过东西的人来办公室找教导主任。<br>折棒太郎的推理开始了：<br>假设目标某人是X，<br>1）播报时间是放学后，并且只播报了一次，一般的广播找人都会播报两次。<br>推测事情紧急。<br>2）播报没有点名具体原因，找训导主任却去办公室，地点也不对。<br>推测事情严重，不便公开，只在领导层透明，应该涉及犯罪。警察此时此刻已经在学校了。<br>3）某月某日，就是昨天，为什么不说昨天。警察怎么知道是这所学校的学生。<br>因为播报人照着书面表达念的，猜测警察拿到了X的悔过书。<br>4）小店没有什么值钱的东西，那犯罪的原因是什么。<br>推测为使用了1W圆的巨额假钞。<br>5）既然会写悔过书，为什么要使用巨额假钞，巨额假钞的来源是什么。<br>否定是自己打工赚取的，否定ATM取出来的，否定家长给的。最后推测是别人的还款，但是这个别人Y的地位更高，X无法反抗。<br>最后男女主都沉默了。<br>女主突然问起，我们做这些推理的原因是什么，我有点忘记了。(真的假的)<br>男主说，我也忘记了。(装，接着装)<br>女主说，我很好奇，请你尝试推理一下原因是什么。(天然呆，还是小腹黑啊)<br>笑~<br>从小小的一则广播，推理出巨量信息，这就是推理的魅力所在。见微知著也不外乎如此。<br>当然，我不得不承认这里还是有点想当然了，包括最后的报纸信息证明男主的推理完全正确，我个人觉得完全没那个必要，毕竟这些推理都是男主的可能性猜测，是属于归纳假设法推理，而不是演绎推理。答案太多太多，男主只是给出了其中一个。<br>anyway，我喜欢这个故事。<br>很有味道。</p>
+<h4 id="开门快乐"><a href="#开门快乐" class="headerlink" title="开门快乐"></a>开门快乐</h4><p>折棒太郎和千反田被困密室事件。</p>
+<h4 id="手作巧克力事件"><a href="#手作巧克力事件" class="headerlink" title="手作巧克力事件"></a>手作巧克力事件</h4><p>里志和伊原的感情事件。</p>
+<blockquote>
+<p>我喜欢这个故事。</p>
+</blockquote>
+<h4 id="绕远的雏偶"><a href="#绕远的雏偶" class="headerlink" title="绕远的雏偶"></a>绕远的雏偶</h4><p>折棒太郎帮忙事件。</p>
+<blockquote>
+<p>动画结尾，有评论称之为与战场原和垃圾君星空下告白比肩的场景。抱歉，我get不到。唉～</p>
+</blockquote>
+<p>原文：<br>折棒太郎的信条，没必要的事不做，必要的事尽快做。</p>
+<p>完全不傲慢的人，不就是没有自信的人吗？大家公认不贪婪的人，一定也无法养活自己的家人；要是世界上所有人都没有嫉妒心，就不可能诞生新技术了。</p>
+<h3 id="古典部系列5-两人距离的概算"><a href="#古典部系列5-两人距离的概算" class="headerlink" title="古典部系列5.两人距离的概算"></a>古典部系列5.两人距离的概算</h3><p>2022.08.03<br>一如既往的故事风格，这次稍微有一点区别是在于主线中不断有插叙，最终构成整个故事的完整拼图。<br>个人很喜欢。<br>但是，确实比较难读，前前后后断断续续这篇故事我看了一个月。<br>故事是好故事，但是确实是节奏太慢了，对于快节奏生活的我而言，很难静下心来细细品读。</p>
+<p>主线故事是全年级长跑课，折棒太郎与其他人物的会面交谈，交谈的目的就是为了探究新社员大日向和千反田之间的矛盾症结。<br>在交谈和回忆中，不断穿插往事回忆，用于给出线索。<br>回忆线事件主要有：1）初次会面的制菓研大型长桌之谜。2）折棒的生日庆。3）新开咖啡店体验。4）千反田与大日向的最后对话。<br>最后折棒和大日向会面，消除误解。</p>
+<p>原文<br>何者为是、何者为非的判断，是透过教育与经验在后天学起；而善恶的区别则是透过扬善抑恶而习得。相较之下，人们对于事物的好恶并非向谁学来，有一说是与生俱来，也就是稍微偏向宿命论的说法，譬如早在婴儿时期便注定将来长大会讨厌起司之类的，换句话说，人的好恶可说是伴随着成长、逐渐在自己体内涌上的内在冲动，于是人们最终肯定不得不去思考一个问题——究竟对自己而言，什么才是最重要的。</p>
+<blockquote>
+<p>真的很喜欢这样的故事风格，一群感情真挚的人共同经历着青春的故事。尽管它并不是happy<br>ending，但是正因为不完美的结局，我反而更加喜欢。最终大日向还是会坚持退社团，因为破镜无法重圆，伤害已然发生，能消除其中的误解就已经是很让人满足了。过去的就让它永远过去吧，最终成为那美好的青春的回忆。<br>另一方面，我不得不跳出故事的背景，回到现实中。在现实里，高中生不应该有这样的成熟度。无法想象中学生能够在处理人际关系上这么游刃有余，能够敏锐地发现他人的言外之意，能够拥有如此强大的同理心，这是很多成年很久的人都无法办到的事情。所以，整个故事，让我感觉就是一群王者在玩青铜表演赛，自然很精彩。会让人觉得自己的青春好像什么都没有留下，显得过于乏味，对比之下，会觉得自己的青春恍若虚度。<br>但是啊，正常的中学生不就是只会读书学习睡觉，吃吃喝喝玩玩，哪里会懂得这么多人与人之间的羁绊，能够明白这些个人生的大道理，能够活的这么有原则，对自己的身份认同如此清晰。<br>人虽然是矛盾复杂的个体，但是清晰的定位是极其重要的，早日脱离情绪的控制，外界的侵扰，才会收获更多的自由。而在我的自由之路上，我希望会有一些小小的谜团，有几个简单且真诚的人。</p>
+</blockquote>
+<h3 id="古典部系列6-迟来的羽翼"><a href="#古典部系列6-迟来的羽翼" class="headerlink" title="古典部系列6.迟来的羽翼"></a>古典部系列6.迟来的羽翼</h3><p>2022.08.09<br>短篇故事集，系列5开始就没有动画化了，但是看到系列6里有一篇居然插队动画化了。</p>
+<h4 id="箱中的遗漏"><a href="#箱中的遗漏" class="headerlink" title="箱中的遗漏"></a>箱中的遗漏</h4><p>学生会会长选举投票，统计时有效票数超出预期。<br>里志请求折棒帮忙，查找选举过程中的漏洞。</p>
+<h4 id="那些没映照在镜子里的"><a href="#那些没映照在镜子里的" class="headerlink" title="那些没映照在镜子里的"></a>那些没映照在镜子里的</h4><p>以伊原为第一人称视角，描述中学毕业季班级制作镜子的往事，交代伊原讨厌折棒的原由。<br>很不错的故事，我没有猜到结局。</p>
+<h4 id="连峰可否晴朗"><a href="#连峰可否晴朗" class="headerlink" title="连峰可否晴朗"></a>连峰可否晴朗</h4><p>讨论小木老师喜欢直升机的原由，动画化了，超短篇小故事。</p>
+<h4 id="我们的传奇之作"><a href="#我们的传奇之作" class="headerlink" title="我们的传奇之作"></a>我们的传奇之作</h4><p>再次以伊原为主视角，交代伊原退出漫画社的原由。</p>
+<h4 id="漫长的假日"><a href="#漫长的假日" class="headerlink" title="漫长的假日"></a>漫长的假日</h4><p>假日闲篇，通过与千反田的互动，交代折棒&#96;&#96;做人原则的原由。<br>有嗑到糖。</p>
+<p>因为总会有一个人，来为你结束这段漫长的假期。</p>
+<h4 id="迟来的羽翼"><a href="#迟来的羽翼" class="headerlink" title="迟来的羽翼"></a>迟来的羽翼</h4><p>安乐椅模式探案。<br>合唱表演在即，负责独唱的千反田还没有到场。<br>折棒去找，然后交代迟来的羽翼。<br>结尾戛然而止，有点意犹未尽。<br>从这本书的填坑行为而言，作者估计不打算出下一本书了，算是一种不错的完结吧。</p>
+<h3 id="满愿"><a href="#满愿" class="headerlink" title="满愿"></a>满愿</h3><p>短篇推理集</p>
+<h4 id="夜警"><a href="#夜警" class="headerlink" title="夜警"></a>夜警</h4><p>为了掩饰小错误，而犯下大错误，最终搭上自己的性命。<br>警察是一个特殊的职业，业务能力不行的人不适合，抗压能力不够的人不适合，耍小聪明的人不适合，心软的人也不适合。</p>
+<h4 id="死人旅馆"><a href="#死人旅馆" class="headerlink" title="死人旅馆"></a>死人旅馆</h4><p>阻止自杀，这个故事不错。</p>
+<h4 id="石榴"><a href="#石榴" class="headerlink" title="石榴"></a>石榴</h4><p>头皮发麻。</p>
+<h4 id="万灯"><a href="#万灯" class="headerlink" title="万灯"></a>万灯</h4><p>这样的员工哪里找。</p>
+<h4 id="守关人"><a href="#守关人" class="headerlink" title="守关人"></a>守关人</h4><p>恐怖故事</p>
+<h4 id="满愿-1"><a href="#满愿-1" class="headerlink" title="满愿"></a>满愿</h4><p>idea还行，社会派推理的小细节。</p>
+<h3 id="寻狗事务所"><a href="#寻狗事务所" class="headerlink" title="寻狗事务所"></a>寻狗事务所</h3><p>2023.01.10<br>双线叙事，最后重合。（话说推理小说都喜欢这个套路么）<br>还是有浓浓的米泽的味道，夹带历史，人物心理描写到位。<br>故事很不错，从高潮到结局的反转，读起来很有一种满足感。<br>从最后毒舌妹妹放下工作，飙车相助，到最后一刻的推理反转，从热血到揭秘真相，然后故事戛然而止，很酷。</p>
+<h4 id="推理过程"><a href="#推理过程" class="headerlink" title="推理过程"></a>推理过程</h4><p>线索：失踪者的表现跟同事的描述在性格上不符。<br>第一种假设：失踪者不喜欢同事。<br>第二种假设：同事冒牌。<br>第三种假设：同事认识的人和失踪者不是同一个。<br>第四种假设：失踪者平时都在压抑自己。（感觉跟第一种重了）</p>
+<h4 id="简评"><a href="#简评" class="headerlink" title="简评"></a>简评</h4><p>以为很突兀的多余线索，如图书馆借书男大学生，结果证明并不多余。以为很奇怪的日记记录，结果证明是故意为之。米泽老师在埋伏笔这一块还是做的很到位。这本读下来很流畅。十分推荐。</p>
+<h3 id="黑牢城"><a href="#黑牢城" class="headerlink" title="黑牢城"></a>黑牢城</h3><p>2023.08.20<br>四个案子，串联起来，配合日本的历史，让这本书获奖无数。<br>盛名之下，自然不会差到哪去。<br>但是呢，确实是对日本的历史毫无了解。全书只认识织田信长。<br>读一读，丰富一下历史知识。<br>至于案件，我只能说，一般般吧。<br>最后的偶然性分析还是很有意思的，官兵卫究竟是救了村重，还是害了村重。<br>官兵卫的恨，在得知了自己的儿子无恙时，是不是也是烟消云散，那他之前的所作所为，究竟有何意义。<br>千代的佛学传播，是否能在战时，给予绝望的人最后一点希望呢。<br>生活在现代的人类，没有经历过战争，很难去体会那种绝望吧。</p>
+<h4 id="案件"><a href="#案件" class="headerlink" title="案件"></a>案件</h4><p>案件一，组合枪穿过灯笼刺击，没get到点，一度以为是冰枪。<br>案件二，击杀了对方大将，却无人前来领功，最后是村重自己干的。案件过于简单了。<br>案件三，无边被杀。因果倒置，算是一亮点吧，但是凶手就没出现过，对读者及其不公平。<br>案件四，属于线索没给全，强行解释一波。<br>四个案子组合起来，都有一定联系。关于千代夫人，我是猜到了。<br>结尾结合史实，讲出各人结局，反而比案件更吸引我。<br>真实历史比本篇故事更吸引我。<br>这书可以作为日本史的导读切入点。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4/" rel="tag"><i class="fas fa-tags"></i>推理小说</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/08/17/book/authors/mayexiongsong/" rel="next" title="麻耶雄嵩作品集"><i class="fas fa-angle-left"></i><span class="nav-title">麻耶雄嵩作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2023/10/05/travel/2023/rizhao/" rel="prev" title="日照"><span class="nav-title">日照</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%971-%E5%86%B0%E8%8F%93"><span class="toc-text">古典部系列1.冰菓</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%972-%E6%84%9A%E8%80%85%E7%9A%84%E7%89%87%E5%B0%BE"><span class="toc-text">古典部系列2.愚者的片尾</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%973-%E5%BA%93%E7%89%B9%E5%88%A9%E4%BA%9A%E8%8A%99%E5%8D%A1%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="toc-text">古典部系列3.库特利亚芙卡的顺序</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%974-%E7%BB%95%E8%BF%9C%E7%9A%84%E9%9B%8F%E5%81%B6"><span class="toc-text">古典部系列4.绕远的雏偶</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85%E5%B0%BD%E5%BF%AB%E5%81%9A"><span class="toc-text">该做的事情尽快做</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%8A%AF%E4%B8%8B%E5%8E%9F%E7%BD%AA"><span class="toc-text">犯下原罪</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%9C%8B%E7%A0%B4%E7%9C%9F%E9%9D%A2%E7%9B%AE"><span class="toc-text">看破真面目</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%BF%83%E9%87%8C%E6%9C%89%E6%95%B0%E7%9A%84%E4%BA%BA"><span class="toc-text">心里有数的人</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%BC%80%E9%97%A8%E5%BF%AB%E4%B9%90"><span class="toc-text">开门快乐</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%89%8B%E4%BD%9C%E5%B7%A7%E5%85%8B%E5%8A%9B%E4%BA%8B%E4%BB%B6"><span class="toc-text">手作巧克力事件</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%BB%95%E8%BF%9C%E7%9A%84%E9%9B%8F%E5%81%B6"><span class="toc-text">绕远的雏偶</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%975-%E4%B8%A4%E4%BA%BA%E8%B7%9D%E7%A6%BB%E7%9A%84%E6%A6%82%E7%AE%97"><span class="toc-text">古典部系列5.两人距离的概算</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%A4%E5%85%B8%E9%83%A8%E7%B3%BB%E5%88%976-%E8%BF%9F%E6%9D%A5%E7%9A%84%E7%BE%BD%E7%BF%BC"><span class="toc-text">古典部系列6.迟来的羽翼</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%B1%E4%B8%AD%E7%9A%84%E9%81%97%E6%BC%8F"><span class="toc-text">箱中的遗漏</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%82%A3%E4%BA%9B%E6%B2%A1%E6%98%A0%E7%85%A7%E5%9C%A8%E9%95%9C%E5%AD%90%E9%87%8C%E7%9A%84"><span class="toc-text">那些没映照在镜子里的</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%BF%9E%E5%B3%B0%E5%8F%AF%E5%90%A6%E6%99%B4%E6%9C%97"><span class="toc-text">连峰可否晴朗</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%88%91%E4%BB%AC%E7%9A%84%E4%BC%A0%E5%A5%87%E4%B9%8B%E4%BD%9C"><span class="toc-text">我们的传奇之作</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%BC%AB%E9%95%BF%E7%9A%84%E5%81%87%E6%97%A5"><span class="toc-text">漫长的假日</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%BF%9F%E6%9D%A5%E7%9A%84%E7%BE%BD%E7%BF%BC"><span class="toc-text">迟来的羽翼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%BB%A1%E6%84%BF"><span class="toc-text">满愿</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A4%9C%E8%AD%A6"><span class="toc-text">夜警</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%AD%BB%E4%BA%BA%E6%97%85%E9%A6%86"><span class="toc-text">死人旅馆</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%9F%B3%E6%A6%B4"><span class="toc-text">石榴</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%87%E7%81%AF"><span class="toc-text">万灯</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%AE%88%E5%85%B3%E4%BA%BA"><span class="toc-text">守关人</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%BB%A1%E6%84%BF-1"><span class="toc-text">满愿</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%AF%BB%E7%8B%97%E4%BA%8B%E5%8A%A1%E6%89%80"><span class="toc-text">寻狗事务所</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B"><span class="toc-text">推理过程</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AE%80%E8%AF%84"><span class="toc-text">简评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%BB%91%E7%89%A2%E5%9F%8E"><span class="toc-text">黑牢城</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%A1%88%E4%BB%B6"><span class="toc-text">案件</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

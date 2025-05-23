@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>九把刀作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/book/authors/jiubadao/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">九把刀作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-02-28T22:55:32+08:00">2022-02-28 22:55:32</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>台湾作家，台X分子，不用质疑，不多介绍。<br>人不论，作品还是不错。文笔一般，但是故事确实是可以的。<br>翻出来主要是因为多年前看过的杀手G，当时觉得很酷，现在觉得一般酷。</p>
+<span id="more"></span>
+
+<h3 id="杀手系列"><a href="#杀手系列" class="headerlink" title="杀手系列"></a>杀手系列</h3><p>杀手的职业法则和职业道德，杀手的制约，蝉堡的设定，都增加了故事的趣味性。</p>
+<p><strong>杀手三大职业法则</strong><br>一、不能爱上目标，也不能爱上委托人。<br>二、不管在任何情况下，绝不透漏出委托人的身分，除非委托人想杀自己灭口，否则不可危及委托人的生命。<br>三、下了班就不是杀手。即使喝醉了、睡梦中、做爱时，也得牢牢记住这点。</p>
+<p><strong>杀手三大职业道德</strong><br>一、绝不抢生意。杀人没有这么好玩，赚钱也不是这种赚法。<br>二、若有亲朋好友被杀，即使知道是谁做的，也绝不找同行报复，也不可逼迫同行供出雇主的身分。<br>三、保持心情愉快，永远都别说“这是最后一次”。这可是忌讳中的忌讳，说出这句话的人，几乎都会在最后一次任务中栽跟斗。</p>
+<h4 id="《杀手，阳台上的波斯菊》（内容：鹰）"><a href="#《杀手，阳台上的波斯菊》（内容：鹰）" class="headerlink" title="《杀手，阳台上的波斯菊》（内容：鹰）"></a>《杀手，阳台上的波斯菊》（内容：鹰）</h4><p>很平淡温馨的一个故事。</p>
+<h4 id="《杀手，登峰造极的画》-内容故事：杀手G"><a href="#《杀手，登峰造极的画》-内容故事：杀手G" class="headerlink" title="《杀手，登峰造极的画》(内容故事：杀手G)"></a>《杀手，登峰造极的画》(内容故事：杀手G)</h4><p>cool</p>
+<h4 id="《杀手，搜集不幸的天使》（内容：杀手吉思美）"><a href="#《杀手，搜集不幸的天使》（内容：杀手吉思美）" class="headerlink" title="《杀手，搜集不幸的天使》（内容：杀手吉思美）"></a>《杀手，搜集不幸的天使》（内容：杀手吉思美）</h4><p>挺有意思的故事，结局的反转不错</p>
+<h4 id="《杀手，每件事都有它的代价》（内容：杀手欧阳盆栽）"><a href="#《杀手，每件事都有它的代价》（内容：杀手欧阳盆栽）" class="headerlink" title="《杀手，每件事都有它的代价》（内容：杀手欧阳盆栽）"></a>《杀手，每件事都有它的代价》（内容：杀手欧阳盆栽）</h4><p>角度奇特，这样的杀手确实很另类。</p>
+<h4 id="《杀手，见识到很了不起的东西》-内容故事：角"><a href="#《杀手，见识到很了不起的东西》-内容故事：角" class="headerlink" title="《杀手，见识到很了不起的东西》(内容故事：角)"></a>《杀手，见识到很了不起的东西》(内容故事：角)</h4><p>故事背景拉回古代，挺喜欢这个故事的。</p>
+<h4 id="《杀手，风华绝代的正义》-内容故事：杀手月）"><a href="#《杀手，风华绝代的正义》-内容故事：杀手月）" class="headerlink" title="《杀手，风华绝代的正义》(内容故事：杀手月）"></a>《杀手，风华绝代的正义》(内容故事：杀手月）</h4><p>正义执法者，这个应该比小e早吧。</p>
+<h4 id="《杀手，夙兴夜寐的犯罪》-内容故事：杀手九十九、-杀手猫胎人"><a href="#《杀手，夙兴夜寐的犯罪》-内容故事：杀手九十九、-杀手猫胎人" class="headerlink" title="《杀手，夙兴夜寐的犯罪》(内容故事：杀手九十九、 杀手猫胎人)"></a>《杀手，夙兴夜寐的犯罪》(内容故事：杀手九十九、 杀手猫胎人)</h4><p>杀手九十九，委托人的正义执念，另一种角度的法外执法。<br>猫胎人，变态杀手视角的故事。</p>
+<h4 id="《杀手，流离寻岸的花》-内容故事：杀手铁块、小恩"><a href="#《杀手，流离寻岸的花》-内容故事：杀手铁块、小恩" class="headerlink" title="《杀手，流离寻岸的花》(内容故事：杀手铁块、小恩)"></a>《杀手，流离寻岸的花》(内容故事：杀手铁块、小恩)</h4><p>杀手和失足女的爱情故事，挺虐的，玻璃心者慎读。<br>尺度很大。</p>
+<h4 id="《杀手，无与伦比的自由》（内容故事：杀手Mr-Neverdie"><a href="#《杀手，无与伦比的自由》（内容故事：杀手Mr-Neverdie" class="headerlink" title="《杀手，无与伦比的自由》（内容故事：杀手Mr.Neverdie)"></a>《杀手，无与伦比的自由》（内容故事：杀手Mr.Neverdie)</h4><p>人类是一种很懂得用各种方式安慰自己的动物。<br>明明这个世界上过得比自己好的人满街都是，却总是喜欢说惜福，说比上不足比下有余。</p>
+<p>每个人都有想当杀手的理由。有人是为了赚钱，把杀人当作打卡上班。有人是想听到别人惨叫的声音，所以很享受把刀子插进对方内脏的感觉。有的杀手觉得自己是正义使者，杀人就是帮社会清除害虫。更多杀手不晓得为什么自己要干这一行，只知道没能完成制约前不能停止。</p>
+<p>不要小看“日常生活”。<br>日常生活支撑了许多人类的精神内在，稳定了某种很重要的、不让人发疯的东西。让许多人恍惚老板的冷眼冷语下乖顺地上班下班，令许多人不由自主顺着固定的路线上下学，催眠很多人跟早已没有感觉的另一半同床共枕。<br>让很多人彻底麻木自己的庸俗。</p>
+<p>其实这个故事标题很有讽刺性，因为我觉得Mr.NeverDie所拥有的自由是透过掠夺别人的自由才得到的，与其说是无与伦比的自由，不如说是穷凶极恶的自由，是一种很霸道的王八蛋自由。</p>
+<p>再来就是，我觉得一个人要完全自由是极不可能的，在现在的社会里，每个人都拥有很多的身分、跟角色，看看你们皮包里琳琅满目的证件就知道我在说什么了。而这些社会身分跟人际关系角色，都是一种牵制，都代表了一种规范。<br>如果有人说他非常自由，其实也不过是在囚牢里自由走动的自由——只要在笼子里，悉听尊便。</p>
+<blockquote>
+<p>这个故事的故事性太强了，抛开朴素的道德观念，这个故事以小丑型主角为线，时空跳转密集叙事的写作手法，故事节奏快而稳，合理串连之前的故事。给杀手系列故事拉升一个档次。</p>
+</blockquote>
+<h4 id="《杀手，价值连城的幸运》（内容故事：杀手阿乐、燕子、小仙、Mr-NeverDie"><a href="#《杀手，价值连城的幸运》（内容故事：杀手阿乐、燕子、小仙、Mr-NeverDie" class="headerlink" title="《杀手，价值连城的幸运》（内容故事：杀手阿乐、燕子、小仙、Mr.NeverDie)"></a>《杀手，价值连城的幸运》（内容故事：杀手阿乐、燕子、小仙、Mr.NeverDie)</h4><p>寂寞的人，怕的不是寂寞。<br>而是不知不觉习惯了孤独。</p>
+<blockquote>
+<p>害怕寂寞，以彩票中奖大小预测气运的杀手。很贴近生活，将杀手拉入市井小人物的生活视角。本来是个很好的idea，可惜观感一般。部分情节有赶稿凑数的感觉。可惜了。</p>
+</blockquote>
+<h4 id="《杀手，回光返照的命运》-内容故事：杀手-火鱼"><a href="#《杀手，回光返照的命运》-内容故事：杀手-火鱼" class="headerlink" title="《杀手，回光返照的命运》 (内容故事：杀手 火鱼)"></a>《杀手，回光返照的命运》 (内容故事：杀手 火鱼)</h4><p>前面部分内容，以为作者又要放飞自我了。<br>读到后面，才发现这种布局的精妙，不得不佩服作者的故事叙述能力。<br>因为害怕失去，所以否认得到。<br>有一点不得不提，作者描述的故事里，朴素的道德观被无情抛弃，人命如草芥，只是用于给故事情节铺路的道具。<br>可能这就是杀手系列的风格吧，有点不适应。</p>
+<p>你会痛苦，就是因为你不是一个真正的坏蛋，你很温柔，你一直都是一个很温柔的人。当一个温柔的人很容易受伤，所以你假装自己是一头刺猬，你让人畏惧，让人不敢靠近，因为你已经受够了那些靠近你的人的下场。</p>
+<p>人生在世，本来就会有很多不如意的事，当然，发生在你身上的是比较夸张一点。接受它们很难，会很痛苦，甚至痛不欲生，但如果你只是想要用遗忘它们的方式去逃避，最后它们还是会用业障的形式继续侵入你下一个生命轮回里，不断用相似的命运折磨你，直到总有一天你接受它们为止。</p>
+<p>火鱼，只要你想真正改变你的命运，你随时都能办到，那就是接受它们。接受它们就是你人生的一部分。<br>如果你一直没有勇气抓着麦克风在台上唱歌，不管你多喜欢摇滚你都不会是一个摇滚歌手，假如这一世的你没有勇气寄出Demo带给唱片公司，你怎么能指望下一世的你突然生出勇气？你甚至一直都没决心录完那张Demo带！</p>
+<blockquote>
+<p>《杀手，势如破竹的勇气》 (内容故事：杀手 火鱼，杀手 蓝调爵士)</p>
+</blockquote>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%95%85%E4%BA%8B%E4%BC%9A/" rel="tag"><i class="fas fa-tags"></i>故事会</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/02/26/travel/2022/binjiangsenlingongyuan/" rel="next" title="滨江森林公园"><i class="fas fa-angle-left"></i><span class="nav-title">滨江森林公园</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/03/02/book/fantuili/" rel="prev" title="反推理"><span class="nav-title">反推理</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%80%E6%89%8B%E7%B3%BB%E5%88%97"><span class="toc-text">杀手系列</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E9%98%B3%E5%8F%B0%E4%B8%8A%E7%9A%84%E6%B3%A2%E6%96%AF%E8%8F%8A%E3%80%8B%EF%BC%88%E5%86%85%E5%AE%B9%EF%BC%9A%E9%B9%B0%EF%BC%89"><span class="toc-text">《杀手，阳台上的波斯菊》（内容：鹰）</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E7%99%BB%E5%B3%B0%E9%80%A0%E6%9E%81%E7%9A%84%E7%94%BB%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8BG"><span class="toc-text">《杀手，登峰造极的画》(内容故事：杀手G)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E6%90%9C%E9%9B%86%E4%B8%8D%E5%B9%B8%E7%9A%84%E5%A4%A9%E4%BD%BF%E3%80%8B%EF%BC%88%E5%86%85%E5%AE%B9%EF%BC%9A%E6%9D%80%E6%89%8B%E5%90%89%E6%80%9D%E7%BE%8E%EF%BC%89"><span class="toc-text">《杀手，搜集不幸的天使》（内容：杀手吉思美）</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E6%AF%8F%E4%BB%B6%E4%BA%8B%E9%83%BD%E6%9C%89%E5%AE%83%E7%9A%84%E4%BB%A3%E4%BB%B7%E3%80%8B%EF%BC%88%E5%86%85%E5%AE%B9%EF%BC%9A%E6%9D%80%E6%89%8B%E6%AC%A7%E9%98%B3%E7%9B%86%E6%A0%BD%EF%BC%89"><span class="toc-text">《杀手，每件事都有它的代价》（内容：杀手欧阳盆栽）</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E8%A7%81%E8%AF%86%E5%88%B0%E5%BE%88%E4%BA%86%E4%B8%8D%E8%B5%B7%E7%9A%84%E4%B8%9C%E8%A5%BF%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E8%A7%92"><span class="toc-text">《杀手，见识到很了不起的东西》(内容故事：角)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E9%A3%8E%E5%8D%8E%E7%BB%9D%E4%BB%A3%E7%9A%84%E6%AD%A3%E4%B9%89%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8B%E6%9C%88%EF%BC%89"><span class="toc-text">《杀手，风华绝代的正义》(内容故事：杀手月）</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E5%A4%99%E5%85%B4%E5%A4%9C%E5%AF%90%E7%9A%84%E7%8A%AF%E7%BD%AA%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8B%E4%B9%9D%E5%8D%81%E4%B9%9D%E3%80%81-%E6%9D%80%E6%89%8B%E7%8C%AB%E8%83%8E%E4%BA%BA"><span class="toc-text">《杀手，夙兴夜寐的犯罪》(内容故事：杀手九十九、 杀手猫胎人)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E6%B5%81%E7%A6%BB%E5%AF%BB%E5%B2%B8%E7%9A%84%E8%8A%B1%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8B%E9%93%81%E5%9D%97%E3%80%81%E5%B0%8F%E6%81%A9"><span class="toc-text">《杀手，流离寻岸的花》(内容故事：杀手铁块、小恩)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E6%97%A0%E4%B8%8E%E4%BC%A6%E6%AF%94%E7%9A%84%E8%87%AA%E7%94%B1%E3%80%8B%EF%BC%88%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8BMr-Neverdie"><span class="toc-text">《杀手，无与伦比的自由》（内容故事：杀手Mr.Neverdie)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E4%BB%B7%E5%80%BC%E8%BF%9E%E5%9F%8E%E7%9A%84%E5%B9%B8%E8%BF%90%E3%80%8B%EF%BC%88%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8B%E9%98%BF%E4%B9%90%E3%80%81%E7%87%95%E5%AD%90%E3%80%81%E5%B0%8F%E4%BB%99%E3%80%81Mr-NeverDie"><span class="toc-text">《杀手，价值连城的幸运》（内容故事：杀手阿乐、燕子、小仙、Mr.NeverDie)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E3%80%8A%E6%9D%80%E6%89%8B%EF%BC%8C%E5%9B%9E%E5%85%89%E8%BF%94%E7%85%A7%E7%9A%84%E5%91%BD%E8%BF%90%E3%80%8B-%E5%86%85%E5%AE%B9%E6%95%85%E4%BA%8B%EF%BC%9A%E6%9D%80%E6%89%8B-%E7%81%AB%E9%B1%BC"><span class="toc-text">《杀手，回光返照的命运》 (内容故事：杀手 火鱼)</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

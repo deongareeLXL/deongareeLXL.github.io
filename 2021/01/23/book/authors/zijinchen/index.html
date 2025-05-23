@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>紫金陈 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/book/authors/zijinchen/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">紫金陈</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-23T23:39:13+08:00">2021-01-23 23:39:13</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>紫金陈，国内推理作家主力军，多部作品改编成影视剧。<br>风格比较一致，最新的作品开始转型。</p>
+<span id="more"></span>
+
+<h3 id="谋杀官员1：逻辑王子的演绎"><a href="#谋杀官员1：逻辑王子的演绎" class="headerlink" title="谋杀官员1：逻辑王子的演绎"></a>谋杀官员1：逻辑王子的演绎</h3><h4 id="妙句"><a href="#妙句" class="headerlink" title="妙句"></a>妙句</h4><ul>
+<li>杀够局长一十五，局长不够科长补。</li>
+<li>民不惧（畏）死，奈何以死惧之。</li>
+</ul>
+<h4 id="逻辑小陷阱"><a href="#逻辑小陷阱" class="headerlink" title="逻辑小陷阱"></a>逻辑小陷阱</h4><p>犯人对司机：我在小区门口下车。<br>犯人假装打电话，朋友不在家。<br>犯人对司机：原路返回。<br>犯人假装打电话，朋友到家了。<br>犯人对司机：下车。<br>当前地，凤栖路。<br>警察问司机：有没有在凤栖路下车的乘客。<br>司机：没有。<br>一开始给司机灌输了在小区门口下车的记忆。<br>找个合理的借口换一处下车。<br>司机的思维就会停留在犯人是小区门口下车。</p>
+<h4 id="剧情和感想"><a href="#剧情和感想" class="headerlink" title="剧情和感想"></a>剧情和感想</h4><p>故事一开始就以凶手这样的独特视角去展开。<br>虽然犯人这样的主要谜题一开始就揭开，但是故事依旧十分吸引人。<br>这归功于作者缜密的逻辑，深厚的文字功底以及紧凑的故事情节推进。<br>谜题从犯人是谁变成了犯人能不能最终躲过警察的侦缉，成功完成复仇。</p>
+<p>徐策和高栋的对话，句句精彩，有种狼人杀的感觉。<br>徐策是个高手，高栋也不是弱手，棋逢对手。<br>结尾很圆满，徐策成功脱身，高栋成功破案。<br>虽然徐策技高一筹，而高栋只能算是委曲求全，但是高栋这样的角色很写实，让人讨厌不起来。<br>读之过瘾，强烈推荐。</p>
+<h3 id="谋杀官员4：代上帝之手"><a href="#谋杀官员4：代上帝之手" class="headerlink" title="谋杀官员4：代上帝之手"></a>谋杀官员4：代上帝之手</h3><h4 id="故事概要"><a href="#故事概要" class="headerlink" title="故事概要"></a>故事概要</h4><p>工商局一行6人高速路上离奇失踪，之后4人被发现死于车内，1人被埋尸附近。<br>车子没有下高速的记录，警察在监控上一无所获。<br>种种证据指向了剩余1人之际，被发现其沉尸河底浮出。<br>所有办案警察都认定犯人畏罪自杀，然而徐策却跟高栋提出了一些疑点。</p>
+<h4 id="疑点"><a href="#疑点" class="headerlink" title="疑点"></a>疑点</h4><p>1）车子如何避过高速路出口记录。<br>2）犯人不可能用迷药在短时间将几个人同时控制住。<br>3）视频拍摄有疑点。</p>
+<h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h4><p>演绎和归纳的抉择。<br>办案时，是该先假设，接着证明或推翻假设。还是直接证明，推理出结论。这是两种截然相反的方法，两种不同的方法论。先假设，再验证的前提是假设，也就是主观的判断，这会出问题。<br>现实办案和理论办案是有差别的，没几个警察系统学过数理逻辑，大部分情况都是靠个人的经验，甚至是所谓的直觉。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>推理王子徐策这次和高栋是合作关系，颇有戏剧性。案情扑朔迷离，真相被一点点挖掘，慢慢浮出水面。<br>徐策的演绎法和高栋的归纳法形成鲜明对比，发人深思。<br>作者并没有过度鼓吹演绎，过度神化徐策，这一点加强了故事的真实感，好评。<br>现实办案中大多还是会采用归纳法，因为办案的人力物力是有限的，办案人的演绎推理能力是受限的。<br>故事很精彩，强推。</p>
+<h3 id="谋杀官员3-物理教师的时空诡计"><a href="#谋杀官员3-物理教师的时空诡计" class="headerlink" title="谋杀官员3:物理教师的时空诡计"></a>谋杀官员3:物理教师的时空诡计</h3><h4 id="故事概要-1"><a href="#故事概要-1" class="headerlink" title="故事概要"></a>故事概要</h4><p>派出所副所长叶援朝遭权势欺凌，丧妻女，怒起杀一仇家。<br>物理老师知其恩，图报之，利用物理诡计继续作案，成功躲过警方初步侦查。<br>但是高栋抽丝剥茧，还是慢慢摸清犯罪手法。<br>最终叶以死告警，物理老师金蝉脱壳。</p>
+<h4 id="疑点-1"><a href="#疑点-1" class="headerlink" title="疑点"></a>疑点</h4><p>1）如何精确计算石板下落。（这个应该是实践大于理论）<br>2）如果减轻物理重量。（滑轮组）</p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>熟悉的文风，这次的诡计其实还行，但是确实有点强行跟物理挂钩的感觉，其实没必要。<br>跟第2部的化学毒药合成相比，初级的物理方法就显得不那么高端。<br>想起了最近读到的三体说的物理学边界，物理学是规律的总结，而化学是实践的必然。<br>故事很精彩，物理老师很有人格魅力。但从某种意义上，他应该是PTSD患者，正常人是不会这么疯狂的。<br>栋哥一如既往的真实。<br>推理过程一般，故事性很强，文笔好，值得一读。</p>
+<ul>
+<li>如果法律有性别,那它一定是母的,因为它不公。 ——紫金陈</li>
+</ul>
+<h3 id="谋杀官员2-化工女王的逆袭"><a href="#谋杀官员2-化工女王的逆袭" class="headerlink" title="谋杀官员2:化工女王的逆袭"></a>谋杀官员2:化工女王的逆袭</h3><p>有化工女王之称的甘佳凝，其丈夫在派出所被用刑致死，警察妄图以钱了事，以权压人。甘自制炸弹与犯警同归于尽。<br>其后，犯警家人欺凌甘的婆婆和幼子。<br>海归化学博士陈进念及昔日红颜，恰身患绝症，遂决意为甘继续复仇。<br>陈利用化学合成的自制毒药毒杀犯警数家。最终不惜赌上全部，身死名毁，只为一直守护甘的家人。</p>
+<h4 id="核心诡计"><a href="#核心诡计" class="headerlink" title="核心诡计"></a>核心诡计</h4><p>1）穿增高鞋干扰警方对犯人身高的判断。<br>2）各种化学药剂的提炼。</p>
+<h4 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h4><p>故事性比第三部强，推理不如第一,四部。<br>不过，还是一如既往地好，强力推荐。</p>
+<h3 id="追踪师"><a href="#追踪师" class="headerlink" title="追踪师"></a>追踪师</h3><p>涉及一些现代监控方面的硬核知识，走马观花浏览了一遍，只记住了一个词，电子栅栏。其实就是监控自动触发的告警系统。<br>而开头的悬念，所谓的嫌犯在监控上消失，嫌疑车以高铁速度笔直逃离，最后的解释也就那样了，没有什么惊喜。<br>人气选手高栋只是被提了一下，没出场。<br>结尾算是作者的典型式收尾了，马马虎虎。</p>
+<h4 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h4><p>内容方面，总感觉不如之前作品。开始走低智商犯罪的喜剧风格了，没有了当初杀够局长一十五，局长不够科长补的霸气了，也没有长夜难明里的悲壮了。唯一还保留的就是在法律红线上跳舞的风格，也被喜剧和看似硬核的监控知识冲淡了。<br>有点小失望，可能这也算是作者的转型吧，年纪大了，喜欢喜剧，没有当初的热情么？<br>还是时势使然，名气大了，不得不做出的妥协。<br>发现最近国内推理新作写感情戏都是拉低作品水准啊，雷米老师的新作是，这一篇也是，惨不忍睹啊。<br>建议扬长避短，或者去借鉴一下陆秋槎老师的</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4/" rel="tag"><i class="fas fa-tags"></i>推理小说</a>
+        
+        <a class="post-tag button" href="/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/" rel="tag"><i class="fas fa-tags"></i>中国推理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/qingqiyouwu/" rel="next" title="青崎有吾作品集"><i class="fas fa-angle-left"></i><span class="nav-title">青崎有吾作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/sunqinwen/" rel="prev" title="孙沁文作品集"><span class="nav-title">孙沁文作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%B0%8B%E6%9D%80%E5%AE%98%E5%91%981%EF%BC%9A%E9%80%BB%E8%BE%91%E7%8E%8B%E5%AD%90%E7%9A%84%E6%BC%94%E7%BB%8E"><span class="toc-text">谋杀官员1：逻辑王子的演绎</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A6%99%E5%8F%A5"><span class="toc-text">妙句</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%80%BB%E8%BE%91%E5%B0%8F%E9%99%B7%E9%98%B1"><span class="toc-text">逻辑小陷阱</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%A7%E6%83%85%E5%92%8C%E6%84%9F%E6%83%B3"><span class="toc-text">剧情和感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%B0%8B%E6%9D%80%E5%AE%98%E5%91%984%EF%BC%9A%E4%BB%A3%E4%B8%8A%E5%B8%9D%E4%B9%8B%E6%89%8B"><span class="toc-text">谋杀官员4：代上帝之手</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81"><span class="toc-text">故事概要</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%96%91%E7%82%B9"><span class="toc-text">疑点</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%90%86%E8%AE%BA"><span class="toc-text">理论</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%B0%8B%E6%9D%80%E5%AE%98%E5%91%983-%E7%89%A9%E7%90%86%E6%95%99%E5%B8%88%E7%9A%84%E6%97%B6%E7%A9%BA%E8%AF%A1%E8%AE%A1"><span class="toc-text">谋杀官员3:物理教师的时空诡计</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81-1"><span class="toc-text">故事概要</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%96%91%E7%82%B9-1"><span class="toc-text">疑点</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%B0%8B%E6%9D%80%E5%AE%98%E5%91%982-%E5%8C%96%E5%B7%A5%E5%A5%B3%E7%8E%8B%E7%9A%84%E9%80%86%E8%A2%AD"><span class="toc-text">谋杀官员2:化工女王的逆袭</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%A0%B8%E5%BF%83%E8%AF%A1%E8%AE%A1"><span class="toc-text">核心诡计</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%BF%BD%E8%B8%AA%E5%B8%88"><span class="toc-text">追踪师</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%AF%84%E4%BB%B7"><span class="toc-text">评价</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

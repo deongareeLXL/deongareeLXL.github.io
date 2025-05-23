@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>《记忆、梦与反思》 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/01/book/jiyimengyufansi/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">《记忆、梦与反思》</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-07-01T09:50:15+08:00">2021-07-01 09:50:15</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>荣格的最后一本著作，亦是他的自传。<br>使我有涉猎荣格作品的契机，是因为接触到他的一句名言：向外看的人是梦中人，向内看的人是清醒者。<br>太想要当清醒者而非梦中人，想从大师的作品中领悟大师的思想，寻找成为清醒者的方法论。</p>
+<span id="more"></span>
+
+<h3 id="童年"><a href="#童年" class="headerlink" title="童年"></a>童年</h3><p>1.心中藏有秘密对我性格的形成影响巨大。我认为这是我童年时代的本质特征。同样，我没有向任何人讲起过那个关于生殖器的梦，耶稣会会士的事也属于只有我自己知道的神秘王国。小木人和他的石头是我力图赋予这一秘密以外在形式上的首次尝试，尽管这种尝试是潜意识的、幼稚的。我总是沉溺在自己的秘密中，总觉得应该探寻它的意义，但我却不知道我想要表达的是什么。我总是希望我能够找到一些什么——也许在大自然中——给我提供一些线索，使我弄清那秘密是什么，在哪里。在这种情况下，我对植物、动物和石头的兴趣增加了。我常常警惕地在寻找某些神秘的东西。</p>
+<p>2.雕刻的那个木头小人的事件是我童年的高潮，也是它的终结。这事大约在我心中徘徊了一年。后来就全然忘记了，直到三十五岁才想起，儿时的那段记忆从迷雾中重新浮现出来，不减当年的清晰和质朴。…小人是古代世界披着小斗篷的神，如同站在埃斯克勒彼阿斯碑上的泰莱斯福鲁斯给他读一个羊皮纸的卷轴。随着这一回忆，我第一次产生了这样的信念，古代的心理因素在没有任何直接的传承关系的情况下会进入个人的心灵。</p>
+<h3 id="中学时代"><a href="#中学时代" class="headerlink" title="中学时代"></a>中学时代</h3><p>1.我立即明白了一切：现在我是我自己了！就好像有一堵雾墙在我的身后，而在那堵墙后尚无一个“我”字。但在这个时刻，我碰见了我自己。在此以前我也存在着，但只是一切发生在我身上，而现在则是我发生在我身上了。现在我知道，我现在是我自己，现在我存在着。在此之前我是按照别人的意志去做这做那，现在我是按照我的意志去做。在我看来，这个经历极其重要新颖：在我身上有了“权威”。</p>
+<p>2.那时候，我父亲所说的一切还激起了我的深切的怀疑。我一听到他做有关上帝恩惠的布道，便总是想到了我自己的体验。他所讲的一切听来显得陈腐而空洞，就像讲一个道听途说而来的可自己又不很相信的故事一样。我很想帮他的忙，可是却又找不到办法。</p>
+<p>3.我不懂得这恶毒的事是什么，我确实不懂，因为我不能也绝不该随便向这一想法迈近一步，因为这便意味着得冒立刻去思考它的危险。我没有干这件事或者想干这件事，它是像噩梦一样落到我头上的。这样的事是怎么来的呢？我虽然没有去干，这件事还是发生在我身上了。为什么呢？不管怎样，我不是自己创造出来的，我来到这个世上是按上帝创造我的方式而来的——就是说，我是按我父母的样子这一方式而创造出来的。或者说，很有可能，我父母要的就是这种东西吗？但是，我那善良的父母是绝不可能有过任何那样的想法的。这样恶毒的想法是绝不会发生在他们身上的。”</p>
+<p>4.亚当和夏娃是最早的人类，他们是上帝完美的造物，因为上帝只创造完美，可是他们仍然犯了原罪，干了上帝不希望他们去干的事。这怎么可能呢？要是上帝不使他们有可能干这件事，他们本来不会干出这种事的。这件事也是很清楚的，是由于受了蛇的诱惑，而蛇是上帝在创造他俩前便已创造出了的，显然是为了让它引诱亚当和夏娃犯罪。全知全能的上帝事先已安排好了一切，为的是使人类的始祖无法不犯罪。因此，他们犯了原罪，那原是上帝的本意。</p>
+<p>5.在背景后深深的某处，我向来知道自己是个两重性格的人。其中一个是我父母的儿子，这个人上学读书，不怎么聪明，专心致志，学习用功，比许多别的男孩穿得整齐干净。另一个是个大人——实际上是个老人——多疑，不轻信，远离人世，但却接近大自然，接近地球、太阳、月亮、天气、一切生物，但最主要的是接近夜晚，接近睡梦，接近“上帝”直接地作用于其身上的各种事情。</p>
+<p>6.很显然，我们一点也不知道上帝的意志，因为要是我们知道，我们便会敬畏地对待这个关键性的问题了，便会只是出于对威力无穷的上帝的单纯害怕而这样做了，因为上帝是能够把其令人可怕的意志强加在孤立无援的人类的身上的，就像他已经强加在了我身上一样。</p>
+<p>7.我必须负起责任，我的命运结果如何完全取决于我自己。我碰到了一个问题，我必须亲自找到这个问题的答案。可是是谁把这问题强加到我头上的呢？对此谁也无法给我以解答。我知道，我必须从我最深处的自我那里找到这个答案，知道在上帝面前的就只有我一人，并且知道上帝独自就这些可怕的事情问了我。</p>
+<p>8.在我的生活的过程中，往往会发生这样的事，我突然知道了一件我确实毫无所知的事情。这种知识仿佛像我自己的观念那样来到我的脑海里。</p>
+<p>9.叔本华是第一个提到这个世界的痛苦的人，这种痛苦触目惊心地就在我们周围，他还提到了混乱、情欲、邪恶——所有这一切其他人均似乎从未注意到过并总是极力使之纳入那无所不包的协调和可以理解性里。在这里，终于出现了这样一个人，他敢于认为在宇宙的基础里，并非一切都是向善的。他既不提造物主的全智全仁的天意，也不提宇宙的协调和谐，而是率直地指出，在人类历史那充满悲伤的进程及大自然的残酷无情里，潜伏着一种带根本性的缺陷：创造世界的意志带有盲目性。…叔本华对世界所作的阴暗的描述得到了我毫无保留的赞同，但是他的解决办法却为我所不喜欢。</p>
+<p>10.科学在很大的程度上满足了第一人格的需要，而有关人的或历史的研究则为第二人格提供了有益的教导。</p>
+<h3 id="大学时代"><a href="#大学时代" class="headerlink" title="大学时代"></a>大学时代</h3><p>1.从第一人格的眼里来看，我觉得自己是个落落寡合、天分中等却又心比天高的年轻人，具有一种不受约束的气质且态度暧昧，一会儿天真热情，一会儿又孩子气地易于失望，在其本质的最深处是个隐士和蒙昧主义者。另一方面，第二人格把第一人格看作是一种困难的和吃力不讨好的道德任务，是一门必须以某种方式通过的课程，这一课程由于下述五花八门的过失如一段时间的懒惰、泄气、沮丧，对没有人认为有价值的想法和事情却有不适当的热情、轻信别人的友谊，见识有限、易抱偏见、愚蠢（在数学上！）、对别人缺乏了解、在哲学问题上看法不明确且又混乱、既不是个诚实的基督徒又不是别的什么人等等而变得复杂起来。第二人格是根本没有什么明确的性格的；他是一种永存的生命，出生了、在活着、死了，集一切于一体，一种无所不包的生活幻觉。</p>
+<p>2.梦中我身处某个不知名的地方，时值黑夜，而我则顶着强劲的大风缓慢而痛苦地前行。浓雾到处飘飞。我把两只手作成杯状来护一盏小灯，而这灯似乎随时都有可能熄灭。一切均取决于能否保住这盏小灯使之不灭了。突然之间，我觉得背后有个东西正向我走近。我回过头去，看见一个硕大无朋的黑色人影正跟在我后面。但与此同时，尽管我吓坏了，却还清醒地意识到，虽然有各种各样的危险，我还一定得保住我这盏小灯，以便度过这个狂风之夜。我醒过来后，便立刻意识到这个人影就是“布洛肯峰的鬼魂”，亦即我自己的影子在我带着的这盏小灯的灯光照射下投放在飞漩的浓雾上而形成的。我还知道，这盏小灯就是我的意识，我所拥有的惟一一盏灯。我自己的理解力是我所拥有的惟一财富，而且还是最大的财富。相比起来，与黑暗的威力相比，这盏灯虽然显得无穷的小和脆弱，但它却仍然是一盏灯，我的惟一的灯。</p>
+<p>3.人们可以说，我的顿悟是经过了好长一段时间才慢慢成熟起来，然后才突然以梦的形式破壳而出的。说实在的，它就是那么发生的。但是这种解释却只是一种描述就是了。真正的问题在于，为什么会发生这种过程和为什么它以意识的形式破壳而出。我并没有故意地干过任何事情来加速任何的这样一种发展；相反，我的同情心却在另一个方面。因此，在这些景象之后一定有某种东西在起作用，是某种理智在起作用，至少是某种在理智上胜过我的东西在起作用。在意识之光的照耀下，内心王国之光便以一个硕大无朋的影子显现出来了，这一非同寻常的想法确实不是某种我会自发地想到的东西。</p>
+<p>4.在大学一年级期间，我发现，科学虽然打开了通向大量知识的大门，但在提供真正的顿悟方面却少得可怜。而这种顿悟，总的来说是有着特有的性质的，我从哲学著作的阅读中懂得，心灵的存在是造成这种情境的原因。没有心灵，便不会有知识，也不会有顿悟。然而关于心灵，却不见有只字提及。它到处都被认为是理所当然的，因而甚至当有人提及它时——例如，C. G. 卡鲁斯就是这样——却显出对它没有真正的了解而只有哲学式的沉思冥想，而这实在是太容易作出这种那种的冥想了。对于这种言论，我实在无法理解。</p>
+<h3 id="精神病治疗活动"><a href="#精神病治疗活动" class="headerlink" title="精神病治疗活动"></a>精神病治疗活动</h3><p>1.弗洛伊德已在情感上非同小可地深陷进了他那有关性的理论去了，这是不会有错的。当他提到它时，他的声调便变得急迫起来，甚至几乎达到焦急的程度，而他那正常的批判性和怀疑性的一切迹象也就随之不见了。这时他脸上便会现出一种奇怪的、深受感动的表情，这到底是什么原因我可就无从知道了。</p>
+<p>2.什么地方有神秘的体验使精神处于猛烈震荡，那里就会有支撑一个人的重量的绳子可能断掉的危险。这种情况要是发生，有人会掉进绝对肯定的状态，同样也会有人落入绝对否定的状态。超脱（摆脱对立物）是东方人在这方面的解决办法，这我并没有忘记。心灵的指针在理智和非理智之间摇摆，而不是在正确与错误之间摆动。神秘之物之所以危险就在于它把人引向极端，因而一种适度的真理便被看作就是真理，而一个次要的错误便等同于致命的大错。一切均会流逝——昨天的真理在今天却是欺骗，而昨天的虚假的推论却可能是明天的启示物。在心理学方面事情更是这样，在这方面，说真的，我们仍然知之甚少。我们仍然远不理解下面这种情况到底意味着什么：除非意识已稍微或极短暂地意识到了它，否则什么都是不存在的。</p>
+<p>3.对于我来说，梦是天性的一个部分，它根本不怀有欺骗人的意图，而是尽其最大能力来表达某种东西。</p>
+<p>4.弗洛伊德的最大成就大概包括他把精神病人加以严肃的对待，并深入他们怪僻的各别的心理之中。他有勇气让病例说话，而这样做时他便得以深入其病人的真实心理之中。</p>
+<h3 id="正视潜意识"><a href="#正视潜意识" class="headerlink" title="正视潜意识"></a>正视潜意识</h3><p>1.当然，我最初是坚持弗洛伊德的看法，认为是存在于潜意识的古代的经验的种种迹象。但是像这样的梦及我对潜意识的实际体验却教导我，这样的内容并非是死去了的、过时了的形式，而是属于我们有生命的存在的。</p>
+<p>2.我常心烦意乱，于是我便只好做做某些瑜伽动作来使自己的情感受到控制。但因为我的目的是要知道我心中发生着的事情的意义，因此我练瑜伽只练到足以使自己平静下来并恢复我对潜意识的探讨时为止。一旦我觉得我已平静下来，我便放弃对情感的这种束缚并让各种意象和内心的声音重新开始说话。与此相反，印度人练瑜伽却是为了完全忘怀大量的心灵内容和种种意象。</p>
+<p>3.我尽可能地把我的种种幻觉写下来并认真地分析这些幻觉得以产生的精神条件。…有时候，我仿佛在用自己的耳朵听它说话，有时候又用嘴来感觉它，仿佛我的舌头正在编造字眼儿一样；时不时地，我听见自己在大声嘀咕着。在意识的阈限以下，一切均沸腾着生命。</p>
+<p>4.对我来说，最大的困难之一在于要对付我那采取否定态度的情感。我那时正自愿地使自己服从于我无法真正赞同的情感，而我当时所写下的幻觉则往往使我觉得纯是胡说八道，而且我对它们抱有强烈的反感。因为只要我们无法明白其意义，这样的幻觉便是崇高与古怪的邪恶混合。我费了好大力气才忍受住了它们，但是我却仍然受到了命运的挑战。只是作出了极大的努力，我才最后得以从迷宫里走出来。</p>
+<p>5.要紧的是通过使这些潜意识的内容具象化，以便使自己有利于它们，同时又使它们与潜意识发生关系。这是剥夺它们的权力的技巧。要把它们具象化并不太难，因为它们总是具有一定程度的自主性，一种它们自身的独立存在。它们的这种自主性，要是让人迁就它，却是一件十分不舒服的事。然而，潜意识以这种方式来表现自己这一情形，却使我们获得了控制它的最佳手段。</p>
+<p>6.我懂得了对待这些内心的意象我该如何行动。我可以从我的梦里直接读出它们的含义，因而便无须再有一个沉思默想者来为它们传信了。</p>
+<p>7.我确确实实存在着，我并不像尼采那样是一张白纸，在精神的强风中到处翻飞。尼采失去了其立脚的根基，原因就在于他除了他思想里的内心世界外便一无所有——应该说，他的内心世界拥有他要比他拥有前者更甚。他断了根并在大地的上空飘荡，因此他不得不采用虚夸和不现实的办法行事。</p>
+<h3 id="著述"><a href="#著述" class="headerlink" title="著述"></a>著述</h3><p>1.我把力比多设想成是具有物理性能量的一种精神类似物，因而也就或多或少是一种具有数量性的观念，所以它是不应用质的术语来加以界定的。</p>
+<p>2.认为耶稣这位木匠的儿子传播福音并变成了救世主只不过是出于“纯粹的偶然”，这实在是一种严重的误解。他一定是个具有非凡天赋的人，因而才能如此完美地表达和陈述他那时代人们普遍的但却是潜意识的种种期望。没有任何别的一个人能成为这一希望的传播者，只有耶稣这位特定的人才有可能做到这一点。</p>
+<p>3.对于我的著作，我从来不指望什么强烈的反应，什么有力的共鸣。它们代表着对我们时代的一种补偿，而我说这些无人乐于去听的话也实在出于无奈。由于这种原因，我往往感到极为凄凉孤独，特别是在最初的时候。我知道我所说的会不受人欢迎，因为我们时代的人们是很难接受对这个有意识的世界所唱的反调的。今天，我倒可以说，我获得了人们所赋予我的极大成功——远比我所能预料到的还要大——这倒是令我感到吃惊。我觉得，我只是做了我所可能做到的一切就是了。毫无疑问，我这一生的工作本应更多并干得更好才是，但也有很多事情却是我力所不及的。</p>
+<h3 id="塔楼"><a href="#塔楼" class="headerlink" title="塔楼"></a>塔楼</h3><p>1.我没有引来电力，我亲自照料壁炉和火炉，黄昏一到，我便把那几盏老灯点上。这里没有自来水，我自己动手从井里把水抽上来。我劈柴烧饭。这些简朴的行为使人变得淳朴，而要淳朴，那是多么困难呀！</p>
+<p>2.我是个孤儿，举目无亲，然而我却浪迹天涯。我是一个人，但却与自己相反。我同时是青年人和老人。我不知有父也不知有母，因为我过去只得曾像鱼那样被人从深水中捞起，或像一颗白色的石头那样从天而降。我游荡于树林和高山之中，但却又藏在人那最深处的灵魂里。对每一个人来说，我是必死的，然而我又不在时光的轮回之中。 –炼金术士的诗</p>
+<p>3.我有意识地把自己的工作与浮士德所忽略的事情联系起来：敬重人的永恒的权利，尊重“古人”，并承认文化和知识史具有连续性。<br>我们的灵魂与我们的肉体是由个别的元素所构成的，而这些元素在我们世代相沿的列祖列宗的身上也全都有。个人精神中的“新”只是一种年代久远的各种成分变化无穷的重新组合而已。灵和肉因而便具有着深刻的历史特征并在新的、刚开始存在的事物里找不到任何合适的地位。也就是说，构成我们祖先的各种成分只有部分存在于这些事物身上。我们现代的精神装出我们已远远告别了中世纪，告别了典型的古代，告别了原始性，但实际上却并不是这样。<br>然而，我们已纵身跳进了前进的急流之中，并被迅速裹胁着冲向未来，这股急流把我们冲离，我们的根越远，其狂暴性就越厉害。而要是与过去一旦断裂，过去通常便成了有无，于是这种前进运动要想停止也停不下来了。但是，正是由于失去了与过去的联系，正是由于失掉了“根”——这种情形才造成了人们对文明的种种“不满”，造成了这样的慌慌忙忙——我们才不是生活在现在而是生活在未来，生活在未来那黄金时代的虚无缥缈的许诺里——只可惜我们的整个进化背景却仍然未能跟得上去。<br>由于日益高涨的不足感、不满感和惶惶不安感的驱迫，我们便匆匆忙忙一头扎进了种种标新立异之中。我们不再靠我们所拥有的而生活，而是靠诺言来生活，我们不再生活在现今的光明里，而是生活在未来的黑暗中；对于这种黑暗，我们期待着它能最终带来辉煌的日出。<br>我们拒绝承认，一切更美好的东西都是以某种更大的代价而换来；拒绝承认，比如说，更大自由的希望正由于国家所施加的奴役的增强而烟消云散，更不要说那些最辉煌的科学发现使我们所面临的可怕的灭顶之灾了。我们的父辈和祖先寻求的是什么，我们对此了解得愈少，对我们自己了解的也就不会多，这样我们便无疑尽我们的一切力量去帮助斩断维系住个人的各种根及其指导性的天性，从而促使个人变成大众中的一个微粒并只由尼采所谓的地心引力精神所左右。</p>
+<p>4.通过各种进步来促进的改革，亦即通过新方法或新技巧来造成的改革，最初当然使人耳目一新，但从长远来说，却是令人怀疑的并在任何情况下都是代价高昂的。总的来说，这些改革根本不会使人们生活得更加美满幸福。在大多数情况下，它们像生活中更高速度的通讯那样是裹着糖衣的骗人的苦药，因为这种高速通讯令人不快地加速了生活的节奏，而留给我们的则是前所未有的更少的时间了。正像古时的大师们常常挂在口头上的老话所说的，“只有魔鬼才会匆匆忙忙。”另一方面，通过倒退而促成的改革一般来说付出的代价就低，时间上也更久长，因为这是退回到过去更简朴的历经试验过和考验过的道路上去，并极少利用报纸、电台、电视及所有假定会节省时间的新发明。</p>
+<p>5.内心的平静与满足在很大程度上取决于在个人身上与生俱来的历史上的家族是否能与目前那转瞬即逝的各种情况相协调。</p>
+<p>6.在这里，我以我的第二人格的方式生活着并生动地把人生看成是某种来而复去、循环不息的现象。</p>
+<h3 id="旅行"><a href="#旅行" class="headerlink" title="旅行"></a>旅行</h3><h4 id="北非"><a href="#北非" class="headerlink" title="北非"></a>北非</h4><p>1.这些人摆脱了他们的情感，经受了感召，将其存在置入某种情绪之中。他们的意识指导他们在空间的方位，传导来自外界的印象，而意识本身也受到了内部冲动和情感的刺激。但是，意识并不指向思考，自我几乎是没有自主权的。欧洲人的这类景况与此区别不大。但是，我们，归根结底，是更为复杂一些的。无论如何，欧洲人具有一定程度的意志和明确的意向。我们所缺乏的是生活的强度。</p>
+<p>2.如果我们从来没有机会从外界观察我们的民族，我们如何能够意识到自己的民族特点呢？从外部观察意指从另外一个民族的观点来进行观察。为此，我们必须获取关于外国集体精神的充分的知识，在这一习得过程中，我们会遇到构成民族偏见和民族特质的种种矛盾。凡是我们恼怒于他人的一切，都会促使我们了解自己。</p>
+<h4 id="美国：村社印第安人"><a href="#美国：村社印第安人" class="headerlink" title="美国：村社印第安人"></a>美国：村社印第安人</h4><p>1.我问他为什么认为白人都是疯子。<br>“他们说他们是用脑袋想事情的。”他回答道。<br>“那是自然的。你用什么想事情呢？”我觉得奇怪，问他。<br>“我们用这个。”他指着心脏说。</p>
+<p>2.此刻我顿时明白了每个印第安人的“尊严”，及其安然镇静神态的依据。这一切都来源于他的太阳之子的身份。他的生命具有宇宙意义，因为他协助天父及一切生命的保护者每日升降。如果我们把自己的种种自我辩白、我们的理性所规定的生命的意义与此相比较，那么，我们就只能见出我们的贫乏。出自纯粹的嫉恨，对于印第安人的天真，我们只能报以微笑，不得不以我们的乖巧来装扮自己；否则我们就会发现我们是多么贫乏，多么褴褛。知识没有使我们丰富起来；知识使我们越来越脱离神话世界，而我们原来凭之出生的权利是很熟悉这个世界的。</p>
+<p>3.人类的仪礼，是对于上帝施予人的行为的答复和反应；不仅如此，答复和反应还可能旨在“净化”，是一种奇幻的强制形式。人类觉得自己有能力对上帝无所不在的强大影响作出回答，能够作出某种重要事情回报上帝，这一切会引发出自豪感，因为这种行动把人类个人提高到了某种形而上因素的尊严程度。</p>
+<h4 id="肯尼亚和乌干达"><a href="#肯尼亚和乌干达" class="headerlink" title="肯尼亚和乌干达"></a>肯尼亚和乌干达</h4><p>无</p>
+<h4 id="印度"><a href="#印度" class="headerlink" title="印度"></a>印度</h4><p>1.基督徒追求善而屈服于恶；印度人觉得超脱了善与恶，并且力求通过沉思或瑜伽来实现这个境界。我的反驳见解是，如果承认这种态度，那么，无论善还是恶，都不会具有真正的界线，而这就造成了某种淤滞。人们并不确实相信恶，也不真正相信善。</p>
+<p>2.印度的神性缺乏善恶观，或者因为矛盾负担太重而需要超脱，即脱离对立物，脱离万事。</p>
+<p>3.对于我来说，不存在不顾一切代价的超脱。我不能够超脱我所不具备、我没有做过或经验过的一切。对我来说，真正的超脱实现之日，正是我做完我能完成的一切、我全心全意献身某事、并且最大限度地参与某事之时。</p>
+<h4 id="拉文纳和罗马"><a href="#拉文纳和罗马" class="headerlink" title="拉文纳和罗马"></a>拉文纳和罗马</h4><p>1.一个人把以往潜意识的内含与意识整合之时，他心中所发生的事是几乎无法用语言描述的，只能体验。</p>
+<h3 id="幻象"><a href="#幻象" class="headerlink" title="幻象"></a>幻象</h3><p>大师的幻象真丰富，产生不了共鸣。</p>
+<h3 id="论死后的生活"><a href="#论死后的生活" class="headerlink" title="论死后的生活"></a>论死后的生活</h3><p>1.人只有在接近死亡时才能得到谈论此题的必不可少的睿智。</p>
+<p>2.人应该能够说，他已竭尽全力建立关于来世的概念，或者创造它的某种形象，虽然他也不得不承认失败。不作尝试才是一种重大的损失。因为向他提出的这个问题，是人类的一种古老的遗产：这是一种富于神秘生命的原型，这种原型寻求附加到我们的个人生活上来，以求使其完整。理性向我们提出的界限过于狭窄，只允许我们接受已知物——而且限制过多——只允许我们生活在一个已知的框架之中，正如我们似乎知道生活能延续多久那样。事实上，日复一日，我们都远远地生活在我们的意识范围之外，尽管我们不知道，潜意识的生活依然是在我们的内心发展着的。批判性理性统治越严，生活就变得越为贫乏；但是，我们所能意识到的潜意识越多，神话越多，我们就能使更多的生活变得完整。评价过高的理性与政治上的绝对权力有共同之处：在它的统治下，个人贫乏化了。</p>
+<p>3.潜意识对我们的帮助在于向我们传达事物，或者提供形象性的启示。它具有向我们传达我们凭借逻辑无法知道的事物的其他方式。</p>
+<p>4.神话是科学的最早的形式。</p>
+<p>5.如果我们理解并且感觉到，我们在此生中已经与无限有某种联系，欲望和态度也就会发生变化。</p>
+<p>6.但是，只有我们与极限联系在一起时，我们才能获得对无限的感知。人的最大的限制就是“自性”；它表现在这一经验之中：“我仅仅是这样的！”只有对于我们狭隘地囿于自性这一情况的意识，才构成了与潜意识的无限性的联系。在这种认识中，我们会感受到自己既是有限的同时又是永恒的，既是此又是彼。认识到我们自己在我们个人的组合体（即：最终是有限的）中是独特的，我们就有能力意识到无限。非于此时莫属！</p>
+<p>7.在一个仅仅专注于扩张生存空间和不惜任何代价增加理性知识的时代，要求人意识到自己的独特性和自己的局限性就是一种最高级的挑战。独特性和局限性是同义词。如果没有这两者，对无限的感受就不可能，当然也不可能达到意识，而只是一种对它的幻影般的认同，其形式是醉心于自己是多数派和对政治权力抱有贪欲。</p>
+<p>8.人既不应该坚持人的潜意识，也不应该同一于他的存在的潜意识因素，进而回避他的命运，即创造越来越多的意识。就我们的认识而言，人类存在的惟一目的是在一般存在的黑暗之中点起火光。</p>
+<h3 id="后期思想"><a href="#后期思想" class="headerlink" title="后期思想"></a>后期思想</h3><p>1.因此，我们绝不应再屈从于任何东西了。甚至连善也一样。我们要是屈从于一种所谓的善，那么这种善便会失却其伦理的属性。这样做并不是说善有什么不好，而是因为屈从于它可能会招来麻烦。任何一种执迷或瘾都是不好的，无论这这种瘾是酒、咖啡还是理想主义。我们必须警惕，不要认为善与恶就是绝对地对立的。</p>
+<p>2.在纳粹主义的现象面前，我们感到迷惑不解和束手无策，原因就在于我们对人一无所知，或者不管怎么说，对人只有片面的和歪曲性的了解。我们要是具有自知之明，就不会有这种情况。</p>
+<h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>1.作为孩子，我觉得自己是孤独的，我现在仍然觉得是这样，原因是我知道很多事并且还暗示一些事，而这些事却是其他人显然一无所知或在很大程度上并不想知道的。</p>
+<p>2.他必须感觉到，他是生活在从某些方面来说是神秘的这样一个世界里；必须感觉到事情发生了并体验到了，可是却无法解释；必须感觉到并不是行将发生的一切都是可以预见的。出人意料及难以置信的事物在这个世界有的是。只有到了这时，生活才是完整的。对于我来说，从一开始，这个世界就是无穷的和无法把握的。</p>
+<p>3.当老子说“众人皆明，唯吾独懵”时，他所表达的就是我在老耄之年的现在所感觉到了的。</p>
+<h3 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h3><p>大师的人生经历的是丰富的，大师的个人自传的形式也是很特别的。中学写作老师时常强调，叙事议论，需要用客观实事例证，决不能堆砌一大堆主观性描写。但是，在大师的自传里，满满的都是“我觉得”，“我认为”，“我梦见”这样的主观性极强的词汇。从标题就可以看出，本书的主要内容都会围绕大师的梦境和反思相关的记忆。<br>大师的梦境很奇妙，让人居然能找到共鸣点。关于前世的幻象，很有意思；关于预感的描写，比较玄幻。<br>大师的思想是深刻的，通读一遍，能从中发掘出很多发人深省的语句。但是，本书也夹带的一些在我看来比较奇怪的言论。例如围绕着炼金术以及曼荼罗的研究描写，让人费解。或者是时代的糟粕，或者是大师另有所指吧。<br>对于一些长句的理解，还是比较难。可能是翻译的限制，也许是阅历还不够吧。<br>大师的自传充满了对抽象事物的描写。相比于具体的事物，抽象的描述更具有包容性，更能探求出事物的本质。但是抽象也必须建立在种种具体事物之上的，是其抽象概述总结。没有阅历的人很难去理解抽象的道理。这本书也许会开启我对哲学书籍的探求之路吧，可作为哲学启蒙读物。<br>大师对老子的思想倍加推崇，甚至身体力行，独居塔楼，与世无争，这是我没有联想到的，到文末点出才反应过来。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E5%90%8D%E4%BA%BA%E8%87%AA%E4%BC%A0/" rel="tag"><i class="fas fa-tags"></i>名人自传</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/06/16/material/shijushouji/" rel="next" title="诗句收录"><i class="fas fa-angle-left"></i><span class="nav-title">诗句收录</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/07/06/story/qiangshisiweiheruoshisiwei/" rel="prev" title="强势思维和弱势思维"><span class="nav-title">强势思维和弱势思维</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%AB%A5%E5%B9%B4"><span class="toc-text">童年</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%AD%E5%AD%A6%E6%97%B6%E4%BB%A3"><span class="toc-text">中学时代</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A4%A7%E5%AD%A6%E6%97%B6%E4%BB%A3"><span class="toc-text">大学时代</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%B2%BE%E7%A5%9E%E7%97%85%E6%B2%BB%E7%96%97%E6%B4%BB%E5%8A%A8"><span class="toc-text">精神病治疗活动</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%AD%A3%E8%A7%86%E6%BD%9C%E6%84%8F%E8%AF%86"><span class="toc-text">正视潜意识</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%91%97%E8%BF%B0"><span class="toc-text">著述</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A1%94%E6%A5%BC"><span class="toc-text">塔楼</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%85%E8%A1%8C"><span class="toc-text">旅行</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8C%97%E9%9D%9E"><span class="toc-text">北非</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%BE%8E%E5%9B%BD%EF%BC%9A%E6%9D%91%E7%A4%BE%E5%8D%B0%E7%AC%AC%E5%AE%89%E4%BA%BA"><span class="toc-text">美国：村社印第安人</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%82%AF%E5%B0%BC%E4%BA%9A%E5%92%8C%E4%B9%8C%E5%B9%B2%E8%BE%BE"><span class="toc-text">肯尼亚和乌干达</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8D%B0%E5%BA%A6"><span class="toc-text">印度</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%8B%89%E6%96%87%E7%BA%B3%E5%92%8C%E7%BD%97%E9%A9%AC"><span class="toc-text">拉文纳和罗马</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B9%BB%E8%B1%A1"><span class="toc-text">幻象</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%AE%BA%E6%AD%BB%E5%90%8E%E7%9A%84%E7%94%9F%E6%B4%BB"><span class="toc-text">论死后的生活</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%90%8E%E6%9C%9F%E6%80%9D%E6%83%B3"><span class="toc-text">后期思想</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%AF%BB%E5%90%8E%E6%84%9F"><span class="toc-text">读后感</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

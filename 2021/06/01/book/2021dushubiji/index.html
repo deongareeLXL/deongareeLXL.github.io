@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>2021读书笔记 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/book/2021dushubiji/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">2021读书笔记</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-06-01T10:21:08+08:00">2021-06-01 10:21:08</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>2021的读书笔记，随意记录。</p>
+<span id="more"></span>
+
+<h3 id="双蛇密室"><a href="#双蛇密室" class="headerlink" title="双蛇密室"></a>双蛇密室</h3><p>[推理小说]<br>2021.01.09<br>流氓不可怕，就怕流氓有文化。<br>真的是。<br>推理很一般啊，打着性的旗号，核心推理诡计经不起推敲。<br>不过，脑洞确实挺大的。<br>不推荐。</p>
+<h3 id="彩虹牙刷"><a href="#彩虹牙刷" class="headerlink" title="彩虹牙刷"></a>彩虹牙刷</h3><p>[推理小说]<br>2021.01.12<br>陆秋槎老师豆瓣评论是“平生未见之奇葩”，并给出了5星好评，看到我就笑了。<br>这本书吧，还真的没法批斗它。<br>个人觉得青色和绿色的故事不错。<br>除了橙色，其余的故事也还行。<br>红色的故事感觉有点飘了，其实多胞胎的最终设定还是有很多地方值得质疑，不过脑洞大开是真的。<br>这本书就是那些玩暧昧的扭扭捏捏半遮半掩的作品的极端反例，肯定会给大众读者较大冲击。<br>只要剧情不崩，新颖的角度必然能给人带来新鲜刺激感。<br>但事实上，剧情还真的不错。<br>叙述性诡异玩得很溜。<br>推荐。</p>
+<h3 id="OOOOOOO杀人事件"><a href="#OOOOOOO杀人事件" class="headerlink" title="OOOOOOO杀人事件"></a>OOOOOOO杀人事件</h3><p>[推理小说]<br>2021.02.24<br>老司机才能给出的诡计题材，其他人永远没法写出来。<br>南国模式，秒啊。<br>上木同学还是一如既往的给力。<br>你还别说，这车开得，还是有一定水准的。<br>获奖实至名归。</p>
+<h3 id="无可裁罚"><a href="#无可裁罚" class="headerlink" title="无可裁罚"></a>无可裁罚</h3><p>[推理小说]<br>2021.02.27<br>老司机玩起社会派推理了。<br>前面的双线叙事看得我睡意浓浓。<br>后面解密部分，双线相交，开始高能输出了。<br>可惜上木同学在这次事件中表现平平，完全被工具人化了。<br>看到涉谷肾虚，莫名想笑，老司机就是风格不一样，直截了当。<br>上木同学的人生价值观，或许更迎合当代社会也说不定，大雾。</p>
+<p>法律基于其“只能适用行为地条例”的原则发挥作用，结果就是“因行为地不定故罪状不定所以不起诉”这么一个让人不由得发笑的蠢事。<br>信箱恶灵的战栗<br>[推理小说]<br>2021.04.08<br>老司机准备结束上木系列了，这篇应该算是继续双蛇的剧情吧，继续坑，有点小失望。</p>
+<h3 id="侦探AI"><a href="#侦探AI" class="headerlink" title="侦探AI"></a>侦探AI</h3><p>[推理小说]<br>2021.04.14<br>老司机盯上了人工智能，不开车，准备讲AI话题了。<br>可惜，观感不佳。四个字概括：格局小了。<br>AI是个大话题，老司机不好把握。<br>另外一本，不会花时间看了。</p>
+<p>摘录：</p>
+<p>阅读推理小说却不知道隧道效应的人，都是伪推理迷。<br>恐怖谷，人类对机器人的好感度，虽然会随着机器人的外表接近人类而上升，但在无限接近人类的瞬间会猛然下降。</p>
+<h3 id="迷宫蛛"><a href="#迷宫蛛" class="headerlink" title="迷宫蛛"></a>迷宫蛛</h3><p>[悬疑小说]<br>2021.01.17<br>作者鬼马星，国内知名推理女作家。很早就听说过，不过忘记是什么原因放弃了她的作品。<br>没读过，试读，看了推荐，避过好坏评价参半的莫兰系列，先看陆劲系列。</p>
+<p>实在没法把本书归类到推理文，改成了悬疑类。<br>开头的设定不错，斯德哥尔摩式的男女主。<br>反派描写不足，一直都躲在暗处的一号歹徒过于神秘。<br>剧情比较拖沓，案子一个接一个，没有重点。<br>软推理文加狗血恋情，太难读了。<br>小细节：<br>1）利用出租车司机的定势思维欺骗警方的问询盘查，在紫金陈的官谋1里也有出现。那边还作为一个重要的诡计进行叙述的，在这里就一笔带过了。查了一下哪部作品在先，确定是本作在前，官谋在后，应为紫金陈借鉴的诡计。不过这里估计应该也不是原创。<br>不推荐。<br>软推理什么的不可取。</p>
+<h3 id="沉默的病人"><a href="#沉默的病人" class="headerlink" title="沉默的病人"></a>沉默的病人</h3><p>[悬疑小说]<br>2021.03.02<br>作者亚历克斯·麦克利兹，英国作家。<br>心理学相关，比较合乎我的期待。<br>但是就被安利的程度而言，读完后的感觉就是没有达到我的心理预期。<br>沉默的病人，这个设定就注定其可能性不大，发挥空间也就一般。<br>无非就是出轨加心死。<br>看完结局，一股浓浓的《禁闭岛》的味道，珠玉在前，后者自然失色不少。<br>当然，没看过的读者一定会在某种程度上觉得很surprise。<br>作者的心理学描述加上深厚的文字功底，使得作品增色不少。<br>但是，我还是无法把这本书归类到推理小说，社会派都归不进去，因为推理的元素缺失，只能算是悬疑小说。<br>原文摘录：<br>1.我们研究心理学，是为了给自己疗伤。<br>2.我们的人格不是在鼓励状态下形成的，而是与另一种东西有这千丝万缕的联系——是由看不见、记不得的力量塑造完成的。那就是我们的父母。<br>3.在某种程度上，抓住逐渐消失的雪花，就像抓住幸福一样；这种占有转瞬即。<br>4.但是这就是心理治疗。病人把自己无法承受的情感托付给他的治疗医生：她承受着他所有的恐惧，代他进行亲身体验，而后再慢慢地把她对这种体验的感受反馈给他。<br>5.我现在知道了，每当我为一幅作品制订方案，或者说预先考虑如何创作的时候，这样的方案往往都行不通。它如同死胎一般，还没出生就失去了生气。但是如果我真的注意了，真的意识到了，有时候就会听见一个很小的声音，给我指明正确的方向。但是只要我听从它所说的，就像对待自己的信念一样，我就会达到一个意想不到的境界。这个境界超越了我原先的想法，充满生机、无比辉煌——其结果是不以我的意志为转移的，它具有自己的生命力。</p>
+<p>文章本天成，妙手偶得之。</p>
+<p>6.也不知怎么了，我一直在想那个无家可归的人。除了怜悯之心，还有一种不可名状的感觉——一种恐惧感。我想他躺在母亲怀抱里的时候，他母亲会想过他最终会变成疯子，脏兮兮、臭烘烘地蜷缩在人行道上，嘴里脏话不断吗？<br>7.她经常说，“要成为一名优秀的心理治疗师，你必须接受病人的所有情感，但你自己不能有这样的情感——它们不是你的，它们并不属于你。”<br>8.我们最需要爱的时候，却得不到它。这是一种非常可怕的感觉，得不到爱的痛苦。<br>9.孩子是天真无邪的海绵，是没有刻字的石板。他们只有一些最基本的需求：吃喝拉撒、爱和被爱。问题是后来产生的。这些问题取决于我们出生的环境以及我们成长的家庭。<br>10.心理治疗的目的不是为了改变过去，而是为了帮助病人正视自己的历史，并为之感到悲痛。——艾丽丝·米勒<br>心理学是很有魅力的一门学科，它直接关注于人本身，每个人都能代入自己进入这个体系。<br>作者的观点是从心理学出发，认为孩童是无罪的，所有的犯罪都是环境的恶劣影响。这本身值得去深究探讨，就目前而言，并没有一个标准的答案。<br>anyway,如果你没看过《禁闭岛》或者喜欢心理学，强烈推荐本书。<br>对于我而言，生活这么匆忙，这本书还是略显冗长。</p>
+<h3 id="人鱼"><a href="#人鱼" class="headerlink" title="人鱼"></a>人鱼</h3><p>[悬疑小说]<br>2021.06.01<br>雷米老师新书，原谅我只能把这本书归类到悬疑小说里。<br>推理是一点没有。<br>剧情只能说中规中矩，不想过多评价。<br>实体书里还有一封短短的信，感觉雷米老师出书还是诚意满满。<br>但是，这不是我想看到的。<br>可能是期待过高了吧，也许本书的受众不是我吧，没有产生任何共鸣。<br>没时间的推理爱好者，特别是男性，建议不看。<br>本书的主题已经完全过时了，现在谁不想生个女孩，男孩就是向父母讨债的，没办法，社会如此。<br>题外话，邰伟的出场还是给我一点惊喜的，老教授也客串了，时间线应该是心理罪之前了。<br>邰伟的戏份应该多一点，影视剧里拼命三郎的形象让人印象深刻。<br>雷米老师怕不是把自己代入到退休老警察的角色里去了。<br>两个老年人之间的互动，以及最后的结局，很拉低读感。<br>就这样吧。<br>摘录：</p>
+<p>同样的文字看久了，你就不认识这个字了。<br>这世间所有的愤怒，多数都来源于自己的无能。<br>诡秘之主<br>[网络小说]<br>2021.07.08<br>被安利得太狠，try it。<br>对西幻无感，对诸神的世界观无感。<br>但是这本书给我的感觉是，还行，接受范围内。<br>得益于作者丰富的西幻背景知识，各种命名都有其历史原型影子。<br>如：摩斯苦修会，玫瑰学派（玫瑰十字会），亚伯拉罕，神弃之地，阿蒙，亚当等等。</p>
+<p>人物塑造方面，马马虎虎吧。讨喜的角色有：队长，神父，水银之蛇。<br>队长：我们是守护者，也是一群时刻对抗着危险和疯狂的可怜虫。尽管有缺陷，不完美，但却更凸显出一种人物真实的感觉。虽然只是地方上的小队队长，却散发出一种强大的领导者的魅力。永远的队长！<br>神父：神父代表的是一种超然的人生境界，作为神眷者，他已然超脱了世俗物欲。<br>水银之蛇：天使位阶，却还时时散发出人性。小孩身体，反差萌。<br>还有温柔的阿兹克，善良的奥黛丽以及搞笑担当的阿罗德斯和大妮子，也算是比较成功的角色。</p>
+<p>当然，也有不那么成功的角色，比如伦纳德，埃姆林，福尔斯，戴里克之类。虽然描写他们的篇幅也很多，但是这些角色还是给人一种不协调的感觉。<br>伦纳德的定位应该是重情重义的豪放诗人，死宅埃姆林，福尔斯更是找不到定位，戴里克就是个愣头青，被卖了还会帮数钱那种。到后面这些人物就渐渐模糊化，既看不到成长，也读不出深刻。<br>不喜欢神这一定位，个人觉得作为人，还是主要以人的视角看待世界。就像最后描写阿蒙其实也是一个表面疯狂暗地里给自己留后路的欺诈师。<br>作者整体的思路就是把整个故事线先搭好，然后不停地铺垫伏线，无法正常过度的就以怪力乱神强行解释。在我看来也并不是那么的逻辑缜密，毫无破绽。</p>
+<p>最主要的问题还是克怂和妈妈神。两个贯穿全文的重要人物的行为中没有散发出太多的人性光辉。在这样一个乱世之中，有能力的人就想着怎么布局，挖坑，赚钱，提升序列。抵御外神为目的么，无法体会。克怂那么想回家，行为也不合常理，总是用被安排解释，克怂基本上脱离的人的范畴，毫无意义的对金钱斤斤计较，还莫名其妙不怕死啊，然后就没有其他欲望啊。有人拿本书剧情与基督山伯爵以及福尔摩斯类比。抱歉，没有体会到。除了克怂的恶趣味取名以外，没有产生任何共鸣。占卜法推理就不说了，伯爵复仇和克怂的复仇完全就是两回事。倒是最后的战争结束后，克怂的愿望机器那一段，有伯爵的味儿了。</p>
+<p>当然，还是值得一读的，世界观宏大，设定很不错。但是我觉得，它应该可以更好，但是它没有，匆匆结尾了。<br>最后要来一句，万恶的资本。</p>
+<h3 id="人间失格"><a href="#人间失格" class="headerlink" title="人间失格"></a>人间失格</h3><p>[文学]<br>2021.09.18<br>很沉重很压抑的一本书。<br>还是经历得不够多，无法感受到那绝望的气息。<br>生活在阳光下的人们不建议阅读此书，一是无法理解领会，二是开启不必要接触的领域。<br>没事儿别与深渊对视。</p>
+<h3 id="浮生六记"><a href="#浮生六记" class="headerlink" title="浮生六记"></a>浮生六记</h3><p>[古文]<br>2021.11.26<br>清代沈复的自述，主要内容是围绕自己和妻子芸娘的生平故事。<br>文字朴实，感情真挚。<br>吸引我的主要还是卷二《闲情记趣》中的童趣一篇。<br>有人评此为古代模范夫妻的爱情故事。<br>整个故事前半部分确实是欢快的基调。<br>但是，后半部分就很压抑，甚至看到有评论描述为比读《活着》更让人难受。<br>沈三白自诩的痴情，在现代人眼中可能真的是槽点满满。<br>只能说，时代变了。<br>但是，还是有一些不变的元素。<br>值得一读。</p>
+<h3 id="狼人杀，请开始你的表演"><a href="#狼人杀，请开始你的表演" class="headerlink" title="狼人杀，请开始你的表演"></a>狼人杀，请开始你的表演</h3><p>[网络小说]<br>2021.11.18<br>狼人杀也能写出爽文流，我是没想到的。<br>撇开恶俗的人物背景设计，单从狼人杀游戏的角度而言，挺不错的。<br>各种板子的狼人杀模式都轮流玩转了个遍，再加上主播配音极佳，效果杠杠的。<br>但是还是要吐槽几点：<br>1）由于是作者一个人的思维角度，一些游戏玩家的发言习惯用词存在明显重复的情况，听起来有点尬。<br>2）每一局都有刻意设计的感觉，像极了表演赛的刻意解说。往往朝着爽点去猜测结局，就是答案。但是呢，读者还真的就吃这一套，这该死的爽文的魅力。<br>3）过于强调逻辑这个词，反而把自己绕进去了。狼人杀是个盘逻辑的游戏，不假。但是，作者在中路偷换概念，把低概率的逻辑流贬低成了非逻辑，而且那一局的正确答案就是这个低概率的逻辑假设。<br>没有听完，后面还会继续听下去，刷新了我对狼人杀游戏的理解。<br>所谓的狼人杀游戏的盘逻辑，作者也承认，有正反两种，正逻辑可以解释的事反逻辑也可以强行解释。<br>理由就是我预判了你的预判。<br>比如狼人喜欢打格式，玩的各种骚套路，就是要走反逻辑。三狼警下倒勾预言家，狼踩狼踩狼等等。<br>狼人杀的盘逻辑，是完全的归纳假设推导出可能结果，不存在演绎法推理。<br>归纳来源于历史的游戏经验，而假设就是想一个主观的选择面进行先验条件的限定，最后推导出一个可能的答案。<br>从正面和反面能推导出两种截然不同的结果。<br>瞬间感觉这个游戏不再吸引我，毫无逻辑学上的严谨。<br>这跟现实的破案还有所不同，因为这里的狼人可以很轻易的违背大概率行为模式，而采用小概率套路。<br>这里的大小概率，只是相对而言，没有实际意义。<br>当有，游戏嘛，也不能太过较真，只是大家打发空闲时间的一种娱乐方式，仅此而言。<br>不要再跟我说它有多高深有多奥妙，真的够不上。<br>有一点，需要格外注意的，也是狼人杀游戏模式的禁忌，就是枪打出头鸟的潜规则。<br>如果一群人中有一个玩得特别溜，那么他大概率玩不下去。<br>是好人就大概率吃刀，是狼人就大概率吃验或者被点狼坑。<br>这游戏，一旦冒头，其余的玩家都会首先打死你，任你舌灿金花，也不会有游戏体验。<br>别跟我说有人站边很稳，我只能说，七分靠经验，三分凭运气。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fas fa-tags"></i>读书笔记</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/05/21/book/biancheng/" rel="next" title="边城"><i class="fas fa-angle-left"></i><span class="nav-title">边城</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/06/16/material/shijushouji/" rel="prev" title="诗句收录"><span class="nav-title">诗句收录</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%8C%E8%9B%87%E5%AF%86%E5%AE%A4"><span class="toc-text">双蛇密室</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BD%A9%E8%99%B9%E7%89%99%E5%88%B7"><span class="toc-text">彩虹牙刷</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#OOOOOOO%E6%9D%80%E4%BA%BA%E4%BA%8B%E4%BB%B6"><span class="toc-text">OOOOOOO杀人事件</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A0%E5%8F%AF%E8%A3%81%E7%BD%9A"><span class="toc-text">无可裁罚</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BE%A6%E6%8E%A2AI"><span class="toc-text">侦探AI</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%BF%B7%E5%AE%AB%E8%9B%9B"><span class="toc-text">迷宫蛛</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%B2%89%E9%BB%98%E7%9A%84%E7%97%85%E4%BA%BA"><span class="toc-text">沉默的病人</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BA%BA%E9%B1%BC"><span class="toc-text">人鱼</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC"><span class="toc-text">人间失格</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%B5%AE%E7%94%9F%E5%85%AD%E8%AE%B0"><span class="toc-text">浮生六记</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%8B%BC%E4%BA%BA%E6%9D%80%EF%BC%8C%E8%AF%B7%E5%BC%80%E5%A7%8B%E4%BD%A0%E7%9A%84%E8%A1%A8%E6%BC%94"><span class="toc-text">狼人杀，请开始你的表演</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

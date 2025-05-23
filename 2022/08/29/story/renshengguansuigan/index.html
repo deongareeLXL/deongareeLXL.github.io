@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>人生观随感 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/29/story/renshengguansuigan/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">人生观随感</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-08-29T23:36:01+08:00">2022-08-29 23:36:01</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>记录人生观随感。</p>
+<span id="more"></span>
+
+<p>就我个人多年的学校生活体验而言，我们的教育最大的作用还是在于知识传承，以及驯化人的动物性。考试的筛选只是表象，而真正考核的内容是考验学生能否压制住自己的野性，踏踏实实地做好知识传承的载体。至于传授的知识本身是否最为迫切需要，学生本人是否感兴趣，那并不是教育需要关注的点，也不是其核心目的所在。<br>这观点可能过于尖锐，但是我们不得不承认其有一定的真实性。就比如，为什么教育从来不传授财商知识。更重要的是，我们的教育，从来就没有尝试教会我们如何成为一个完整的人。<br>一个完整的人，按照人本主义的观点，应该是集认知、情感和直觉于一身的人，这样的人是不能生存于当前的学校体系中的。我们的教育目前还处在拼命灌输认知的阶段，不断让人压制情感，教人放弃直觉。努力把人培养成一具具理性的机器，然后在合适的年龄阶段，给人们拟定固定的角色，并附上对应的价值观体系，教人做一个好孩子、好学生、好父母、好员工、好公民，并强烈暗示着扮演好这些角色就是一种值得骄傲的事情。<br>在过去，信息流通很慢，这样的方式还能维系社会的运转，人们在极其有限的视野下，安安心心地扮演好各种角色，一辈子一晃眼也就过去了。但是，现在是信息爆炸的年代，只要你想，你可以接触各个方面的知识点。角色扮演而形成的固定价值观已经不能满足人们的精神世界需求，人们日益增长的情感需求的爆发再也无法被压制。<br>我不想扮演，我只想做自己，我想要努力成为一个完整的人。我并不认为扮演好各类角色就是一种幸福，那是旧社会给人们强加的价值观。就像鲁迅先生在热风里说的，中国的孩子，只要生，不管他好不好，只要多，不管他才不才。小的时候，不把他当人，大了以后，也做不了人。这样的孩子，这样的父母，不当也罢。教师们只会盯着学生的成绩单，资本家只想让打工人当牛马，腐败分子在社会的阴影面搅动风云。这些角色，着实谈不上有多少价值判定。<br>人的价值观不应该被任何外在标准定义，一个人的人生价值需要由他自己去评定。尽管这会招致很多的非议，但是，罗杰斯说过，成为自己值得付出巨大的代价。<br>鲁迅先生在热风里还有一段话是这样的：愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光，就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。此后如竟没有炬火：我便是唯一的光。<br>生活要有希望，那希望绝不是正在扮演什么角色，或者是将要扮演什么角色，而是自己可以有勇气成为那唯一的光。这份光并不是为了照亮他人，为得到他人的称赞，而更多的是，驱散自己内心的幽暗。<br>王小波说，我来这世界，不是为了繁衍后代，而是来看，花怎么开，水怎么流，太阳怎么升起，夕阳何时落下。我活在世上，无非想要明白些道理，遇见些有趣的事，生命是一场偶然，我在其中寻找因果。<br>尼采说，你要搞清楚自己人生的剧本，你不是你父母的续集，不是你子女的前传，更不是你朋友的外篇；对待生命你不妨大胆一点，因为最终你都要失去它。生命中最难的阶段，不是没有人懂你，而是你不懂你自己。<br>以上内容可能都比较抽象，并没有映射到具体的实际生活上。也许当时觉得很对，但是过后却留不下任何印象。因为这些更多的是宏观上的人生观和价值观，并没有落地到方法论。<br>人们很容易停留并陶醉于空洞的大道理之中，而忽视了方法论才是具体落实的重点。总是教人开心点，自信点，乐观一点，那其实意义极其有限。我们需要的是更具体的方案，针对着具体的生活。我们的一只脚必须落到到坚实的土地上，不然就会陷入到虚无主义中。<br>如何成为自己？<br>首先，你需要懂得，你自己是一个什么样的人，你是否能够清晰明确地描绘出自己的立体形象。不要觉得这是一件很容易的事情，这可能是一件无法完成的事。我们需要在一个宏观的视角，从不同的角度审视自身。我们需要用我们毕生的时间去认识自己。不仅仅是认识自己的外在表现、感知动向、情感需求、直觉、认知范围，也需要认识到自己与他人，与社会，与世间万物之间的关系。可以有所抉择侧重，但是需要形成认知体系。<br>然后，如果对自己有足够的认知，尝试接纳自己的一切现状。不管是高尚的，卑微的，粗俗的，鄙陋的，过去的，现在的，充满善意的，怀揣恶念的等等。自欺是一件容易但代价极大的事情，那是一切痛苦矛盾的根源。<br>最后，在此基础上，制定自己的计划，追寻自己的道。<br>别问我，道是什么，答案在每个人自己的心中。<br>如果你没有一点头绪，请回到前两步。<br>如果无法对自己有更深刻的认知，去看书，去经历，去思考。</p>
+<p>以上，只是目前状态的我的一部分认知倾向。<br>如果你说你乐于扮演世俗给你安排的角色，并以此为人生的路标，我觉得也未尝不可。我的道允许我承认不同的人生观。再者，做自己并不是一条简单的路，自由并不是那么容易把握的，那会让不够坚定的人迷茫，让不能慎独的人堕落。自由之路不会允许大部分人通过，因为这个社会的包容性是有一定限度的，只会允许小部分人在限定范围之外活动，而大部分人需要按部就班地生活，是谓之曰秩序。除非，能有敢教日月换新天的人来重塑秩序。</p>
+<p>村里第二快乐的是二舅，村里第一快乐的是一个傻子。当一个傻子并没有什么不好，地主家的傻儿子才是人生的最大赢家，至少现在的我还是认同的。之所以不能当一个傻子，只是因为外在条件不允许。能写出，～苟利国家生死以，家族传承我辈责～的人才，国民们的抨击更多是带着羡慕加嫉妒之情吧。<br>而之所以不愿意去世俗地生活，只是因为，那既不是我所擅长的，也不符合我的价值观导向。如果强行为之，必然大概率惨淡收场。这是我在客观分析了自己的现状下，谨慎地给出的结论。至于这算不算主观上的选择，我希望是吧。在极端行为主义定义中，你以为你做出了自己人生的选择，殊不知那都是一切外在内在因素所造成的必然。但我还是愿意去选择人本主义而相信人的主观性。我很贪婪，贪婪的最终目的，不在于物质或是荣誉，而在于其他的方面。我背负了很多，也不在于获得更多的名与利，而在于更大限度地不受限于物质，而在于见识一个更大的世界。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/topic/" rel="tag"><i class="fas fa-tags"></i>topic</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/08/14/travel/2022/jiabeijiaoyegongyuan/" rel="next" title="嘉北郊野公园"><i class="fas fa-angle-left"></i><span class="nav-title">嘉北郊野公园</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/08/30/book/authors/liucixing/" rel="prev" title="大刘作品集"><span class="nav-title">大刘作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>思考，快与慢—第一部分 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/ability/thinking1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">思考，快与慢—第一部分</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-12-22T09:46:20+08:00">2020-12-22 09:46:20</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ability/" itemprop="url" rel="index"><span itemprop="name">ability</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>作者丹尼尔·卡尼曼，心理学家，2002年度诺贝尔经济学奖获得者。<br>这书有一丢丢难读，有些概念有偏激之嫌。<br>需要取精华，去糟粕。<br>不需要仔细琢磨，快速翻看即可。</p>
+<span id="more"></span>
+
+<h3 id="双系统"><a href="#双系统" class="headerlink" title="双系统"></a>双系统</h3><p>大脑中有两套系统，即系统1和系统2。</p>
+<p>系统1的运行时无意识且快速的，不怎么费脑力，没有感觉，完全处于自主控制状态。</p>
+<p>系统2将注意力转移到需要费脑力的大脑活动上来，例如复杂的运算。系统2的运行通畅与行为、选择和专注等主观体验相关联。</p>
+<p>系统2的特征为：需要集中注意力，如若注意力分散，运作也会随之中断。</p>
+<p>每个人都意识得到注意力是有限的，在社会生活中我们也会为此作出妥协。当人们太过专注于某件事时，就会屏蔽掉其他事情，即使平时很感兴趣的事也不例外。</p>
+<p>你所想所做的大多数事情都是由系统1引起的，但当事情变得困难时，系统2便会接手难题。</p>
+<p>系统1和系统2的分工是非常高效的：代价最小，效果最好。系统1善于在熟悉情境中采取精确模式，作出准确的短期预测，遇到挑战时作出的第一反应是迅速且基本恰当的。但是，系统1会导致系统性错误，会把较难的问题简单化处理，对于逻辑学和统计学问题，系统1无法胜任。此外，系统1的一大局限就是我们无法关闭它（当我们看到一个认识的单词，你就在心里读出来了）。</p>
+<p>我们不可能没有成见，因为系统2可能对系统1产生的错误毫无所知。即使对可能发生的错误有所察觉，也需要系统2进行强有力的调控和积极的运作才有可能避免。然而，作为一种生活方式，时刻保持警觉性并不是一件好事，想要这样做也不现实。总是质疑自己的想法会使我们的生活非常枯燥乏味，因为系统2在代替系统1进行日常抉择时总是耗时很长且非常低效。最好的解决办法就是妥协：学会区别，在风险很高的时候，尽力避免这些错误。</p>
+<p>发现别人的错误总比发现自己的错误更容易。</p>
+<p>我们大脑的生活步调大多像是在悠闲地散步，有时候会变成慢跑，只有在极少数的情况下，才会如短跑冲刺。如果正在冲刺状态，就有可能对次要信息产生屏蔽。</p>
+<p>系统2和你家里的电表一样能力有限，但它们对超负荷的负载反应不同。电路超负荷会熔断跳闸，而大脑超负荷，其处理是有选择性且精确的：系统2会偏向最重要的活动，这个活动会得到所需的注意力，而其他的任务将会被忽视。</p>
+<p>当你对执行一个任务越来越熟练时，需要付出的努力程度就会降低。懒惰是人类的本性。</p>
+<p>从一个任务转换到另一个任务需要付出努力，在时间紧迫的情况下尤其如此。</p>
+<p>时间制约是人们付出努力的另一个驱动因素。一方面是因为节拍器，另一方面是因为记忆负荷。记忆减退的速率催促你的步调，迫使你在完全忘记这些信息前不断进行更新和演算。</p>
+<p>我们通常会分几个简单的步骤来执行任务，以避免大脑超负荷运行。我们可以将中间结果存储在长期记忆中或是记在纸上，而不是堆积在工作记忆中。</p>
+<h3 id="自我控制"><a href="#自我控制" class="headerlink" title="自我控制"></a>自我控制</h3><p>我最大的乐趣就是每天在山间小路上散步4英里，领略旧金山湾的风景。在行走中我并没有感受到精神压力，也没有内心的矛盾，更无须催促自己前行。以这个速度散步，我还能边走路边思考。事实上，我觉得散步能唤醒身体的感应，使大脑思维更加敏锐。</p>
+<p>加快散步速度会完全改变我的散步体验，因为加快速度会使我的连贯思考能力明显下降。要刻意保持更快的速度，将一连串想法加以总结的能力便相应下降了。</p>
+<p>心理学家米哈里·契克森米哈提出心流状态，是一种将大脑注意力毫无费力地集中起来的状态，这种状态可以使人忘却时间的概念，忘掉自己，也忘掉自身问题，这种状态所带来的的愉悦感非常吸引人，是完成任务的最优体验。</p>
+<p>心流巧妙地区分了两种努力形式：对任务的关注和对注意力的严格控制。集中注意力关注吸引人的事并不要求自我控制。因此，我们要将所有资源都用于手头上的任务才好。</p>
+<p>自我控制需要集中注意力，需要付出努力。心理学家罗伊·鲍迈斯特提出自我损耗。</p>
+<h3 id="脱口而出的错误答案"><a href="#脱口而出的错误答案" class="headerlink" title="脱口而出的错误答案"></a>脱口而出的错误答案</h3><p>系统2的一大主要功能是监督和控制思想活动以及由系统1引导的各种行为，使得一些想法直接体现在行动上，或者抑制或改变其他想法。</p>
+<blockquote>
+<p>当问题来临是，首先会由系统1搜寻解答。得到答案，系统2会选择进行验证。然而系统2是具有惰性的，因为系统2的运作需要消耗精神动力。当人们在注意力不集中的时候，就会选择相信系统1的答案。</p>
+</blockquote>
+<h3 id="联想的神奇力量"><a href="#联想的神奇力量" class="headerlink" title="联想的神奇力量"></a>联想的神奇力量</h3><p>联想激活的过程发生：事物在你的大脑中唤起的想法激发出许多其他的想法，而且这些联想的行为在你的大脑中迅速扩展开来。所有的联想都是瞬间发生的，形成一种认知、情感和生理反应的自我强化模式，这种模式变化多样又能形成一个整体，被称为联想的连贯性。</p>
+<p>你不只是用大脑思考，还用身体思考。</p>
+<p>人们一直都知道引起这些思维活动的机制是什么，这个机制就是联想。</p>
+<p>苏格兰哲学家大卫·休谟将联想的原则缩减为三个：相似性、时空相接以及因果关系。</p>
+<p>多数联想思维都是无声的，隐藏在有意识的自我之后的。</p>
+<p>你觉得自己很了解自己，但其实你错了。</p>
+<p>心理学家蒂莫西·威尔逊曾写过《我们是自己的陌生人》一书。现在你已经认识了自己身体中的那个陌生人，它也许在很多事情上都会为你做主，尽管你几乎从未察觉到它的存在。系统1带给你的各种印象经常会变成你的信念，而且是你作出选择和展开行动的动力源泉。它可以将当下的情形与新近发生的事情联系起来，再结合对近期的各种预期考虑，对发生在你身上或你身边的事作出心照不宣的解释。系统1包含了对这个世界的认知模式，能立即估测哪些事情是正常的，哪些是出人意料的，它是你作出快速直觉性判断的依据，且这种判断十有八九是准确的，而你的所有判断活动几乎都是在这一系统的指引下毫无意识地完成的。然而，系统1也是你直觉中很多系统性错误的根源。</p>
+<h3 id="直觉与错觉"><a href="#直觉与错觉" class="headerlink" title="直觉与错觉"></a>直觉与错觉</h3><p>系统1会自动进行数值评估，用于决定是否求援系统2。其中一个刻度盘测量的是认知放松度。</p>
+<p>放松则表示事情进展顺利，而紧张说明存在某种问题，需要系统2参与。认知紧张同时还会受当时的努力程度和未得到满足的需求的影响。</p>
+<p>并不是只有视觉才会产生错觉，记忆也容易产生错觉，并且这种现象更加普遍。</p>
+<p>你更加轻松地识别出你曾经见过的词，读出这些词的速度更快。</p>
+<p>引发认知放松和认知紧张的各种方法是可以相互转换的。你可能并不十分清楚是什么让认知更为放松或更为紧张。这也是熟悉感造成错觉的原因。</p>
+<p>一旦遇到不知怎样回答的问题，我只能靠认知放松来解决。如果某个答案看起来比较熟悉，我就猜测它可能就是正确答案。如果某个答案看起来比较生僻（或者比较极端），我便排除它。系统1让人产生熟悉感，系统2依靠系统1产生的这种熟悉感来作出正误判断。</p>
+<p>如果某个判断是基于认知放松或认知紧张作出的，那就一定会造成错觉。</p>
+<blockquote>
+<p>不会的题请选C。</p>
+</blockquote>
+<p>什么样的信息更容易让人信服？</p>
+<blockquote>
+<p>字迹清晰。<br>简单句比复杂句好。<br>易于记忆，比如押韵<br>如果你的信息是明显荒谬或是与接收方已知事实相左，很难有可信度<br>如果信息富有逻辑性、与你所持信念或偏好有联系，或是源自你信任和喜爱的信息源，你便会有认知放松感。（伪逻辑也行）</p>
+</blockquote>
+<h3 id="曝光效应"><a href="#曝光效应" class="headerlink" title="曝光效应"></a>曝光效应</h3><p>熟悉了，就会喜欢，这就是一种曝光效应。</p>
+<p>当重复的单词或图片迅速闪过，快到观察者根本没有意识到看见它们时，观察者同样还是更为喜欢重复率搞的单词或图片。</p>
+<p>当人们完全没有意识到自己看见了刺激物时，其曝光效应会更强。</p>
+<p>只要不断重复接触就能增加喜欢程度的现象，是一个及其重要的生理现象。这样的刺激最终会成为一个安全信号，而安全的就是好的。</p>
+<blockquote>
+<p>请开始你的<del>解说</del><code>洗脑</code>。</p>
+</blockquote>
+<h3 id="创新"><a href="#创新" class="headerlink" title="创新"></a>创新</h3><p>创新与出众的记忆力有关（创新是极佳的联想记忆）。</p>
+<p>心情不好的人无法准确完成直觉性任务，他们的猜测还没有随便选择的准确率高。心情显然能够影响系统1的运行：当我们不舒服和不开心时，就会丧失自己的直觉。</p>
+<p>好心情使系统2放松对行为的控制：当人们心情好时，直觉和创造力会增强，但也会放松警惕，易犯逻辑性错误。认知放松与愉快的感觉互为因果。</p>
+<h3 id="意料之外与情理之中"><a href="#意料之外与情理之中" class="headerlink" title="意料之外与情理之中"></a>意料之外与情理之中</h3><p>系统1的主要功能是维护并更新你个人世界的模式。这个模式会决定你对当下的理解和对未来的期望。</p>
+<p>一个插曲如果反复出现就可能不那么令人惊喜。</p>
+<p>系统对违反常态的问题觉察速度是惊人的，觉察过程也是微妙的。</p>
+<p>我们能相互交流，因为我们关于世界的知识和对文字的运用水平都相当。</p>
+<p>6个月大的婴儿会将许多事件及其续发事件看做有因果关系。这种因果关系并不依存于理性思维，它们是系统1的产物。</p>
+<p>人们总是很不恰当地将因果思考用于需要统计论证的情景中。然而，系统1并不具备这种推理能力，系统2通过学习可以进行统计性思考，但几乎没有人接受过必要的相关训练。</p>
+<blockquote>
+<p>推理能力？</p>
+</blockquote>
+<h3 id="光环效应"><a href="#光环效应" class="headerlink" title="光环效应"></a>光环效应</h3><p>喜爱某个人就会喜爱这个人的全部，包括你还没有观察到的方面，这种倾向叫做光环效应。</p>
+<p>光环效应注重第一印象。</p>
+<p>避免光环效应的一个原则：消除错误的关联。</p>
+<p>想要从大量证据来源中获取最有用的信息，你应设法使这些来源相互独立。</p>
+<h3 id="眼见为实的想法让我们仓促作出决定"><a href="#眼见为实的想法让我们仓促作出决定" class="headerlink" title="眼见为实的想法让我们仓促作出决定"></a>眼见为实的想法让我们仓促作出决定</h3><p>系统1善于提取当前激活的想法来构建最可信的故事情节，但它不会提取本系统中根本不存在的信息。</p>
+<p>衡量系统1是否成功的方法是它所创造的情境是否具有连贯性，而与故事所需数据的数量和质量关系不大。信息匮乏是常事，一旦出现这种情况，系统1则会仓促作出结论。</p>
+<p>系统1基本上对于引起印象和直觉的信息的质量和数量都不敏感。</p>
+<p>一个好故事最重要的是信息的前后一致性，而不是其完整性。知道得很少反而可以把已知的所有事物都囊括进连贯的思维模式中。</p>
+<blockquote>
+<p>有逻辑漏洞是硬伤，完整性可以靠脑补。</p>
+</blockquote>
+<p>眼见为实的理念有助于达成连贯性和认知放松的状态，从而使我们相信某个陈述是真实的。这一理念解释了我们能够快速思考的原因，解释了我们是如何弄清楚一个复杂领域中哪些信息片段的含义的。很多时候，我们拼凑出的连贯情节与事实是无限接近的，完全可以用来支持理性活动。</p>
+<blockquote>
+<p>但是，一旦我们脑补的部分与信息源有偏差，我们就会产生误解。那些能快速学习并领悟的人，肯定是脑补了大部分信息。</p>
+</blockquote>
+<h3 id="如何判断"><a href="#如何判断" class="headerlink" title="如何判断"></a>如何判断</h3><p>思维的发散性和强度匹配结合起来就可以解释为什么我们对很多自己不很了解的事情能够作出直觉性判断。</p>
+<p>遇到很难的目标问题时，如果脑海中马上出现了一些与之相关联且容易回答的启发式问题的答案，系统1通常便会采取这种替代的做法，采用替代问题的答案。</p>
+<p>启发法案例并不是精心挑选的，而是思维发散的结果。有时很好用，有时会导致严重的错误。</p>
+<p>思维发散性可以使懒惰的系统2摆脱很多繁重的工作。</p>
+<blockquote>
+<p>立体式启发：远处的物体看上去更高大<br>情感式启发：因为喜欢，所以认同。</p>
+</blockquote>
+<h3 id="系统1的特点"><a href="#系统1的特点" class="headerlink" title="系统1的特点"></a>系统1的特点</h3><ul>
+<li><p>生成印象、感觉和倾向；当系统2支持这些行为时，它们就会成为信仰、态度和意图。</p>
+</li>
+<li><p>自主且快速运行，只需付出较少努力，甚至不用付出努力，没有自主控制的感觉。</p>
+</li>
+<li><p>当发现（搜寻）特殊形式时，能接受系统2编控来调动注意力。</p>
+</li>
+<li><p>在接受了一定的训练后，能够做出熟练的回应，产生直觉。</p>
+</li>
+<li><p>为联想记忆激发出来的各种想法创造连贯形式。</p>
+</li>
+<li><p>将认知放松感和真理错觉、愉快的感觉以及放松的警惕感联系起来。</p>
+</li>
+<li><p>区分常态中令人惊奇之事。</p>
+</li>
+<li><p>推断原因和意图。</p>
+</li>
+<li><p>忽略歧义，按捺住心中的疑问。</p>
+</li>
+<li><p>夸大情感的一致性（光环效应）。</p>
+</li>
+<li><p>将注意力集中在当前的证据上，忽略不存在的证据（眼见即为事实）。</p>
+</li>
+<li><p>作一些基本估测。</p>
+</li>
+<li><p>通过常态和原型来表现集合，但不将两者看成一个整体。</p>
+</li>
+<li><p>通过测量确定不同程度对应的匹配物（比如音量的大小）。</p>
+</li>
+<li><p>真正去计算，而不是空想（思维的发散性）。</p>
+</li>
+<li><p>有时用简单点的问题替代难题（启发法）。</p>
+</li>
+<li><p>对变化的感知比对形态的感知更敏锐（前景理论）。</p>
+</li>
+<li><p>对可能性作出过高估计。</p>
+</li>
+<li><p>对数量越来越不敏感（心理物理学）。</p>
+</li>
+<li><p>对损失的反应比获得更强烈（损失厌恶）。</p>
+</li>
+<li><p>严密设计决策问题，分别进行讨论。</p>
+</li>
+</ul>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ability/" rel="tag"><i class="fas fa-tags"></i>ability</a>
+        
+        <a class="post-tag button" href="/tags/thinking/" rel="tag"><i class="fas fa-tags"></i>thinking</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2020/12/11/book/longzu/" rel="next" title="龙族"><i class="fas fa-angle-left"></i><span class="nav-title">龙族</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2020/12/26/story/suigan2020/" rel="prev" title="随感"><span class="nav-title">随感</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F"><span class="toc-text">双系统</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%87%AA%E6%88%91%E6%8E%A7%E5%88%B6"><span class="toc-text">自我控制</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%84%B1%E5%8F%A3%E8%80%8C%E5%87%BA%E7%9A%84%E9%94%99%E8%AF%AF%E7%AD%94%E6%A1%88"><span class="toc-text">脱口而出的错误答案</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%81%94%E6%83%B3%E7%9A%84%E7%A5%9E%E5%A5%87%E5%8A%9B%E9%87%8F"><span class="toc-text">联想的神奇力量</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%9B%B4%E8%A7%89%E4%B8%8E%E9%94%99%E8%A7%89"><span class="toc-text">直觉与错觉</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9B%9D%E5%85%89%E6%95%88%E5%BA%94"><span class="toc-text">曝光效应</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%88%9B%E6%96%B0"><span class="toc-text">创新</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%84%8F%E6%96%99%E4%B9%8B%E5%A4%96%E4%B8%8E%E6%83%85%E7%90%86%E4%B9%8B%E4%B8%AD"><span class="toc-text">意料之外与情理之中</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%85%89%E7%8E%AF%E6%95%88%E5%BA%94"><span class="toc-text">光环效应</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%9C%BC%E8%A7%81%E4%B8%BA%E5%AE%9E%E7%9A%84%E6%83%B3%E6%B3%95%E8%AE%A9%E6%88%91%E4%BB%AC%E4%BB%93%E4%BF%83%E4%BD%9C%E5%87%BA%E5%86%B3%E5%AE%9A"><span class="toc-text">眼见为实的想法让我们仓促作出决定</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD"><span class="toc-text">如何判断</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%B3%BB%E7%BB%9F1%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">系统1的特点</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

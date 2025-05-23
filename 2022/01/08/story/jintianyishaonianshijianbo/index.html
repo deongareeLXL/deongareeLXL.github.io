@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>金田一少年事件薄 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/08/story/jintianyishaonianshijianbo/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">金田一少年事件薄</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-01-08T14:04:26+08:00">2022-01-08 14:04:26</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>本格推理的经典。<br>以下是本格手法记录，含剧透，谨慎阅览。</p>
+<span id="more"></span>
+
+<h3 id="校园七大不可思议"><a href="#校园七大不可思议" class="headerlink" title="校园七大不可思议"></a>校园七大不可思议</h3><p>镜子戏法</p>
+<h3 id="悲恋湖传说"><a href="#悲恋湖传说" class="headerlink" title="悲恋湖传说"></a>悲恋湖传说</h3><p>暴风雪山庄，无手法，纯剧情<br>卡尔奈亚迪斯的木板</p>
+<h3 id="蜡人形城"><a href="#蜡人形城" class="headerlink" title="蜡人形城"></a>蜡人形城</h3><p>暴风雪山庄，蜡人障眼法<br>4亿元案件</p>
+<h3 id="怪盗绅士"><a href="#怪盗绅士" class="headerlink" title="怪盗绅士"></a>怪盗绅士</h3><p>少包二牡丹亭少女之谜的出处作品<br>还是原作更精彩</p>
+<h3 id="悲报鸟"><a href="#悲报鸟" class="headerlink" title="悲报鸟"></a>悲报鸟</h3><p>暴风雪山庄，地形诡计。<br>少包三天芒守护者那个类似。</p>
+<h3 id="恶魔组曲"><a href="#恶魔组曲" class="headerlink" title="恶魔组曲"></a>恶魔组曲</h3><p>语言谐音，死亡留言。</p>
+<h3 id="驒机关宅邸"><a href="#驒机关宅邸" class="headerlink" title="驒机关宅邸"></a>驒机关宅邸</h3><p>旋转门机关。<br>讲人性和家庭伦理的故事，很深刻。</p>
+<h3 id="歌剧院"><a href="#歌剧院" class="headerlink" title="歌剧院"></a>歌剧院</h3><p>录音制造时间差。</p>
+<h3 id="金田一少年的杀人"><a href="#金田一少年的杀人" class="headerlink" title="金田一少年的杀人"></a>金田一少年的杀人</h3><p>门轴连续接轨，不留脚印。（有点牵强）<br>玻璃掩饰破碎镜片。<br>剧情有点放飞自我。</p>
+<h3 id="幽灵客船"><a href="#幽灵客船" class="headerlink" title="幽灵客船"></a>幽灵客船</h3><p>轮船方向调转，日出日落混淆诡计</p>
+<h3 id="魔术列车"><a href="#魔术列车" class="headerlink" title="魔术列车"></a>魔术列车</h3><p>身首分离诡计。<br>高远遥一出场。<br>推荐。<br>少包二有类似背景设定。</p>
+<h3 id="雪夜叉传说"><a href="#雪夜叉传说" class="headerlink" title="雪夜叉传说"></a>雪夜叉传说</h3><p>冰桥缩短距离</p>
+<h3 id="塔罗山庄"><a href="#塔罗山庄" class="headerlink" title="塔罗山庄"></a>塔罗山庄</h3><p>塔罗牌上下颠倒。<br>兄妹设定，少包一有类似设定。</p>
+<h3 id="黑死蝶"><a href="#黑死蝶" class="headerlink" title="黑死蝶"></a>黑死蝶</h3><p>枯叶蝶视觉欺骗。<br>这个故事悲剧性太强，结尾也是在瞎编，玻璃心者慎观。</p>
+<h3 id="速水玲香诱拐"><a href="#速水玲香诱拐" class="headerlink" title="速水玲香诱拐"></a>速水玲香诱拐</h3><p>绑架昏迷制造时间差<br>这个案子节奏挺不错的，推荐。</p>
+<h3 id="法兰西银币"><a href="#法兰西银币" class="headerlink" title="法兰西银币"></a>法兰西银币</h3><p>门牌诡计</p>
+<h3 id="魔神遗迹"><a href="#魔神遗迹" class="headerlink" title="魔神遗迹"></a>魔神遗迹</h3><p>镜子反射光线寻宝，<br>不存在的人假死</p>
+<h3 id="墓场岛"><a href="#墓场岛" class="headerlink" title="墓场岛"></a>墓场岛</h3><p>两人作案</p>
+<h3 id="鬼火岛"><a href="#鬼火岛" class="headerlink" title="鬼火岛"></a>鬼火岛</h3><p>上吊假死</p>
+<h3 id="异人馆"><a href="#异人馆" class="headerlink" title="异人馆"></a>异人馆</h3><p>红色灯光制造视觉错误<br>同卵双胞胎的DNA相同<br>这个案子有点飘了</p>
+<h3 id="电脑山庄"><a href="#电脑山庄" class="headerlink" title="电脑山庄"></a>电脑山庄</h3><p>大型网友奔现<br>不熟悉的人互换身份，制造不在场证明</p>
+<h3 id="神圣的西洋情人节"><a href="#神圣的西洋情人节" class="headerlink" title="神圣的西洋情人节"></a>神圣的西洋情人节</h3><p>伪装窗景，让受害者传达错误地点，制造不在场证明。</p>
+<h3 id="荧幕的杀人鬼"><a href="#荧幕的杀人鬼" class="headerlink" title="荧幕的杀人鬼"></a>荧幕的杀人鬼</h3><p>利用放映带拖动钥匙，制造密室。</p>
+<h3 id="上海鱼人传说"><a href="#上海鱼人传说" class="headerlink" title="上海鱼人传说"></a>上海鱼人传说</h3><p>利用老虎带枪过安检。</p>
+<h3 id="天草财宝传说"><a href="#天草财宝传说" class="headerlink" title="天草财宝传说"></a>天草财宝传说</h3><p>让死者走错路，自己回到起点，制造时间差的不可能犯罪。<br>虽然不怎么合理。但作为故事还是不错的。<br>少包三的又一抄袭作。（一点点原创都木有，莫名失落）</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%8E%A8%E7%90%86%E5%89%A7/" rel="tag"><i class="fas fa-tags"></i>推理剧</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/01/02/travel/2022/ziranbowuguan/" rel="next" title="自然博物馆"><i class="fas fa-angle-left"></i><span class="nav-title">自然博物馆</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/01/16/story/jiaochuyibandelinghun/" rel="prev" title="交出一半的灵魂"><span class="nav-title">交出一半的灵魂</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%A0%A1%E5%9B%AD%E4%B8%83%E5%A4%A7%E4%B8%8D%E5%8F%AF%E6%80%9D%E8%AE%AE"><span class="toc-text">校园七大不可思议</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%82%B2%E6%81%8B%E6%B9%96%E4%BC%A0%E8%AF%B4"><span class="toc-text">悲恋湖传说</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%9C%A1%E4%BA%BA%E5%BD%A2%E5%9F%8E"><span class="toc-text">蜡人形城</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%80%AA%E7%9B%97%E7%BB%85%E5%A3%AB"><span class="toc-text">怪盗绅士</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%82%B2%E6%8A%A5%E9%B8%9F"><span class="toc-text">悲报鸟</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%81%B6%E9%AD%94%E7%BB%84%E6%9B%B2"><span class="toc-text">恶魔组曲</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%A9%92%E6%9C%BA%E5%85%B3%E5%AE%85%E9%82%B8"><span class="toc-text">驒机关宅邸</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%AD%8C%E5%89%A7%E9%99%A2"><span class="toc-text">歌剧院</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%87%91%E7%94%B0%E4%B8%80%E5%B0%91%E5%B9%B4%E7%9A%84%E6%9D%80%E4%BA%BA"><span class="toc-text">金田一少年的杀人</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B9%BD%E7%81%B5%E5%AE%A2%E8%88%B9"><span class="toc-text">幽灵客船</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%AD%94%E6%9C%AF%E5%88%97%E8%BD%A6"><span class="toc-text">魔术列车</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%9B%AA%E5%A4%9C%E5%8F%89%E4%BC%A0%E8%AF%B4"><span class="toc-text">雪夜叉传说</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A1%94%E7%BD%97%E5%B1%B1%E5%BA%84"><span class="toc-text">塔罗山庄</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%BB%91%E6%AD%BB%E8%9D%B6"><span class="toc-text">黑死蝶</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%80%9F%E6%B0%B4%E7%8E%B2%E9%A6%99%E8%AF%B1%E6%8B%90"><span class="toc-text">速水玲香诱拐</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%B3%95%E5%85%B0%E8%A5%BF%E9%93%B6%E5%B8%81"><span class="toc-text">法兰西银币</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%AD%94%E7%A5%9E%E9%81%97%E8%BF%B9"><span class="toc-text">魔神遗迹</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A2%93%E5%9C%BA%E5%B2%9B"><span class="toc-text">墓场岛</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%AC%BC%E7%81%AB%E5%B2%9B"><span class="toc-text">鬼火岛</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BC%82%E4%BA%BA%E9%A6%86"><span class="toc-text">异人馆</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%94%B5%E8%84%91%E5%B1%B1%E5%BA%84"><span class="toc-text">电脑山庄</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A5%9E%E5%9C%A3%E7%9A%84%E8%A5%BF%E6%B4%8B%E6%83%85%E4%BA%BA%E8%8A%82"><span class="toc-text">神圣的西洋情人节</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%8D%A7%E5%B9%95%E7%9A%84%E6%9D%80%E4%BA%BA%E9%AC%BC"><span class="toc-text">荧幕的杀人鬼</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%8A%E6%B5%B7%E9%B1%BC%E4%BA%BA%E4%BC%A0%E8%AF%B4"><span class="toc-text">上海鱼人传说</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A4%A9%E8%8D%89%E8%B4%A2%E5%AE%9D%E4%BC%A0%E8%AF%B4"><span class="toc-text">天草财宝传说</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

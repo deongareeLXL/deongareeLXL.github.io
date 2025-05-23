@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>2023小结 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/02/06/story/summary2023/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">2023小结</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2024-02-06T23:10:07+08:00">2024-02-06 23:10:07</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>每年总结都感慨，时间过的真是快；人生何处寻自在，苦思冥想牢笼来。</p>
+<span id="more"></span>
+
+<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>去年留作业，关于前世美好。嗯，感觉不是当下的我需要探究的课题。青年人应该前行，回忆前世的任务还是留给老年去思考吧。再然后是执行力，感觉还可以，执行力有的很大的提升。多大呢，也不太大，反正是有提升的吧。毕竟提升的空间有限，也不能真的成为执行机器吧。</p>
+<p>然后开始对今年的内容做一做流水账记录吧。<br>首先，哲学书止步第一章。应该还不到研读哲学的阶段吧。<br>所幸书虽然读得不咋滴，路还是走了挺多，今年应该是出行次数最多的年份了吧。去了的那些地方，多多少少有点记录，当然也有没记录上的，毕竟也不能总把记录当任务，把打卡当过程。没记录的，就让它随意吧，或许会消散在未来的记忆中，也不觉得可惜。<br>总结了推理和学习以及延迟满足，今年的话题讨论不太多，更多的是具体的生活体验，反而对抽象事物的感概少了很多，当然，也就少了很多有意义的思考，同时也少了些许苦闷，活得没那么累了。至于之后还会不会继续保持这个节奏，who knows。<br>推理的总结，应该还能继续补充。关于学习的论述，个人认为是今年最佳了，我把这么多年关于学习的领悟，都写到了这篇文章中，应该会成为之后重要的回忆复习资料。至于延迟满足一文，写得比较悲观。嗯，还是应该更积极一点。毕竟，写作最大的长处，就是能在文字上自我欺骗一下了。至于欺骗后的果是善是恶，倒也没那么重要。<br>之所以今年想得少了，更多地是受到了罗素的哲学观点的影响吧。罗素在《幸福之路》一书中的观点就是，想要获得幸福，就不能过分关注自己，要保持意识潜意识的一致性。不关注自己，应该很容易理解，但是想要保持意识潜意识的一致性，应该还有一定距离。要能准确把握到自己的潜意识，应该不是那么简单。<br>今年的推理作品也看了不少，最佳观感还是今村弘昌的《凶人邸》，断头传递钥匙的觉悟，实在是，太热血了，颇有巨人即视感。《首无》也不错，就是在合理性上差了点味道。今年读了很多设定系推理，比如白井老师的作品，感觉很一般。我真的不是很喜欢炫智的推理。弱化人物刻画，重诡计的作品，在我这里是不太能接受的。推理小说的上下限实在差距太大了，以后阅读之前还是要先做好调研吧，那些嬉皮笑脸的人给你推荐的书，能不读就不读了。<br>然后今年又关注到的那个老生常谈的伦理话题，并get到简短的表述，“基因装上子弹,性格瞄准目标,环境扣下扳机”。概括的还是挺中肯的。社会中的不稳定因素群体都是由三部分决定的，基因、性格和环境。这里基因和性格感觉有点重复。<br>活得越久，越发现环境对人的影响还是挺大的，越发觉得悲观也就是必然的了。如何从悲观中走出来，很重要的吧。就像罗曼·罗兰说的，世界上只有一种真正的英雄主义，那就是认清了生活的真相后，依然热爱生活。<br>今年的计划表，看了下，比较惨，后半年基本等于没有计划。当然，没计划也有没计划的好，没那么累吧，心宽体胖,减肥自然就不太可能了。后面还是要敲响警钟。<br>流水帐记完了，今年也挑几个话题絮叨絮叨。</p>
+<h3 id="独孤感"><a href="#独孤感" class="headerlink" title="独孤感"></a>独孤感</h3><p>当代中国人，生活在地域广阔而地域间发展不均匀的国家，能感知到某种意识层面上的割裂感。一大群人，在外漂泊，为大城市添砖加瓦。远离了从小生活的地方，远离了熟悉的人和事物。这样的人是没有归属感的。从大家族的拆分，到小家庭的聚少离多。支撑中国人的信仰从祖先崇拜到家庭传承，而现在，几乎都被被淘汰了，剩下的大都是物理上的孤独。而这份孤独，需要狂欢和各种感官刺激来加以缓解，这样的缓解，如饮鸩止渴，无法真正意义上地滋养内心。<br>其实，从某种视角观测，人这一辈子可能都在对抗孤独。不管是埋头思考的自娱自乐，还是人潮涌动的熙熙攘攘。从本质上讲，都是在阻止自己陷入孤独的虚无中去。这里的独孤不单单指物理上的形单影只，那只是表象。在心理学里，孤独指意识到自己不被理解<code>不被倾听</code>不被需要时引发的某种不好的情绪。<br>当然，孤独感，这不应该是青年人该有的体验，因为青年人是最大概率不需要上帝的人群，他们年富力强，精力充沛，有各种可以排遣孤独的媒介。但是，这并不代表着青年人不会感到孤独，只是还不懂得孤独，如此而已。</p>
+<p>生命的意义，就我理解而言，可以由感知和创造组成。如果你能够忍受无尽的虚无，那你同时也将失去生命的全部，变成行尸走肉，变成冰冷机器。<br>如何去缓解当前信息社会，给普通人带来的无法摆脱的孤独感。我觉得还是要从根本出发，抵制那些海量的信息向你涌来。多读书，远离浮躁喧嚣，多亲近大自然，多去感知什么才是真实的世界，什么才能滋养你的心灵。<br>尽管主流的社会，还是那些投机倒把的人，夸夸其谈的人，在呼风唤雨，在指点江山。天天鼓噪着信息差，天天追寻着市场热点。<br>殊不知，太阳底下从来就没有新鲜事。</p>
+<h3 id="孩童的快乐和成年人的麻木"><a href="#孩童的快乐和成年人的麻木" class="headerlink" title="孩童的快乐和成年人的麻木"></a>孩童的快乐和成年人的麻木</h3><p>儒家文化的传承者，背负了太多，活得多少有点沉重了。有很多客观因素，简单概述就是文化背景加经济发展而产生的畸变儿。<br>中国的传统文化，向来都是把人困入枷锁中。中国的文化，从来都是所谓的虚假式的集体文化。一方面，很少去承认普通人的价值，让普通人的意志几乎无法生存，要求个人要无条件服从集体。而另一方面，却又在明面上大行帝王之术，摆弄权术之争。这种伪集体主义，造就了普通民众的心智恶化。无法去跟站在道德至高点的大集体去抗争，普通人就只能去争一些蝇头小利，产生了中国老百姓独有的私的观念。个人的意志无法生存，那就让支配与被支配成为标配。我不是去全盘否定中国的传统文化，我只是分析中国传统文化的一些劣根性。这样一种根深蒂固的庞大文化体系，如果想要加以现代化改造，也不是一朝一夕就能办到的。<br>再一点就是，中国人几乎不信教，这也客观导致了中国人的不幸福。没有信仰的人生，很难在不平等的待遇中收获幸福。如果生活对你处处不公，至少你能祈求上帝的庇佑，然而你却不信上帝，那还能期盼谁去拯救。上帝是否存在，我们不得而知。但是信仰上帝确实是能给人带来某种神奇的力量，支撑人们熬过艰苦的岁月。</p>
+<p>在这里，我无心批判，也无力去改变。我只想讲一些别的东西，一些被历史洪流冲击着的普通人，能够够得着的一些实相。</p>
+<p>回首过去十年，中国老百姓的生活质量，确实是肉眼可见的提升。至少，现在不会有人忍饥挨饿。<br>为什么，人们的生活质量上升，幸福感却并没有与日俱增。<br>很大程度上，是因为信息的快速传播。当人们的大脑接受了过多的信息，就会产生焦虑、不安、抑郁等等不好的情绪。资本会不断给普通人制造焦虑，因为焦虑的人，才会露出破绽，才有利可图。</p>
+<p>从某种程度上而言，成年人在成为人这件事上，做得可能还不如孩童。社会化的加剧，服从性测试的不断考验，让成年人逐渐被驯化。整个社会总是会在合适的时机给成年人附加一层无形的牢笼，多少人已经将全部的灵魂交托出去，成为了一具空壳。</p>
+<p>今年的旅途中，我曾不止一次观测到，孩童的快乐。那是一种无拘无束的快乐，也是一种极其简单的快乐。亲近大自然，用全部的感知去探测这个世界。而成年人，对大多数事物，总是兴趣寥寥。要么摆出理所当然的先知态度、要么秉持成年人矜持的优秀品质、要么被支配于逐渐膨胀的内心欲望。</p>
+<p>成年人的麻木需要被遏止。尽管你有一万种理由控诉生活的苦难，工作的艰辛，但是没有人能逼迫你交出全部的灵魂。努力留存自己剩余的一半灵魂，这很重要。</p>
+<p>如果有一天，不工作了。那并不意味着可以把所有的欲望都抛出来，意味着所有的自由幸福美好的到来。我倒觉得，不工作的人生，反而更难驾驭。完全没有方向感的人很容易就迷失了。不工作最大的意义，是让我们有更多的时间，去感知，去创造，去完成我们想做而受限于时间的未完任务清单。</p>
+<h3 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h3><p>人类文明还没有发展到消灭竞争的程度，甚至于竞争还是跟随着经济周期，在起伏变化。<br>我们从小接受的教育是，我们要良性竞争，不要恶性竞争；我们要跟自己比，不要跟他人比。前者是废话，后者是假话。<br>竞争是良性还是恶性，完全是由环境决定的，而能影响环境的，只能是更上层的东西。对于普通人而言，你只能去被动接受竞争，不管它是良性还是恶性的。如果环境需要你们恶性竞争，那你就该去恶性竞争。因为你只能适应规则，你无法改变规则，当你遇到囚徒困境，当你面临零和博弈，不要怨天尤人，不要愤愤不平，更不要苛责自己，因为大概率那不是你的错。<br>至于只跟自己比，不跟他人比。我更愿意理解为善意的谎言。简单的例子，你平时考50分，这次考60分，就能证明你进步了么，明显不能。你只能跟周围的参照去比较，才能看出你的程度在哪里。极端一点，如果周围的人都进步了，但是你还在原地打转儿。抱歉，你退步了。这就是现实竞争的残酷性。但是人们又不能去刻意强调这种残酷性，还要想方设法弱化这种残酷性，而让整个体系不至于动荡。否定残酷性的存在，解决不了根本问题。就像高考，人人都加10分，毫无意义。追根究底，我们的教育，还是筛选式的教育，而不是培养式的。<br>再看看体育竞技，我就没见过严格遵循比赛规则的竞技比赛。甚至于把握犯规的尺度也成了竞技的一部分。友谊第一，比赛第二的口号，现在无人问津。大家都默认了体育竞技的残酷性。<br>既然竞争无法消灭，人类该如何自处，才能在竞争日益加剧的时代生存下去呢。首先，自然是润，润到竞争不那么激烈的地方。然后就是努力拓新，去创造更大的蛋糕。从某种程度上而言，资本的侵略，就是在抢食更大的蛋糕。如果有足够大的新市场，存量竞争就会大大降低。最后，我们也要敢于竞争，善于竞争。看清事物的本质，遵循自己的内心，努力在当前的争与不争之间做出抉择，不要为了争而争，也不要为了躺而躺。</p>
+<h3 id="专注"><a href="#专注" class="headerlink" title="专注"></a>专注</h3><p>现代人被各种信息淹没，很难再做到专注了。而人的大脑，事实上只能进行单线程任务，频繁切换上下文，会导致效率下降，并且会造成损害。<br>比如，吃饭的时候，习惯去打开视频。工作的时候，必须要听着歌。这种看似享受了双倍的时间，加大了时间的利用率。但是，对于个人的长期体验而言，是有极大害处的。这会让我们的大脑不能够专注于一件事件上，从而无法去做更具创造力的突破。就我个人体验而言，慢下来反而更能激发我们的灵感，让我们能超常发挥，挖掘出自己更多的潜力。<br>现在人的欲望在资本的推波助澜下，时时刻刻被放大着。广告词会时时刻刻提醒你，现在就要，立刻就好，马上能行。牛马，一刻也不该停下。<br>多读书，多思考，多去专注于一件事情，发挥你的五感，不要急迫，无需催促，以平时的行进速度前行。你会感觉到，这才是真真切切地活着。那种被推搡着，被胁迫着的奔跑，长期而言，会让你的生活不再属于你自己。</p>
+<h3 id="衰老"><a href="#衰老" class="headerlink" title="衰老"></a>衰老</h3><p>很少照镜子。所以也不知道自己的衰老程度如何。但是，某一天。在同事的脸上，居然看到了一张急剧衰老的面庞。<br>有点悲哀，有点难过。可能我在他们眼中也会是这样一种形象的吧。<br>短短几年的时候，就能看到衰老的现象。难道是因为这几年正是人类容易衰老的阶段么。应该不是的吧。<br>之前还在感慨，年纪轻轻的小伙子们，已然一头白发。<br>这次的感触，却比白发更为深切。<br>我们害怕衰老么。<br>也不尽然。<br>我们并不害怕衰老这个概念描述的具体实相。<br>我们害怕的是将要衰老并已经能看到衰老进程时，引发的某种刻在基因里的不好的感觉。<br>衰老无法阻止，因为，这是人类社会最后的公平了。<br>但是，还是希望，衰老能慢一点，能让人再多呼吸一下青春的气息吧。</p>
+<h3 id="关于理想的生活"><a href="#关于理想的生活" class="headerlink" title="关于理想的生活"></a>关于理想的生活</h3><p>没有经历过，永远不知道自己是不是喜欢某种生活。<br>也许人类就永远不会满足。<br>但是，目前阶段总是能有一个大概的轮廓。<br>这是肯定的。</p>
+<p>首先，要选一个有山有水的地儿。<br>房子不需要太大，但是需要有自己的书房。<br>平时能尝试去研究一些有趣的事情。<br>然后我还想要自己写写书。<br>偶尔能出行几次，看看远方的世界。</p>
+<p>存在的最大的不确定性就是，如果不工作了，生活会怎样。<br>有可能是短时间的狂欢加上之后的长期的虚无。<br>这不是我想要的。<br>人生是一场自我的修行。<br>当我决定脱去某层枷锁时，<br>我要能明白我自己能把握住这份自由时间的掌控。<br>具体还有待斟酌规划。</p>
+<h3 id="来年规划"><a href="#来年规划" class="headerlink" title="来年规划"></a>来年规划</h3><p>1.多读书，多记录<br>2.早起早睡<br>3.控制一下体重</p>
+<h3 id="今年书单"><a href="#今年书单" class="headerlink" title="今年书单"></a>今年书单</h3><p>2024.1.13 《六个说谎的大学生》浅仓秋成 推荐<br>2024.2.13 《周四谋杀俱乐部》 理查·欧斯曼 不评价<br>2024.5.15 《一朵桔梗花》 连城三纪彦 推荐</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag"><i class="fas fa-tags"></i>年度总结</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/12/28/book/authors/xiaolintaisan/" rel="next" title="小林泰三作品集"><i class="fas fa-angle-left"></i><span class="nav-title">小林泰三作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2024/03/17/travel/2024/langxiajiaoyegongyuan/" rel="prev" title="廊下郊野公园"><span class="nav-title">廊下郊野公园</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%8B%AC%E5%AD%A4%E6%84%9F"><span class="toc-text">独孤感</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%AD%A9%E7%AB%A5%E7%9A%84%E5%BF%AB%E4%B9%90%E5%92%8C%E6%88%90%E5%B9%B4%E4%BA%BA%E7%9A%84%E9%BA%BB%E6%9C%A8"><span class="toc-text">孩童的快乐和成年人的麻木</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%AB%9E%E4%BA%89"><span class="toc-text">竞争</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%93%E6%B3%A8"><span class="toc-text">专注</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%A1%B0%E8%80%81"><span class="toc-text">衰老</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%85%B3%E4%BA%8E%E7%90%86%E6%83%B3%E7%9A%84%E7%94%9F%E6%B4%BB"><span class="toc-text">关于理想的生活</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9D%A5%E5%B9%B4%E8%A7%84%E5%88%92"><span class="toc-text">来年规划</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BB%8A%E5%B9%B4%E4%B9%A6%E5%8D%95"><span class="toc-text">今年书单</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

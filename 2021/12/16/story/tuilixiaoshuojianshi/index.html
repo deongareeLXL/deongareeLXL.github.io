@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>推理小说简史 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/16/story/tuilixiaoshuojianshi/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">推理小说简史</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-12-16T12:51:48+08:00">2021-12-16 12:51:48</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>推理小说简史介绍，资料大部分来源于午夜文库主编褚盟的推理大师课。（侵删）</p>
+<span id="more"></span>
+
+<h3 id="开山之作"><a href="#开山之作" class="headerlink" title="开山之作"></a>开山之作</h3><p>埃德加·爱伦·坡<br>推理文学的五大基本模式<br>《莫格街凶杀》— 密室作案模式<br>《玛丽·罗热疑案》— 安乐椅模式<br>《金甲虫》— 密码解析模式<br>《就是你》—障眼法模式<br>《失窃的信》— 心理盲区模式<br>第一位侦探：奥古斯特·杜宾</p>
+<h3 id="三位粉丝"><a href="#三位粉丝" class="headerlink" title="三位粉丝"></a>三位粉丝</h3><p>查尔斯·狄更 推动推理小说的人文主义关怀<br>威尔基·柯林斯 第一篇长篇推理小说 《月亮宝石》<br>埃米尔·加博里奥 勒考克警探 推理方法论</p>
+<h3 id="最伟大的推理小说作家"><a href="#最伟大的推理小说作家" class="headerlink" title="最伟大的推理小说作家"></a>最伟大的推理小说作家</h3><p>阿瑟·柯南道尔 福尔摩斯的创造者<br>《血字的研究》《四签名》《巴斯克维尔的猎犬》《波西米亚丑闻》</p>
+<h3 id="物证推理"><a href="#物证推理" class="headerlink" title="物证推理"></a>物证推理</h3><p>奥斯汀·弗里曼 侦探桑戴克<br>CSI开创者</p>
+<h3 id="心证推理"><a href="#心证推理" class="headerlink" title="心证推理"></a>心证推理</h3><p>基尔伯特·切斯特顿 布朗神父</p>
+<h3 id="短篇推理的黄金时代"><a href="#短篇推理的黄金时代" class="headerlink" title="短篇推理的黄金时代"></a>短篇推理的黄金时代</h3><p>欧内斯特·威廉·赫尔南 神偷拉菲兹 （柯南·道尔妹夫）<br>法国作家莫里斯·勒布朗 亚森·罗宾系列 （怪盗）<br>英国作家欧内斯特·布拉玛 马科斯·卡拉多斯系列 （盲人）<br>英国作家奥希兹女男爵 角落里的老人系列 （评论者）<br>美国作家杰克·福翠尔 《逃出13号牢房》 奥古斯都·S.F.X·凡杜森教授系列 （思考机器）<br>《遗失的镭》 死于泰坦尼克号</p>
+<h3 id="推理女王"><a href="#推理女王" class="headerlink" title="推理女王"></a>推理女王</h3><p>阿加莎·克里斯蒂<br>处女作《斯泰尔斯庄园奇案》<br>《无人生还》《东方快车谋杀案》《罗杰疑案》《ABC谋杀案》</p>
+<h3 id="奎因式推理"><a href="#奎因式推理" class="headerlink" title="奎因式推理"></a>奎因式推理</h3><p>埃勒里·奎因<br>处女作《罗马帽子之谜》<br>《希腊棺材之谜》《X的悲剧》</p>
+<h3 id="密室大师"><a href="#密室大师" class="headerlink" title="密室大师"></a>密室大师</h3><p>约翰·狄克森·卡尔 《三口棺材》<br>侦探：基甸·菲尔 亨利·梅里维尔</p>
+<h3 id="推理十诫和二十条"><a href="#推理十诫和二十条" class="headerlink" title="推理十诫和二十条"></a>推理十诫和二十条</h3><p>英国人隆纳德·诺克斯的推理十诫：<br>1 The criminal must be someone mentioned in the early part of the story, but must not be anyone whose thoughts the reader has been allowed to follow.<br>罪犯必须是故事开始时出现过的人，但不得是读者可以追踪其思想的人。<br>2 All supernatural or preternatural agencies are ruled out as a matter of course.<br>侦探不能用超自然的或怪异的侦探方法<br>3 Not more than one secret room or passage is allowable.<br>犯罪现场不能有超过一个秘密房间或通道<br>4 No hitherto undiscovered poisons may be used, nor any appliance which will need a long scientific explanation at the end.<br>作案时候，不能使用尚未发明的毒药，或需要进行深奥的科学解释的装置<br>5 No Chinaman must figure in the story.<br>不准有中国人出现在故事里<br>6 No accident must ever help the detective, nor must he ever have an unaccountable intuition which proves to be right.<br>侦探不得用偶然事件或不负责任的直觉来侦破案件<br>7 The detective must not himself commit the crime.<br>侦探不得成为罪犯<br>8 The detective must not light on any clues which are not instantly produced for the inspection of the reader.<br>侦探不得根据小说中未向读者提示过的线索破案<br>9 The stupid friend of the detective, the Watson, must not conceal any thoughts which pass through his mind; his intelligence must be slightly, but very slightly, below that of the average reader.<br>侦探的笨蛋朋友，比如华生，必须将其判断毫无保留地告诉读者，此人的智力须轻微低于读者的平均水平。<br>10 Twin brothers, and doubles generally, must not appear unless we have been duly prepared for them.<br>小说中如果有双胞胎或长相极为相似的人时，必须提前告诉读者</p>
+<p>范达因的侦探小说二十条准则</p>
+<h3 id="反推理"><a href="#反推理" class="headerlink" title="反推理"></a>反推理</h3><p>记者本特利《特伦特最后一案》（切斯特顿的好友）<br>侦探没有失误，但结论与事实相差很大。<br>事实往往是由一些随机的、意外的、无逻辑的行为决定的。<br>因此，侦探的推理在现实中完全没有意义。<br>东野圭吾 《名侦探守则》</p>
+<h3 id="本格推理"><a href="#本格推理" class="headerlink" title="本格推理"></a>本格推理</h3><p>黄金时代的推理小说，西方称为古典主义推理。日本称为本格推理。<br>全球经融危机和第二次世界大战摧毁黄金时代的推理文学。<br>最神奇的小说<br>安东尼·伯克莱 《毒巧克力命案》</p>
+<h3 id="硬汉推理"><a href="#硬汉推理" class="headerlink" title="硬汉推理"></a>硬汉推理</h3><p>硬汉推理三大家：<br>达希尔·哈米特 《血腥的收获》《马耳他之鹰》《瘦子》<br>雷蒙德·钱德勒 《漫长的告别》<br>罗斯·麦克唐纳 《移动飞靶》《地下人》</p>
+<p>卡约·戴利·金 海陆空和ABC六部长篇 《海上疑云》《铁路奇案》《远走高飞》《无忧之尸》《过硬的不在场证明》《百慕大葬礼》<br>詹姆斯·凯恩 《邮差总按两次铃》《双重赔偿》<br>当代硬汉推理第一人<br>劳伦斯·布洛克 《八百万种死法》</p>
+<h3 id="间谍小说"><a href="#间谍小说" class="headerlink" title="间谍小说"></a>间谍小说</h3><p>伊恩·弗莱明 007系列<br>约翰·勒卡雷 《柏林谍影》</p>
+<h3 id="当代欧美推理"><a href="#当代欧美推理" class="headerlink" title="当代欧美推理"></a>当代欧美推理</h3><p>康奈尔·伍尔里奇 《后窗》推理作品影视化<br>派翠西亚·海史密斯 《火车怪客》雷普利系列<br>杰弗里·迪弗 少女鲁伊系列 约翰·佩勒姆系列 林肯·莱姆系列 凯瑟琳·丹斯系列<br>史迪格·拉森 千禧年三部曲 《龙文身的女孩》《玩火的女孩》《捅马蜂窝的女孩》<br>丹·布朗 《达·芬奇密码》“只比读者高半格——平时没人会读你的小说，高一格会把他们吓跑——因此只能比读者高半格”</p>
+<h3 id="推理小说入日本"><a href="#推理小说入日本" class="headerlink" title="推理小说入日本"></a>推理小说入日本</h3><p>中滨万次郎 引入推理小说<br>黑岩泪香 翻译西方推理作品<br>五个阶段<br>1923-1945 启蒙<br>1946-1956 本格<br>1957-1986 社会<br>1987-1998 新本格<br>1999-至今 多元</p>
+<h3 id="日本推理鼻祖"><a href="#日本推理鼻祖" class="headerlink" title="日本推理鼻祖"></a>日本推理鼻祖</h3><p>江户川乱步 《D坂杀人事件》《幻影城主》<br>明智小五郎系列<br>创作第二阶段<br>有奇异味道的小说 《孤岛之鬼》《帕诺拉马岛奇谈》</p>
+<h3 id="四峰四奇"><a href="#四峰四奇" class="headerlink" title="四峰四奇"></a>四峰四奇</h3><p>江户川乱步开创的启蒙时代<br>横沟正史开创的本格推理时代<br>松本清账开创的社会推理时代<br>绫辻行人开创的新本格推理时代<br>四奇<br>小栗虫太郎 《黑死馆杀人事件》阅读量很大的作家 显学和隐学<br>梦野久作 《脑髓地狱》意识流作品<br>中井英夫 《献给虚无的供物》<br>竹本健治 《匣中失乐》</p>
+<h3 id="日本推理文学先行者"><a href="#日本推理文学先行者" class="headerlink" title="日本推理文学先行者"></a>日本推理文学先行者</h3><p>法律型推理小说<br>浜尾四郎 《杀人鬼》<br>甲贺三郎 《琥珀烟斗》《支仓事件》<br>山本禾太郎 《小迪事件》<br>小酒井不木 《愚人之毒》<br>木木高太郎 《愚人》<br>大下宇陀儿 《金嘴香烟》<br>大阪圭吉 《葬礼火车头》</p>
+<h3 id="日本本格推理时代开创者"><a href="#日本本格推理时代开创者" class="headerlink" title="日本本格推理时代开创者"></a>日本本格推理时代开创者</h3><p>横沟正史<br>赌爷狂魔 金田一系列<br>日本推理小说NO. 1 《狱门岛》<br>《犬神家族》《八墓村》《恶魔吹着笛子来》《蝴蝶杀人事件》《本阵杀人事件》</p>
+<h3 id="战后五人男"><a href="#战后五人男" class="headerlink" title="战后五人男"></a>战后五人男</h3><p>岛田一男 《社会部记者》<br>香山滋 哥斯拉<br>大坪砂男 《天狗》<br>山田风太郎 《眼中的恶魔》《甲贺忍法帖》忍者热 日本的金庸<br>高木彬光 《刺青杀人事件》《破解裁判》侦探神津恭介系列</p>
+<h3 id="文学派推理"><a href="#文学派推理" class="headerlink" title="文学派推理"></a>文学派推理</h3><p>土屋隆夫 《天狗的面具》<br>鲇川哲也 《黑色皮箱》 时刻表诡计<br>日影丈吉 《狐之鸡》</p>
+<h3 id="社会派推理"><a href="#社会派推理" class="headerlink" title="社会派推理"></a>社会派推理</h3><p>社会推理三大家<br>松本清张 《砂器》 《点与线》 《眼之壁》《零的焦点》<br>笹泽左保 《不速之客》<br>佐野洋 《透明受胎》 日本的阿西莫夫</p>
+<h3 id="日本社会女推理作家"><a href="#日本社会女推理作家" class="headerlink" title="日本社会女推理作家"></a>日本社会女推理作家</h3><p>仁木悦子 《只有猫知道》<br>夏树静子 《丧失》X的悲剧系列<br>山村美纱 《京城之死》《花之棺》</p>
+<h3 id="社会推理的第二阶段"><a href="#社会推理的第二阶段" class="headerlink" title="社会推理的第二阶段"></a>社会推理的第二阶段</h3><p>森村诚一 《高层的死角》《新干线杀人事件》《太阳黑子》<br>人性三部曲<br>《人性的证明》最震撼心灵的推理小说<br>《野性的证明》<br>《青春的证明》<br>十字架三部曲<br>《饱食的恶魔》揭露731不对的罪行</p>
+<h3 id="日本的硬汉推理"><a href="#日本的硬汉推理" class="headerlink" title="日本的硬汉推理"></a>日本的硬汉推理</h3><p>大薮春彦 《该死的野兽》 提倡以暴制暴<br>西村寿行 《君啊，请涉过愤怒之歌》改编成电影《追捕》<br>驰星周 星爷粉丝 《不夜城》《镇魂歌》 《长恨歌》 日本黑暗小说创始人<br>柳广司 D机关系列</p>
+<h3 id="日本国民推理作家"><a href="#日本国民推理作家" class="headerlink" title="日本国民推理作家"></a>日本国民推理作家</h3><p>阿刀田高 《拿破仑狂》 日本异色小说之王<br>西村京太郎 《天使的伤痕》 《七个证人》<br>赤川次郎 《幽灵列车》</p>
+<h3 id="新本格推理"><a href="#新本格推理" class="headerlink" title="新本格推理"></a>新本格推理</h3><p>新本格教父<br>岛田庄司 《占星术杀人事件》《斜屋犯罪》侦探御手洗洁系列</p>
+<p>新本格掌门<br>绫辻行人 馆系列 杀人方程式系列 杀人鬼系列 耳语系列</p>
+<p>麻耶雄嵩 麻神 《有翼之暗》《夏与冬的奏鸣曲》《鸦》《神的游戏》《独眼少女》立体主义绘画</p>
+<p>歌野晶午 《长家的杀人》《白家的杀人》《樱树抽芽时，想你》</p>
+<p>妖怪推理<br>京极夏彦 《姑获鸟之夏》《魍魉之匣》《狂骨之梦》京极堂系列 巷说百物语系列<br>巨大阅读量，被评为最可能获得诺奖的推理作家</p>
+<p>科幻推理<br>西泽保彦 《解体诸因》《死了七次的男人》《人格转移杀人事件》</p>
+<p>理系推理<br>森博嗣 S&amp;M系列（犀川和萌绘系列）红子系列 四季系列 空中骑士系列</p>
+<p>日本的约翰·狄克森·卡尔<br>二阶堂黎人 《吸血之家》 手冢治虫粉丝<br>哥特风格 古堡、传说、恶魔<br>恐怖的人狼城系列 日本推理新五大奇书之一 最长的推理小说</p>
+<p>山口雅也 《奇偶》日本推理新五大奇书之一<br>M系列 垂见冴子系列</p>
+<p>日本的埃勒里·奎因<br>有栖川有栖 江神二郎系列 国名系列 《大密室图鉴》</p>
+<p>其他日本推理作家<br>北村薰，折原一，高村薰，贯井德郎，横山秀夫，芦边拓，加纳朋子，若竹七海，殊能将之，舞城王太郎，北山猛邦，清凉院流水</p>
+<h3 id="畅销君"><a href="#畅销君" class="headerlink" title="畅销君"></a>畅销君</h3><p>东野圭吾 《恶意》《放学后》《白夜行》《嫌疑人X的献身》《解忧杂货铺》</p>
+<h3 id="日本推理新希望"><a href="#日本推理新希望" class="headerlink" title="日本推理新希望"></a>日本推理新希望</h3><p>道尾秀介 《向日葵不开的夏天》《影子》 地支系列</p>
+<h3 id="新派推理"><a href="#新派推理" class="headerlink" title="新派推理"></a>新派推理</h3><p>伊坂幸太郎 《金色梦乡》《重力小丑》《家鸭与野鸭的投币式寄物柜》《余生皆假期》</p>
+<h3 id="男东野，女宫部"><a href="#男东野，女宫部" class="headerlink" title="男东野，女宫部"></a>男东野，女宫部</h3><p>宫部美雪 《火车》《理由》《模仿犯》《所罗门的为证》三部曲</p>
+<h3 id="日本当代推理"><a href="#日本当代推理" class="headerlink" title="日本当代推理"></a>日本当代推理</h3><p>辻村深月 《时间停止的校舍》《系》《0，8，0，7》《定制杀人俱乐部》《没有钥匙的梦》<br>东川笃哉 《推理要在晚餐后》<br>凑佳苗 《告白》<br>乙一 《断掌事件》 黑乙一和白乙一</p>
+<h3 id="八嘎推理"><a href="#八嘎推理" class="headerlink" title="八嘎推理"></a>八嘎推理</h3><p>读完之后骂娘的推理</p>
+<h3 id="十部经典"><a href="#十部经典" class="headerlink" title="十部经典"></a>十部经典</h3><p>《黄色房间的秘密》《死前之吻》《本店招牌菜》《诗人》《女管家的心事》<br>《幸福之书》《剪刀男》《赤朽叶家的传说》《爱的成人式》《我的日常推理》</p>
+<h3 id="中国推理"><a href="#中国推理" class="headerlink" title="中国推理"></a>中国推理</h3><p>程小青 霍森系列<br>罗修 小艾系列和网维系列<br>雷米 心理罪系列<br>周浩晖 罗飞系列<br>紫金陈 高智商犯罪系列 长夜难明 坏小孩 低智商犯罪<br>陈浩基 香港作家 《13·67 》《遗忘刑警》《气球人》<br>林斯谚 台湾作家 《冰镜庄杀人事件》《雨夜庄杀人事件》<br>呼延云 真相推理师系列<br>魔都三巨头 陆烨华 鸡丁 时晨 陆秋槎 （别问我为啥有四个人）</p>
+<p>其余的大多是悬疑作家<br>鬼马星 蔡骏 宁航一等等</p>
+<p>大概就是这些人了，希望中国推理越来越好。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fas fa-tags"></i>笔记</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/12/06/story/meaning-of-life/" rel="next" title="meaning of life"><i class="fas fa-angle-left"></i><span class="nav-title">meaning of life</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/12/17/ability/magicmemory5/" rel="prev" title="魔术记忆—阅读，进阶记忆"><span class="nav-title">魔术记忆—阅读，进阶记忆</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BC%80%E5%B1%B1%E4%B9%8B%E4%BD%9C"><span class="toc-text">开山之作</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%89%E4%BD%8D%E7%B2%89%E4%B8%9D"><span class="toc-text">三位粉丝</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9C%80%E4%BC%9F%E5%A4%A7%E7%9A%84%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4%E4%BD%9C%E5%AE%B6"><span class="toc-text">最伟大的推理小说作家</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%89%A9%E8%AF%81%E6%8E%A8%E7%90%86"><span class="toc-text">物证推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BF%83%E8%AF%81%E6%8E%A8%E7%90%86"><span class="toc-text">心证推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%9F%AD%E7%AF%87%E6%8E%A8%E7%90%86%E7%9A%84%E9%BB%84%E9%87%91%E6%97%B6%E4%BB%A3"><span class="toc-text">短篇推理的黄金时代</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%8E%A8%E7%90%86%E5%A5%B3%E7%8E%8B"><span class="toc-text">推理女王</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%A5%8E%E5%9B%A0%E5%BC%8F%E6%8E%A8%E7%90%86"><span class="toc-text">奎因式推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%AF%86%E5%AE%A4%E5%A4%A7%E5%B8%88"><span class="toc-text">密室大师</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%8E%A8%E7%90%86%E5%8D%81%E8%AF%AB%E5%92%8C%E4%BA%8C%E5%8D%81%E6%9D%A1"><span class="toc-text">推理十诫和二十条</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8F%8D%E6%8E%A8%E7%90%86"><span class="toc-text">反推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86"><span class="toc-text">本格推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A1%AC%E6%B1%89%E6%8E%A8%E7%90%86"><span class="toc-text">硬汉推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%97%B4%E8%B0%8D%E5%B0%8F%E8%AF%B4"><span class="toc-text">间谍小说</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BD%93%E4%BB%A3%E6%AC%A7%E7%BE%8E%E6%8E%A8%E7%90%86"><span class="toc-text">当代欧美推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4%E5%85%A5%E6%97%A5%E6%9C%AC"><span class="toc-text">推理小说入日本</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E6%8E%A8%E7%90%86%E9%BC%BB%E7%A5%96"><span class="toc-text">日本推理鼻祖</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%9B%9B%E5%B3%B0%E5%9B%9B%E5%A5%87"><span class="toc-text">四峰四奇</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E6%8E%A8%E7%90%86%E6%96%87%E5%AD%A6%E5%85%88%E8%A1%8C%E8%80%85"><span class="toc-text">日本推理文学先行者</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86%E6%97%B6%E4%BB%A3%E5%BC%80%E5%88%9B%E8%80%85"><span class="toc-text">日本本格推理时代开创者</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%88%98%E5%90%8E%E4%BA%94%E4%BA%BA%E7%94%B7"><span class="toc-text">战后五人男</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%96%87%E5%AD%A6%E6%B4%BE%E6%8E%A8%E7%90%86"><span class="toc-text">文学派推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E6%B4%BE%E6%8E%A8%E7%90%86"><span class="toc-text">社会派推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%A5%B3%E6%8E%A8%E7%90%86%E4%BD%9C%E5%AE%B6"><span class="toc-text">日本社会女推理作家</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%A4%BE%E4%BC%9A%E6%8E%A8%E7%90%86%E7%9A%84%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5"><span class="toc-text">社会推理的第二阶段</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E7%9A%84%E7%A1%AC%E6%B1%89%E6%8E%A8%E7%90%86"><span class="toc-text">日本的硬汉推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E5%9B%BD%E6%B0%91%E6%8E%A8%E7%90%86%E4%BD%9C%E5%AE%B6"><span class="toc-text">日本国民推理作家</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%96%B0%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86"><span class="toc-text">新本格推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%95%85%E9%94%80%E5%90%9B"><span class="toc-text">畅销君</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E6%8E%A8%E7%90%86%E6%96%B0%E5%B8%8C%E6%9C%9B"><span class="toc-text">日本推理新希望</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%96%B0%E6%B4%BE%E6%8E%A8%E7%90%86"><span class="toc-text">新派推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E7%94%B7%E4%B8%9C%E9%87%8E%EF%BC%8C%E5%A5%B3%E5%AE%AB%E9%83%A8"><span class="toc-text">男东野，女宫部</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC%E5%BD%93%E4%BB%A3%E6%8E%A8%E7%90%86"><span class="toc-text">日本当代推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%85%AB%E5%98%8E%E6%8E%A8%E7%90%86"><span class="toc-text">八嘎推理</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8D%81%E9%83%A8%E7%BB%8F%E5%85%B8"><span class="toc-text">十部经典</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86"><span class="toc-text">中国推理</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>鹅妈妈的童谣 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/21/material/emamadetongyao/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">鹅妈妈的童谣</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-06-21T23:27:25+08:00">2022-06-21 23:27:25</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/material/" itemprop="url" rel="index"><span itemprop="name">material</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>世界上最早的儿歌集，英国民间童谣，黑童话。<br>部分较出名，被应用于童谣杀人推理。<br>选择一些能看得懂的记录一下。</p>
+<span id="more"></span>
+
+<h4 id="Lizzie-Borden"><a href="#Lizzie-Borden" class="headerlink" title="Lizzie Borden"></a>Lizzie Borden</h4><p>里兹·波顿</p>
+<p>Lizzie Borden took an axe,<br>Hit her father forty whacks.<br>When she saw what she had done,<br>She hit her mother forty-one.</p>
+<p>里兹·波顿拿起斧头<br>打了她爸爸四十下<br>当她看见自己所做的一切<br>她又打了她妈妈四十一下</p>
+<p>1893年美国的麻萨诸塞州，32岁的里兹·波顿在家中拿起斧头杀害了自己的父亲和继母，手段残忍。在19世纪的美国引起轩然大波。如今事发的那间屋子成为了博物馆，而里兹杀人事件到现在还是研究的对象，还被拍成电影等。在网上可以找到不少相关的资料。</p>
+<h4 id="Who-killed-Cock-Robin"><a href="#Who-killed-Cock-Robin" class="headerlink" title="Who killed Cock Robin"></a>Who killed Cock Robin</h4><p>谁杀死了知更鸟</p>
+<p>Who killed Cock Robin?<br>I, said the Sparrow,<br>With my bow and arrow,<br>I killed Cock Robin.</p>
+<p>谁杀死了知更鸟？<br>我，麻雀说，<br>用我的弓和箭，<br>我杀了知更鸟。</p>
+<p>Who saw him die?<br>I, said the Fly,<br>With my little eye,<br>I saw him die.</p>
+<p>谁看见他死去？<br>我，苍蝇说，<br>用我的小眼睛，<br>我看见他死去。</p>
+<p>Who caught his blood?<br>I, said the Fish,<br>With my little dish,<br>I caught his blood.</p>
+<p>谁取走了他的血？<br>我，鱼说，<br>用我的小碟子，<br>我取走了他的血。</p>
+<p>Who’ll make his shroud?<br>I, said the Bettle,<br>With my thread and needle,<br>I’ll make the shroud.</p>
+<p>谁来为他制丧衣？<br>我，甲虫说，<br>用我的针和线，<br>我来为他制丧衣。</p>
+<p>Who’ll dig his grave?<br>I, said the Owl,<br>With my pick and shovel,<br>I’ll dig his grave.</p>
+<p>谁来为他挖坟墓？<br>我，猫头鹰说，<br>用我的锄和铲<br>我来为他挖坟墓。</p>
+<p>Who’ll be the parson?<br>I, said the Rook,<br>With my little book,<br>I’ll be the parson.</p>
+<p>谁来当他的牧师？<br>我，乌鸦说，<br>用我的小册子，<br>我来当他的牧师。</p>
+<p>Who’ll be the clerk?<br>I, said the Lark,<br>If it’s not in the dark,<br>I’ll be the clerk.</p>
+<p>谁来做他的执事?<br>我，云雀说，<br>如果不是在黑暗中，<br>我来做他的执事。</p>
+<p>Who’ll carry the link?<br>I, said the Linnet,<br>I’ll fetch it in a minute,<br>I’ll carry the link.</p>
+<p>谁来秉持火把？<br>我，红雀说，<br>我马上就把它拿来，<br>我来秉持火把。</p>
+<p>Who’ll be the chief mourner?<br>I, said the Dove,<br>I mourn for my love,<br>I’ll be chief mourner.</p>
+<p>谁来充当主祭？<br>我，鸽子说，<br>我来悼念我的爱人，<br>我来充当主祭。</p>
+<p>Who’ll carry the coffin?<br>I, said the Kite,<br>If it’s not through the night,<br>I’ll carry the coffin.</p>
+<p>谁来扶灵？<br>我，鸢说。<br>如果不走夜路，<br>我将扶灵。</p>
+<p>Who’ll bear the pall?<br>We, said the Wren,<br>Both the cock and the hen,<br>We’ll bear the pall.</p>
+<p>谁来负责棺罩？<br>我们，鹪鹩说，<br>夫妇俩一起，<br>我们来负责棺罩。</p>
+<p>Who’ll sing a psalm?<br>I, said the Thrush,<br>As she sat on a bush,<br>I’ll sing a psalm.</p>
+<p>谁来吟唱圣歌？<br>我，画眉说，<br>她停坐在灌木上，<br>我来吟唱圣歌。</p>
+<p>Who’ll toll the bell?<br>I, said the Bull,<br>Because I can pull,<br>I’ll toll the bell.</p>
+<p>谁来敲响丧钟？<br>我，公牛说，<br>因为我能够拉，<br>我来敲响丧钟。</p>
+<p>All the birds of the air<br>Fell a-sighing and a-sobbing,<br>When they heard the bell toll<br>For poor Cock Robin.</p>
+<p>空中所有的鸟<br>叹息并且悲哀<br>当他们听到丧钟响起<br>为了可怜的知更鸟。</p>
+<p>NOTICE<br>To all it concerns,<br>This notice apprises,<br>The Sparrow’s for trial,<br>At next bird assizes.</p>
+<p>启事<br>关系人请注意，<br>这则启事通知，<br>下回鸟儿审判，<br>麻雀将受审判。</p>
+<p>备注： 收录于《谁杀了知更鸟》<br>S.S.范达因在 1928 年出版的著名推理小说“The Bishop Murder Case”(中译为主教杀人事件)中即引用了这首与其余两首鹅妈妈童谣。</p>
+<h4 id="When-a-good-King-Arthur-rule-this-land"><a href="#When-a-good-King-Arthur-rule-this-land" class="headerlink" title="When a good King Arthur rule this land"></a>When a good King Arthur rule this land</h4><p>当亚瑟王统治这片土地的时候</p>
+<p>When good King Arthur ruled this land,<br>He was a goodly king;<br>He stole three pecks of barley-meal<br>To make a bag-pudding.<br>当亚瑟王统治这片土地的时候<br>他是一位优秀的国王<br>为了做一个布丁<br>他偷了三袋大麦粗粉</p>
+<p>A bag-pudding the king did make,<br>And stuffed it well with plum;<br>And in it put great lumps of fat,<br>As big as my two thumbs.</p>
+<p>国王做的大布丁<br>塞满了李子干<br>还放进了一块大奶油<br>像我的两个拇指那么大</p>
+<p>The king and queen did eat thereof,<br>And noblemen beside;<br>And what they could not eat that night,<br>The queen next morning fried.</p>
+<p>国王和皇后吃了该吃的那份<br>吃了身边贵族们的那份，<br>还吃了那天晚上不该吃的那份，<br>第二天早上皇后被油煎了</p>
+<p>备注：出自《少年的孵化声音》-《布丁小姐的悲剧》</p>
+<p>世上留传著许多关于亚瑟王的精彩故事，以及英勇的圆桌武士的传奇。他大约是在一千五百年前统治英国，打了许多场胜仗。但历史上是否存在这位王还有待查证。这首关于亚瑟王的童谣揭示了古代王族中的残忍吧。</p>
+<h4 id="Solomon-Grundy"><a href="#Solomon-Grundy" class="headerlink" title="Solomon Grundy"></a>Solomon Grundy</h4><p>所罗门·格朗迪</p>
+<p>Solomon Grundy,<br>Born on a Monday,<br>Christened on Tuesday,<br>Married on Wednesday,<br>Took ill on Thursday,<br>Worse on Friday,<br>Died on Saturday,<br>Buried on Sunday.<br>This is the end<br>Of Solomon Grundy.</p>
+<p>所罗门·格朗迪<br>星期一（月曜日）出生<br>星期二（火曜日）受洗<br>星期三（水曜日）结婚<br>星期四（木曜日）生病<br>星期五（金曜日）病危<br>星期六（土曜日）死亡<br>星期天（日曜日）埋葬<br>这就是<br>所罗门·格朗迪的一生</p>
+<p>备注： 出自《God Child vol 5》- 《周日的所罗门·格朗迪》</p>
+<p>这个算是《God Child》里的一个特别短篇。把人的一生所会经历到的事融汇在这个短短的童谣里——一个星期里的7天。</p>
+<h4 id="There-was-a-lady-all-skin-and-bone"><a href="#There-was-a-lady-all-skin-and-bone" class="headerlink" title="There was a lady all skin and bone"></a>There was a lady all skin and bone</h4><p>从前有个皮包骨的女人</p>
+<p>There was a lady all skin and bone,<br>Sure such a lady was never known:<br>It happened upon a certain day,<br>This lady went to church to pray.</p>
+<p>从前有个皮包骨的女人，<br>当然你从没听说过这样的女人：<br>一切发生在某一天，<br>这位女士去教堂作祷告。</p>
+<p>When she came to the church stile,<br>There she did rest a little while;<br>When she came to the church yard,<br>There the hells so loud she heard.</p>
+<p>当她来到教堂阶梯，<br>她停了一小会；<br>当她来到教堂墓园，<br>她听见地狱的呻吟声是如此响亮。</p>
+<p>When she came to the church door,<br>She stopped to rest a little more;<br>When she came the church within,<br>The parson prayed ‘gainst pride and sin.</p>
+<p>当她来到教堂的门口，<br>她又停了一会；<br>当她进入教堂，<br>牧师正抗拒着虚荣与罪恶作着祷告。</p>
+<p>On looking up, on looking down,<br>She saw a dead man on the ground;<br>And from his nose unto his chin,<br>The worms crawled out,<br>the worms crawled in.</p>
+<p>上看，下看，<br>她看见一个死人躺在地上；<br>从他的鼻子到下巴，<br>蛆们爬出，<br>蛆们蠕进。</p>
+<p>Then she unto the parson said,<br>Shall I be so when I am dead?<br>O yes!<br>O yes, the parson said,<br>You will be so when you are dead.</p>
+<p>然后她对牧师说，<br>我死后会变成这样吗？<br>噢，是的！<br>噢，是的，牧师说道，<br>你死后就会变成这样。</p>
+<h4 id="There-was-a-man-a-very-untidy-man"><a href="#There-was-a-man-a-very-untidy-man" class="headerlink" title="There was a man, a very untidy man"></a>There was a man, a very untidy man</h4><p>从前有个男子</p>
+<p>There was a man,<br>a very untidy man,<br>Whose fingers could nowhere to be fonud<br>to put in his tomb.<br>He had rolled his head far underneath the bed;<br>He had left his legs<br>and arms lying all over the room.</p>
+<p>从前有个男子<br>一个没出息的男子<br>他的手指到处找不到<br>懒得动手把他埋在坟墓里。<br>他把头滚落到床下<br>四肢散落在房间里。</p>
+<h4 id="Crooked-man"><a href="#Crooked-man" class="headerlink" title="Crooked man"></a>Crooked man</h4><p>性格扭曲的人</p>
+<p>There was a crooked man,<br>and he walked a crooked mile,<br>He found a crooked sixpence<br>against a crooked stile;<br>He bought a crooked cat,<br>which caught a crooked mouse,<br>And they all lived together in a little crooked house.</p>
+<p>有个性格扭曲的人<br>走在一条长一里的扭曲的路上<br>手里那着扭曲的六便士<br>踏在扭曲的台阶上<br>他买了一只扭曲的猫<br>猫捉了一只扭曲的老鼠<br>他们一起住在扭曲的小房子里</p>
+<p>备注： 出自《God Child vol.1》-《Crooked man》</p>
+<p>此首童谣很明显的描述一名精神失常的男子，他与他身边的事物皆是「扭曲」的，歌词描述的十分贴近现实精神疾病患者的模样，以第三人称的角度，来看待他的生活与身边的事物，以「扭曲」代表与正常人生活相反的一面。<br>　　在黑暗的时代中，压力过大以致于精神失常或发疯的人不在少数，以现代来说，患有精神疾病的人其实也不少，他们的生活是「扭曲」的，在我们的眼里看起来他们也是「扭曲」的一群人，所以用「crook」(扭曲)来连贯这整首歌词是非常贴切的。</p>
+<h4 id="Baa-Baa-Black-sheep"><a href="#Baa-Baa-Black-sheep" class="headerlink" title="Baa, Baa, Black sheep"></a>Baa, Baa, Black sheep</h4><p>黑羊</p>
+<p>Baa, baa, black sheep,<br>Have you any wool ?<br>Yes, sir, yes, sir,<br>Three bags full;<br>One for the master,<br>And one for the dame,<br>And one for the little boy<br>Who lives down the lane.</p>
+<p>咩，咩，黑羊，<br>你有羊毛吗？<br>是的，先生，是的，先生，<br>三袋满满的<br>一袋给主人<br>一袋给夫人<br>还有一袋给那个<br>住在街尾的小男孩</p>
+<p>备注： 出自《God Child vol.1》-《Black sheep》</p>
+<p>在最早的时候，最后一句是：什么都没有给小男孩。童谣里“master”指的是国王，“dame”指的是贵族，“little boy”即是最底层的平民。揭示了上流社会的有钱人对底层人的压迫和榨取。</p>
+<h4 id="Sing-a-song-of-sixpence"><a href="#Sing-a-song-of-sixpence" class="headerlink" title="Sing a song of sixpence"></a>Sing a song of sixpence</h4><p>唱一首六便士的歌</p>
+<p>Sing a song of sixpence,<br>A pocket full of rye;<br>Four and twenty blackbirds,<br>Baked in a pie.</p>
+<p>唱一首六便士的歌，<br>慢慢一袋的黑麦；<br>24只黑鸟，<br>烤在派中</p>
+<p>When the pie was opened,<br>The birds began to sing;<br>Was not that a dainty dish,<br>To set before the king ?</p>
+<p>当派被打开，<br>鸟儿们开始歌唱；<br>这是多么美味的菜肴，<br>摆放在国王面前？</p>
+<p>The king was in his counting-house,<br>Counting out his money;<br>The queen was in the parlour,<br>Eating bread and honey.</p>
+<p>国王在他的金库里，<br>清点他的财富；<br>皇后在大厅里，<br>吃着面包和蜂蜜。</p>
+<p>The maid was in the garden,<br>Hanging out the clothes,<br>There came a little blackbird,<br>And snapped off her nose.</p>
+<p>女仆在花园里，<br>晾着刚洗的衣服，<br>来了只小黑鸫，<br>突然啄下她的鼻子。</p>
+<p>备注： 出自《God Child vol.2》-《Bloodberry jam》</p>
+<p>这首童谣大约是17世纪中叶在民间出现，但在更早些时候似乎就有了迹象，在莎士比亚的《第12夜》中有这样的一句话：Come on, there is sixpence for you; let’s have a song. 1614年，在包蒙(Beaumont 1584-1616)和佛勒契(John Fletcher 1579-1625)合作的一部作品中有这样的一句：Whoa, here’s a stir now! Sing a song of sixpence!在这首童谣中，皇帝指的是英国都铎王朝的第二代国王亨利八世（HenryⅧ,1509-1547），他的残暴乖戾在历代君主中是很突出的，拥有6位妻子并处决了2位而闻名。童谣中的女王指的是凯瑟琳（Catherine of Aragon），她是西班牙阿拉贡国王斐迪南二世的女儿，曾经是亨利七世的妻子，亨利八世的第一任妻子，但是由于她没有为亨利生下皇子，渐渐导致亨利对她的冷淡，但又由于教会的原因使之迟迟不能废后。“皇后在大厅里吃着面包和蜂蜜”这句算是影射了当时凯瑟琳被冷落的情形吧。在那时亨利看中了安妮·博林（Anne Boleyn, 1507?–1516），她是托马斯·博林爵士和伊丽莎白·霍华德郡主的小女儿，也就是他的第2任妻子–童谣中的那个侍女。然而她也没有为亨利生下儿子，又由于她天生的生理缺陷和一些政治因素，安妮被控告与5个男人通奸，其中包括与她的亲兄弟乔治·伯林通奸——乱伦的罪行被关进伦敦塔，随后于1536年5月19日被处决，成为第一个被处决的王后。这也就是“来了只小黑鸫，突然啄下她的鼻子”的来历吧。童谣中的“派”和“24只黑鸫”分别是指格拉斯顿堡的管理人，和他所赠送给亨利八世的圣诞礼物。<br>这首童谣则被引用到阿加莎·克里斯蒂的令一部小说《黑麦奇案》 （A Pocket Full of Rye），这个案件本身并没有什么特别，吸引人的独到之处是它的天才般的杀人手法和意想不到的凶手。</p>
+<h4 id="There-was-an-old-man"><a href="#There-was-an-old-man" class="headerlink" title="There was an old man"></a>There was an old man</h4><p>从前有个老人</p>
+<p>There was an old man<br>And he had a calf<br>And that’s half</p>
+<p>从前有个老人<br>他养了一头小牛<br>现在说到一半</p>
+<p>He took him out of the stall<br>And put his on the wall<br>And that’s all</p>
+<p>老人把小牛带出牛舍<br>再把它系在墙上<br>这就是全部</p>
+<p>备注：出自《Mad tea party》《Scold’s Bridle》《Zigeunerweisen》《Mortician’s daughter》《Little Miss Muffet》《Bloody Maria》《Castrato》《ユダの接吻》《エディプスの刃》《Misericorde》每一章的最后一句”And that’s all”出自于此。</p>
+<h4 id="What-are-little-boys-made-of"><a href="#What-are-little-boys-made-of" class="headerlink" title="What are little boys made of ?"></a>What are little boys made of ?</h4><p>小男孩是由什么做的？</p>
+<p>What are little boys made of ?<br>Frogs and snails　<br>And puppy-dogs’ tails,　</p>
+<p>小男孩是由什么做的？<br>青蛙和蜗牛<br>还有小狗的尾巴</p>
+<p>What are little girls made of ?　<br>Sugar and spice　　<br>And all that’s nice.</p>
+<p>小女孩是由什么做的？<br>糖和香料<br>都是那么的美好呀</p>
+<p>备注：出自《God Child vol.4》-《Bloody Maria》</p>
+<p>这是吉倍尔医生回忆小时候时出现的。放在这章里的具体用意觉得很隐晦。小男孩是由什么做的？好象就是在质问吉倍尔的存在一样。</p>
+<h4 id="Simple-Simon"><a href="#Simple-Simon" class="headerlink" title="Simple Simon"></a>Simple Simon</h4><p>无知的西蒙</p>
+<p>Simple Simon met a pieman<br>Going to the fair;<br>Says Simple Simon to the pieman,<br>“Let me taste your ware.”</p>
+<p>无知的西蒙遇见一个卖派的商人<br>正要赶往集市；<br>无知的西蒙对卖派的商人说：<br>“让我尝尝你的东西。 ”</p>
+<p>Says the pieman to Simple Simon,<br>“Show me first your penny.”<br>Says Simple Simon to the pieman,<br>“Indeed I have not any.”</p>
+<p>商人对无知的西蒙说：<br>“先让我看看你的便士吧。”<br>无知的西蒙对商人说：<br>“其实我身无分文。”</p>
+<p>He went to catch a dickeybird,<br>And thought he could not fail,<br>Because he’d got a little salt,<br>To put upon his tail.</p>
+<p>他去抓小鸟，<br>并认为自己不会失败，<br>因为他有一把盐，<br>撒在它的尾巴上。</p>
+<p>He went to take a bird’s nest,<br>Was built upon a bough;<br>The branch gave way and Simon fell<br>Into a dirty slough.</p>
+<p>他去取小鸟的窝，<br>那个筑在一根大树枝上的鸟窝；<br>树枝断了西蒙掉下来<br>落在肮脏的泥沼里。</p>
+<p>He went to shoot a wild duck,<br>But wild duck flew away;<br>Say Simon, I can’t hit him,<br>Because he will not stay.</p>
+<p>他去打野鸭，<br>但是野鸭飞走了；<br>西蒙说，我打不中它，<br>因为他不呆在那里。</p>
+<p>Simple Simon went a-fishing,<br>For to catch a whale;<br>All the water he had got<br>Was in his mother’s pail.</p>
+<p>无知的西蒙去钓鱼，<br>想要钓一条鲸鱼；<br>然而他所拥有的水<br>都在妈妈的水桶里。</p>
+<p>Simple Simon went a-hunting,<br>For to catch a hare;<br>He rode an ass about the streets,<br>But couldn’t find one there.</p>
+<p>无知的西蒙去打猎，<br>想要打中一只野兔；<br>他骑着驴穿过街道，<br>那里找不到一只野兔。</p>
+<p>He went for to eat honey,<br>Out of the mustard pot;<br>He bit his tongue until he cried,<br>That was all the good he got.</p>
+<p>他去吃蜂蜜，<br>从一只餐桌上的芥末罐子；<br>他咬着自己的舌头直到哭出来，<br>这就是他吃到的全部。</p>
+<p>He went to ride a spotted cow<br>That had a little calf;<br>She threw him down upon the ground,<br>Which made the people laugh.</p>
+<p>他去骑头花斑牛<br>可母牛还有头小牛；<br>母牛甩他在地上，<br>惹的人们笑哈哈。</p>
+<p>Once Simon made a great snowball,<br>And brought it in to roast;<br>He laid it down before the fire,<br>And soon the ball was lost.</p>
+<p>一次西蒙做了个大雪球，<br>把它带回来烤一烤；<br>把它放在火前面，<br>雪球一会儿不见了。</p>
+<p>He went to slide upon the ice<br>Before the ice would bear;<br>Then he plunged in above his knees,<br>Which made poor Simon stare.</p>
+<p>他到冰上去滑冰<br>在冰还能支撑前；<br>接着他陷入水中直到膝盖，<br>可怜的西蒙睁大了眼。</p>
+<p>He washed himself with blacking ball,<br>Because he had no soap;<br>Then said unto his mother,<br>“I’m a beauty now, I hope.”</p>
+<p>他用黑色的鞋油来洗澡，<br>因为他没有肥皂；<br>然后他对妈妈说：<br>“我现在很漂亮，我希望。”</p>
+<p>Simple Simon went to look<br>If plum grew on a thistle;<br>He pricked his fingers very much,<br>Which made poor Simon whistle.</p>
+<p>无知的西蒙去看看<br>李子是不是长在蓟上；<br>手被刺伤了好几次，<br>可怜的西蒙唿哨着。</p>
+<p>He went for water in a sieve,<br>But soon it all ran through.<br>And now poor Simple Simon<br>Bids you all adieu.</p>
+<p>他用筛网取水，<br>但是水很快就漏光了。<br>可怜而又无知的西蒙啊<br>永远地再见了</p>
+<p>备注： 出自《God Child vol.8》-《Godless》<br>最后一章的最后一句”Bids you all adieu”因该就是出自这首童谣吧。”Bids you all adieu”可以理解为“永别”的意思。“bid”是在这里是“吩咐，告诉”的意思。”adieu”是从法语衍生而来的。”adieu”是“再见，辞别”的意思。从中古英语”adew”变化而来，这个词又是从古代法语”adieu”(à + dieu)来的，意义为“献身于神”，”dieu”是“神”的意思。综合起来看，就可以理解为“永别”的意思了。哎……也就是说该隐的故事再也不会有了，那是最终的了。他带着优雅的微笑，Bids you all adieu.</p>
+<h4 id="Three-Blind-Mice"><a href="#Three-Blind-Mice" class="headerlink" title="Three Blind Mice"></a>Three Blind Mice</h4><p>三只瞎眼的老鼠</p>
+<p>Three blind mice! See how they run!<br>They all ran after the farmer’s wife,<br>Who cut off their tails with a carving knife.<br>Did you ever see such a thing in your life<br>As three blind mice?</p>
+<p>三只瞎眼的老鼠！看它们跑的方式！<br>它们追着农夫的老婆，<br>她用餐刀切了它们的尾巴。<br>你这辈子见过像这样的东西吗？<br>和三只瞎眼的老鼠一样。</p>
+<p>这首童谣后来被引用到侦探小说女王之称的阿加莎·克里斯蒂的剧本，又译为《捕鼠器》《The Mousetrap》是阿加莎·克里斯蒂最著名的舞台剧，从1952年11月25日开始，每晚上演连续50余年、20000多场至今不衰，每晚都在创造新的世界纪录。</p>
+<h4 id="Ten-Little-Nigger-Boys-Went-Out-To-Dine"><a href="#Ten-Little-Nigger-Boys-Went-Out-To-Dine" class="headerlink" title="Ten Little Nigger Boys Went Out To Dine"></a>Ten Little Nigger Boys Went Out To Dine</h4><p>十个小黑人</p>
+<p>Ten little nigger boys went out to dine;<br>One choked his little self, and then there were nine.<br>Nine little nigger boys sat up very late;<br>One overslept himself, and then there were eight.</p>
+<p>十个小黑人出外用膳；<br>一个噎死还剩九个。<br>九个小黑人熬夜到很晚；<br>一个睡过头还剩八个。</p>
+<p>Eight little nigger boys travelling in Devon;<br>One said he’d stay there, and then there were seven.<br>Seven little nigger boys chopping up sticks;<br>One chopped himself in half, and then there were six.</p>
+<p>八个小黑人在到丹文游玩；<br>一个说要留在那儿还剩七个。<br>七个小黑人在砍柴；<br>一个把自己砍成两半还剩六个。</p>
+<p>Six little nigger boys playing with a hive;<br>A bumble-bee stung one, and then there were five.<br>Five little nigger boys going in for law;<br>One got in chancery, and then there were four.</p>
+<p>六个小黑人玩蜂窝；<br>一只黄蜂叮住一个还剩五个。<br>五个小黑人进入法院；<br>一个被留下还剩四个。</p>
+<p>Four little nigger boys going out to sea;<br>A red herring swallowed one, and then there were three.<br>Three little nigger boys walking in the Zoo;<br>A big bear bugged one, and then there were two.</p>
+<p>四个小黑人到海边；<br>一条红鲱鱼吞下一个还剩三个。<br>三个小黑人走进动物园里；<br>一只大熊抓走一个还剩两个。</p>
+<p>Two little nigger boys sitting in the sun;<br>One got frizzled up, and then there was one.<br>One little nigger boy living all alone;<br>He got married, and then there were none.</p>
+<p>两个小黑人坐在太阳下；<br>一个热死只剩一个。<br>一个小黑人觉得好寂寞；<br>他上吊后一个也不剩。</p>
+<p>中国诗歌版本：<br>十个印地安小男孩，为了吃饭去奔走；噎死一个没法救，十个只剩九。<br>九个印地安小男孩，深夜不寐真困乏；倒头一睡睡死啦，九个只剩八。<br>八个印地安小男孩，德文城里去猎奇；丢下一个命归西，八个只剩七。<br>七个印地安小男孩，伐树砍枝不顺手；斧劈两半一命休，七个只剩六。<br>六个印地安小男孩，玩弄蜂房惹蜂怒；飞来一蛰命呜呼，六个只剩五。<br>五个印地安小男孩，惹是生非打官司；官司缠身直到死，五个只剩四。<br>四个印地安小男孩，结伙出海遭大难；青鱼吞吃血斑斑，四个只剩三。<br>三个印地安小男孩，动物园里遭祸殃；狗熊突然从天降，三个只剩两。<br>两个印地安小男孩，太阳底下长叹息；晒死烤死悲戚戚，两个只剩一。<br>一个印地安小男孩，归去来兮只一人；悬梁自尽了此生，一个也不剩。</p>
+<p>歌词描述原有十个小黑人，经过了许多波折，使得原本在一起的他们最后只剩一个人，剩下的那个小黑人觉得非常寂寞，便上吊自杀了。这也可以喻为原本为劳工阶级的一群人，在中产阶级、资本主义残酷的压迫后，渐渐的凋零，到了最后一个也不留。<br>　　知名的推理小说家，拥有”谋杀天后”之称的 Agatha?Christie(阿嘉莎.克莉丝蒂)，也曾以这首童谣为背景写出了〝And Then There Were None〞(中译名为《无人生还》)此本小说。</p>
+<p>另附上和本首很像的《兔子童谣》，也有说《兔子童谣》也是出于《鹅妈妈童谣》，但是个人认为应该是由《鹅妈妈童谣》引申再创作的作品。<br>　　大兔子病了,<br>　　二兔子瞧,<br>　　三兔子买药,<br>　　四兔子熬,<br>　　五兔子死了,<br>　　六兔子抬,<br>　　七兔子挖坑,<br>　　八兔子埋,<br>　　九兔子坐在地上哭泣来,<br>　　十兔子问它为什么哭?<br>　　九兔子说,<br>　　五兔子一去不回来!</p>
+<h4 id="As-White-As-Milk"><a href="#As-White-As-Milk" class="headerlink" title="As White As Milk"></a>As White As Milk</h4><p>像牛奶一样白</p>
+<p>As white as milk,<br>And not milk;<br>As green as grass,<br>And not grass;<br>As red as blood,<br>And not blood;<br>As black as soot,<br>And not soot.</p>
+<p>像牛奶一样白，<br>而不是牛奶；<br>像青草一样绿，<br>而不是青草；<br>像鲜血一样红，<br>而不是鲜血；<br>像煤烟一样黑，<br>而不是煤烟。</p>
+<h4 id="BAT-蝙蝠"><a href="#BAT-蝙蝠" class="headerlink" title="BAT 蝙蝠"></a>BAT 蝙蝠</h4><p>Bat,Bat,Come Under My Hat</p>
+<p>Bat, bat, come under my hat,<br>And I’ll give you a slice of bacon;<br>And when I bake,<br>I’ll give you a cake,<br>If I am not mistaken.</p>
+<p>蝙蝠，蝙蝠，来我的帽子下，<br>我会分给你一片熏肉，<br>而当我烘焙食物，<br>我会分给你一块蛋糕，<br>如果我没有犯错。</p>
+<h4 id="Butterfly-Butterfly-蝴蝶"><a href="#Butterfly-Butterfly-蝴蝶" class="headerlink" title="Butterfly,Butterfly 蝴蝶"></a>Butterfly,Butterfly 蝴蝶</h4><p>Butterfly, butterfly,<br>Whence do you come?<br>I know not, I ask not,<br>Nor ever had a home.<br>Butterfly, butterfly,<br>Where do you go?<br>Where the sun shines,<br>And where the buds grow.</p>
+<p>蝴蝶，蝴蝶，<br>你来自何方？<br>我不知道，我不问，<br>从来就没有一个家。<br>蝴蝶，蝴蝶，<br>你要去何方？<br>太阳闪耀的地方，<br>蓓蕾成长的地方。</p>
+<h4 id="Cut-Thistles-In-May-五月割蓟"><a href="#Cut-Thistles-In-May-五月割蓟" class="headerlink" title="Cut Thistles In May 五月割蓟"></a>Cut Thistles In May 五月割蓟</h4><p>Cut thistles in May,<br>They’ll grow in a day;<br>Cut them in June,<br>That is too soon;<br>Cut them in July,<br>Then they will die.</p>
+<p>五月割蓟，<br>他们一天就长；<br>六月割蓟，<br>那会太快；<br>七月割蓟，<br>他们死亡。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E7%AB%A5%E8%B0%A3/" rel="tag"><i class="fas fa-tags"></i>童谣</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/05/30/story/aisiwangjiqiren/" rel="next" title="爱，死亡和机器人 第三季"><i class="fas fa-angle-left"></i><span class="nav-title">爱，死亡和机器人 第三季</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/06/30/book/authors/yibanxingtailang/" rel="prev" title="伊坂幸太郎作品集"><span class="nav-title">伊坂幸太郎作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Lizzie-Borden"><span class="toc-text">Lizzie Borden</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Who-killed-Cock-Robin"><span class="toc-text">Who killed Cock Robin</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#When-a-good-King-Arthur-rule-this-land"><span class="toc-text">When a good King Arthur rule this land</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Solomon-Grundy"><span class="toc-text">Solomon Grundy</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#There-was-a-lady-all-skin-and-bone"><span class="toc-text">There was a lady all skin and bone</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#There-was-a-man-a-very-untidy-man"><span class="toc-text">There was a man, a very untidy man</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Crooked-man"><span class="toc-text">Crooked man</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Baa-Baa-Black-sheep"><span class="toc-text">Baa, Baa, Black sheep</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Sing-a-song-of-sixpence"><span class="toc-text">Sing a song of sixpence</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#There-was-an-old-man"><span class="toc-text">There was an old man</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#What-are-little-boys-made-of"><span class="toc-text">What are little boys made of ?</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Simple-Simon"><span class="toc-text">Simple Simon</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Three-Blind-Mice"><span class="toc-text">Three Blind Mice</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Ten-Little-Nigger-Boys-Went-Out-To-Dine"><span class="toc-text">Ten Little Nigger Boys Went Out To Dine</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#As-White-As-Milk"><span class="toc-text">As White As Milk</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#BAT-%E8%9D%99%E8%9D%A0"><span class="toc-text">BAT 蝙蝠</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Butterfly-Butterfly-%E8%9D%B4%E8%9D%B6"><span class="toc-text">Butterfly,Butterfly 蝴蝶</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#Cut-Thistles-In-May-%E4%BA%94%E6%9C%88%E5%89%B2%E8%93%9F"><span class="toc-text">Cut Thistles In May 五月割蓟</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

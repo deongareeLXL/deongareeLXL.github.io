@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>反推理 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/book/fantuili/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">反推理</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-03-02T09:34:20+08:00">2022-03-02 09:34:20</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>反推理，就是证明推理小说很无力的小说。<br>诚然，在现实世界中，推理小说的模板很难适用。<br>阅读反推理，可以让我们用彻底颠倒过来的视角去认识推理文学。</p>
+<span id="more"></span>
+
+<h3 id="名侦探的守则"><a href="#名侦探的守则" class="headerlink" title="名侦探的守则"></a>名侦探的守则</h3><p>2022-03-02<br>畅销君的作品，兼顾名侦探和反推理的标签。</p>
+<p>短篇小故事类型，时不时插入反推理式的吐槽（可能就是作者的心声吧）。</p>
+<p>第一个故事：大雪压得房子倾斜，导致门被卡主，形成密室。</p>
+<blockquote>
+<p>侮辱智商系列。</p>
+</blockquote>
+<p>第二个故事：双重人格，自己杀了自己。</p>
+<blockquote>
+<p>读者怒了。</p>
+</blockquote>
+<p>第三个故事：暴风雪山庄，建筑移动诡计。</p>
+<blockquote>
+<p>老套路了吧，主要是引出对暴风雪山庄模式的反推理分析。</p>
+</blockquote>
+<p>第四个故事：dying message。</p>
+<blockquote>
+<p>片假名，抱歉，不懂。</p>
+</blockquote>
+<p>第五个故事：完美不在场证明。时刻表诡计。<br>犯人利用交通工具制造不在场证明，侦探搬出新通车的特快列车推翻。<br>犯人：我不是这么干的。<br>侦探：到警局再说。</p>
+<p>这个故事够味儿了。</p>
+<p>1.不会去做什么推理的，只会悠闲地望着主人公推理，所以也不会累，听了最后的解谜后，若是总觉得明白便已满足了。</p>
+<blockquote>
+<p>犀利的吐槽，有被冒犯到。</p>
+</blockquote>
+<p>2.推翻不在场证明作品的天敌便是“共犯的存在”。</p>
+<p>第六个故事：推理小说影视化。<br>推理小说的影视化促进了推理文学的发展。<br>但是从展示形式而言，推理小说不适合影视化，相比于镜头图像和声音，一些细节的线索通过文字描述更为合适。</p>
+<p>第七个故事：肢解的理由。<br>可能的理由有很多，但也可能根本没有理由。</p>
+<p>第八个故事：凶手在密室消失。<br>凶手妻子假扮凶手，凶手假扮自己的妹妹。就是玩儿。</p>
+<p>以这种邸宅作为舞台的本格推理小说，假如有凶手消失的布局，不是一般都会刊载邸宅的平面图。<br>像是在推翻不在场证明小说中的时刻表一样，虽然对于读者来说那是推理的材料，但也只不过是为了确保不会造成不公平现象而刊登的，我想实际上没有读者会望着平面图来推理解谜吧，尽管也不能说绝对没有。</p>
+<blockquote>
+<p>啊对对对</p>
+</blockquote>
+<p>事实上，对于读者来说，今次的诡计是不公平的。那样说，是因为这次的诡计是否能够成立，对读者而言根本无法判断，即使是登场人物，也未必是全部人都被骗倒。</p>
+<p>还未了解其中意思的读者，读过接下来的解谜部份后便会明白了，然后，多半会感到愤怒吧。</p>
+<blockquote>
+<p>真的被惹怒了。</p>
+</blockquote>
+<p>第九个故事：童谣杀人<br>童谣杀人，创作门槛低，创作难度却大。结局不重要，作者在这里给出的结局也是在瞎扯。<br>私以为童谣杀人的故事，天然自带一种恐怖的氛围，很容易勾起读者的情绪，激发读者的阅读欲望。<br>结局只要能自圆其说，就是一篇好文，但是这很难，特别难。<br>童谣杀人，最后的结局要是再带上一个彩蛋，那将会效果拔卓，令人头皮发麻。</p>
+<p>凹凸岛的摇篮曲。</p>
+<blockquote>
+<p>名字这够随意的。</p>
+</blockquote>
+<p>十个小孩童吃饭进餐，一个噎死了剩下九个。</p>
+<p>九个小孩童熬夜到晚，一个睡过头剩下八个。</p>
+<p>八个小孩童乘船外游，一个不回来剩下七个。</p>
+<p>。。。</p>
+<p>一个小孩童独自生活，结婚之后谁也不剩了。</p>
+<p>相关作品<br>主教杀人事件，无人生还，恶魔的手球歌，狱门岛，雾越邸杀人事件，恶魔的水槽密室，金雀枝庄的杀人。</p>
+<p>经典<br>鹅妈妈歌谣</p>
+<p>第十个故事：公平的故事——推理小说的守则<br>在这个故事中，“我”就是凶手，结尾还给出了叙诡套路解答，此故事中的“我”并非是之前故事中的“我”，而是另一位警部。</p>
+<blockquote>
+<p>我觉得这个故事是OK的，虽然第一人陈“我”作为凶手确实是对读者的一种不公平。但是这个故事的线索对读者而言都是明面上的，并没有在解答篇突然冒出新线索。</p>
+</blockquote>
+<p>对于不公平的作品，推理迷通常的反应都是负面的，当看见最重要的证据或资料，在侦探解谜时才首次出现的时候，有时甚至会有愤怒的感觉，因为有不少读者都喜爱亲自推理，他们享受自行推理的乐趣，而小说的不公平性，则可以说是把读者应得的乐趣粗暴地践踏。既然乐趣来自推理，那么说来，乐趣也是间接地源自于公平。</p>
+<blockquote>
+<p>公平是推理小说的不变法则。</p>
+</blockquote>
+<p>另一方面，不少读者也能够从推理小说中获得除推理以外的另一种乐趣，那便是意外感，其中包括令人感到意外的凶手、意外的杀人诡计、或是其他意外的真相等等。事实上，意外情节在其他类型的小说中都会经常出现，但相比之下，好像它在推理小说中较为显得重要，而推理迷也似乎较为喜爱这种意外感。也可以说，意外感能够为推理迷带来另一种乐趣。</p>
+<p>对于读者来说，越是公平、推理解谜的范围则越变得狭窄，因而所带出来的意外感也就会越低、相对的乐趣也可能会减少了。</p>
+<blockquote>
+<p>如果为了意外感而刻意不公，我是无法认可的。你可以叙诡，但是不能将关键线索雪藏至解答篇。</p>
+</blockquote>
+<p>第十一个故事：禁句——无头尸<br>侦探分析：第二被害者将第一被害者毒死后，在守卫注视下登上塔顶，等凶手将第一被害者尸体利用氦气球升上去，然后利用氦气球逃离塔顶，妄图制造自杀假象。<br>侦探分析：凶手锯掉第一被害者头颅，破坏第二被害者的计划，并在事后吊死后者，使其背上全部罪责。<br>凶手：不是那样的。我没有。<br>侦探：第一被害者也许不是你直接造成的，第二被害者却是你干的。<br>凶手：第二被害者降落失败，脖子被绳子卡在树枝上吊死了。之所以要去头，是因为氦气球升不上去，所以选择身体最重的一部分分离。<br>侦探：为什么你会有锯子？<br>凶手：幸好有锯子。<br>侦探：什么幸好，真是偷懒取巧。<br>凶手：偷懒取巧，岂非是依附着诡计小说的么？<br>侦探面色一变：偷懒取巧。<br>侦探：那是，<br>侦探：禁句！</p>
+<blockquote>
+<p>讽刺意味很浓。</p>
+</blockquote>
+<p>有听说过人在临死前所看见的情景会被刻印于视网膜上面吗。</p>
+<p>第十二个故事：凶器的故事——杀人手段<br>侦探：凶器不见了，不是干冰，因为难存储；不是冰，因为会有水迹。那是什么呢？是血凝成的利刃。</p>
+<blockquote>
+<p>一本正经的胡说八道</p>
+</blockquote>
+<p>尸检结果显示，凶手在从栏杆跌下去时，被自己骨折的骨头刺死。</p>
+<blockquote>
+<p>更扯。</p>
+</blockquote>
+<p>侦探：凶手就是你。</p>
+<blockquote>
+<p>凶器都推测错了，后面的推理就可想而知。</p>
+</blockquote>
+<p>第十三个故事：尾声<br>没有案情介绍，直接进入解密环节。<br>侦探：凶手就是你，大河原警部（系列里的主角“我”）。</p>
+<blockquote>
+<p>这次连案情介绍和叙诡都省了，上来就把主角打倒。</p>
+</blockquote>
+<p>第十四个故事：最后的选择</p>
+<p>尽管这是各人连续被杀的事件，但既不能把悬疑味推至顶峰，也不具有恐怖感，那便是由于你是这篇小说的系列角色侦探的缘故。即使出现了很多在其他小说中曾扮演侦探角色的人物，但最终必定仍然是你担当主角，因此读者知道你必定不会是凶手，也不会被杀死。而且，也已预先知道必是你在最后把谜团解开。你认为这种情况是正常吗？小说真正有趣的地方，便是无法预先知道将会发生的事情。</p>
+<p>挽救这篇作品的方法只得一个，那就是把“系列侦探不会被杀，也应该不是凶手”这个读者的先入观，给彻底地推翻。为了这个原因，你便只得成为凶手了。</p>
+<p>这个故事强行模仿无人生还，各种对本格推理的讽刺挖苦。<br>这回连侦探作者也不打算放过了。</p>
+<blockquote>
+<p>我倒觉得还好，侦探只是行文的一个线索，读者有这种心理预期，即把侦探排除在凶手和死者之外。毕竟故事还要继续。如果对这一点也心存芥蒂，那推理游戏就没有办法继续下去了。</p>
+</blockquote>
+<p>小结<br>算是完整地读完了，包括后面的解读部分。<br>实话实说，比较难读，有一定门槛。<br>这种不断跳跃现实和小说世界的风格，我是不怎么喜欢的，我比较喜欢沉浸式阅读。<br>干货还是有的，但是，确实读起来容易走神。<br>算是畅销君放飞自我的作品了。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4/" rel="tag"><i class="fas fa-tags"></i>推理小说</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2022/02/28/book/authors/jiubadao/" rel="next" title="九把刀作品集"><i class="fas fa-angle-left"></i><span class="nav-title">九把刀作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2022/03/21/book/authors/situqianhui/" rel="prev" title="司徒千悔思想体系"><span class="nav-title">司徒千悔思想体系</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%90%8D%E4%BE%A6%E6%8E%A2%E7%9A%84%E5%AE%88%E5%88%99"><span class="toc-text">名侦探的守则</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

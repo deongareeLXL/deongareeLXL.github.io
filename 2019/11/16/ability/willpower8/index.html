@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>willpower-第八章节-宗教对意志力的影响 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/ability/willpower8/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">willpower-第八章节-宗教对意志力的影响</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-11-16T00:54:19+08:00">2019-11-16 00:54:19</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ability/" itemprop="url" rel="index"><span itemprop="name">ability</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>《意志力》第八章节，讲述宗教对意志力的影响，以及其引申出的一些加强意志力的方法。</p>
+<span id="more"></span>
+
+<p>Keys: 仓储理论，不良行为习惯与自制力， 社会团体与自制力，宗教之于意志力和行为监控，双曲线贴现，明线</p>
+<ol>
+<li><p>与大众的刻板印象相反，酒精并不加强你做蠢事坏事的冲动；相反，它只是撤去对冲动的克制。它降低自制力，靠的是两条途径：降低血糖水平，降低自我意识。</p>
+</li>
+<li><p>克莱普顿在儿子坠楼后，选择了投降，每天早晚都跪着祈求帮助，放低自己。然后自制力突然大大增强，不再醉酒。效果立竿见影，他说听到了上帝直接命令他戒酒，所有的犹疑立马消失了。</p>
+</li>
+</ol>
+<p>信仰的力量。把自己的姿态放低，虔诚地相信某种力量的存在，就能获得坚持下去的意志力。</p>
+<ol start="3">
+<li><p>玛丽·卡尔起初是无神论者，有一次酒会上，她酒瘾犯了，逃到女厕所，走进一个小隔间，非理性地跪下来祈祷：请让我远离酒精。我知道我一直没有真的求过您，但是我真的需要远离酒精。求您！！祷告对她有效，一直在他脑袋里唠叨不停的那个声音突然消失了，就像个魔法师念了一通咒语把它变没了一样。</p>
+</li>
+<li><p>无神论者自然不相信这样的魔法，但是自我控制研究者不得不为他们的实际效果而折服。社会科学家即使无法接受超自然信念，也意识到宗教对人类有着深刻的影响力，特别是，数千年来宗教对促进自我控制都非常有效。</p>
+</li>
+<li><p>仓储理论：社会学家把学校看成一种仓储，白天储藏孩子，让孩子远离麻烦，所以其好处与其说来自教室里发生什么，不如说来自教室外不发生什么。出于类似的逻辑，晚上参加AA集会，就没有时间喝酒，自然把酒解除。</p>
+</li>
+<li><p>第一次抽烟或喝酒，大多数人并不愉快。第一次给自己注射海洛因，真的需要自制力。青少年不顾一切——自己的恐惧，父母的警告，身体的痛苦，坐牢或死亡的可能性，因为他们坚信，为了被社会接纳，他们不仅需要冒险，而且需要用一种看似满不在乎的超酷方式冒险。他们运用自制力克服抑制反应，运用更多自制力隐藏负面感受。</p>
+</li>
+</ol>
+<blockquote>
+<p>犯罪也是需要消耗意志力的。意志力是一种无属性能量，可以正用，也可以反着用。</p>
+</blockquote>
+<ol start="7">
+<li><p>尽管有些人自诩能够坚持出淤泥而不染，但是生活在非吸烟者中间的吸烟者与生活在吸烟者中的吸烟者相比，前者戒烟成功率更高，这再次证实社会影响就社会支持对戒烟的效果。</p>
+</li>
+<li><p>心理学家说，如果你在定期参加宗教集会，祈祷神明让你活得更久，那么你很有可能如愿以偿。你到底向哪个神明祈祷似乎并不重要。任何一种宗教活动都会延长你的寿命。</p>
+</li>
+<li><p>不信教的人相对寿命更短，积极参加宗教活动的人仍然活着的可能性要高1&#x2F;4.</p>
+</li>
+<li><p>宗教的好处：促进家庭稳定社会和谐；有助于减轻人们在不同目标或不同价值观之间的内心冲突；有利于增强自我控制的两个要素：意志力和行为监控。</p>
+</li>
+<li><p>宗教活动——冥想，往往设计有意识地努力调节注意力，有助于约束思想。祷告和冥想是一种增强自制力的厌氧运动，宗教信徒定期强迫自己中断手头事务做祷告，培养自制力。很多宗教规定了斋戒期，控制饮食。</p>
+</li>
+<li><p>信教徒觉得上帝或者其他神明在看着自己，注意着自己的所作所为所思所想，甚至知道自己行为背后最隐秘的姻缘。要是自己因为错误的原因做了貌似正确的事情，那是轻易糊弄不了上帝活着其他神明的。不管是否相信神明，信教徒往往十分清楚自己被很多双眼睛盯着——这些眼睛属于所在的宗教团体的其他成员。</p>
+</li>
+</ol>
+<blockquote>
+<p>举头三尺有神明。</p>
+</blockquote>
+<ol start="13">
+<li>双曲线切线的结果：当诱惑还很遥远，我们可以忽略诱惑；但是，当诱惑就在眼前，我们就会头脑发昏，忘掉长远目标。一个形象的比喻：天路历程中拒绝的朝圣之路，在越来越靠近酒吧之时，酒吧就会逐渐把远处的圣城遮挡，主人公就忘记了自己的初衷。</li>
+</ol>
+<blockquote>
+<p>不忘初心，方得始终；初心易得，始终难守。</p>
+</blockquote>
+<ol start="14">
+<li><p>6年后获得100美元和9年后获得200美元，大部分人选200美元；今天获得100美元和3年后获得200美元，大部分人选100美元。</p>
+</li>
+<li><p>随着我们距离短期诱惑越来越近，我们折现未来的倾向沿着双曲线滑动，即称为双曲线贴现。随着你变低未来的价值，你就不再在意是否宿醉到明天，不再在意余生都不碰酒的誓言。现在，与在酒吧及时行乐相比，那些未来收益显得微不足道。停下来喝一杯有什么坏处呢？</p>
+</li>
+</ol>
+<blockquote>
+<p>过于真实。</p>
+</blockquote>
+<p>16.明线规则，是明确清晰简单的规则，越过明线，你一定会注意到自己越过了明线。如果你答应自己适量饮酒或抽烟，那不是一条明线。边界那么模糊，而你的大脑有那么擅长忽视你的小错，结果，你也许会在不知不觉的情况下越界太远。所以，你需要零容忍。</p>
+<ol start="17">
+<li><p>明线并非适用所有控制问题，如节食。但是大多数情况下行得通</p>
+</li>
+<li><p>如果你相信规则是神圣的——上帝定下的戒律，或者说超能量立下的一条不容置疑的规矩——那么它会变成一条特别明显的明线。你更有理由期望你的未来自我尊重它，这样你的信念就变成了一种自我控制：一个自我实现的命令，我认为我不会做，因此我不做。</p>
+</li>
+</ol>
+<p>总结：</p>
+<p>仓储理论揭示有时候因果可能是倒过来的。<br>不良行为习惯形成的最初也需要意志力。<br>社会团体对个人有着潜移默化的影响力。<br>宗教能增强人的意志力，帮助人们做好行为监控。<br>双曲线贴现告诫我们远离诱惑源。<br>抵制诱惑，我们需要一条明线，明确规定界限内外，借助自己的信念可以更加明确明线。这信念可以是上帝，神明或者其他超能量。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ability/" rel="tag"><i class="fas fa-tags"></i>ability</a>
+        
+        <a class="post-tag button" href="/tags/willpower/" rel="tag"><i class="fas fa-tags"></i>willpower</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/11/14/material/mosima/" rel="next" title="摩斯码"><i class="fas fa-angle-left"></i><span class="nav-title">摩斯码</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2019/11/24/ability/willpower9/" rel="prev" title="willpower-第九章节-培养孩子意志力"><span class="nav-title">willpower-第九章节-培养孩子意志力</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

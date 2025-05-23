@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>陆秋槎作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/book/authors/luqiucha/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">陆秋槎作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-23T23:40:25+08:00">2021-01-23 23:40:25</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>魔都三巨头之列，现居日本。<br>百合系推理作家，复旦大学古文系毕业。<br>抛开百合元素，个人比较喜欢其文风。<br>有新书必入手。</p>
+<span id="more"></span>
+
+<h3 id="元年春之祭"><a href="#元年春之祭" class="headerlink" title="元年春之祭"></a>元年春之祭</h3><h4 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h4><p>从两位少女葵和观露申的狩猎场景，引出故事的话题。借由露申的口述，回忆出四年前观氏老大一脉的血案，种下悬疑的种子。从葵的各种尝试性的推演解释过程中，牵引读者去探讨血案的真相。</p>
+<blockquote>
+<p>作者对葵的描写中，带着一丝戾气，完全不似传统小说对主人公完美化身的描述。</p>
+</blockquote>
+<h4 id="观家宴会"><a href="#观家宴会" class="headerlink" title="观家宴会"></a>观家宴会</h4><p>主要的人物陆续出场，宴会上谈论的话题实为本书的最大铺垫。由葵引出的话题”屈原实为巫女“的观点，大家各抒己见，几方势力开始初步接触交锋。</p>
+<blockquote>
+<p>这里篇幅很长，作者引用了大量的文献，涉及到巫女，东皇太一等等。</p>
+</blockquote>
+<h4 id="血案再袭"><a href="#血案再袭" class="headerlink" title="血案再袭"></a>血案再袭</h4><p>被害者接连出现，葵以侦探的角色推演着凶案的可能性，并在露申的逼迫下，给出了一个看似合理，实则牵强附会的解释。</p>
+<blockquote>
+<p>葵的视角里，首先抛出色盲的推测，还是很有惊喜的，不过对色盲产生的缘由却是乱说一气。对白止水的死亡留言”子衿”解释也是站不住脚。这大概就是古代文人的诡辩吧，引用一些似是而非的典故，刻意歪曲事实。</p>
+</blockquote>
+<h4 id="结局"><a href="#结局" class="headerlink" title="结局"></a>结局</h4><p>最后牵引出四年前的案子，真相被一层层揭露。</p>
+<blockquote>
+<p>有人说四年前的案子和现在的案子关联不大，完全可以删除。我倒觉得四年前的案子也给本书加分了，都是以反抗巫女使命为主题，两个案子里的两个巫女都有着令人悲伤的未来。</p>
+</blockquote>
+<h4 id="总结评述"><a href="#总结评述" class="headerlink" title="总结评述"></a>总结评述</h4><p>本书的逻辑性还是非常到位，就冲这一点，非常值得一读。探案过程也是一波三折，本格的味儿足了。奎因式二次挑战，我没猜对。</p>
+<p>虽然其中有大量的古文言文，非专业人士基本难以阅读，但多为引用文献，不影响主线故事。作者作为古典文献学专业出身，自有其骄傲。很多人都评说作者掉书袋，我倒不觉得有什么不适，因为作者所有的引用都主题密切相关，并没有矫揉造作，更不存在画蛇添足。当然，另一方面也跟我喜欢历史，向往古文学相关吧，因人而异，不同好恶而已。</p>
+<p>还有人说书中的对话很奇怪，很费劲儿。我也是全程通读，竟完全没有察觉。回过味儿来，可能是最近读了青崎有吾作品，对这种日本轻小说式的对话免疫了吧。</p>
+<p>唯一让我觉得不适的就是，作者这百合剧情是要闹哪样，我可能更喜欢探讨人性的主题，比如守旧父辈的家族至上的自私，比如小休的植入骨髓的奴性思想，比如葵的暴戾却温柔，比如观若英的悔恨。故事框架真的很不错，有很多人性的主题可以拓展延伸，从而让人物形象更为深刻丰满。但是，作者对人性的探讨只是浅尝辄止，通篇串引的是两位主角之间的羁绊，感情？？？？</p>
+<p>这本书作者给我呈现出一个不同于以往作品的主角形象。葵，一方面有着贵族的骄奢傲慢，自私暴戾，另一方面却也展现出她的温柔善良。她可以大方坦言帮助露申离开云梦泽，也可以稍有不快对小休施虐。当露申质问她为什么没有好好对待小休，而只会施加暴力时，她的回答是：你能指望一个小孩，自己都没有受到好的关怀，而懂得如何处理主仆关系么。人都是矛盾的结合体，葵这样的行为模式，看似怪异，实则合理。</p>
+<h3 id="樱草忌"><a href="#樱草忌" class="headerlink" title="樱草忌"></a>樱草忌</h3><h4 id="故事概述"><a href="#故事概述" class="headerlink" title="故事概述"></a>故事概述</h4><p>长期遭受家庭冷暴力的单亲高中女突然跳楼自杀，在她的日记中控诉她唯一的朋友——也就是主角，敲诈她。</p>
+<h4 id="前两章"><a href="#前两章" class="headerlink" title="前两章"></a>前两章</h4><p>稍显冗长，交代跳楼前后事件，人物背景以及一些校园生活的琐事。第二章大篇幅记述了跳楼女生的日记，多数都很平常，感觉可删减。</p>
+<h4 id="矛盾激化，剧情推进"><a href="#矛盾激化，剧情推进" class="headerlink" title="矛盾激化，剧情推进"></a>矛盾激化，剧情推进</h4><p>由跳楼女生的母亲发起，姚老师充当侦探角色，分别求证于编辑部和书店，最终得出血淋淋的真相。</p>
+<h4 id="总结评述-1"><a href="#总结评述-1" class="headerlink" title="总结评述"></a>总结评述</h4><p>在阅读前两章时，一度觉得枯燥。但是当剧情迅速往前推进时，节奏很好，最后结尾主题抛出，更让人眼前一亮。瞬间提高了本书档次，道出了《元年春之祭》中作者没有明言的观点，也解答了我读这两本书的那一点困惑。下面摘录一些原文：<br>1）”我忽然明白姚老师为什么喜欢推理小说了。”我说，”因为推理小说总是有个解答，到最后总能知道真相。在现实中却不一定知道。“<br>2）只要活着，就不得不与人相处，就要去猜测别人的想法。明知道从理论上讲，确切地猜中是根本不可能的，却又不得不求处一个个”近似解”。以便待人接物时不要有什么闪失。<br>3）在剩下的或许漫长或许短暂的时间里，我会被迫不断温习它，一遍遍地在他人身上求出”近似解”。在这期间，也免不了会因为太接近真相而受到伤害，或是因误差太大而伤害到别人。然而这就是我的人生。</p>
+<p>读作者的书，总有一种朦胧的感觉，就像是周围永远弥漫着一层薄雾。你认为剧中人物该怎么描写才更具体生动，但是作者偏偏就给人物添加一些不符合其”定位”的行为模式。事实上，人就是这样一种复杂的生物，人的感情是变化的，人的情绪是波动的，人的行为是不可预测的。一念成佛，一念成魔。而这世间的事，也并不是非黑即白的，而多都处于灰色空间。作者不相信现实中有必胜的侦探，不愿意他笔下的人该有固定的行为模式，不认同一个活着的人是能被看透的。</p>
+<p>后面我就以看过的本书点评提到的几点，提出我自己的一点愚见。<br>1）有人评说指出本书以反本格为标签。从以上的部分摘录也能看出端倪，另外一点就是跳楼女生虽然看了很多书，但是对本格推理小说嗤之以鼻。事实上，作者只是想表达真正意义上的现实推理存在许多不确定因素。其中，人这个因素永远无法被明确定型。<br>尽管如此，尽管推理之于现实，只能是概率学上的更优解。真正能以演绎法进行绝对科学的正确性论证的推理少之又少。大多数时刻，只能根据当前的特征，结合已有的常识，去尝试归纳出各种可能的结论，然后再加以排除。但是，不可否认的是，正如呼延云小说里所说，推理是认知世界的一种方式。我们可以通过推理，去探究事情的更深层次的真相，去获取到事物更本质的内涵。也许，推理不能保证绝对的正确。但是只要它能提高结果的正确率，那就比毫无主见，随波逐流要好太多太多。不鼓吹神探，不崇尚蛮干。<br>2）然后就是本书的反青春标签，无感，不做过多评价。<br>3）书中的一些社会问题：亲子教育，网络暴力，校园欺凌。我倒觉得都不是本书的主旨，本书最大的核心话题还是朋友之间的不知，因为最难琢磨是人心。<br>4）接下来就是作品的缺陷，有吐槽日记太长的，俺也一样；有说作品设置的大背景有点不融洽，没有特定的真实社会背景可以依托，关于跳楼女生家的穷描写的很奇怪，俺也认同；还有吐槽作品主旨不明的，事实上这估计就是该作者的文风吧，人物性格不鲜明，故事主题不突出。只能说萝卜白菜各有所爱，俺觉得还行。<br>5）最后聊聊评论提到的作品中的涵盖的梗，涉及到哲学，音乐，美术，动画等等方面。反正以我贫瘠的知识储存是没看懂多少，玩梗只能在圈子里独乐乐，不如多做点科普，让读者多增长一些见识。</p>
+<p>挺有意思的一本书，值得一读。以上均为未读后记之前的评述，看了后记，发现作者的思路果然如此般。后面的短篇《天空放晴处》，作者尝试的是”日常之谜“的推理小说风格，真的很不错的风格。推理小说是决不该局限于凶案命案，日常的点点滴滴其实皆可推理。</p>
+<h3 id="文学少女对数学少女"><a href="#文学少女对数学少女" class="headerlink" title="文学少女对数学少女"></a>文学少女对数学少女</h3><h4 id="连续统假设"><a href="#连续统假设" class="headerlink" title="连续统假设"></a>连续统假设</h4><h5 id="故事概述-1"><a href="#故事概述-1" class="headerlink" title="故事概述"></a>故事概述</h5><p>故事是从校刊推理谜题竞猜开始的，文学少女陆新出的谜题，想知道解答是否唯一，就找到了数学少女韩。韩从数学的角度剖析案件：<br>公理系统的一致性和完备性 ——&gt;<br>康托尔的连续统假设 ——&gt;<br>提出不可判定命题(哥德尔第一不完备定理)，进而引申到案件上。</p>
+<p>案件比较简单：女死者死于屋中，头发被胡剪，唯一正门上锁，通往窗户的花园泥地有脚印。嫌疑人8名，根据脚印排除2人，还剩6人。<br>标准答案：<br>剪头发是为了掩饰 ——&gt;<br>凶手头发沾血，洗头发，掉发，怕被发现 ——&gt;<br>凶手和死者头发相近。</p>
+<p>从数据的角度寻找其他答案：<br>不可判定命题 ——&gt;<br>剪头发可能是非理性动机,并不是为了掩饰 ——&gt;<br>你只是因为刻意追求信息公平，太过在意作品严密与否，才会感到困惑。但推理小说应该像数学一样是自由的，不是吗？ ——&gt;<br>XXX是凶手，为真的条件是什么？ ——&gt;<br>当且仅当你说她是。因为你是作者。</p>
+<blockquote>
+<p>故事角度奇特，耐人寻味。我不知道前人是否有类似的故事构想（后记中记述作者借鉴了前人的作品，其中还有麻神），但是我是第一次阅读到此类型推理小说。小说并非直接背靠故事背景，而是跳出背景，直接从作者的角度探讨推理小说中的推理。上述的推理过程算是主线推理，并不包含所有，书中还有一些千层饼式的推理论述。结论很有意思，第一次读到会觉得震撼，仿佛就如作者所说，推理小说的凶手是谁，完全由作者说了算。但是细品之下，才回味出来。作者要强调的是推理小说是像数学一样，大胆假设，小心求证。</p>
+</blockquote>
+<blockquote>
+<p>连续统假设是说无穷集合阿列夫0和阿列夫1之间是否存在一个集合，这个命题被证明不可证。</p>
+</blockquote>
+<blockquote>
+<p>有理数集合与整数集合只是等势，不是相等。无穷集合里的等于能算等于么，读书人的事能算偷吗，别拿这个来忽悠。</p>
+</blockquote>
+<h4 id="费马最后的定理"><a href="#费马最后的定理" class="headerlink" title="费马最后的定理"></a>费马最后的定理</h4><p>双线故事，一边描写数学少女韩构想的关于费马的故事，一边记述现实中发生的袭击事件。</p>
+<h5 id="构想故事概述"><a href="#构想故事概述" class="headerlink" title="构想故事概述"></a>构想故事概述</h5><p>费马赴友人约，去旅店会面。友人被害。关键线索是绿松石上的喷溅血迹和旁边的擦拭痕迹，以及被害人的拐杖位置错了。病重的费马充当侦探角色，在咽下最后一口气之前，告诉大家凶手是谁，但是没来得及解释。</p>
+<h5 id="现实故事概述"><a href="#现实故事概述" class="headerlink" title="现实故事概述"></a>现实故事概述</h5><p>女生被袭击落水昏迷，凶犯却为其做心肺复苏，然后离开。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>两个故事穿插，都表达出一个意思。在构想故事概述中，侦探费马事实上不可能推测出凶手（原因是红绿色盲的遗传方式当时是未知的）。现实故事中，侦探少女韩也没有绝对的证据证明凶犯。他们都是扬言自己找到了凶手。引申出的原文结论：<br>毕竟，对于数学家和侦探来说，最重要的永远都是直觉。</p>
+<blockquote>
+<p>这个故事也很不错，个人觉得现实故事更佳。</p>
+</blockquote>
+<blockquote>
+<p>费马大定理：当整数n &gt;2时，关于x, y, z的方程 x^n + y^n &#x3D; z^n<br>没有正整数解。1995年被证明，经历了几个世纪。费马死前曾言明他能证明，但是事实上他并没有证明。与两个故事主题一致。</p>
+</blockquote>
+<h4 id="不动点定理"><a href="#不动点定理" class="headerlink" title="不动点定理"></a>不动点定理</h4><h5 id="构想故事概述-1"><a href="#构想故事概述-1" class="headerlink" title="构想故事概述"></a>构想故事概述</h5><p>我被杀于一楼门口，房间反锁，窗外泥地没有脚印。凶器在二楼。</p>
+<h5 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h5><p>我被杀于密室，无法推测凶手是怎么制造密室的，但是可以排除自杀，因为凶器在二楼。</p>
+<blockquote>
+<p>这一篇延续上两篇的风格，以不动点定理为切入点。感觉这篇的重点走偏了，字里行间总是引导读者朝其他方向去了。</p>
+</blockquote>
+<blockquote>
+<p>不动点定理是指映射集合中保持不变的点，最常用的布劳威尔不动点f(x)&#x3D;x。不动点的意义在于，对于一些复杂的函数，想要求解非常困难，但是可以先去证明解的存在性，如果存在不动点，则存在性就被证明了。</p>
+</blockquote>
+<h4 id="格兰迪级数"><a href="#格兰迪级数" class="headerlink" title="格兰迪级数"></a>格兰迪级数</h4><p>也是双故事线，虚构线和现实线。不多评述，虚构线看第一遍基本看不懂，现实线是作者在回忆过去。F大就是复旦大学，N大就是南京大学吧，我猜的。</p>
+<blockquote>
+<p>这一篇是作者的回忆录吧，就不多评价了。</p>
+</blockquote>
+<blockquote>
+<p>格兰迪级数表现形式为：1-1+1-1+1-1+… 它的值可以是0，1和1&#x2F;2。寓意只要换一种推理方式，采用不同的线索，就能推理出不同的真相。</p>
+</blockquote>
+<h4 id="全书总结"><a href="#全书总结" class="headerlink" title="全书总结"></a>全书总结</h4><p>第一和第二个故事更佳，从故事情节到跟数学的类比都十分精彩，强烈推荐。后面两个故事也还不错。期待该系列新作，数学确实是一门神奇的学科，可惜一般人的生活工作中基本用不上。</p>
+<h3 id="当且仅当雪是白的"><a href="#当且仅当雪是白的" class="headerlink" title="当且仅当雪是白的"></a>当且仅当雪是白的</h3><h4 id="故事概述-2"><a href="#故事概述-2" class="headerlink" title="故事概述"></a>故事概述</h4><p>故事以校园为背景。<br>首先引出的是5年前的案件，少女唐被发现死于办公楼后门外的水泥平台，凶器就掉落在尸体旁边。现场周围的雪地没有脚印，办公楼的大门外侧上锁，现场形成密室条件。警方侦查最后定性为自杀。<br>以相同的校园欺凌事件为由，宿管委员顾决定重新调查5年前的案子。侦探二人组为学生会长冯露葵和图书馆老师姚，先后拜访了当年的涉案人员。从中反复推敲当年案件的可能性。<br>然后，就是新的事件又发生了，先前的欺凌事件首恶的尸体被侦探二人组在早晨发现，情形与5年前案件一致。由两起相似的案件引发的调查和推理迅速展开。<br>不管真相如何，那都是很残酷的。</p>
+<h4 id="推理过程"><a href="#推理过程" class="headerlink" title="推理过程"></a>推理过程</h4><p>首先是5年前的案件，排除种种其他的可能性，包括凶手把凶器扔到尸体旁边，凶手从内侧利用丝线把外面的门闩合上等等，最合理的解释就变得唯一了。至于凶手和杀人动机，还需要进一步挖掘讨论，作者在后记中点到为止，此案件没有决定性的证据去锁定凶手。<br>然后是5年后的案件，在对比了两个案件的不同点之后，以此出发，锁定住凶手的破绽。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>整件故事的展开描述很细腻，校园氛围很浓厚，很值得细细品读。<br>推理过程很丰满，反复推敲案情。读起来很顺畅，引领读者一步步深入案件核心。<br>有两点想提一下：<br>第一点是我本人一直对5年前警方如何得出自杀结论耿耿于怀，因为随着事件调查深入，自杀的论点很难站住脚。作者并没有对此给出解释。<br>第二点就是5年后案件的核心叙述性诡计，侦探抓住了凶手由叙述性诡计引出的破绽，当时读到这里还是有点懵。<br>至于作者耿耿于怀的杀人动机，包括一些其他评论也一定会提到这点。我个人觉得还好吧，并没有那么那么地突兀。不过还是可以在之前加深一些铺垫伏笔，只要有伏笔，人物刻画到位，动机不是大问题。当然本人十分讨厌日式推理中的各种奇葩动机，打着本格的旗号就来侮辱读者智商，这可取么，这不可取。<br>个人很喜欢书中的一些人物，一些配角也不错。两任学生会长，酒吧歌手，甚至是5年前那三名霸凌者。作者对他们的描写刻画很到位，有一种青春小说独有的feel。伤感却不矫情，落寞却难悲观。这应该是青春该有的气息。</p>
+<h4 id="摘录"><a href="#摘录" class="headerlink" title="摘录"></a>摘录</h4><p>那些被你这个年纪的人憧憬、赞颂乃至信奉的东西，那些看起来闪闪发光的名次，都太沉重了。音乐也好，文学也好，美术也好，哲学也好，梦想也好，恋爱也好，都太沉重了。人是很脆弱的东西，会被这些东西压垮的。</p>
+<p>杀人的冲动，说到底是种非常情绪化的东西。突如其来的绝望，突如其来的自我否定，突如其来的自我厌恶，分不清那到底是悲伤还是愤怒，那大概是一种epiphany——顿悟。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/" rel="tag"><i class="fas fa-tags"></i>中国推理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/luxun/" rel="next" title="鲁迅全集"><i class="fas fa-angle-left"></i><span class="nav-title">鲁迅全集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/luoxiu/" rel="prev" title="罗修作品集"><span class="nav-title">罗修作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%85%83%E5%B9%B4%E6%98%A5%E4%B9%8B%E7%A5%AD"><span class="toc-text">元年春之祭</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%BC%80%E5%A4%B4"><span class="toc-text">开头</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%A7%82%E5%AE%B6%E5%AE%B4%E4%BC%9A"><span class="toc-text">观家宴会</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%A1%80%E6%A1%88%E5%86%8D%E8%A2%AD"><span class="toc-text">血案再袭</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%BB%93%E5%B1%80"><span class="toc-text">结局</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93%E8%AF%84%E8%BF%B0"><span class="toc-text">总结评述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%A8%B1%E8%8D%89%E5%BF%8C"><span class="toc-text">樱草忌</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">故事概述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%89%8D%E4%B8%A4%E7%AB%A0"><span class="toc-text">前两章</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%9F%9B%E7%9B%BE%E6%BF%80%E5%8C%96%EF%BC%8C%E5%89%A7%E6%83%85%E6%8E%A8%E8%BF%9B"><span class="toc-text">矛盾激化，剧情推进</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93%E8%AF%84%E8%BF%B0-1"><span class="toc-text">总结评述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%96%87%E5%AD%A6%E5%B0%91%E5%A5%B3%E5%AF%B9%E6%95%B0%E5%AD%A6%E5%B0%91%E5%A5%B3"><span class="toc-text">文学少女对数学少女</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%BF%9E%E7%BB%AD%E7%BB%9F%E5%81%87%E8%AE%BE"><span class="toc-text">连续统假设</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0-1"><span class="toc-text">故事概述</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%B4%B9%E9%A9%AC%E6%9C%80%E5%90%8E%E7%9A%84%E5%AE%9A%E7%90%86"><span class="toc-text">费马最后的定理</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E6%9E%84%E6%83%B3%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">构想故事概述</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E7%8E%B0%E5%AE%9E%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">现实故事概述</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86"><span class="toc-text">不动点定理</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E6%9E%84%E6%83%B3%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0-1"><span class="toc-text">构想故事概述</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%A0%BC%E5%85%B0%E8%BF%AA%E7%BA%A7%E6%95%B0"><span class="toc-text">格兰迪级数</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%85%A8%E4%B9%A6%E6%80%BB%E7%BB%93"><span class="toc-text">全书总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E9%9B%AA%E6%98%AF%E7%99%BD%E7%9A%84"><span class="toc-text">当且仅当雪是白的</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%95%85%E4%BA%8B%E6%A6%82%E8%BF%B0-2"><span class="toc-text">故事概述</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B"><span class="toc-text">推理过程</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%91%98%E5%BD%95"><span class="toc-text">摘录</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

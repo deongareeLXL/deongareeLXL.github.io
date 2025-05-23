@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>willpower-第一章节-意志力不只是个传说 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/ability/willpower1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">willpower-第一章节-意志力不只是个传说</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-06T17:47:51+08:00">2019-08-06 17:47:51</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ability/" itemprop="url" rel="index"><span itemprop="name">ability</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>意志力概念的引出，简单介绍。</p>
+<span id="more"></span>
+
+<ol>
+<li><p>莎士比亚在《特洛伊罗斯与克瑞西达》中写着：傻子才会假定我们的定力是恒定的，人在变脆弱后，就会做自己清醒时不愿做的事情。</p>
+</li>
+<li><p>一个经验丰富的婚姻治疗师Don～Baucom劝经常吵架的夫妻早点下班回家。他怀疑，长期的工作让夫妻精疲力竭，彼此都没有剩下多少精力来容忍伴侣令人生气的坏习惯，关心体贴对方以及克制自己不反唇相讥。人们在工作上用完了所有的意志力，家庭就会遭殃。</p>
+</li>
+<li><p>看电影实验，一组压抑情绪，一组放大情绪，对照组无提示。结果表明，不管是压抑情绪还是放大情绪，都会消耗意志力，即伪装有成本。</p>
+</li>
+<li><p>经典心里练习“不想白熊”也有成本。5分钟不想白熊的失败，揭示了一个令人不安的事实–我们喜欢认为我们能控制自己的思维，但是我们却控制不了。我们只能部分地控制我们的思维。</p>
+</li>
+<li><p>克制冲动要耗费能量，创造互动也要耗费能量。鲍麦斯特用自我损耗ego depletion描述人们对自己思维感受和行为的调节能力减弱的过程。人们有时可以克服心理疲劳，但是如果人们用完能量，最终就会屈服。</p>
+</li>
+</ol>
+<blockquote>
+<p>意志力是什么？作者提出自我损耗就是消耗意志力的过程。</p>
+</blockquote>
+<ol start="6">
+<li>多伦多研究者关注“前扣带皮层”的脑区，这个脑区注意着正在做的和想要做的之间是否存在差异，因此通常被人称为“冲突监控系统”或者“错误监控系统”。当你一手拿汉堡，一手拿手机，而去咬手机时，这个脑区就会发出警告，表现在脑电图上，就是一个“事件相关负波”。</li>
+</ol>
+<blockquote>
+<p>大脑的“前扣带皮层”负责自我控制。</p>
+</blockquote>
+<ol start="7">
+<li><p>经典的斯特鲁普任务，看着其他颜色的颜色单词，让测试者说出正确颜色。研究表明隐藏情绪的测试者反应比较慢。自我损耗引起前扣带皮层怠工。自我没损耗是容易做好的事情，自我损耗后很难做好</p>
+</li>
+<li><p>处于损耗状态的人更容易感到疲劳，产生消极情绪，但感觉上与处于非损耗状态的人差别不大。</p>
+</li>
+</ol>
+<blockquote>
+<p>处于损耗状态的人宛如炸药桶，一点就炸。但是不触发爆炸，外表看起来与常人无异。</p>
+</blockquote>
+<ol start="9">
+<li><p>鲍麦斯特和沃斯的实验表明，意志力被损耗了的人尽管没有表现出任何预警情绪，但是对各种事情的反应确实更强烈。同样的悲剧看了更悲伤，同样的愉快图片看了更快乐，同样的恐怖图片看了更害怕不安，同样的冰水摸着更刺骨。变强的不仅有感受，还有欲望。</p>
+</li>
+<li><p>所以，如果你想要自我损耗过多的预警迹象，那么不要但看一种表现，而是要看所有感受是否都变强了。如果你发现一些不是特别郁闷的事情让你特别郁闷，或者一些不是特别悲伤的想法让你特别悲伤，或者一些不是特别愉快的消息让你特别愉快。</p>
+</li>
+<li><p>自我损耗造成的影响是双重的：一方面意志力减弱了，另一方面渴望变强了。</p>
+</li>
+<li><p>有学生反馈，运用了很多意志力来让自己更刻苦地学习，但是最后反而学得更少。用掉的意志力越多，向下个诱惑屈服的可能性就越大。</p>
+</li>
+</ol>
+<blockquote>
+<p>把意志力都用于逼迫自己，很可能会屈服于某些引发更坏结果的诱惑。这个相信每个人都有体会。不过也有人能够不断地逼迫自己最终成功的。客观原因分析，要么他意志力足够强大，要么就是存在他的认知里的诱惑较少。我觉得前者还是极少数，涸泽而渔终有尽时。而后者就容易理解了，如果只是拥有单纯地认知，不懂得尘世里的种种诱惑，反而更能逼迫自己，最终达到更高的高度。</p>
+</blockquote>
+<ol start="13">
+<li><p>最终屈服于诱惑时，人们归咎于他们的性格：我就是没有足够的意志力。意志力真的能够被用尽么？也许人们就是没有用完意志力，也许人们有意无意地吧意志力存起来了</p>
+</li>
+<li><p>鲍麦斯特的研究生穆拉文的实验中，告诉被试者有三轮测试，被试者在第二轮就松懈了，有意无意地为最后冲刺保存精力。不告诉被试者测试轮数，先说第二轮有奖励，结束后再告诉被试者，还有第三轮，结果第二轮中表现越好，第三轮就越差。</p>
+</li>
+</ol>
+<blockquote>
+<p>感觉跟一鼓作气，再而衰，三而竭一个道理。古人的智慧还是令人感叹啊。</p>
+</blockquote>
+<ol start="15">
+<li><p>研究者给出启示：（1）你的意志力是有限的，使用就会消耗；（2）你从同一账户提取意志力用于各种不同任务。你一整天做的各种事情之间存在隐秘的联系。意志力花去一分则少一分。上班受气，回家踢狗。</p>
+</li>
+<li><p>我们先提个一般建议：一次只做一件事。如果你一心多用。你也许可以暂时兼顾一下，但是，随着意志力消耗殆尽，你越来越可能犯严重错误。</p>
+</li>
+<li><p>如果你想让生活同时发生几个变化，那么最终可能一个变化都发生不了。最重要的是，别列什么”新年任务“清单。最好只下决心并坚持做一件事情，那就足具挑战性。因为你只有一条意志力供给线。即使是这样，你有时还是会觉得意志力不够用，连一个目标都嫌多。</p>
+</li>
+</ol>
+<p>小结</p>
+<p>1.克服心理方面的诱惑并不比繁重的体力劳动轻松，会让身体加速疲劳。<br>2.意志力是一种消耗型能量，鲍麦斯特用自我损耗来描述这一消耗过程。<br>3.大脑的前扣带皮层负责自我控制，在起作用是会产生事件相关负波。<br>4.自我损耗过多会引起前扣带皮层怠工，表现在外的并不是直接的情绪波动，而是一种失去调节能力的形式。用物理学概念描述就是，自我损耗适用于宏观稳定速率，一旦消耗过多，并不会立即导致速率急剧上升或者下降，而是在触发了速率急剧上升或者下降后，无法调整到正常波动范围内。生物学而言，跟感冒发烧体温失调一个道理。<br>5.合理使用意志力，一次只做一件事，切勿给自己列新年任务清单。让生活同时只发生一个变化，因为变化需要消耗的意志力只有一条供给线，意志力暂存的总量还不宽裕。有时候一个都嫌多，遑论多任务并发。<br>6.you know, human can make miracles. If you are determined not to move, you won’t. —— Amanda Palmer</p>
+<p>方法论</p>
+<p>1.通过欲望失调判断自我损耗状态，警惕之。<br>2.一次只专注于一件事情。<br>3.不要尝试完全控制自己的思维，那不可能。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ability/" rel="tag"><i class="fas fa-tags"></i>ability</a>
+        
+        <a class="post-tag button" href="/tags/willpower/" rel="tag"><i class="fas fa-tags"></i>willpower</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/07/30/ability/willpower0/" rel="next" title="willpower-引言"><i class="fas fa-angle-left"></i><span class="nav-title">willpower-引言</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2019/08/12/ability/willpower2/" rel="prev" title="willpower-第二章节-驱动意志力的能量"><span class="nav-title">willpower-第二章节-驱动意志力的能量</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

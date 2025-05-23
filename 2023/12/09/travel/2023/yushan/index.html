@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>虞山 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/12/09/travel/2023/yushan/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">虞山</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2023-12-09T22:37:58+08:00">2023-12-09 22:37:58</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/travel/" itemprop="url" rel="index"><span itemprop="name">travel</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>今日目的地，常熟虞山。<br>高铁一个小时车程就到了常熟。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_125813.jpg" alt="虞山城墙"></p>
+<span id="more"></span>
+
+<p>首先去到的是虞山森林公园。</p>
+<p>其实爬虞山，应该从北面出发的。<br>攻略上显示起点有个大茶壶，没找到。</p>
+<p>这边的人不太多，三三两两都是就近散步的。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_123430.jpg" alt="仲雍墓"></p>
+<p>公园往上就是仲雍墓，貌似是吴国始祖，不太熟。</p>
+<p>地图上看到前面有城墙，继续往前。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_125440.jpg" alt="山腰"></p>
+<p>到达城墙。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_130009.jpg" alt="城墙"></p>
+<p>城墙还是挺壮观的，城墙下有个小卖部，聚集了一些游客在此拍照。<br>据说这堵城墙系现代化作品，非古时遗迹。<br>城墙的入口在侧边小路尽头，要收门票。<br>觉得不太值，还是继续登上吧。</p>
+<p>盘山路，不是很陡，时不时有骑自行车的人上下坡。<br>沿路都有大扫帚，看来这段路日日皆由人清扫，路上都没有积聚落叶。</p>
+<p>路两边，偶尔会出现白色小房子，以为是厕所，结果都是祠堂，往远一点就是墓地，还挺多。</p>
+<p>再往前，看到了茶园，有机茶园。<br>什么叫有机茶园呢，如果你身临其境，就不会问出这个问题，因为空气中的味道会回答你。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_132458.jpg" alt="有机茶园"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_132528.jpg" alt="有机茶园"></p>
+<p>山上的树林还是挺茂密的，有一种别样的风景，远处是不是传来鸟叫声。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_133124.jpg" alt="林区"></p>
+<p>只是偶尔出现的公交车，也会打破这份静谧，把人拉回现实中来。</p>
+<p>再往前，就到了一个小景点了，有块石碑雕刻着某种动物，獬豸。两字儿都不认识，还好有拼音。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_133135.jpg" alt="碑"></p>
+<p>再往前，空气中的味道愈发浓厚了，找了个山沿视野开阔处远眺。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_134305.jpg" alt="远眺"></p>
+<p>旁边还有一个亭子，一家人在疯狂补充能量。<br>我是不得不感慨，在味道这么浓的地方还能吃得下。<br>后来我才知道，前面几公里都是这个味道，估计他们也是无奈之举。</p>
+<p>又快到下一个小景点了。<br>前面的山路还很长，沿着公交车的大路走，确实也没啥意思，决定开小差，目标——联珠洞。<br>首先是一段下山路，下山路下得也颇不容易。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_134313.jpg" alt="下山路"></p>
+<p>首先是石头堆砌的路，忒硬了，没有泥土的松软。<br>其次就是下山的坡度很陡。<br>现在下得有多快，等会儿爬山就有多累。<br>好不容易爬上的高度，又要急驰而下。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_141829.jpg" alt="缆车"></p>
+<p>半山腰有缆车，果然啊，现代人爬山，怎么少得了缆车。</p>
+<p>终于到了联珠洞，景点不大，几栋低矮的房子，一堵宣誓墙，再然后就是个能透过阳光的小窑洞了。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_144246.jpg" alt="红色景点"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_144255.jpg" alt="宣誓墙"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_144332.jpg" alt="联珠洞"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_144352.jpg" alt="联珠洞"></p>
+<p>有看到一个大狗子，背上背着行李和水瓶。<br>说好的出来玩，结果还是狗子承担了一切。<br>养狗千日，用狗一时。</p>
+<p>决定不往山上爬了，就此处直接下山。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_145358.jpg" alt="下山路"></p>
+<p>下山路是更硬的大石块，膈得脚十分难受。<br>跟小土山真是没法比。</p>
+<p>山下就村庄了，这里的村庄。<br>当然不是传统印象中影视剧里的村庄，也不看看这里是哪儿，江浙沪果然是没有真正意义上的村落。</p>
+<p>路遇一颗大银杏树。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_150532.jpg" alt="银杏"></p>
+<p>沿着山脚公路走，路过虞山中学。有听到高中老师拉长声音在上课，有点不太能受得了。<br>可能真是有这样的嗓音，才能把学生从迷糊的睡意中唤醒吧。<br>三令五申不准补课，这里不也还补得很积极么。<br>唉，都不容易啊。</p>
+<p>沿着公路往北，目标是虞山北部的龙潭湖。<br>之所以不从山上走，那是因为山上，确实是太远了，抄个近道吧。</p>
+<p>龙潭湖公园还在建设中，整个湖面积还挺大的，瀑布倒是干涸了，但是也不耽误这里的景色。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_163605.jpg" alt="龙潭湖公园"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_163719.jpg" alt="龙潭湖"></p>
+<p>湖的对面就是上山路。</p>
+<p>公园直接上山的近路被封锁了，只能从村子的另一边上山。<br>这里又有一颗大银杏。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_165145.jpg" alt="树"></p>
+<p>在这里还看到了攻略上标记的大茶壶。</p>
+<p>从这边的山上看龙潭湖和公园。上山路也在不停地修建。<br>山路很长，靠近湖的一面现在还没有栏杆，很险，都不太敢靠边。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_165803.jpg" alt="龙潭湖"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_165807.jpg" alt="龙潭湖"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_165816.jpg" alt="龙潭湖"></p>
+<p>上山路的尽头，就是真正意义上的爬山山路了。<br>天色已暗，准备返程了。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_170435.jpg" alt="山路尽头"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_170446.jpg" alt="山路尽头"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image/master/travel231209/IMG_20231209_170451.jpg" alt="山路尽头"></p>
+<p>返程经过村庄时，还得到了村民的肯定。<br>嗯，不错，爬完虞山还精神抖擞的。<br>惭愧，其实只上了一个小坡段就折返了。<br>如果，还有下次机会，直接就从这边出发，爬它个一大圈又何妨。<br>待续吧。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/" rel="tag"><i class="fas fa-tags"></i>上海周边</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/12/01/book/authors/yiyi/" rel="next" title="乙一作品集"><i class="fas fa-angle-left"></i><span class="nav-title">乙一作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2023/12/11/book/authors/sanjintianxinsan/" rel="prev" title="三津田信三作品集"><span class="nav-title">三津田信三作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

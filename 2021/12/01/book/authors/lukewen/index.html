@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>卢克文作品集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/01/book/authors/lukewen/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">卢克文作品集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-12-01T12:30:50+08:00">2021-12-01 12:30:50</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>书有两本，都买了，挺好的，介绍国内外形势，开拓视野，值得一读，可以结合视频，效果更佳。<br>一些故事还是挺能刷新三观的，但是一些观点也过于激进，带有自媒体独有的博人眼球的笔法。<br>他们团队的视频被限流了，懂的都懂。<br>不轻信，不盲从。<br>多看看，没坏处。</p>
+<span id="more"></span>
+
+<h3 id="世界经济格局"><a href="#世界经济格局" class="headerlink" title="世界经济格局"></a>世界经济格局</h3><p>开篇就把视野打开，主讲美国08年的次贷金融危机以及之后的美国国债问题。<br>然后引出中国的一带一路国策。</p>
+<p>就业是世界上最好的慈善。</p>
+<h3 id="欧美篇"><a href="#欧美篇" class="headerlink" title="欧美篇"></a>欧美篇</h3><p>讲英国的梅姨，法国人的散漫以及法国对西非国家的剥削，再到美国各任总统处理国债问题，然后说俄罗斯的北极战略。<br>发达国家的着眼点在书上写的都很无趣，还是视频里敏感的内容更实在一些。</p>
+<h4 id="苏俄篇"><a href="#苏俄篇" class="headerlink" title="苏俄篇"></a>苏俄篇</h4><p>书中没有，视频里内容，讲普京的传记，谍报头子搞得风生水起，还是挺厉害的。<br>毕竟燕子在手，天下我有。<br>川普崇拜者。</p>
+<p>然后介绍美洲的一些发展中的国家逸闻：</p>
+<h4 id="巴西往事"><a href="#巴西往事" class="headerlink" title="巴西往事"></a>巴西往事</h4><p>从球星阿德里亚诺为切入点，讲巴西黑帮在巴西监狱的魔幻现实剧情。主讲红色司令部和首都第一司令部的黑帮历史。</p>
+<h4 id="中美洲四个问题国家"><a href="#中美洲四个问题国家" class="headerlink" title="中美洲四个问题国家"></a>中美洲四个问题国家</h4><p>洪都拉斯，萨尔瓦多，危地马拉，伯利兹。</p>
+<h4 id="墨西哥往事"><a href="#墨西哥往事" class="headerlink" title="墨西哥往事"></a>墨西哥往事</h4><p>看过美剧毒枭的都或多或少能领会到墨西哥毒枭们的魔幻。<br>美国8.2%的人口吸毒，消费了全世界60%以上的毒品，是否过于夸张。<br>书上没有涉及叶真理的剧情，视频里倒是有的，第一次了解到。</p>
+<h3 id="亚洲篇"><a href="#亚洲篇" class="headerlink" title="亚洲篇"></a>亚洲篇</h3><h4 id="韩国"><a href="#韩国" class="headerlink" title="韩国"></a>韩国</h4><p>韩国篇真的是最刷新三观的，书上只是介绍了朴正熙的独裁统治。<br>视频里对卢武铉和文在寅的介绍更加触动人。<br>书中开篇描写了朴槿惠的监狱生活，颇有讽刺意味，但是不结合视频内容或者相关历史，没法get到。<br>1）韩国真的是一个神奇的国度，总统不是被暗杀就是入狱。<br>2）正是朴正熙的独裁，让韩国迅速崛起，苦熬一代人，幸福后世子孙。让人不由得质疑民主的正确性，也许民众确实是盲目的吧，大家都只会关注自己眼前的利益，忽略国家长期的战略发展。<br>3）卢武铉和文在寅都很有人格魅力，刷新了咱对韩国人的认知。文在寅这个名字以前就有印象，应该是在某时段接触到的，有点接不上的片段记忆。</p>
+<h4 id="日本"><a href="#日本" class="headerlink" title="日本"></a>日本</h4><p>书中主要介绍了部分甲午战争和日俄战争，以及从野口悠纪雄视角为切入点，描述里根是怎么贸易压制日本的。<br>老美军队就驻扎在你家，能不怂么。<br>视频里还描述了一些日本政客的故事，主要将安培家族故事。两个字形容：无趣。</p>
+<h4 id="印度"><a href="#印度" class="headerlink" title="印度"></a>印度</h4><p>印度的调查报告也挺无趣的，突出一个脏乱差。<br>介绍了莫迪的传记，无感。</p>
+<h3 id="中国篇"><a href="#中国篇" class="headerlink" title="中国篇"></a>中国篇</h3><p>国内篇，大部分内容都是歌颂好政策。<br>互相理解，都是混口饭吃，懂得都懂。</p>
+<p>有几个新颖的观点，还是值得思考：<br>1.发展中国家要崛起有几个先决条件：1）国土面积足够大。2）主要民族要占大头，没有民族隔阂。3）发展基建。<br>2.要发展基建，强制拆迁不可避免。那些开着挖掘机强行开路的人还对国家发展作出了贡献，从感情上不想认同。<br>3.中国老百姓的储蓄思想也为国家发展出力了。<br>记得有个经典的中国老太太和美国老太太的故事，前者攒钱买房30年才住上新房，后者借贷买房住上新房30年并把贷款还清。<br>这故事就是资本家编写的谎言，看似美国老太太享受了30年的新房居住，但是背后的深层次逻辑，还需要重新考量。<br>美国可以无限印钞让全世界买单。金融本身不产生价值，只有发展基建，才是国家崛起的关键。<br>而发展基建就需要国民的储蓄资金。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag"><i class="fas fa-tags"></i>杂谈</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/11/28/material/zhiyaopingfan/" rel="next" title="只要平凡"><i class="fas fa-angle-left"></i><span class="nav-title">只要平凡</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/12/06/story/meaning-of-life/" rel="prev" title="meaning of life"><span class="nav-title">meaning of life</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%96%E7%95%8C%E7%BB%8F%E6%B5%8E%E6%A0%BC%E5%B1%80"><span class="toc-text">世界经济格局</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%AC%A7%E7%BE%8E%E7%AF%87"><span class="toc-text">欧美篇</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%8B%8F%E4%BF%84%E7%AF%87"><span class="toc-text">苏俄篇</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%B7%B4%E8%A5%BF%E5%BE%80%E4%BA%8B"><span class="toc-text">巴西往事</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%B8%AD%E7%BE%8E%E6%B4%B2%E5%9B%9B%E4%B8%AA%E9%97%AE%E9%A2%98%E5%9B%BD%E5%AE%B6"><span class="toc-text">中美洲四个问题国家</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A2%A8%E8%A5%BF%E5%93%A5%E5%BE%80%E4%BA%8B"><span class="toc-text">墨西哥往事</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BA%9A%E6%B4%B2%E7%AF%87"><span class="toc-text">亚洲篇</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%9F%A9%E5%9B%BD"><span class="toc-text">韩国</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%97%A5%E6%9C%AC"><span class="toc-text">日本</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%8D%B0%E5%BA%A6"><span class="toc-text">印度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%B8%AD%E5%9B%BD%E7%AF%87"><span class="toc-text">中国篇</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

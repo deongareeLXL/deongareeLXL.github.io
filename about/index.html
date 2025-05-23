@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>关于 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/" class="current"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="page" class="page">
+  <article class="article post card">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <span>关于</span>
+      </h1>
+    </header>
+    <main class="post-main">
+      <h3 id="About-the-website"><a href="#About-the-website" class="headerlink" title="About the website"></a>About the website</h3><p>本站仅仅是我个人的自娱自乐，用于记录我个人的生活上的点点滴滴，不至于让宝贵的时光白白挥霍于各种无意义的事情上。本站的目标群体是那些能够<code>认同我的价值观</code>的来自各地的你们，以及，嗯，主要是，我自己。<br>人是怀旧的生物，当你回想起过去种种经历，或悲伤，或欢乐，或遗憾，那都是属于你自己的独一无二的宝贵经历，是任何财富都换取不来的。<br>我时常回首过去，自己记忆深处里，总会浮现出一些零星的记忆碎片。唏嘘之，感慨后，继而，更有力量，更坚定地往前走。<br>遗忘是一种可怕的效应，人力有限而往事繁多。<br>把想该记录的尽可能记录下来，让未来的自己能更准确感受到，<code>这条路，我来过</code>。</p>
+<p>但是，过去的已然逝去，它只能成为一段既成事实的经历，一些无法捉摸的感觉，一种无法言喻的情绪。永远不要活在过去，那会让我们停滞不前。生命的意义只会存在于遥远的未来，不久的将来，以及，当下。记录的意义，不仅仅是让我们能够回顾往昔，更重要的是让我们能够总结过去的已知，从而更好地面对未来的未知。<br>把自己的记忆锁进一个小小的空间里，在需要的时候才翻出来，匀出更多的时间，去筹划未来，去把握当前。</p>
+<p>PS: 看不到图请翻墙，github当图床的域名需要翻墙访问。</p>
+<h3 id="About-the-Author-of-Aria-Theme"><a href="#About-the-Author-of-Aria-Theme" class="headerlink" title="About the Author of Aria Theme"></a>About the Author of Aria Theme</h3><p>首先非常感谢该作者的主题。<br>看了作者的个人网站，很有风格。<br>他以<code>面具</code>一词形容自己的网站，颇有感触。<br>虽然展示的是面具，但是那也是一颗向上的心在维系着，其实，并没有什么不好。<br>让我想起某电视剧里有提到，面具戴久了，也许就成了真实的自己。</p>
+<h3 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h3><p>1.首先是称呼，可以直接叫我xuliang。其他的称呼随意吧，只要不带恶意，我都接受。<br>2.<code>伪推理迷</code>，特别喜欢<code>暴风雪山庄模式</code>。为什么要加<code>伪</code>字呢，因为我不懂<code>隧道效应</code>。<br>3.喜欢<code>心理学</code>，<code>哲学</code>，<code>历史</code>。都是没入门的水准。<br>4.有想过慢慢锻炼自己的能力，比如<code>意志力</code>，<code>记忆力</code>。但是发现收效并不大。<br>5.喜欢智斗类型作品。<code>狼人杀模式</code>的精彩作品求推荐。<br>6.六线谱练习生，手指太短，很难受。<br>7.人的记忆偏爱简短押韵的内容，给自己的八字箴言：<code>求知，洒脱，思考，分享</code>。<br>8.最害怕的事情是，某一天忽然发现自己变成了<code>曾经最讨厌的那类人</code>。<br>9.努力<code>活在当下</code>。<br>10.渴望<code>诗和远方</code>。</p>
+<p>2021-02-06<br>两年前第一版的30多条被删减成了10条。<br>好多都不再适用了。<br>人在成长，自我介绍也在不断更新中。<br>时间慢慢流失，慢慢变老中自我介绍却也跟着慢慢变短。<br>新的一年，期许一个更有活力的自己。</p>
+<p>2021-08-29<br>再次订正内容，微调。</p>
+<p>2024-09-17<br>发现自己以前写的好精髓啊，要切中审美，还得是过去的自己。<br>不过又悄悄删了一些内容，历史总结诚不欺我，活得越久，自我介绍越短。<br>终于有勇气，补充一下future的内容</p>
+<h3 id="历史签名"><a href="#历史签名" class="headerlink" title="历史签名"></a>历史签名</h3><p>Fight for survival, then thrive<br>Work harder, live better<br>Hey, man, you must have a shoulder<br>Enrich your life<br>Self-discipline makes the freedom<br>Believe in yourself<br>Grateful, all the gentleness<br>Be What You Wanna Be<br>Life is about healthy, knowledge, and hope<br>Live on<br>Keep your rhythm<br>Carpe diem<br>Enjoy your life</p>
+<h3 id="About-life-record"><a href="#About-life-record" class="headerlink" title="About life record"></a>About life record</h3><p>更新于2023.5.31<br>看到历史的关于future的描写，不多，却是以自律和打工人的自我修炼为主题的。<br>心塞，遂在自律主题下标注，自律约等于自虐；在自我修炼主题下标注，自我修炼就是自我惩罚。<br>看到life的标题下，洋洋洒洒写了很多，但是都过于笼统，落不到实处。<br>所以决定更新一栏新内容，主题就是生活的记录，目的是给生活以提纲挈领的引导。<br>在这个浮躁的社会里，票圈都被那些物质生活富足的人、认知高人一等的人占领了，多的是晒娃、晒实时新闻、晒旅游以及广告。像我这样的人，根本不想去凑热闹。<br>在这个时代，我的建议还是，不要去分享具体的生活，卖惨显矫情，晒图遭人妒。<br>我决定分享一些抽象之物，尝试在精神层面上对生活的节奏进行调整，对生活的方向进行校正。</p>
+<p>首版生活纲领，分为四部分，每日一读，如果之后有修改，再进行修正。<br>生活纲领1.0版本：<br>第一部分为期待，对不久的未来的一种期待，这种期待不需要多，但是必须要有。它能让我们忍受当前的无趣状态，能让我们对生活更加热爱，能让我们以更积极的心态去面对可能的坎坷和波折。<br>第二部分为创造力输出。包括不限于文字输出，生活创意，工作优化处理等等，这一块有极大的空间等待挖掘，这一块应该是要成为生活的精华部分。需要明确的是，创造力是一种超然状态，不可强求，它是属于在自洽的生活之路中偶然拾得的奇妙石子。同时，它也是比较耗能的，切忌贪婪，切忌强求。<br>第三部分为解惑，并向外探索。不可能全部的时间都在执行创造，精神层面的思考也是必须要建立在坚实的物质之上的。并且，实际的探索，应该是占据绝大部分时间的。可能会无趣，也许会碰壁。这部分的生活需要有一丢丢小计划去引导一下。<br>第四部分，我把它划为放空大脑。可以说是广义上的休息，并不仅仅只是睡觉，散步也可。在这段时间内，就需要放空思维，只是用五感去直接感受外部真实世界。</p>
+<p>目前，针对各部分的不足，需要做出相应的调整。<br>首先是期待，不宜过多，也不宜缺失；不宜过久，也不宜频繁。可适当记录，以一周为时间段进行计划期待。<br>然后是创造力，在这一块，应该还是要发挥更多的价值空间。诚然，它可遇不可求，但是，还是可以人为去把握对应的创造力迸发的状态，争取尽量不去错过任何一次创造力发挥空间。如果长时间没有出现灵感，可以去回味一下历史的文字，看看有没有什么可以补充的点，或者改变一下节奏，尝试去击中生活的固有频率。<br>再者就是向外探索，吸收新的知识，不断探索认知边界。这一块就比较依赖计划了。但是计划多了会累，计划少了进度又跟不上。计划主打健康保证，次要做外部探索。可以尽量朝着感兴趣的，实用的方向发展。<br>最后就是放空大脑了。这部分也需十分重视，在睡眠质量和休息效率上要有所突破。这可能成为当下的重点了。同时要能更加深刻身份认同，要与自己和解，要善于处理自己的情绪疲劳，要能够在节奏上把握住休息的间隙。</p>
+<h3 id="About-future"><a href="#About-future" class="headerlink" title="About future"></a>About future</h3><p>更新于2024.9.17<br>再次读了一下以前的自我介绍和对生活的记录，还是比较满意的。<br>在这里大言不惭地宣告，我就是初心不改，归来仍是少年。</p>
+<p>不是中二，认真的。</p>
+<p>关于未来，在这个时间点上，就显得非要重要。<br>但是，未来不比过去，未来充满了未知，所以我无法以确定的语气去总结未来。<br>那不够逻辑正确。</p>
+<p>我能做的，就是在这里捕捉一些未来的确定的生存基调。<br>在这种基本的共识下，努力让自己的生活过得更好。</p>
+<p>首先要做的就是改变文风基调。<br>乱世才需要批判，这盛世繁华，值得歌颂。<br>无人挨饿受冻，人身安全也有极大程度的保障。<br>就像短视频里上海老大爷的妙句，人生有三乐，助人为乐、知足常乐、自得其乐。<br>人所有的烦恼，都基于欲望超出。<br>而这个产能过剩的时代，人人都会有乐土，前提是你能遏制自己的欲望。<br>在未来，我会更珍惜自己拥有的。<br>而我手中的笔，更多地是记录生活的美好。<br>做一个乐观主义者，多一些理解，少一些对抗。</p>
+<p>然后就是谦虚的态度，和光同尘的理念。<br>不推崇功利主义，也不陷于犬儒主义。<br>以平等的态度与人相处。<br>尊重他人的道，允许不同的声音。<br>保持低调，杜绝炫耀之心。<br>不同情心泛滥，不产生优越感。<br>不仇视，不妒忌。<br>把握好权利与义务，法律与道德。<br>可以多研读老庄学说。</p>
+<p>最后就是把握创造力，<br>追寻灵感迸发。<br>可以寻根究底，也可以浅尝辄止。<br>创造力将是未来生活的主旋律。<br>看破事物发展的底层逻辑，<br>重组改装，<br>发挥自己的主观能动性，<br>时时记录，<br>常常回味。</p>
+
+    </main>
+    <footer class="post-footer"></footer>
+  </article>
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#About-the-website"><span class="toc-text">About the website</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#About-the-Author-of-Aria-Theme"><span class="toc-text">About the Author of Aria Theme</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#About-me"><span class="toc-text">About me</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%8E%86%E5%8F%B2%E7%AD%BE%E5%90%8D"><span class="toc-text">历史签名</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#About-life-record"><span class="toc-text">About life record</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#About-future"><span class="toc-text">About future</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

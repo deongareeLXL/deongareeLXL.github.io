@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title></title>
+  
+  
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2025-05-22T10:27:40.223Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>双月城的惨剧</title>
+    <link href="http://yoursite.com/2025/04/26/book/shuangyuechengdecanan/"/>
+    <id>http://yoursite.com/2025/04/26/book/shuangyuechengdecanan/</id>
+    <published>2025-04-26T04:46:32.000Z</published>
+    <updated>2025-05-22T10:27:40.223Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;作者&lt;code&gt;加贺美雅之&lt;/code&gt;。这本书被某up主疯狂安利，见识一下。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="本格推理" scheme="http://yoursite.com/tags/%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2024小结</title>
+    <link href="http://yoursite.com/2025/04/26/story/summary2024/"/>
+    <id>http://yoursite.com/2025/04/26/story/summary2024/</id>
+    <published>2025-04-26T04:28:56.000Z</published>
+    <updated>2025-04-26T04:49:12.455Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="年度总结" scheme="http://yoursite.com/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>元荡湖</title>
+    <link href="http://yoursite.com/2025/04/11/travel/2025/yuandanghu/"/>
+    <id>http://yoursite.com/2025/04/11/travel/2025/yuandanghu/</id>
+    <published>2025-04-11T14:16:40.000Z</published>
+    <updated>2025-04-26T04:28:09.369Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日目的地，元荡湖骑行。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>昆山天福国家湿地公园</title>
+    <link href="http://yoursite.com/2025/04/04/travel/2025/kunshantianfuguojiashidi/"/>
+    <id>http://yoursite.com/2025/04/04/travel/2025/kunshantianfuguojiashidi/</id>
+    <published>2025-04-04T14:04:53.000Z</published>
+    <updated>2025-04-26T04:16:13.280Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日目的地，昆山。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三三公路</title>
+    <link href="http://yoursite.com/2025/03/22/travel/2025/sansangonglu/"/>
+    <id>http://yoursite.com/2025/03/22/travel/2025/sansangonglu/</id>
+    <published>2025-03-22T14:46:15.000Z</published>
+    <updated>2025-04-26T04:06:51.014Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;三三公路骑行，出发。&lt;br&gt;小路，车不多，风景好。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阳澄湖</title>
+    <link href="http://yoursite.com/2025/03/01/travel/2025/yangchenghu/"/>
+    <id>http://yoursite.com/2025/03/01/travel/2025/yangchenghu/</id>
+    <published>2025-03-01T03:50:18.000Z</published>
+    <updated>2025-04-26T04:56:45.495Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日目的地，昆山阳澄湖。&lt;br&gt;地铁上海11号线，连接苏州11号线，直达目的地，还是很方便。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>旺山</title>
+    <link href="http://yoursite.com/2025/02/23/travel/2025/wangshan/"/>
+    <id>http://yoursite.com/2025/02/23/travel/2025/wangshan/</id>
+    <published>2025-02-23T14:26:38.000Z</published>
+    <updated>2025-04-25T14:43:44.077Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;苏州的旺山景区。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双子山</title>
+    <link href="http://yoursite.com/2025/01/19/travel/2025/shuangzishan/"/>
+    <id>http://yoursite.com/2025/01/19/travel/2025/shuangzishan/</id>
+    <published>2025-01-19T11:43:01.000Z</published>
+    <updated>2025-04-25T14:11:47.836Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;上海双子山，新开放的人工山。&lt;br&gt;之前就在远处看到过，去年底开始正式开放。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>绍兴</title>
+    <link href="http://yoursite.com/2024/12/31/travel/2024/shaoxing/"/>
+    <id>http://yoursite.com/2024/12/31/travel/2024/shaoxing/</id>
+    <published>2024-12-31T14:10:34.000Z</published>
+    <updated>2025-04-26T04:54:01.335Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;绍兴，鲁迅故居，来了来了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安山古道</title>
+    <link href="http://yoursite.com/2024/12/31/travel/2024/anshangudao/"/>
+    <id>http://yoursite.com/2024/12/31/travel/2024/anshangudao/</id>
+    <published>2024-12-31T13:55:15.000Z</published>
+    <updated>2025-04-23T14:30:51.761Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日目标，安山古道。&lt;br&gt;从小泉溪村出发。&lt;br&gt;随意走了个圈，到达安山村。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>惠山</title>
+    <link href="http://yoursite.com/2024/12/15/travel/2024/huishan/"/>
+    <id>http://yoursite.com/2024/12/15/travel/2024/huishan/</id>
+    <published>2024-12-15T13:37:42.000Z</published>
+    <updated>2025-04-23T13:52:43.229Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;无锡惠山。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>太浦河&amp;拦路港骑行</title>
+    <link href="http://yoursite.com/2024/12/05/travel/2024/taipuhe/"/>
+    <id>http://yoursite.com/2024/12/05/travel/2024/taipuhe/</id>
+    <published>2024-12-05T13:29:06.000Z</published>
+    <updated>2025-04-23T13:38:45.115Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;寻到了一处类似大治河的沿河骑行路，太浦河。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于公考</title>
+    <link href="http://yoursite.com/2024/11/25/story/about-gongkao/"/>
+    <id>http://yoursite.com/2024/11/25/story/about-gongkao/</id>
+    <published>2024-11-25T13:10:11.000Z</published>
+    <updated>2025-04-22T13:11:52.193Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;关于国考行测题型的一些思用到关于国考行测题型的一些思于国考行测题型的一些思用到关于国考行测题型的一些思考&lt;br&gt;国考行测的题型，大体分为5个模块，而其中每个模块又会细分为很多小的部分。总体而言，考点多，涉及的知识面甚广。&lt;br&gt;而结合考试时间的制约，考生根本无法在考场有深入的思考，必须凭借熟练度和所谓的蒙题大法获胜。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>天池山景区</title>
+    <link href="http://yoursite.com/2024/11/03/travel/2024/tianchishan/"/>
+    <id>http://yoursite.com/2024/11/03/travel/2024/tianchishan/</id>
+    <published>2024-11-03T13:16:19.000Z</published>
+    <updated>2025-04-23T13:28:03.729Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;花山和天池山在特定地区是被视为一个景区的不同部分。具体来说，在苏州地区，有一座山名为天池山，又名花山。这座山的莲花峰南下部分被称为天池山，而东北下部分则称为花山。如今，这两个景点被统一称为“天池山景区”。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>石柱山</title>
+    <link href="http://yoursite.com/2024/10/05/travel/2024/shizhushan/"/>
+    <id>http://yoursite.com/2024/10/05/travel/2024/shizhushan/</id>
+    <published>2024-10-05T11:18:19.000Z</published>
+    <updated>2025-04-23T11:34:20.269Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;南阳石柱山。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2024/main/20241004/IMG_20241004_153252.jpg&quot; alt=&quot;石柱山&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="华夏大地" scheme="http://yoursite.com/tags/%E5%8D%8E%E5%A4%8F%E5%A4%A7%E5%9C%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>红与黑</title>
+    <link href="http://yoursite.com/2024/09/17/book/hongyuhei/"/>
+    <id>http://yoursite.com/2024/09/17/book/hongyuhei/</id>
+    <published>2024-09-17T06:16:05.000Z</published>
+    <updated>2025-04-22T01:45:21.547Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;司汤达&lt;/code&gt;，法国批判现实主义作家。&lt;code&gt;《红与黑》&lt;/code&gt;是其代表作。&lt;br&gt;之所以接触到这本书，还是因为多年前观看的&lt;code&gt;《北风那个吹》&lt;/code&gt;电视剧剧情。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="世界名著" scheme="http://yoursite.com/tags/%E4%B8%96%E7%95%8C%E5%90%8D%E8%91%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人生的旷野之路</title>
+    <link href="http://yoursite.com/2024/09/13/story/renshengdekuangyezhilu/"/>
+    <id>http://yoursite.com/2024/09/13/story/renshengdekuangyezhilu/</id>
+    <published>2024-09-13T09:16:39.000Z</published>
+    <updated>2025-02-26T10:06:04.659Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;人生是旷野,不是轨道。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>穹窿山</title>
+    <link href="http://yoursite.com/2024/08/17/travel/2024/qionglongshan/"/>
+    <id>http://yoursite.com/2024/08/17/travel/2024/qionglongshan/</id>
+    <published>2024-08-17T15:48:03.000Z</published>
+    <updated>2025-03-16T08:34:38.229Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;苏州穹窿山。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>负面情绪随感</title>
+    <link href="http://yoursite.com/2024/07/12/story/fumianqingxusuigan/"/>
+    <id>http://yoursite.com/2024/07/12/story/fumianqingxusuigan/</id>
+    <published>2024-07-12T14:51:49.000Z</published>
+    <updated>2025-02-26T10:06:04.667Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;偶尔，不可避免地，总是会有各种各样的负面情绪。&lt;br&gt;此时，我们需要总结经验，利用策略去合理地规避负面情绪及其造成的恶果。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人生观随感</title>
+    <link href="http://yoursite.com/2024/06/25/story/renshengguansuigan2024/"/>
+    <id>http://yoursite.com/2024/06/25/story/renshengguansuigan2024/</id>
+    <published>2024-06-25T15:38:10.000Z</published>
+    <updated>2025-02-26T10:06:04.625Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;依稀只记得，曾经的一段时间内，一直对洒脱念念不忘。尽管世界观的雏形都没有形成，但是洒脱一直是我憧憬的生活状态。或许当时对洒脱的执念，有部分是源于被束缚的人生。但是，也应该是有一些别的意味。如种子的萌发，需要势能。而对洒脱的执念，就是我人生观初成的势能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
+  
+</feed>

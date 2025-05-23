@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>鲁迅全集 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/book/authors/luxun/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">鲁迅全集</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-23T23:40:17+08:00">2021-01-23 23:40:17</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/read/" itemprop="url" rel="index"><span itemprop="name">read</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>特别喜欢鲁迅的文章，剖析深刻，发人深省。从第一卷开始阅读，把印象深刻的文章好句记录下来。不一定全篇仔细阅读，选读当下的我能理解的，好理解的。</p>
+<span id="more"></span>
+
+<p>文言篇只能略过，看不大懂。思想解放篇也已然过时，在此不想探究历史。只对那些于现世而言仍然适用的篇章，细细品读。第一集名为坟。</p>
+<h3 id="坟"><a href="#坟" class="headerlink" title="坟"></a>坟</h3><h4 id="说胡须"><a href="#说胡须" class="headerlink" title="说胡须"></a>说胡须</h4><p>剪胡须时引出的话题。胡须向上翘被认为是亲日，向下拖得罪改革派，只能将胡须剪成一个一字。</p>
+<h4 id="我们怎样做父亲"><a href="#我们怎样做父亲" class="headerlink" title="我们怎样做父亲"></a>我们怎样做父亲</h4><p>饮食的结果，养活了自己，对于自己没有恩；性交的结果，生出子女，对于子女当然也算不了恩。</p>
+<p>可惜的是中国的旧见解，竟与这道理完全相反。夫妇是人伦之中，却说是人伦之始；性交是常事，却以为不净；生育也是常事，却以为天大的大功。人人对与婚姻，大抵先夹带着不净的思想。</p>
+<p>全文首先分析父子之间的关系，然后谈论做法：1）理解。2）指导。3）解放。<br>分别为：健全的生产，尽力的教育，完全的解放。</p>
+<h4 id="春末闲谈"><a href="#春末闲谈" class="headerlink" title="春末闲谈"></a>春末闲谈</h4><p>科学虽然给我们许多惊奇，但也教坏了我们许多好梦。</p>
+<p>君子劳心，小人劳力。</p>
+<p>治于人者食人,治人者食于人。</p>
+<p>仓颉造字，夜有鬼哭。</p>
+<p>由果蠃捕虫育后，引申出统治者的统治理论。</p>
+<h4 id="娜拉走后怎样"><a href="#娜拉走后怎样" class="headerlink" title="娜拉走后怎样"></a>娜拉走后怎样</h4><p>人生最苦痛的是梦醒了无路可以走。做梦的人是幸福的；倘没有看出可走的路，最要紧的是不要去惊醒他。假使寻不出路，我们所要的就是梦；但不是要将来的梦，只要目前的梦。</p>
+<p>梦是好的；否则，钱是要紧的。</p>
+<p>凡承认饭需要钱买，而以说钱为卑鄙者，倘能按一按他的胃，那里面怕总还有鱼肉没有消化完，须得饿他一天之后，再来听他发议论</p>
+<p>自由固不是钱所能买到的，但能够为钱而卖掉。</p>
+<h4 id="论睁了眼看"><a href="#论睁了眼看" class="headerlink" title="论睁了眼看"></a>论睁了眼看</h4><p>中国人的不敢正视各方面，用瞒和骗造出奇妙的逃路，而自以为正路。</p>
+<h4 id="写在《坟》后面"><a href="#写在《坟》后面" class="headerlink" title="写在《坟》后面"></a>写在《坟》后面</h4><p>我自然不想太欺骗人，但也未尝将心里的话照样说尽，大约只要看得可以交卷就算完。</p>
+<p>我的确时时解剖别人，然而更多的是更无情面地解剖我自己。</p>
+<p>倘说为别人引路，那就更不容易了，因为连我自己还不明白应当怎么走。</p>
+<p>我只很确切地知道一个终点，就是：坟。</p>
+<h4 id="结尾诗"><a href="#结尾诗" class="headerlink" title="结尾诗"></a>结尾诗</h4><p>白酒酿成缘好客，黄金散尽为收书</p>
+<p>吊曹孟德文 ——陆士衡<br>既睎古以遗累，信简礼而薄藏。<br>彼裘绂于何有，贻尘谤于后王。<br>嗟大恋之所存，故虽哲而不忘。<br>览遗籍以慷慨，献兹文而凄伤！</p>
+<h3 id="呐喊"><a href="#呐喊" class="headerlink" title="呐喊"></a>呐喊</h3><h4 id="自序"><a href="#自序" class="headerlink" title="自序"></a>自序</h4><p>我在年青时候也曾经做过许多梦，后来大半忘却了，但自己也并不以为可惜。所谓回忆者，虽说可以使人欢欣，有时也不免使人寂寞，使精神的丝缕还牵着已逝的寂寞的时光，又有什么意味呢，而我偏苦于不能全忘却，这不能全忘却的一部分，到现在变成了呐喊的由来。</p>
+<h4 id="故乡1"><a href="#故乡1" class="headerlink" title="故乡1"></a>故乡1</h4><p>这时候，我的脑里忽然闪出一幅神异的图画来：深蓝的天空中挂着议论金黄的圆月，下面是海边的沙地，都种着一望无际的碧绿的西瓜，其间有一个十一二岁的少年，项戴银圈，手捏一柄钢叉，向一匹猹尽力的刺去，那猹却将身一扭，反而从他的胯下逃走了。</p>
+<p>他们都和我一样，只看见院子里高墙上的四角的天空。</p>
+<p>老屋离我愈远了；故乡的山水也都渐渐远离了我。但我却并不感到怎样的留恋。我只觉得我四面有看不见的高墙，将我隔成孤身，是我非常气闷；那西瓜地上的银项圈的小英雄的影像，我本来十分清楚，现在却忽地模糊了，又使我非常的悲哀。</p>
+<p>其实地上本没有路，走的人多了，也便成了路。</p>
+<p>经典。</p>
+<h4 id="狂人日记"><a href="#狂人日记" class="headerlink" title="狂人日记"></a>狂人日记</h4><p>他们会吃人，就未必不会吃我。</p>
+<p>其实我岂不知道这老头子是刽子手扮的！无非借了看脉这明目，揣一揣肥瘠：因这功劳，也分一片肉吃。</p>
+<p>不要乱想，静静的养！养肥了，他们是自然可以多吃；我有什么好处，怎么会”好了”？他们这群人，又想吃人，有时鬼鬼祟祟，想法子遮掩，不敢直戳下手，真要令我笑死。我忍不住，便放声大笑起来，十分快活。自己晓得这笑声里面，有的是义勇和正气。老头子和大哥，都失了色，被我这勇气正气镇压住了。</p>
+<p>吃人的是我哥哥！<br>我是吃人的人的兄弟！<br>我自己被人吃了，可仍然是吃人的人的兄弟！</p>
+<p>经典。</p>
+<h4 id="孔乙己"><a href="#孔乙己" class="headerlink" title="孔乙己"></a>孔乙己</h4><p>孔乙己是站着喝酒而穿长衫的唯一的人。</p>
+<p>他对人说话，总是满口之乎者也，教人半懂不懂的。</p>
+<p>“窃书不能算偷……窃书！……读书人的事，能算偷么？”</p>
+<p>店内外充满了快活的空气。</p>
+<p>我想，逃犯一样的人，也配考我么？便回过脸去，不再理会。</p>
+<p>回字有四样写法，你知道么？</p>
+<p>不多不多！多乎哉？不多也。</p>
+<p>孔乙己是这样的使人快活，可是没有他，别人也便这么过。</p>
+<p>他总是仍旧是偷。这一回，是自己发昏，竟偷到丁举人家里去了。他家的东西，偷得的么？</p>
+<p>经典。</p>
+<h4 id="头发的故事1"><a href="#头发的故事1" class="headerlink" title="头发的故事1"></a>头发的故事1</h4><p>他们忘却了纪念，纪念也忘却了他们。</p>
+<p>再见！请你恕我打搅，好在明天便不是双十节，我们统可以忘却了。</p>
+<h4 id="阿Q正传"><a href="#阿Q正传" class="headerlink" title="阿Q正传"></a>阿Q正传</h4><h5 id="序"><a href="#序" class="headerlink" title="序"></a>序</h5><p>列传，自传，外传，别传，家传，小传。最后才选的正传。</p>
+<h5 id="优胜记略"><a href="#优胜记略" class="headerlink" title="优胜记略"></a>优胜记略</h5><p>未庄的人们之于阿Q，只要他帮忙，只拿他玩笑。</p>
+<p>阿Q又很自尊，所有未庄的居民，全不在他眼神里，甚而至于对于两位文童也有以为不值一笑的神情。</p>
+<p>但他立刻转败为胜了。他擎起右手，用力的在自己脸上连打了两个嘴巴，热刺刺的有些痛；打完之后，便心平气和起来，似乎打的是自己，被打的是别一个自己，不久也就仿佛是自己打了别个一般，——虽然还有些热刺刺，——心满意足的得胜的躺下了。</p>
+<h5 id="续优胜纪略"><a href="#续优胜纪略" class="headerlink" title="续优胜纪略"></a>续优胜纪略</h5><p>而且”忘却”这一件祖传的宝贝也发生了效力。他慢慢的走，将到酒店门口，早已有些高兴了。</p>
+<p>精神胜利法。</p>
+<h3 id="彷徨"><a href="#彷徨" class="headerlink" title="彷徨"></a>彷徨</h3><p>彷徨是短篇小说集，大概翻了一下，短小说欣赏不来。</p>
+<h4 id="祝福"><a href="#祝福" class="headerlink" title="祝福"></a>祝福</h4><p>她分明已经纯乎是一个乞丐了。</p>
+<p>一个人死了之后，究竟有没有灵魂的？</p>
+<p>怎么死的？——还不是穷死的？</p>
+<p>则无聊生者不生，即使厌见者不见</p>
+<p>我真傻，真的。</p>
+<p>镇上的人们也仍然叫他祥林嫂，但音调和先前很不同；也还和她讲话，但笑容却冷冷的了。</p>
+<p>你放着罢，祥林嫂。</p>
+<p>我再朦胧中，有隐约听到远处的爆竹声连绵不断，似乎合成一天音响的浓云，夹着团团飞舞的雪花，拥抱了全市镇。我在这繁响的拥抱中，也懒散而且舒适，从白天以至于初夜的疑虑，全给祝福的空气一扫而空了，只觉得天地圣众歆享了牲醴和香烟，都醉醺醺的在空中蹒跚，预备给鲁镇的人们以无限的幸福。</p>
+<h3 id="野草"><a href="#野草" class="headerlink" title="野草"></a>野草</h3><h4 id="风筝"><a href="#风筝" class="headerlink" title="风筝"></a>风筝</h4><p>但我向来不爱放风筝的，不但不爱，并且嫌恶它，因为我以为这是没出息孩子所做的玩艺。和我相反的是我的小兄弟，他那是大概十岁内外罢，多病，瘦得不堪，然而最喜欢风筝，自己买不起，我又不许放。</p>
+<p>他的这些在我看来都是笑柄，可鄙的。这样&#96;苦心孤诣地来偷做没出息孩子的玩艺。</p>
+<p>我不幸偶尔看了一本外国的讲论儿童的书，才知道游戏是儿童最正当的行为，玩具是儿童的天使。</p>
+<p>全然忘却，毫无怨恨，又有什么宽恕之可言呢？无怨的恕，说谎罢了。</p>
+<p>现在，故乡的春天又在这异地的空中了，既给我久经逝去的儿时的回忆，而一并也带着无可把握的悲哀，我倒不如多到肃杀的严冬中去罢，——但是，四面又明明是严冬，正给我非常的寒威和冷气。</p>
+<h4 id="立论"><a href="#立论" class="headerlink" title="立论"></a>立论</h4><p>一个说：这孩子将来要发财。他于是得到一番感谢。<br>一个说：这孩子将来要做官。他于是收回几句恭维。<br>一个说：这孩子将来是要死的。他于是得到一顿大家合力的痛打。</p>
+<h4 id="秋夜"><a href="#秋夜" class="headerlink" title="秋夜"></a>秋夜</h4><p>在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。</p>
+<p>直刺这天空中圆满的月亮，是月亮窘的发白。</p>
+<h4 id="野草题辞"><a href="#野草题辞" class="headerlink" title="野草题辞"></a>野草题辞</h4><p>当我沉默着的时候，我觉得充实；我将开口，同时感到空虚。</p>
+<p>野草，根本不深，花叶不美，然而吸取露，吸取水，吸取陈死人的血和肉，各各夺取它的生存。当生存时，还是将遭践踏，将遭删刈，直至于死亡而朽腐。</p>
+<p>但我坦然，欣然。我将大哭，我将歌唱。</p>
+<p>我以这一丛野草，在明与暗，生与死，过去与未来之际，献于友与仇，人与兽，爱者与不爱者之前作证。</p>
+<p>去罢，野草，连着我的题辞。</p>
+<h3 id="朝花夕拾"><a href="#朝花夕拾" class="headerlink" title="朝花夕拾"></a>朝花夕拾</h3><h4 id="狗猫鼠"><a href="#狗猫鼠" class="headerlink" title="狗猫鼠"></a>狗猫鼠</h4><p>虫蛆也许是不干净的，但它们并没有自命清高；鸷禽猛兽以较弱的动物为饵，不妨说是凶残的罢，但它们从来就没有竖过“公理”“正义”的旗子，使牺牲者知道被吃的时候为止，还是一味赞叹它们。</p>
+<p>现在说起我仇猫的原因来，自己觉得是理由充足，而且光明正大的。一、他的性情就和别的猛兽不同，凡捕食雀鼠，总不肯一口咬死，定要尽情玩弄，放走，又捉住，又放走，直待自己玩厌了，这才吃下去，颇与人们的幸灾乐祸，慢慢地折磨弱者的坏脾气相同。二、它不是和狮虎同族的么，何是有这么一副媚态！</p>
+<h4 id="阿长与山海经"><a href="#阿长与山海经" class="headerlink" title="阿长与山海经"></a>阿长与山海经</h4><p>我实在不大佩服她。</p>
+<p>她教给我的道理还很多，例如说人死了，不该说死掉，必须说“老掉了”；死了人，生了孩子的屋子里，不应该走进去；饭粒落在地上，必须拣起来，最好是吃下去；晒裤子用的竹竿底下，是万不可钻过去的……</p>
+<p>然而我有时也对她发生过空前的敬意。</p>
+<p>我一向只以为她满肚子是麻烦的礼节罢了，却不料她还有这样伟大的神力。</p>
+<p>又使我发生新的敬意了，别人不肯做，或不能做的事，她却能够做成功。</p>
+<p>仁厚黑暗的地母呵，愿在你怀里永安她的魂灵。</p>
+<h4 id="二十四孝图"><a href="#二十四孝图" class="headerlink" title="二十四孝图"></a>二十四孝图</h4><p>我总要上下四方寻求，得到一种最黑最黑最黑的咒文，先来诅咒一切反对白话，妨害白话者。即使人死了真有灵魂，因这最恶的心，应该堕入地狱，也将决不改悔，总要先来诅咒一切反对白话，妨害白话者。</p>
+<p>只要对于白话来加以谋害者，都应该灭亡！</p>
+<p>我请人讲完了二十四个故事之后，才知道“孝”有如此之难，对于先前痴心妄想，想做孝子的计划，完全绝望了。</p>
+<p>不过年幼无知，只用了私见来解释“孝顺”的做法，以为无非是“听话”，“从命”，以及长大之后，给年老的父母好好地吃饭罢了。自从得了这一本孝子的教科书以后，才知道并不然，而且还要难到几十几百倍。其中自然也有可以勉力效仿的，如“子路负米”，“黄香扇枕”之类。“陆绩怀桔”也并不难，只要有阔人请我吃饭。“鲁迅先生作宾客而怀橘乎？”我便跪答云，“吾母性之所爱，欲归以遗母。”阔人大佩服，于是孝子就做稳了，也非常省事。“哭竹生笋”就可疑，怕我的精诚未必会这样感动天地。但是哭不出笋来，还不过抛脸而已。到“卧冰求鲤”，可就有性命之虞了。我乡的天气是温和的，严冬中，水面也只是结一层薄冰，即使孩子的重量怎样小，躺上去，也一定哗喇一声，冰破落水，鲤鱼还不及游过来。</p>
+<p>其中最使我不解，甚至于发生反感的，是“老莱娱亲”和“郭巨埋儿”两件事。</p>
+<h4 id="从百草园到三味书屋"><a href="#从百草园到三味书屋" class="headerlink" title="从百草园到三味书屋"></a>从百草园到三味书屋</h4><p>我家的后面有一个很大的园，相传叫作百草园。不必说碧绿的菜畦，光滑的石井栏，高大的皂莱树。紫红的桑椹；也不必说鸣蝉在树叶里长吟，肥胖的黄蜂伏在菜花上，轻捷的叫天子（云雀）忽然从草间直窜向云霄里去了。单是周围的短短的泥墙根一带，就有无限趣味。油蛉在这里低唱，蟋蟀们在这里弹琴。翻开段砖来，有时会遇见蜈蚣；还有斑蝥（mao 阳平），倘若用手指按住它的脊梁，便会拍的一声，从后窍喷出一阵烟雾。何首乌藤和木莲藤缠络着，木莲有莲房一般的果实。何首乌有拥肿的根。有人说，何首乌根是有象人形的，吃了便可以成仙，我于是常常拔它起来，牵连不断地拔起来，也曾因此弄坏了泥墙，却从来没有见过有一块根像人样。如果不怕刺，还可以摘到覆盆子，像小珊瑚珠攒成的小球，又酸又甜，色味都比桑葚要好得远。</p>
+<p>中间挂着一块匾道：三味书屋；</p>
+<p>三味书屋后面也有一个园，虽然小，但在那里也可以爬上花坛去折蜡梅花，在地上或桂花树上寻蝉蜕。最好的工作是捉了苍蝇喂蚂蚁，静悄悄地没有声音。</p>
+<h4 id="父亲的病"><a href="#父亲的病" class="headerlink" title="父亲的病"></a>父亲的病</h4><p>“&#96;医者，意也。”其时是秋天，而梧桐先知秋气。其先百药不投，今以秋气动之，以气感气，所以……。我虽然并不了然，但也十分佩服，知道凡有灵药，一定是很不容易得到的，求仙的人，甚至于还要拚了性命，跑进深山里去采呢。</p>
+<h4 id="琐记"><a href="#琐记" class="headerlink" title="琐记"></a>琐记</h4><p>“你看，你知道这是什么?”我看那书上画着房屋，有两个人光着身子仿佛在打架，但又不很像。正迟疑间，他们便大笑起来了。这使我很不高兴，似乎受了一个极大的侮辱，不到那里去大约有十多天。</p>
+<p>“赫胥黎独处一室之中，在英伦之南，背山而面野，槛外诸境，历历如在机下。乃悬想二千年前，当罗马大将恺彻未到时，此间有何景物? 计惟有天造草昧……”——摘录《天演论》</p>
+<p>毕业，自然大家都盼望的，但一到毕业，却又有些爽然若失。爬了几次桅，不消说不配做半个水兵;听了几年讲，下了几回矿洞，就能掘出金银铜铁锡来么?</p>
+<p>爬上天空二十丈和钻下地面二十丈，结果还是一无所能，学问是“上穷碧落下黄泉，两处茫茫皆不见” 了。所余的还只有一条路： 到外国去。</p>
+<h4 id="藤野先生"><a href="#藤野先生" class="headerlink" title="藤野先生"></a>藤野先生</h4><p>“我就是叫作藤野严九郎的……”</p>
+<p>中国是弱国，所以中国人当然是低能儿，分数在六十分以上，便不是自己的能力了：也无怪他们疑惑。</p>
+<p>到第二学年的终结，我便去寻藤野先生，告诉他我将不学医学，并且离开这仙台。他的脸色仿佛有些悲哀，似乎想说话，但竟没有说。</p>
+<p>但不知怎地，我总还时时记起他，在我所认为我师的之中，他是最使我感激，给我鼓励的一个。有时我常常想：他的对于我的热心的希望，不倦的教诲，小而言之，是为中国，就是希望中国有新的医学;大而言之，是为学术，就是希望新的医学传到中国去。他的性格，在我的眼里和心里是伟大的，虽然他的姓名并不为许多人所知道。</p>
+<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>……况迩来世风日下，沿习浇漓，不知孝出天性自然，反以孝作另成一事。且择古人投炉埋儿为忍心害理，指割股抽肠为损亲遗体。殊未审孝只在乎心，不在乎迹。尽孝无定形，行孝无定事。古之孝者非在今所宜，今之孝者难泥古之事。因此时此地不同，而其人其事各异，求其所以尽孝之心则一也。子夏曰：事父母能竭其力。故孔门问孝，所答何尝有同然乎？…… ——《百孝图》纪常郑绩序</p>
+<p>中国的哭和拜，什么时候才能完呢？</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E4%B8%AD%E5%9B%BD%E6%96%87%E5%AD%A6/" rel="tag"><i class="fas fa-tags"></i>中国文学</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/shichen/" rel="next" title="时辰作品集"><i class="fas fa-angle-left"></i><span class="nav-title">时辰作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/01/23/book/authors/luqiucha/" rel="prev" title="陆秋槎作品集"><span class="nav-title">陆秋槎作品集</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%9D%9F"><span class="toc-text">坟</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%AF%B4%E8%83%A1%E9%A1%BB"><span class="toc-text">说胡须</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%88%91%E4%BB%AC%E6%80%8E%E6%A0%B7%E5%81%9A%E7%88%B6%E4%BA%B2"><span class="toc-text">我们怎样做父亲</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%98%A5%E6%9C%AB%E9%97%B2%E8%B0%88"><span class="toc-text">春末闲谈</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A8%9C%E6%8B%89%E8%B5%B0%E5%90%8E%E6%80%8E%E6%A0%B7"><span class="toc-text">娜拉走后怎样</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%AE%BA%E7%9D%81%E4%BA%86%E7%9C%BC%E7%9C%8B"><span class="toc-text">论睁了眼看</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%86%99%E5%9C%A8%E3%80%8A%E5%9D%9F%E3%80%8B%E5%90%8E%E9%9D%A2"><span class="toc-text">写在《坟》后面</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%BB%93%E5%B0%BE%E8%AF%97"><span class="toc-text">结尾诗</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%91%90%E5%96%8A"><span class="toc-text">呐喊</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%87%AA%E5%BA%8F"><span class="toc-text">自序</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E6%95%85%E4%B9%A11"><span class="toc-text">故乡1</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%8B%82%E4%BA%BA%E6%97%A5%E8%AE%B0"><span class="toc-text">狂人日记</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%AD%94%E4%B9%99%E5%B7%B1"><span class="toc-text">孔乙己</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%A4%B4%E5%8F%91%E7%9A%84%E6%95%85%E4%BA%8B1"><span class="toc-text">头发的故事1</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%98%BFQ%E6%AD%A3%E4%BC%A0"><span class="toc-text">阿Q正传</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E4%BC%98%E8%83%9C%E8%AE%B0%E7%95%A5"><span class="toc-text">优胜记略</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#%E7%BB%AD%E4%BC%98%E8%83%9C%E7%BA%AA%E7%95%A5"><span class="toc-text">续优胜纪略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BD%B7%E5%BE%A8"><span class="toc-text">彷徨</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A5%9D%E7%A6%8F"><span class="toc-text">祝福</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E9%87%8E%E8%8D%89"><span class="toc-text">野草</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%A3%8E%E7%AD%9D"><span class="toc-text">风筝</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%AB%8B%E8%AE%BA"><span class="toc-text">立论</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%A7%8B%E5%A4%9C"><span class="toc-text">秋夜</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%87%8E%E8%8D%89%E9%A2%98%E8%BE%9E"><span class="toc-text">野草题辞</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE"><span class="toc-text">朝花夕拾</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%8B%97%E7%8C%AB%E9%BC%A0"><span class="toc-text">狗猫鼠</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E9%98%BF%E9%95%BF%E4%B8%8E%E5%B1%B1%E6%B5%B7%E7%BB%8F"><span class="toc-text">阿长与山海经</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E5%AD%9D%E5%9B%BE"><span class="toc-text">二十四孝图</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E4%BB%8E%E7%99%BE%E8%8D%89%E5%9B%AD%E5%88%B0%E4%B8%89%E5%91%B3%E4%B9%A6%E5%B1%8B"><span class="toc-text">从百草园到三味书屋</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%88%B6%E4%BA%B2%E7%9A%84%E7%97%85"><span class="toc-text">父亲的病</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E7%90%90%E8%AE%B0"><span class="toc-text">琐记</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E8%97%A4%E9%87%8E%E5%85%88%E7%94%9F"><span class="toc-text">藤野先生</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

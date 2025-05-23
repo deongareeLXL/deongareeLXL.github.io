@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>2022小结 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/01/09/story/summary2022/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">2022小结</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2023-01-09T22:08:23+08:00">2023-01-09 22:08:23</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>一年时间恍然间就过去了，真的是太快，都没回过味儿来。还是希望能把时间过得更慢一点，不要被娱乐至死的潮流带偏了节奏，不要被时钟夺去了生活，忽视了阳升阳落，潮涨潮退。<br>今年着实是一个特别的年份，值得一生去回味。</p>
+<span id="more"></span>
+
+<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>按例还是回顾一下去年的总结，去年总结的关键词是计划和自律，洋洋洒洒地写了一堆有的没的。对比于今年，反而显得今年着实有一点空泛的味道。不管是从主观的体验上而言，还是从客观的阅读量来看，都没有达到去年的高度。当然，客观原因是存在的，今年不得不为很多其他的事情分神，有个人的，也有社会面的。从某种程度上，都影响了计划的执行，导致了一些懈怠的情绪在蔓延。这一点是需要重视的。<br>但是，也没有必要妄自菲薄。今年虽然在阅读总结上，没有去年勤奋，但是在一些其他的方面，也多了很多不一样的人生感悟。至于权衡利弊，这个真的没法去评说，只能说，结果如此。再说来年的方向如何，还要看后续的计划以及更长远的人生的规划了。</p>
+<h3 id="年终小结"><a href="#年终小结" class="headerlink" title="年终小结"></a>年终小结</h3><p>今年的计划都是逐月执行的，偶尔会日结一番，总体都不怎么理想，但是磕磕绊绊下也有那么一些收获，算是保底收获吧。今年的重点还是在于实践上，不管是主动的经历，还是被动的体验，相信都不是未来能够轻易复制的。<br>先说主动相关的吧，开始反思与人相处的模式，开始有意识地感知自己的情绪。主观上感觉做的还行。尽管有些人，有些事，超出了目前的我所能掌控的范畴，但是，从结果上而言，差强人意吧。期待自己的行动力能有进一步提升，期待一个内心更强大的自己吧。<br>再说被动相关的吧，主要就是疫情了。算是一场难忘的经历吧，当然也从中收获了许多。</p>
+<p>今年不再谈计划和自律，一者已经深挖过了，再执念下去意义不大。二来，还是认识到自己并不是一个ambitious的人。没有必要把自己逼入绝境，走上绝对自律的道路，非我所愿。今年谈一些其他的，不那么尖锐，但是也很重要的话题。</p>
+<h3 id="认清自己生活的实相"><a href="#认清自己生活的实相" class="headerlink" title="认清自己生活的实相"></a>认清自己生活的实相</h3><p>算是今年的感悟吧，很简单的话题，也很深刻。可能人生的智慧都存在于这些个小的不起眼的点上，而很多人都在始终盯着高处的风景，而忘记留意脚下的土地是否夯实。<br>很小的点，比如大家都在戏称，新冠都是从嘴硬开始的，很多人都在感染初期，坚信自己只是普通感冒。可能一方面是长期的管控让大家产生了过分的恐惧，另一方面也是惯性思维的影响，认为自己身体好，防护到位。但是，现实往往都不以人的意志为转移。发热了，该吃药吃药，该休息休息。<br>多数人都会活在一种自己假想的世界里。尽管科学表明，人的大脑确实是耗费大量的能量，在不断地尝试预测未来，用于应对未知。但是这种预测，应该是需要被理性加以管控的。我向来是不提倡纯理性地去生活，那样太累，既不现实，也不够人文主义。但是我更反感纯感性地去思考，那是否又偏向了另外一种极端了呢。<br>总有一些我们避不开的实相，需要我们去理性对待。尽管主流有说法是逃避可耻但有用，但是，逃避毕竟不是上策，直面才是解决问题的不二法门。建议还是，如果没有到达ptsd的程度，能面对的，尽早面对。要有向死而生的勇气，人生皆是坦途。<br>哪些是我们需要认清的实相呢，不同的人生，答案自然不同。不过一些通用的点还是可以说道说道。少年人怀着一颗英雄梦，那时往往都是一腔热血，妄图攀上绝地，一览高处胜景。但是，后来也会慢慢明白，高处不胜寒，欲戴王冠，必承其重的道理。人人都定位自己是武侠剧里快意恩仇的大侠，但是事实上，大部分人都只能做大侠旁边不起眼的龙套小角色。<br>与其去整天挖空心思，力争人们眼中的光环称号，不如想一想，如何去当好自己的小人物角色。小人物自然有小人物的人生，并没有说小人物就可以固步自封，甚至于破罐子破摔。每个人都是自己的英雄，每个人存在必然有着其存在的意义，那是需要自己去发掘创造。大刘在球闪中说，人生的美妙之处在于迷上一样东西。人生苦短，少做些虚无缥缈的事。夜晚的灯塔一直都在，只是灯亮的时候，你才看见它。<br>对于大部分人而言，应该要懂得自己的平凡，了解自己的不足。在此基础上，做更好的自己。人生的意义，更多的是在于不断迸发自己的灵感，产生思维的火花，然做出一点改变的尝试。固守普通人的角色，明白自己的人生高度在何处，最后的最后，便只剩风雨兼程。并不是人人都需要普世意义上的成功，努力去寻找能滋养你灵魂的事物，去寻找你内心的归处。<br>人本主义心理学说，世界上每个人都拥有自己的实相，有多少个人，就有多少种实相。这样的观点还是偏激于唯心主义，但是目前的我无法反驳。尽管每个人自己的世界实相可能是不尽相同，但是人与人之间是需要交流的，只有当我们共同承认某种实相时，我们才能产生共鸣。<br>举个不那么恰当的例子，有人说，只要利益不产生冲突，别人讲的话，一般不需要反驳。<br>这样的唯利益论的观点，可能是当今世界的主流思潮了。尽管略有反感，但是不能反对。直面生活的实相，说的就是这种社会本质的东西吧，看破事物的本质，抓住重点，结合自己的现状，才能做出更明智的决策。<br>就今年而言，我意识到哪些生活实相是目前阶段需要把握的呢，随便聊聊，不做展开了吧。</p>
+<p>首先就是幸福论。如果不加外部条件干涉，人们会疯狂追求自己所谓的”幸福”，其疯狂程度会愈演愈烈。从1984的过去，到娱乐至死的当代，而未来的美丽新世界是否降临，不得而知。忆苦才能思甜，没有苦难就没有幸福，这是一种哲学思辨。我们更应该追寻一些相对稳定的事物，比如健康，比如智慧。我们不排斥苦难，更不会感恩苦难，我们可以追求幸福，但是我们不执念于此。我们应该做人生的经历者，而非被欲望驱使狂奔的野兽。</p>
+<p>然后是社会运作规律。立场论的认定，从来就没有救世主。规则是弱者的朋友，但是是由强者制定的。社会资源分配的不均匀，百分之九十的人供养着百分之十的人安逸享乐。而这百分之九十的人又在不断挤压彼此的生存空间。但表面上，这部分人想要多获得更多资源，需要不把自己当个人，不把别人不当人，需要把自己的姿态放得更低，其本质就是一个字，卷。这就会陷入某种囚徒困境的悲哀命运中。如何逃出这个漩涡，不做待割韭菜，不当牛马，同时又能争得一份满足的物质资源。普通人，请细细思量。<br>再说说生活心态。生活应该主要着眼于当下，适当地计划着不久的将来，以及明确一个更遥远未来的方向。对于过去，我的建议是，记录并尘封之，待到合适的时间点拿出来缅怀一番，然后调整步伐，再次向前。罗老师提到苏格拉底在书中的观点是”我们一生的学习都是为了回忆前世的美好“，暂时还领会不到，来年再看看。对于当下，我希望能活得更细腻一点，并不是那种所谓的精致生活，而是一种中庸状态下乐观积极生活态度引发的更多的五官感受。对于未来，把握一个长远的主方向，偶尔制定一下短期计划调整前进步伐的节奏和方向感。</p>
+<p>最后还是提一提相处之道。大概懂了一丢丢，姑妄论之吧。基于黑暗森林法则，陌生人之间想要搭建起信任的桥梁是不大容易的。所幸大部分需要沟通的人们还有着共同的文化传承，但即便如此，人生经历不同，导致的三观以及生活习惯的差异，让人们在相处的过程中难免遭遇摩擦。信任是双向，基本是需要一段时间的相互了解，产生不同程度的羁绊，并且辅助以间歇性维护工作。<br>人是复杂的生物，但是我们在相处时，需要让自己变得简单易懂，敏感脆弱情绪化都是不可取的。人所有的痛苦都来自于人际关系，这话还是有一定道理的。善于交际的人往往会有两方面特点，一者是外在资源更为丰富的人，或物质资源，或特殊技艺，或消息灵通，他们往往拥有更广的看待世界的视角；二者是内心更为强大的人，他们拥有自己的信念，能表达出自己的观点，有勇气直面遇到的人与事。<br>再说说语言艺术，其实说白了就是赞美他人。赞美他人是一件很正确的事情，百利而无一害。批评和指责都可以在赞美中委婉地表达出来，因为赤裸裸的指责基本上解决不了任何问题。当然，有人说我天性孤傲，不屑于溜须拍马，我心直口快，不想要委婉。事实上，并不是让你去僵硬地说假话，而是让你学会发现别人的闪光点。高明的语言艺术往往会让对方觉得你很真诚，你说的都对，但是不耽误你表达出你的观点。<br>然后要说说的就是自认聪明的人类发明的一种新话术策略，名曰捧杀。这个就比较厉害了，它能把你举得高高的，然后某一天重重摔下。莫自以为是，洋洋得意。大部分人赞美你，只是为了表达自己的善意，也可能不是有意想要捧杀。但是你也要明白，如此而已，仅此而已。这个世界希望你过得更好的人不多，如果有，请珍惜。<br>最后说一下向上社交的问题。抱歉，这个真不会。没有人领路，这门技术估计是学不会了。人本主义心理学提倡我们要平等对话，当对话双方处在一个不平等地位的条件下，沟通的困难程度将放大。希望不会有一天去被迫研究这门技术。</p>
+<h3 id="情绪控制"><a href="#情绪控制" class="headerlink" title="情绪控制"></a>情绪控制</h3><p>之所以把这个单独拎出来讲，是因为这个的重要程度较高。都说，成熟的标志，是具备控制情绪的能力。在解决问题的过程中，能保持平和的心态，不走极端，客观理性地分析，就会带来一种可靠的情绪。<br>但是，叔本华说，对于一个年轻人来说，过早洞察世故，那预示着他本性平庸。有才华的人大多有自己的执念。同样的，我们也不需要像苦行僧修道一般，一直保持情绪压抑，那很苦。<br>就像美丽新世界描述的一样，人们在遇到不安的事情时，需要嗦麻来缓解。每个月需要肾上腺素来保持身心愉悦。偶尔地，我们还是需要在情绪上翻起几个波浪。为此，我们需要在生活中制造一些小目标，小期待点。这是很严肃的一种期待，做不得半分假，因为在期待这个点上，根本无法自欺。<br>意志力一书中有描述说当人们无所事事的时候，有想要改变当前现状的趋势，而为了阻止这种趋势，也是会不断消耗意志力的。这就解释了，即使我什么都没做，意志力也在不断被消耗，最后也无法自我控制的原因。<br>最后，还是不得不强调，我们还是要尽量避免对情绪的强行控制，这是一种自我损耗极大的事情，可能会在意志力消耗完后产生补偿式的剧烈反弹。非必要不控制，但是在关键事件的决策上，又必须要控制，不然就会给自己和他人造成困扰，产生一些不好的结果。</p>
+<h3 id="今年的主旋律"><a href="#今年的主旋律" class="headerlink" title="今年的主旋律"></a>今年的主旋律</h3><p>拍脑袋了，今年的大主题就是执行力了。经历了两年计划的败北，今年一定要稳扎稳打。列上计划就一定会去执行，非必要，不加码。周计划，月总结。<br>列几点注意事项。<br>1.要明确自己的执行上限和执行下限，在上限和下限之间选一个合适的点，算上锚定效应，得出最终的计划量。<br>2.目标是形成某种习惯，而不是要去注重一些输出性的东西，要学会享受过程，而不是只盯着结果。<br>3.多总结回顾，多分享自己的观点看法，不要急于求成，贪多必失。<br>4.千万避免恶性循环，保持平和的心态，设置好目标期待点。</p>
+<h3 id="今年书单"><a href="#今年书单" class="headerlink" title="今年书单"></a>今年书单</h3><p>2023.01.03 《名侦探的牺牲:人民教会杀人事件》 白井智之 推荐<br>2023.01.07 《长长的回廊》 东野圭吾 不推荐<br>2023.01.10 《寻狗事务所》 米泽穗信 推荐<br>2023.01.16 《密室收藏家》 大山诚一郎 推荐<br>2023.01.21 《虚无十字架》 东野圭吾 不评价<br>2023.01.23 《无名之町》 东野圭吾 推荐<br>2023.01.26 《绝叫》 叶真中显 推荐<br>2023.02.03 《爱丽丝·镜城》 北山猛邦 不评价<br>2023.02.03 《透明的螺旋》 东野圭吾 不推荐<br>2023.02.06 《钟城》 北山猛邦 不推荐<br>2023.02.09 《遗忘刑警》 陈浩基 推荐<br>2023.02.27 《19年间谋杀小叙》 那多 推荐<br>2023.03.05 《奇偶》 山口雅也 非推迷不推荐<br>2023.03.09 《星咏师的记忆》 阿津川辰海 推荐<br>2023.03.13 《心灵侦探城塚翡翠》 相泽沙呼 不推荐<br>2023.03.17 《尸人庄谜案》 今村昌弘 推荐<br>2023.03.28 《魔眼之匣谜案》 今村昌弘 推荐<br>2023.03.29 《幸福之路》 罗素 推荐<br>2023.04.13 《凶人邸谜案》今村昌弘 推荐<br>2023.04.18 《共感觉》 天祢凉 推荐<br>2023.04.25 《你的解谜由我作答》 纸城镜介 不推荐<br>2023.05.12 《你的解谜由我作答2》 纸城镜介 不推荐<br>2023.05.25 《JQKJQ》 佐藤究 不推荐<br>2023.06.07 《月灯馆杀人事件》 北山猛邦 推荐<br>2023.06.17 《密室小丑》 时辰 不推荐<br>2023.07.10 《独眼少女》 麻耶雄嵩 不推荐<br>2023.08.10 《小狗钱钱》 博多·舍费尔 不推荐<br>2023.08.20 《黑牢城》 米泽穗信 推荐<br>2023.11.10 《恐怖的人狼城1234》 二阶堂黎人 只推荐第四部解答篇<br>2023.11.21 《绝对不在场证明》 大山诚一郎 推荐<br>2023.11.23 《2》 野崎惑 不评价<br>2023.11.30 《白井小姐》 乙一 不推荐<br>2023.12.06 《名侦探原田亘》 白井智之 不推荐<br>2023.12.08 《如首无作祟之物》 三津田信三 推荐<br>2023.12.10 《无人逝去》 白井智之 推荐<br>2023.12.28 《谋杀爱丽丝》 小林泰三 推荐</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag"><i class="fas fa-tags"></i>年度总结</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2023/01/08/book/authors/baijinzhizhi/" rel="next" title="白井智之作品集"><i class="fas fa-angle-left"></i><span class="nav-title">白井智之作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2023/01/20/book/zuoweiyizhihebiaoxiangdeshijie/" rel="prev" title="作为意志和表象的世界"><span class="nav-title">作为意志和表象的世界</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E5%B9%B4%E7%BB%88%E5%B0%8F%E7%BB%93"><span class="toc-text">年终小结</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E8%AE%A4%E6%B8%85%E8%87%AA%E5%B7%B1%E7%94%9F%E6%B4%BB%E7%9A%84%E5%AE%9E%E7%9B%B8"><span class="toc-text">认清自己生活的实相</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E6%83%85%E7%BB%AA%E6%8E%A7%E5%88%B6"><span class="toc-text">情绪控制</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BB%8A%E5%B9%B4%E7%9A%84%E4%B8%BB%E6%97%8B%E5%BE%8B"><span class="toc-text">今年的主旋律</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#%E4%BB%8A%E5%B9%B4%E4%B9%A6%E5%8D%95"><span class="toc-text">今年书单</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
