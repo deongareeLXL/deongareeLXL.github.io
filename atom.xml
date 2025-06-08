@@ -6,10 +6,29 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-05-22T10:27:40.223Z</updated>
+  <updated>2025-06-08T12:45:47.217Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2024小结</title>
+    <link href="http://yoursite.com/2025/06/08/story/summary2024/"/>
+    <id>http://yoursite.com/2025/06/08/story/summary2024/</id>
+    <published>2025-06-08T12:28:56.000Z</published>
+    <updated>2025-06-08T12:45:47.217Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="年度总结" scheme="http://yoursite.com/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>双月城的惨剧</title>
@@ -27,25 +46,6 @@
     
     
     <category term="本格推理" scheme="http://yoursite.com/tags/%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2024小结</title>
-    <link href="http://yoursite.com/2025/04/26/story/summary2024/"/>
-    <id>http://yoursite.com/2025/04/26/story/summary2024/</id>
-    <published>2025-04-26T04:28:56.000Z</published>
-    <updated>2025-04-26T04:49:12.455Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="story" scheme="http://yoursite.com/categories/story/"/>
-    
-    
-    <category term="年度总结" scheme="http://yoursite.com/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
