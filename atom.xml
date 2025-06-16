@@ -6,17 +6,36 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-06-08T12:45:47.217Z</updated>
+  <updated>2025-06-16T02:57:19.195Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>水天一色作品集</title>
+    <link href="http://yoursite.com/2025/06/13/book/authors/shuitianyise/"/>
+    <id>http://yoursite.com/2025/06/13/book/authors/shuitianyise/</id>
+    <published>2025-06-13T10:11:37.000Z</published>
+    <updated>2025-06-16T02:57:19.195Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;水天一色，汉族，毕业于北京工业大学，作家，代表作品有《许飞日记》《落寒的童年》等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="推理小说" scheme="http://yoursite.com/tags/%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>2024小结</title>
     <link href="http://yoursite.com/2025/06/08/story/summary2024/"/>
     <id>http://yoursite.com/2025/06/08/story/summary2024/</id>
     <published>2025-06-08T12:28:56.000Z</published>
-    <updated>2025-06-08T12:45:47.217Z</updated>
+    <updated>2025-06-16T02:57:09.851Z</updated>
     
     
     <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
@@ -370,25 +389,6 @@
     
     
     <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于公考</title>
-    <link href="http://yoursite.com/2024/11/25/story/about-gongkao/"/>
-    <id>http://yoursite.com/2024/11/25/story/about-gongkao/</id>
-    <published>2024-11-25T13:10:11.000Z</published>
-    <updated>2025-04-22T13:11:52.193Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;关于国考行测题型的一些思用到关于国考行测题型的一些思于国考行测题型的一些思用到关于国考行测题型的一些思考&lt;br&gt;国考行测的题型，大体分为5个模块，而其中每个模块又会细分为很多小的部分。总体而言，考点多，涉及的知识面甚广。&lt;br&gt;而结合考试时间的制约，考生根本无法在考场有深入的思考，必须凭借熟练度和所谓的蒙题大法获胜。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="story" scheme="http://yoursite.com/categories/story/"/>
-    
-    
-    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
     
   </entry>
   
