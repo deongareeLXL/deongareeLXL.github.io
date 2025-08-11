@@ -6,10 +6,48 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-08-05T08:11:16.422Z</updated>
+  <updated>2025-08-11T10:04:30.147Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>轩弦作品集</title>
+    <link href="http://yoursite.com/2025/08/11/book/authors/xuanxian/"/>
+    <id>http://yoursite.com/2025/08/11/book/authors/xuanxian/</id>
+    <published>2025-08-11T09:58:35.000Z</published>
+    <updated>2025-08-11T10:04:30.147Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;轩弦，中国推理作家，活跃于《推理世界》《最推理》等杂志。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="中国推理" scheme="http://yoursite.com/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>御手洗熊猫作品</title>
+    <link href="http://yoursite.com/2025/08/08/book/authors/yushouxixiongmao/"/>
+    <id>http://yoursite.com/2025/08/08/book/authors/yushouxixiongmao/</id>
+    <published>2025-08-08T07:02:03.000Z</published>
+    <updated>2025-08-11T09:58:12.876Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;御手洗熊猫，以前也是比较出名的作家，可惜最近几年也没什么作品。&lt;br&gt;国内的大环境还是太差了，国人貌似对推理也不怎么感兴趣。&lt;br&gt;有说国内推理还需要混圈子的，咱也没进去过，我想也大差不差吧。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="中国推理" scheme="http://yoursite.com/tags/%E4%B8%AD%E5%9B%BD%E6%8E%A8%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>上海千古情</title>
@@ -73,7 +111,7 @@
     <link href="http://yoursite.com/2025/06/08/story/summary2024/"/>
     <id>http://yoursite.com/2025/06/08/story/summary2024/</id>
     <published>2025-06-08T12:28:56.000Z</published>
-    <updated>2025-06-16T02:57:09.851Z</updated>
+    <updated>2025-08-11T10:04:30.147Z</updated>
     
     
     <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
@@ -351,44 +389,6 @@
     
     
     <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>绍兴</title>
-    <link href="http://yoursite.com/2024/12/31/travel/2024/shaoxing/"/>
-    <id>http://yoursite.com/2024/12/31/travel/2024/shaoxing/</id>
-    <published>2024-12-31T14:10:34.000Z</published>
-    <updated>2025-04-26T04:54:01.335Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;绍兴，鲁迅故居，来了来了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安山古道</title>
-    <link href="http://yoursite.com/2024/12/31/travel/2024/anshangudao/"/>
-    <id>http://yoursite.com/2024/12/31/travel/2024/anshangudao/</id>
-    <published>2024-12-31T13:55:15.000Z</published>
-    <updated>2025-04-23T14:30:51.761Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目标，安山古道。&lt;br&gt;从小泉溪村出发。&lt;br&gt;随意走了个圈，到达安山村。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
     
   </entry>
   
