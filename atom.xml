@@ -6,17 +6,36 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-08-11T10:04:30.147Z</updated>
+  <updated>2025-09-18T10:50:29.847Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2025读书笔记</title>
+    <link href="http://yoursite.com/2025/09/18/book/2025dushubiji/"/>
+    <id>http://yoursite.com/2025/09/18/book/2025dushubiji/</id>
+    <published>2025-09-18T10:34:39.000Z</published>
+    <updated>2025-09-18T10:50:29.847Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;2025的读书笔记。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="read" scheme="http://yoursite.com/categories/read/"/>
+    
+    
+    <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>轩弦作品集</title>
     <link href="http://yoursite.com/2025/08/11/book/authors/xuanxian/"/>
     <id>http://yoursite.com/2025/08/11/book/authors/xuanxian/</id>
     <published>2025-08-11T09:58:35.000Z</published>
-    <updated>2025-08-11T10:04:30.147Z</updated>
+    <updated>2025-08-14T09:18:13.685Z</updated>
     
     
     <summary type="html">&lt;p&gt;轩弦，中国推理作家，活跃于《推理世界》《最推理》等杂志。&lt;/p&gt;</summary>
@@ -111,7 +130,7 @@
     <link href="http://yoursite.com/2025/06/08/story/summary2024/"/>
     <id>http://yoursite.com/2025/06/08/story/summary2024/</id>
     <published>2025-06-08T12:28:56.000Z</published>
-    <updated>2025-08-11T10:04:30.147Z</updated>
+    <updated>2025-09-18T10:30:29.574Z</updated>
     
     
     <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
@@ -370,25 +389,6 @@
     
     
     <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>双子山</title>
-    <link href="http://yoursite.com/2025/01/19/travel/2025/shuangzishan/"/>
-    <id>http://yoursite.com/2025/01/19/travel/2025/shuangzishan/</id>
-    <published>2025-01-19T11:43:01.000Z</published>
-    <updated>2025-04-25T14:11:47.836Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;上海双子山，新开放的人工山。&lt;br&gt;之前就在远处看到过，去年底开始正式开放。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
     
   </entry>
   
