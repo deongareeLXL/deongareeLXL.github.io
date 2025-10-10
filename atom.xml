@@ -6,10 +6,108 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-09-18T10:50:29.847Z</updated>
+  <updated>2025-10-10T11:07:00.167Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>嵩山</title>
+    <link href="http://yoursite.com/2025/10/10/travel/2025/songshan/"/>
+    <id>http://yoursite.com/2025/10/10/travel/2025/songshan/</id>
+    <published>2025-10-10T09:40:40.000Z</published>
+    <updated>2025-10-10T11:07:00.167Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天，也是难得的晴天，原计划，嵩山太室山。&lt;br&gt;五岳之一，但是海拔一般般，还不如老君山。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="华夏大地" scheme="http://yoursite.com/tags/%E5%8D%8E%E5%A4%8F%E5%A4%A7%E5%9C%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>郑州方特</title>
+    <link href="http://yoursite.com/2025/10/10/travel/2025/zhengzhoufangte/"/>
+    <id>http://yoursite.com/2025/10/10/travel/2025/zhengzhoufangte/</id>
+    <published>2025-10-10T09:16:36.000Z</published>
+    <updated>2025-10-10T09:38:41.123Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日终于放晴了，按照原定计划，去方特转转。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/0929/MVIMG_20250929_175508.jpg&quot; alt=&quot;城堡&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="游乐场" scheme="http://yoursite.com/tags/%E6%B8%B8%E4%B9%90%E5%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>只有河南剧场</title>
+    <link href="http://yoursite.com/2025/10/10/travel/2025/zhiyouhenan/"/>
+    <id>http://yoursite.com/2025/10/10/travel/2025/zhiyouhenan/</id>
+    <published>2025-10-10T07:45:15.000Z</published>
+    <updated>2025-10-10T09:13:25.525Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;翌日，还是有雨，计划去只有河南剧场。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/0928/MVIMG_20250928_111117.jpg&quot; alt=&quot;入口&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="话剧" scheme="http://yoursite.com/tags/%E8%AF%9D%E5%89%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>郑州科技馆&amp;博物馆</title>
+    <link href="http://yoursite.com/2025/10/10/travel/2025/zhengzhoukejiguan-bowuguan/"/>
+    <id>http://yoursite.com/2025/10/10/travel/2025/zhengzhoukejiguan-bowuguan/</id>
+    <published>2025-10-10T06:09:46.000Z</published>
+    <updated>2025-10-10T07:44:48.837Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;郑州第一天，小雨，不得不先室内逛逛，选了两个邻近的馆。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/0927/MVIMG_20250927_125722.jpg&quot; alt=&quot;电路实验&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="华夏大地" scheme="http://yoursite.com/tags/%E5%8D%8E%E5%A4%8F%E5%A4%A7%E5%9C%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大阳山</title>
+    <link href="http://yoursite.com/2025/09/20/travel/2025/dayangshan/"/>
+    <id>http://yoursite.com/2025/09/20/travel/2025/dayangshan/</id>
+    <published>2025-09-20T12:41:37.000Z</published>
+    <updated>2025-09-24T12:58:14.396Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今日目的地，苏州大阳山。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="苏州" scheme="http://yoursite.com/tags/%E8%8B%8F%E5%B7%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>2025读书笔记</title>
@@ -294,101 +392,6 @@
     
     
     <category term="本格推理" scheme="http://yoursite.com/tags/%E6%9C%AC%E6%A0%BC%E6%8E%A8%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>元荡湖</title>
-    <link href="http://yoursite.com/2025/04/11/travel/2025/yuandanghu/"/>
-    <id>http://yoursite.com/2025/04/11/travel/2025/yuandanghu/</id>
-    <published>2025-04-11T14:16:40.000Z</published>
-    <updated>2025-04-26T04:28:09.369Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目的地，元荡湖骑行。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>昆山天福国家湿地公园</title>
-    <link href="http://yoursite.com/2025/04/04/travel/2025/kunshantianfuguojiashidi/"/>
-    <id>http://yoursite.com/2025/04/04/travel/2025/kunshantianfuguojiashidi/</id>
-    <published>2025-04-04T14:04:53.000Z</published>
-    <updated>2025-04-26T04:16:13.280Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目的地，昆山。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三三公路</title>
-    <link href="http://yoursite.com/2025/03/22/travel/2025/sansangonglu/"/>
-    <id>http://yoursite.com/2025/03/22/travel/2025/sansangonglu/</id>
-    <published>2025-03-22T14:46:15.000Z</published>
-    <updated>2025-04-26T04:06:51.014Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;三三公路骑行，出发。&lt;br&gt;小路，车不多，风景好。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阳澄湖</title>
-    <link href="http://yoursite.com/2025/03/01/travel/2025/yangchenghu/"/>
-    <id>http://yoursite.com/2025/03/01/travel/2025/yangchenghu/</id>
-    <published>2025-03-01T03:50:18.000Z</published>
-    <updated>2025-04-26T04:56:45.495Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目的地，昆山阳澄湖。&lt;br&gt;地铁上海11号线，连接苏州11号线，直达目的地，还是很方便。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>旺山</title>
-    <link href="http://yoursite.com/2025/02/23/travel/2025/wangshan/"/>
-    <id>http://yoursite.com/2025/02/23/travel/2025/wangshan/</id>
-    <published>2025-02-23T14:26:38.000Z</published>
-    <updated>2025-04-25T14:43:44.077Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;苏州的旺山景区。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
     
   </entry>
   

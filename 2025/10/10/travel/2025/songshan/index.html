@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>嵩山 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/10/10/travel/2025/songshan/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">嵩山</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2025-10-10T17:40:40+08:00">2025-10-10 17:40:40</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/travel/" itemprop="url" rel="index"><span itemprop="name">travel</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>今天，也是难得的晴天，原计划，嵩山太室山。<br>五岳之一，但是海拔一般般，还不如老君山。</p>
+<span id="more"></span>
+
+<p>豫州行公交，直达入口。<br>AI告诉我终点是景区入口，结果呢，还是送到了嵩阳书院。<br>AI还是不太靠谱啊。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_114645.jpg" alt="入口"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_114931.jpg" alt="溪水"></p>
+<p>进门就是山泉溪水，很冰凉，一个字，爽啊。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_115143.jpg" alt="嵩阳书院"><br>旁边是嵩阳书院，单独门票，没进去，一没时间，二没兴致。<br>做观光车去登山入口，太室山广场。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_121837.jpg" alt="观光车视角"></p>
+<p>观光车一路盘山上行，10几分钟到达目的地。<br>上山入口再一次检票。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_123046.jpg" alt="任务栏"><br>入口就是任务栏，捡垃圾任务，奖励属实太少了，给个证书都比这些强。<br>活动策划还欠缺功底。</p>
+<p>一路都是石阶，一个字，爬。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_123427.jpg" alt="石阶路"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_124003.jpg" alt="石阶路"></p>
+<p>很快就会到达老君洞。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_124007.jpg" alt="路牌"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_124214.jpg" alt="老君洞"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_124652.jpg" alt="猫"><br>继续向上。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/MVIMG_20250930_124724.jpg" alt="石阶路"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_130622.jpg" alt="石阶路"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_130627.jpg" alt="山路风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_131100.jpg" alt="猫"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_131323.jpg" alt="三佛殿"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_131937.jpg" alt="小虫子"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_133735.jpg" alt="嵩阳运动"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_133825.jpg" alt="嵩阳运动"><br>嵩阳运动貌似是一次地质运动，不太懂。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_134123.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_135743.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_141057.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_141116.jpg" alt="石阶"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_142141.jpg" alt="猫"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_143511.jpg" alt="路标"></p>
+<p>走到疲惫，终于到了三皇口，距离最高峰还有40分钟路程。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_143515.jpg" alt="三皇口"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_143516.jpg" alt="三皇口"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_143526.jpg" alt="三皇口"></p>
+<p>继续向前。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_145405.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_145933.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_150451.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_150928.jpg" alt="山上风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_151143.jpg" alt="山上风景"><br>终于抵达最高峰，峻极峰。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_151844.jpg" alt="峻极峰"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_153114.jpg" alt="峻极峰"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_153120.jpg" alt="峻极峰风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_153133.jpg" alt="峻极峰风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_153145.jpg" alt="峻极峰风景"><br>稍作停留，继续前行，往卢崖瀑布方向进发。<br>这边的人骤减，大家都宁愿走回头路，也不愿意走这边。<br>太远了。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_153603.jpg" alt="下山路风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154051.jpg" alt="下山路风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154613.jpg" alt="小庙"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154645.jpg" alt="山上种菜"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154733.jpg" alt="山上挖机"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154849.jpg" alt="山上停机坪"><br>山上不仅有挖掘机，还有直升机停机坪。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_154904.jpg" alt="下山路"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_155021.jpg" alt="下山路风景"><br>走了好久，终于到达气象站。<br>边上一群猫猫。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_161720.jpg" alt="气象站的猫"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_163945.jpg" alt="气象站"><br>继续往前。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_163947.jpg" alt="太阳"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_164730.jpg" alt="胜观峰"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_165126.jpg" alt="下山风景"><br>下山的路，感觉根本没下山，一直在从一个山头转移到另一个山头。</p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_165133.jpg" alt="下山风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_171253.jpg" alt="小屋"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_171459.jpg" alt="青童峰"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_171501.jpg" alt="青童峰"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_172420.jpg" alt="下山风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_172426.jpg" alt="下山风景"><br>来到一处水库，还以为就是卢崖瀑布，并不是。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_172615.jpg" alt="水库"><br>终于走到了一线天，真是电视里描述的一线天。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_173144.jpg" alt="一线天"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_173153.jpg" alt="一线天"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_173342.jpg" alt="一线天"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_173725.jpg" alt="一线天"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_173729.jpg" alt="一线天"><br>从一线天出来，过几个桥。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174126.jpg" alt="一线天出口"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174129.jpg" alt="一线天出口"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174554.jpg" alt="风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174558.jpg" alt="风景"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174649.jpg" alt="小瀑布"></p>
+<p><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174659.jpg" alt="双人行的桥"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174749.jpg" alt="瀑布"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_174917.jpg" alt="双人行的桥"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_175529.jpg" alt="瀑布"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_175854.jpg" alt="崖上字"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_175933.jpg" alt="瀑布"></p>
+<p>后面就是一堆小水潭了。<br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_181339.jpg" alt="水潭"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_181543.jpg" alt="水潭"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_181633.jpg" alt="水潭"><br><img src="https://raw.githubusercontent.com/deongareeLXL/image2025/master/0930/IMG_20250930_182010.jpg" alt="水潭"></p>
+<p>累坏了，出口逮到一辆黑车，直接坐到汽车站。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/%E5%8D%8E%E5%A4%8F%E5%A4%A7%E5%9C%B0/" rel="tag"><i class="fas fa-tags"></i>华夏大地</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2025/10/10/travel/2025/zhengzhoufangte/" rel="next" title="郑州方特"><i class="fas fa-angle-left"></i><span class="nav-title">郑州方特</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
