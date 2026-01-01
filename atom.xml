@@ -31,6 +31,25 @@
   </entry>
   
   <entry>
+    <title>关于有趣的体验</title>
+    <link href="http://yoursite.com/2025/11/03/story/about-interesting/"/>
+    <id>http://yoursite.com/2025/11/03/story/about-interesting/</id>
+    <published>2025-11-03T07:26:50.000Z</published>
+    <updated>2026-01-01T07:28:27.729Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;人们对于&lt;code&gt;过往的记忆&lt;/code&gt;，大多数都比较模糊。只是依稀暂存着一些零星的片段。而这些片段，往往都是两种极端的代表，一种是代表着充斥&lt;code&gt;负面情绪&lt;/code&gt;的回忆，而另一种则是因为&lt;code&gt;有趣&lt;/code&gt;而引发的快乐追思。作为一个&lt;code&gt;内心自洽&lt;/code&gt;的人，往往不会那么在意过去的那些不够美好，因为那都是过去时。而对于&lt;code&gt;有趣的回忆&lt;/code&gt;，一旦触发相应的记忆回路，脸上总会不自觉露出笑意，并想办法尝试重新去捕捉那份&lt;code&gt;往昔的美好&lt;/code&gt;。这大概就是人的&lt;code&gt;怀旧&lt;/code&gt;属性的归因。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
+  
+  <entry>
     <title>苏州灵树线</title>
     <link href="http://yoursite.com/2025/10/11/travel/2025/suzhoulingshuxian/"/>
     <id>http://yoursite.com/2025/10/11/travel/2025/suzhoulingshuxian/</id>
@@ -163,6 +182,25 @@
     
     
     <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记录一次租房心得</title>
+    <link href="http://yoursite.com/2025/09/15/story/about-rent-a-apartment/"/>
+    <id>http://yoursite.com/2025/09/15/story/about-rent-a-apartment/</id>
+    <published>2025-09-15T07:24:52.000Z</published>
+    <updated>2026-01-01T07:26:23.057Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;记录一次租房的体验。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
     
   </entry>
   
@@ -353,45 +391,6 @@
     
     
     <category term="帝都" scheme="http://yoursite.com/tags/%E5%B8%9D%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>上海新江湾湿地</title>
-    <link href="http://yoursite.com/2025/05/25/travel/2025/xinjiangwanchengshidigongyuan/"/>
-    <id>http://yoursite.com/2025/05/25/travel/2025/xinjiangwanchengshidigongyuan/</id>
-    <published>2025-05-25T08:02:39.000Z</published>
-    <updated>2025-06-09T08:12:33.456Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目的地，新江湾城湿地公园。&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/0524/IMG_20250524_145539.jpg&quot; alt=&quot;观鸟点&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="魔都" scheme="http://yoursite.com/tags/%E9%AD%94%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>西溪国家湿地公园</title>
-    <link href="http://yoursite.com/2025/05/12/travel/2025/xixi/"/>
-    <id>http://yoursite.com/2025/05/12/travel/2025/xixi/</id>
-    <published>2025-05-12T07:35:56.000Z</published>
-    <updated>2025-06-09T08:00:55.778Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日目的地，西溪国家湿地公园。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/0511/IMG_20250511_102348.jpg&quot; alt=&quot;南门&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="上海周边" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%B5%B7%E5%91%A8%E8%BE%B9/"/>
     
   </entry>
   

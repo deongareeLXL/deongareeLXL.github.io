@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          // $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"复制\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                "code",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              return trigger.parentNode.parentNode.nextElementSibling;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>记录一次租房心得 | </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/"></a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/travel"><i class="fas fa-th-list"></i><span class="menu-text">出行</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/read"><i class="fas fa-th-list"></i><span class="menu-text">阅读</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/material"><i class="fas fa-th-list"></i><span class="menu-text">收集</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/ability"><i class="fas fa-th-list"></i><span class="menu-text">超能</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/story"><i class="fas fa-th-list"></i><span class="menu-text">随想</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/09/15/story/about-rent-a-apartment/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">记录一次租房心得</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2025-09-15T15:24:52+08:00">2025-09-15 15:24:52</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/story/" itemprop="url" rel="index"><span itemprop="name">story</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>记录一次租房的体验。</p>
+<span id="more"></span>
+
+<p>先选好目的地铁站，然后去找了一家<code>小中介</code>。比较幸运，遇到一位还算比较<code>实诚的小哥</code>，问啥都说。可惜的是，没什么好的房源，基本都是<code>二房东</code>留下的那几套。<br>所谓的<code>二房东</code>，就是接管<code>大房东</code>的房子，然后简单装修出租，性价比都不算太高。一者，<code>二房东</code>是专业租房，装修都简单潦草，配件都极其廉价，主打一个中看不中用。二者，<code>二房东</code>会把房子挂在所有的平台，他不愁租不出去，因而价格上偏高，毫无性价比。<br>看到后面，我直接pass所有<code>二房东</code>的房子。当然，<code>大房东</code>的房子，也是有缺陷的。一者装修偏老旧，不管是地板墙壁还是家具，不会像<code>大房东</code>那样给你修整一下。二者，也存在一些<code>大房东</code>，只想当甩手掌柜，人根本不在乎那点儿房租钱，不想浪费任何时间在租房上，把房子委托给<code>中介</code>就不管事了。甚至于房子缺少必要的家具，如没有空调冰箱，人也不想搭理你，爱租租不租走的态度，让人无语。有幸能找到一位能谈谈补齐家具的大房东，也是不容易的。<br><code>小中介</code>看了一天，无果，晚上在线上一顿瞎找。以前是在<code>豆瓣</code>看转租信息，今年再去<code>豆瓣</code>搜，一点都没有了（虽然以前找的转租也从来没有成功过）。现在改<code>小红书</code>了。<code>小红书</code>上一搜，还是有一些转租的信息。<br>有一个<code>性价比</code>还不错的房子转租，约好了第二天去看看，结果，第二天还没过去，就被通知房子已经被别人定了。莫名有点失落。找个房子还这么卷。戏剧性的是，第三天，又被通知原来定下的租客被房东否决了，又能去看看这个<code>性比价</code>还不错的房子了。这次，吸取上次的教训，准点第一时间去看房。了解到，房东是个大房东，但是也是那种不管事的房东，之所以便宜，是因为当初他们租的时候，房子里也缺这缺那的，都是租客自行把这个房子整饬了一下，现在才显得没那么破旧。看得出来，他们还是很懂生活的，但是吧，租的房子，花上许多的精力捯饬，最后搬走的时候，大部分东西都只能丢弃，也是很不值当啊。房子还行，但是不知道有啥坑，房东还是个不管事儿的，犹豫中。他们说如果房子定下，要交个定金啥的，个人比较反感，说再考虑一下，然后就去看其他的转租房了。然后，就又一次被告知房子被别人定了。无奈啊。<br>然后就是其他的转租房，都是<code>一室户</code>的。所谓的一室户，就是大间房子，隔断一下，租给几户人。一室户是中介的说法，其实就是<code>改造房</code>，<code>隔断房</code>。性比价相对而言高一点，对打工人而言，只要便宜，还要什么自行车呢。但是缺点也是显而易见的，需要跟陌生人<code>共享公共区域</code>，并且这样的房子基本都是<code>二房东</code>。不过，一室户的二房东，基本都比较专业，虽然家具比较劣质，但是保修，二房东的执行效率还是很高的，这就是他们的主业。看了一些一室户，有离地铁非常近的，但是空间及其压抑。一间大公寓被改造成5、6户，进门就有一种窒息的感觉。在20平不到的空间里生存，跟蜗居没有什么区别了。如果是过去的我一个人，也许还能忍受，现在，估计不太行了。进到那个养猫的女生的小屋里短暂看了几眼，实在是过于压抑。这也许就是打工人的现状吧。仿佛看到了过去的自己，逃也似的离开了。稍远一点的<code>一室户</code>，都是那种大型小区的大房子改造，但是整个面积不算大，没有30平，达不到我们的居住要求。有个小区的周围，烟火气还是挺盛的，也许参观还行，居住可能体验也不太好，小区太大了。<br>说完了<code>房子``房东</code>，再说说<code>中介</code>吧。中介就有点鱼龙混杂了。小中介的那个小哥，还是挺实诚的，但是他那些年纪稍长的同事，一个个都难评，浑身充斥着独属于中介的一股<code>恶臭</code>。由于第一天，小中介没有找到心仪的房子，第二天就像找个稍微大一点的中介平台试试，联系的是太某平台，来了两个小哥。问为啥要来两个人，打听后才知道有一个是跟着帮忙打下手的。领头的小哥还是挺能聊的，看得出来，对周围房子的房价了熟于心，浑身散发出一股自信。但是吧，他们在知道我们的报价以后，把昨天看过的几个二房东的房子又带我们看了一遍，无语中。最后也不了了之了。看来大平台也没有好房子。或者说好房子挂出来都是被抢的，可能真的需要缘分了。约好次日有好的房子，再看看，次日给推荐了一个新房源，一般，不太想去看。中介和中介的差距也挺大的，这个太某的中介小哥，虽然不够实诚，但是也还算干练。后面在第三方平台也联系到一位太某的中介，我跟他说已经跟他同事联系过了，上来就说不打紧，联系客户看个人能力。然后开始给我线上推荐，都不太满意，都被我否决了，破防了，喷我。被我教育了。我说要是找房子简单要你们中介干嘛。中介作为服务行业，轻易就破防了，配吃这碗饭么。当然，行业下行，中介的日子估计也越来越难做了。<br>后面，还是放弃了选定的地铁站，转战其他地方，刚好看到链某有一套不错的性价比的房子。约中介，第二天，看完就定下了。这个中介小哥还是比较专业的那种，帮忙跟房东沟通，谈价。虽然他自称老油条，但是他也会帮房东搬东西，还算是一个非常敬业的中介。然而，房东，是一对中年夫妻，房子也是第一次出租，还帮我把不要的杂物搬走扔了，第一次当房东，过于客套，到让我无所适从了。跟那些不管事儿的房东大爷形成鲜明对比。自此，找房大计才算是画上圆满句号。<br>还有一些<code>中介</code>，需要记录记录。在小红书上联系到一个非平台的中介，不收<code>中介费</code>。我看上了他的一套房子，但是，他死活不让利，谈了一天，谈了一些有的没的，互相试探，最后只是给我推荐其他的房源。感觉是一个还算有点良心的中介，人品也很一般，容易破防。估计文化水平也不太高。还有一个<code>骗子中介</code>，用虚假的房源把人骗到他们那儿去，本来不敢露面，联系只靠<code>微信电话</code>，一个劲儿要电话号码，微信不敢回消息，怕留下证据。见面的时候，本人不敢来，叫了另外一个人来，来了就说那房子没有了，要带着看其他的房子。无非就是骗人过来看房。<br>所谓中介，应该是服务于双方的<code>专业人士</code>，然而市场鱼龙混杂，充斥着不合格者。他们的套路无非就是两头瞒，两头吃。带找房的人不断看房，催促你看房，用疲劳战术。看到稍微有点意向的，立即让交押金，定下租房。交押金前和交押金后的态度，那是截然不同。我是拒绝交付押金的，除非是大平台。甚至有一些中介，学着些阴阳怪气的话术，挤兑客户，又或者唱唱红白脸给客户施压，更无耻的就是直接开骗，素质之低，令人发寒。<br>当然，行业上行时，鱼龙混杂，泥沙俱下。但是在行业下行周期，该淘汰的淘汰，太规范的规范化。莫要叫劣币驱逐良币。<br>此外，还偶然得知，链某平台上的客户也是需要花钱竞争的，房产中介们需要购买自己平台上的客户流量，简直离谱。平台在<code>规范化行业</code>的同时，对人的压迫也与日俱增。如何在自由市场把握好规范化的程度，还道阻且长。当行业上行的时候，普天同庆，一片祥和的气息。一旦行业进入下行周期，一些内卷的加剧，将直接激化低层的矛盾，这可能是资本发展的不可调和。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/topic/" rel="tag"><i class="fas fa-tags"></i>topic</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2025/08/11/book/authors/xuanxian/" rel="next" title="轩弦作品集"><i class="fas fa-angle-left"></i><span class="nav-title">轩弦作品集</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2025/09/18/book/2025dushubiji/" rel="prev" title="2025读书笔记"><span class="nav-title">2025读书笔记</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="">
+  
+  <h1 class="author-name"></h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author"></span><span class="year"><i class="far fa-copyright"></i>2026</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
