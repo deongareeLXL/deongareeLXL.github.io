@@ -6,10 +6,29 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2025-12-31T09:44:23.832Z</updated>
+  <updated>2026-01-04T09:57:35.136Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2025小结</title>
+    <link href="http://yoursite.com/2026/01/04/story/summary2025/"/>
+    <id>http://yoursite.com/2026/01/04/story/summary2025/</id>
+    <published>2026-01-04T09:22:05.000Z</published>
+    <updated>2026-01-04T09:57:35.136Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今年赶早来一个&lt;code&gt;年度总结&lt;/code&gt;。&lt;br&gt;让明年能有一个全新的开始。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="年度总结" scheme="http://yoursite.com/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>漕泾郊野公园</title>
@@ -365,25 +384,6 @@
     
     
     <summary type="html">&lt;p&gt;次日上午，行程是天安门和国家博物馆。&lt;br&gt;下午是银狐洞。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="帝都" scheme="http://yoursite.com/tags/%E5%B8%9D%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>帝都-清华&amp;圆明园&amp;亮马河</title>
-    <link href="http://yoursite.com/2025/05/30/travel/2025/beijing1/"/>
-    <id>http://yoursite.com/2025/05/30/travel/2025/beijing1/</id>
-    <published>2025-05-30T14:13:48.000Z</published>
-    <updated>2025-06-09T08:50:46.993Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;去帝都第一天，行程为清华校园、圆明园，以及晚上的亮马河。&lt;/p&gt;</summary>
     
     
     
