@@ -6,10 +6,29 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2026-01-06T10:03:46.841Z</updated>
+  <updated>2026-01-16T12:16:17.387Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>冠嶂古道</title>
+    <link href="http://yoursite.com/2026/01/11/travel/2026/guanzhanggudao/"/>
+    <id>http://yoursite.com/2026/01/11/travel/2026/guanzhanggudao/</id>
+    <published>2026-01-11T12:06:17.000Z</published>
+    <updated>2026-01-16T12:16:17.387Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;新年第一游，今日目的地，无锡冠嶂古道。&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/deongareeLXL/image2025/master/260111/IMG_20260111_112605.jpg&quot; alt=&quot;胜子岭&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
+    
+    
+    <category term="无锡" scheme="http://yoursite.com/tags/%E6%97%A0%E9%94%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>2025读书笔记</title>
@@ -365,25 +384,6 @@
     
     
     <summary type="html">&lt;p&gt;今日行程，最后一站，故宫。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="travel" scheme="http://yoursite.com/categories/travel/"/>
-    
-    
-    <category term="帝都" scheme="http://yoursite.com/tags/%E5%B8%9D%E9%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>帝都-八达岭长城</title>
-    <link href="http://yoursite.com/2025/06/01/travel/2025/beijing3/"/>
-    <id>http://yoursite.com/2025/06/01/travel/2025/beijing3/</id>
-    <published>2025-06-01T14:24:17.000Z</published>
-    <updated>2025-06-09T09:45:26.760Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今日行程，八达岭长城。&lt;/p&gt;</summary>
     
     
     
