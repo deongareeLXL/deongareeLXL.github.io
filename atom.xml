@@ -6,10 +6,29 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2026-01-19T08:56:46.392Z</updated>
+  <updated>2026-01-26T08:21:47.127Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何去做计划</title>
+    <link href="http://yoursite.com/2026/01/20/story/how-to-make-a-plan/"/>
+    <id>http://yoursite.com/2026/01/20/story/how-to-make-a-plan/</id>
+    <published>2026-01-20T08:20:33.000Z</published>
+    <updated>2026-01-26T08:21:47.127Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;新的一年，给自己的&lt;code&gt;预期&lt;/code&gt;加一了层强度。效果是有的，但是，再次陷入到的跟&lt;code&gt;计划&lt;/code&gt;斗争的节奏里。记得在几年前的年终总结里，我就详细描述了执行计划的各种艰辛。但是，直到今天，也没有更好的解决办法。当时没解决，是因为&lt;code&gt;客观条件&lt;/code&gt;不允许。而现在，问题又再一次摆到了明面上。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="story" scheme="http://yoursite.com/categories/story/"/>
+    
+    
+    <category term="topic" scheme="http://yoursite.com/tags/topic/"/>
+    
+  </entry>
   
   <entry>
     <title>十里琅珰</title>
@@ -372,25 +391,6 @@
     
     
     <category term="推理小说" scheme="http://yoursite.com/tags/%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AF%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2024小结</title>
-    <link href="http://yoursite.com/2025/06/08/story/summary2024/"/>
-    <id>http://yoursite.com/2025/06/08/story/summary2024/</id>
-    <published>2025-06-08T12:28:56.000Z</published>
-    <updated>2025-09-18T10:30:29.574Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;日常年度总结。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="story" scheme="http://yoursite.com/categories/story/"/>
-    
-    
-    <category term="年度总结" scheme="http://yoursite.com/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
